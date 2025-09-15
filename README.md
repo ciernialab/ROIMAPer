@@ -1,30 +1,15 @@
 # ROIMAPer
 
 
-
-Semi-automatic FIJI macro to map an atlas of ROIs to tissue images. Currently setup to also download a coronal version of the P65 ABA\_v3.
-
-
-
-
-
-
+Semi-automatic FIJI macro to map an atlas of ROIs to tissue images. Currently setup to also download a coronal version of the P56 ABA\_v3.
 
 This project is composed of four scripts that are used in three different situations:
-
-
 
 \* atlas\\\_download.R \\\& atlas\\\_setup.ijm: downloading the coronal ABA\\\_v3 and making it accessible for the other scripts; run once upon first install
 
 \* atlas\\\_to\\\_roi.ijm: creating regions of interest (ROI) for specific brain regions from the atlas; run whenever you need access to a new brain region that is not yet stored
 
 \* ROIMAPer\\\_.ijm: map the stored brain regions to brain slices; this is the day-to-day script
-
-
-
-
-
-
 
 ---- INSTALLING ----
 
