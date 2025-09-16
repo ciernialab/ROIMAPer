@@ -1,6 +1,6 @@
 library(tcltk)
 
-destination <-  "~Uni/Master/Ciernia_lab/test/"
+destination <-  ""
 
 dir.create(paste0(destination, "ABA_v3_download/"))
 
