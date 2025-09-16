@@ -158,6 +158,7 @@ for (i = 0; i < image_path.length; i++) {
 Dialog.addCheckbox("Use one roi set for all", true);
 Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
+Dialog.addCheckbox("Save between images?", false);
 
 Dialog.show();
 
@@ -168,6 +169,7 @@ for (i = 0; i < image_path.length; i++) {
 one_roi_for_all = Dialog.getCheckbox();
 one_channel_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
+autosave = Dialog.getCheckbox();
 
 if(one_channel_for_all == false) {
 	exit("Differing channels have not been implemented yet. Please analyze these images seperately."); //fix this at some point
@@ -271,16 +273,22 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 		atlas_slice = template_slice_number[current_image];
 	}
 	scaling(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
+	
+	if (autosave) {//if we want to save after every image
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
+	}
 }
 
 //then save the rois on tifs
-for (current_image = 0; current_image < image_path.length; current_image++) {
-	if (one_roi_for_all) {
-		atlas_slice = template_slice_number[0];
-	} else {
-		atlas_slice = template_slice_number[current_image];
+if (!autosave) {
+	for (current_image = 0; current_image < image_path.length; current_image++) {
+		if (one_roi_for_all) {
+			atlas_slice = template_slice_number[0];
+		} else {
+			atlas_slice = template_slice_number[current_image];
+		}
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
 	}
-	saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
 }
 
 close("ROI Manager");
@@ -398,7 +406,7 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 			roiManager("delete");
 		}
 		
-		roi_id_bounding_box = roiManager("count") - 1;
+		roi_id_bounding_box = roiManager("count") - 1; //i am doing this a lot, because that is the id of the most recently added ROI
 		roiManager("select", roi_id_bounding_box);
 		roiManager("rename", "bounding_box");
 		
@@ -408,8 +416,8 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		for (i = 0; i < roi_path.length; i++) {
 			roiManager("open", roi_path[i]); //open all the rois in the specified folder
 			if (i < roi_path.length - 1) {//for all but the last roi
-				roiManager("select", roiManager("count") - 1); //delete bounding box (which is the last entry in every individual roi set
-				roiManager("delete");
+				roiManager("select", roiManager("count") - 1); //delete bounding box (which should be the last entry in every individual roi set)
+				roiManager("delete"); // now there should be one atlas_bounding_box left
 			}
 		}
 		
@@ -473,7 +481,7 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		//delete these rois
 		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
 		//roiManager("delete");
-		roiManager("reset"); //not as elegant, but just selecting 
+		roiManager("reset"); //not as elegant, but simpler than creating an array of to-delete ROIs
 		close(control_channel);
 
 	} else {
@@ -653,16 +661,12 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 						if (flip_array[imagenumber]) {
 							run("Flip Vertically");
 						}
-
-						run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
-		
-						/*
-						//and save the rois on the individual channels
-						roiManager("show all without labels");
 						
-						save(output_path + image_name_without_extension + "_" + channeloptions[j] + ".tif");
-						close(channeloptions[j]);
-						*/
+						if (rotate_array[imagenumber] != 0) {//only rotate if necessary
+
+							run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
+						}
+						
 						//go through all the individual rois of the atlas that are not the bounding box and save them as individual images on each of the selected channels
 						for (k = save_roi_ids_start; k <= save_roi_ids_end; k++) {
 							roiManager("select", k);
