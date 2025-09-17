@@ -158,6 +158,7 @@ for (i = 0; i < image_path.length; i++) {
 Dialog.addCheckbox("Use one roi set for all", true);
 Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
+Dialog.addCheckbox("Save between images?", false);
 
 Dialog.show();
 
@@ -168,6 +169,7 @@ for (i = 0; i < image_path.length; i++) {
 one_roi_for_all = Dialog.getCheckbox();
 one_channel_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
+autosave = Dialog.getCheckbox();
 
 if(one_channel_for_all == false) {
 	exit("Differing channels have not been implemented yet. Please analyze these images seperately."); //fix this at some point
@@ -271,16 +273,22 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 		atlas_slice = template_slice_number[current_image];
 	}
 	scaling(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
+
+	if (autosave) {//if we want to save after every image
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
+	}
 }
 
 //then save the rois on tifs
-for (current_image = 0; current_image < image_path.length; current_image++) {
-	if (one_roi_for_all) {
-		atlas_slice = template_slice_number[0];
-	} else {
-		atlas_slice = template_slice_number[current_image];
+if (!autosave) {
+	for (current_image = 0; current_image < image_path.length; current_image++) {
+		if (one_roi_for_all) {
+			atlas_slice = template_slice_number[0];
+		} else {
+			atlas_slice = template_slice_number[current_image];
+		}
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
 	}
-	saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
 }
 
 close("ROI Manager");
