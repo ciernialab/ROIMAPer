@@ -1,6 +1,6 @@
 //Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab, University of Calgary published on 12-07-2019
 //
-// Created 2025-08-12 by Julian Rodefeld
+// Created 2025-09-15 by Julian Rodefeld
 // Ciernia Lab, University of British Columbia
 
 var map_to_control_channel = false;
@@ -661,16 +661,11 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 						if (flip_array[imagenumber]) {
 							run("Flip Vertically");
 						}
-
-						run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
-		
-						/*
-						//and save the rois on the individual channels
-						roiManager("show all without labels");
 						
-						save(output_path + image_name_without_extension + "_" + channeloptions[j] + ".tif");
-						close(channeloptions[j]);
-						*/
+						if (roate_array[image_number] != 0) {
+							run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
+						}
+						
 						//go through all the individual rois of the atlas that are not the bounding box and save them as individual images on each of the selected channels
 						for (k = save_roi_ids_start; k <= save_roi_ids_end; k++) {
 							roiManager("select", k);
