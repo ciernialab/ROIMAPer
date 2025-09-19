@@ -374,26 +374,17 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 					bounding_box_text = "No rectangular selection provided, please try again.";
 				}
 			}
-		} else { //automatically create a bounding box by thersholding
-			
-			run("Duplicate...", " ");
-			working_background_copy_name = getTitle();
-			run("8-bit");
+		} else { //automatically create a bounding box by thresholding
 			
 			setAutoThreshold("Default dark");
-			run("Convert to Mask");
-			
 			
 			//get the roi of the tissue detection
 			roi_id_brain = roiManager("count");
-			setThreshold(1, 255);
+			
 			run("Create Selection");
+			resetThreshold;
 			roiManager("add");
 			
-			//do not need working copy anymore, because Rois are added to manager
-			close(working_background_copy_name);
-			
-			selectWindow(control_channel);
 			run("Enhance Contrast", "saturated=0.35"); //better visibility
 			
 			roiManager("select",roi_id_brain);
