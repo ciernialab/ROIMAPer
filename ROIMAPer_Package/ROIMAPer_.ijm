@@ -477,7 +477,7 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		//save the rois to the temp directory, named after the images
 		roiManager("select", brain_region_roi_ids);
-		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
+		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to imagenumber later
 		//delete these rois
 		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
 		//roiManager("delete");
@@ -662,7 +662,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 							run("Flip Vertically");
 						}
 						
-						if (rotate_array[image_number] != 0) {
+						if (rotate_array[imagenumber] != 0) {
 							run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
 						}
 						
@@ -695,7 +695,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 				run("Flip Vertically");
 			}
 			
-			if (rotate_array[image_number] != 0) {
+			if (rotate_array[imagenumber] != 0) {
 				run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
 			}
 			roiManager("select", roi_closing_array);
