@@ -10,6 +10,7 @@ var automatic_bounding_box = false;
 var rotate_array = newArray();
 var flip_array = newArray();
 var output_path = "";
+var combined_output_path = "";
 var control_channel = "";
 
 showMessage("ROIMAPer", "<html>
@@ -159,6 +160,8 @@ Dialog.addCheckbox("Use one roi set for all", true);
 Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
+Dialog.addCheckbox("Create additional combined result?", false);
+
 
 Dialog.show();
 
@@ -170,6 +173,7 @@ one_roi_for_all = Dialog.getCheckbox();
 one_channel_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
+combined_results = Dialog.getCheckbox();
 
 if(one_channel_for_all == false) {
 	exit("Differing channels have not been implemented yet. Please analyze these images seperately."); //fix this at some point
@@ -263,6 +267,11 @@ for (i = 1; i <= channelchoices.length; i++) {
 }
 
 File.makeDirectory(output_path);
+if (combined_results) {
+	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+
+	File.makeDirectory(combined_output_path);
+}
 
 //then run the roi adjusting function for each image
 for (current_image = 0; current_image < image_path.length; current_image++) {
@@ -655,7 +664,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 							run("Flip Vertically");
 						}
 						
-						if (roate_array[image_number] != 0) {
+						if (rotate_array[image_number] != 0) {
 							run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
 						}
 						
@@ -674,6 +683,29 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 		for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
 			roi_closing_array = Array.concat(roi_closing_array, i);
 		}
+		
+		if (combined_results) {
+			
+			if (!is_czi[imagenumber]) {
+				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
+			} else {
+				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice);
+			}
+			rename("current_image");
+
+			if (flip_array[imagenumber]) {
+				run("Flip Vertically");
+			}
+			
+			if (rotate_array[image_number] != 0) {
+				run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
+			}
+			roiManager("select", roi_closing_array);
+			save(combined_output_path + local_image_name_without_extension + "_combined.tif");
+			
+			close("current_image");
+		}
+		
 		roiManager("select", roi_closing_array);
 		roiManager("delete");
 	}
