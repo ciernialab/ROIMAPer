@@ -662,7 +662,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 							run("Flip Vertically");
 						}
 						
-						if (roate_array[image_number] != 0) {
+						if (rotate_array[image_number] != 0) {
 							run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
 						}
 						
@@ -695,7 +695,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 				run("Flip Vertically");
 			}
 			
-			if (roate_array[image_number] != 0) {
+			if (rotate_array[image_number] != 0) {
 				run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
 			}
 			roiManager("select", roi_closing_array);
