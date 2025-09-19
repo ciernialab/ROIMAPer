@@ -364,15 +364,32 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 			before_bounding_box = roiManager("count");
 			waiting_for_bounding_box = true;
 			while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
-				setTool(0);
+								
+				setTool("rotatedrect");
 				waitForUser(bounding_box_text);
 				
-				if (selectionType() == 0) {
-					roiManager("add");
+				if (selectionType() == 3) {
+					getSelectionCoordinates(xbounding, ybounding);
+					xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
+					ybounding = Array.rotate(ybounding, 1);
 					waiting_for_bounding_box = false;
+					
+					angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+					if (xbounding[1]-xbounding[0] < 0) {
+						angle = angle + 180;
+					} else {
+						if (ybounding[1]-ybounding[0] < 0) {
+							angle = angle + 360;
+						}
+					}
+					
+					widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2));
+					heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+					
 				} else {
 					bounding_box_text = "No rectangular selection provided, please try again.";
 				}
+				run("Select None");
 			}
 		} else { //automatically create a bounding box by thresholding
 			
@@ -387,19 +404,11 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 			
 			run("Enhance Contrast", "saturated=0.35"); //better visibility
 			
-			roiManager("select",roi_id_brain);
-			roiManager("rename", "tissue");
-			//make the bounding box around the tissue and assure correctness
-			roiManager("select", roi_id_brain);
 			run("To Bounding Box");
-			roiManager("add");
-			roiManager("select", roi_id_brain);
-			roiManager("delete");
+			
+			getSelectionBounds(xbounding, ybounding, widthbounding, heightbounding);
 		}
 		
-		roi_id_bounding_box = roiManager("count") - 1;
-		roiManager("select", roi_id_bounding_box);
-		roiManager("rename", "bounding_box");
 		
 		
 		//open the atlas and save the indices of the first and the last entry
@@ -433,14 +442,11 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		//get coordinates of unscaled atlas 
 		roiManager("select", atlas_bounding_box_id);
-		getSelectionBounds(xtemplate, ytemplate, widthtemplate, heighttemplate);
-		//get coords of bounding box around tissue
-		roiManager("select", roi_id_bounding_box);
-		getSelectionBounds(xsample, ysample, widthsample, heightsample);
+		getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
 		
 		//calculate scaling factor
-		xscale = widthsample / widthtemplate;
-		yscale = heightsample / heighttemplate;
+		xscale = widthbounding / widthatlas;
+		yscale = heightbounding / heightatlas;
 		
 		
 		//select all of the atlas
@@ -452,12 +458,10 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		//now do the same thing with translation (measure the coordinates again, because I do not want to bother with maths (maybe they do not even change, when scaling non-centered)
 		roiManager("select", atlas_bounding_box_id);
-		getSelectionBounds(xtemplate, ytemplate, widthtemplate, heighttemplate);
-		roiManager("select", roi_id_bounding_box);
-		getSelectionBounds(xsample, ysample, widthsample, heightsample);
+		getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
 		
-		xtrans = xsample - xtemplate;
-		ytrans = ysample - ytemplate;
+		xtrans = xbounding[0] - xatlas[0];
+		ytrans = ybounding[0] - yatlas[0];
 		
 		
 		roiManager("select", full_atlas_ids);
@@ -469,9 +473,7 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		//save the rois to the temp directory, named after the images
 		roiManager("select", brain_region_roi_ids);
 		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
-		//delete these rois
-		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
-		//roiManager("delete");
+		
 		roiManager("reset"); //not as elegant, but just selecting 
 		close(control_channel);
 
