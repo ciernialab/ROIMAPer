@@ -271,7 +271,7 @@ for (i = 1; i <= channelchoices.length; i++) {
 
 File.makeDirectory(output_path);
 if (combined_results) {
-	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
 
 	File.makeDirectory(combined_output_path);
 }
@@ -311,7 +311,6 @@ Dialog.show();
 
 
 //all the previous stuff is done on the first image; now open each image individually
-
 
 
 
@@ -694,7 +693,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 			roi_closing_array = Array.concat(roi_closing_array, i);
 		}
 		
-		if (combined_results) {
+		if (combined_results) {//opens the whole image and saves all ROIs combined
 			
 			if (!is_czi[imagenumber]) {
 				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
