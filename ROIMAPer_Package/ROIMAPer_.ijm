@@ -314,7 +314,6 @@ Dialog.show();
 
 
 
-
 function scaling(imagenumber, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
 	roi_path = newArray();
 	for (i = 0; i < regions.length; i++) {
@@ -685,7 +684,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 			roi_closing_array = Array.concat(roi_closing_array, i);
 		}
 		
-		if (combined_results) {
+		if (combined_results) {//opens the whole image and saves all ROIs combined
 			
 			if (!is_czi[imagenumber]) {
 				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
