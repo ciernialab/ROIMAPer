@@ -51,10 +51,11 @@ Dialog.createNonBlocking("File confirmation");
 length_limit = 20;
 columns = Math.ceil(image_selection_size/length_limit);
 Dialog.addMessage("These are the files you have chosen, please confirm.");
-for (i = 0; i < image_selection_size; i++) {
+
+for (i = 0; i < image_selection_size; i++) {//creating a grid-like dialog window of the files provided. Grid likeness enables the display of more file titles
 	Dialog.addCheckbox(image_list[i + image_selection_start], true);
 	for (j = 1; j < columns; j++) {
-		if (i + 1 < image_list.length) {
+		if (i + 1 < image_selection_size) {
 			Dialog.addToSameRow();
 			i++;
 			Dialog.addCheckbox(image_list[i + image_selection_start], true);
@@ -74,7 +75,7 @@ image_path = newArray();
 image_name = newArray();
 image_name_without_extension = newArray();
 
-for (i = image_selection_start; i < image_selection_end; i++) {
+for (i = 0; i < image_selection_size; i++) {
 	if (file_chosen[i]) {
 	    image_path = Array.concat(image_path, replace(image_directory + image_list[i], "\\", "/"));
 	    image_name = Array.concat(image_name, File.getName(image_directory + image_list[i]));
@@ -112,9 +113,9 @@ for (i = 0; i < image_path.length; i++) {
 	metadata_answer = newArray();
 	for (j = 0; j < metadata_queries.length; j++) {
 		metadata_location = indexOf(metadata, metadata_queries[j]) + 5; 
-		metadata_line_separator_location = indexOf(metadata, "\n", metadata_location);
+		metadata_line_separator_location = indexOf(metadata, "\n", metadata_location);//using the line separator as a delimiter after the value atributed to the query
 		if (metadata_line_separator_location < 0) {
-			metadata_line_separator_location = metadata_length;
+			metadata_line_separator_location = metadata_length; 
 		}
 		local_metadata_answer = String.trim(substring(metadata, metadata_location, metadata_line_separator_location));
 		metadata_answer = Array.concat(metadata_answer,parseInt(local_metadata_answer));
@@ -153,11 +154,11 @@ setBatchMode(false);
 Dialog.create("Slice selection");
 Dialog.addMessage("Which slices would you like to use for each image?");
 for (i = 0; i < image_path.length; i++) {
-	checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0); //making an array of numbers 1-slicenumber
+	checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0); //making an array of the numbers from 1 to slicenumber
 	Dialog.addChoice(image_name_without_extension[i], checkboxitems);
 }
 Dialog.addCheckbox("Use one roi set for all", true);
-Dialog.addCheckbox("Images have consistent channel order", true);
+//Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
@@ -167,18 +168,18 @@ Dialog.show();
 
 selected_slices = newArray();
 for (i = 0; i < image_path.length; i++) {
-	selected_slices = Array.concat(selected_slices, parseInt(Dialog.getChoice()));
+	selected_slices = Array.concat(selected_slices, parseInt(Dialog.getChoice())); //choice puts out decimal figures as characters
 }
 one_roi_for_all = Dialog.getCheckbox();
-one_channel_for_all = Dialog.getCheckbox();
+//one_channel_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getCheckbox();
-
+/*
 if(one_channel_for_all == false) {
 	exit("Differing channels have not been implemented yet. Please analyze these images seperately."); //fix this at some point
 }
-
+*/
 Table.open(home_directory + "brain_region_mapping.csv");
 open(home_directory + "/atlas_overview.tif");
 if(one_roi_for_all) {
@@ -240,7 +241,9 @@ channeloptions = Array.concat(channeloptions_array, "do not use");
 
 //now select labels for the individual channels 
 Dialog.create("Channels");
-Dialog.addMessage("Your image has " + channelnumber[0] + " channels. Please select, which ones to use");
+Dialog.addMessage("Your image has " + channelnumber[0] + " channels. Please select, which ones to use.");
+Dialog.addMessage("All images have to have the same channel order.");
+
 
 for (i = 1; i <= channelnumber[0]; i++) {
 	Dialog.addChoice("Channel " + i, channeloptions, "do not use");
@@ -481,8 +484,15 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		//save the rois to the temp directory, named after the images
 		roiManager("select", brain_region_roi_ids);
+<<<<<<< HEAD
 		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
 		
+=======
+		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to imagenumber later
+		//delete these rois
+		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
+		//roiManager("delete");
+>>>>>>> 2d72c48dff1fc70c2cda866279d11a6527f68431
 		roiManager("reset"); //not as elegant, but just selecting 
 		close(control_channel);
 
