@@ -334,17 +334,6 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		selectWindow(control_channel);
 		
-		rotation_flip = rotate(home_directory, atlas_slice);
-		
-		rotate_array = Array.concat(rotate_array, rotation_flip[0]);
-		flip_array = Array.concat(flip_array, rotation_flip[1]);
-		
-		
-		if (rotation_flip[1]) {
-			run("Flip Vertically");
-		}
-		
-		run("Rotate... ", "angle=" + rotation_flip[0] + " interpolation=Bilinear enlarge");
 		/*
 		
 		
@@ -466,7 +455,6 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		//the actual scaling
 		RoiManager.scale(xscale, yscale, false);
 		
-		
 		//now do the same thing with translation (measure the coordinates again, because I do not want to bother with maths (maybe they do not even change, when scaling non-centered)
 		roiManager("select", atlas_bounding_box_id);
 		getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
@@ -504,68 +492,6 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 	
 }
 
-function rotate(home_directory, atlas_slice) {
-	name = getTitle();
-	getDimensions(width, height, channels, slices, frames);
-	run("Scale...", "x=0.1 y=0.1 width=" + width/10 + " height=" + height/10 + " interpolation=Bilinear create");
-	run("Enhance Contrast", "saturated=0.35"); //better visibility
-	rename("rotation");
-	rotating = true;
-	flipping = true;
-	final_rotation = 0;
-	final_flip = false;
-	open(home_directory + "ABA_v3/slice" + IJ.pad(atlas_slice, 3) + ".png");
-	
-	while(flipping) {
-		selectWindow("rotation");
-		Dialog.createNonBlocking("Flipping");
-		Dialog.addMessage("Does your image need to be flipped?");
-		Dialog.addMessage("The reference image has been opened, please compare.");
-		Dialog.addMessage("Once your are satisfied with the state of your image, uncheck the \"Continue flipping?\" checkmark");
-		
-		
-		Dialog.addCheckbox("Flip vertically?", false);
-		Dialog.addCheckbox("Continue flipping?", true);
-		Dialog.show();
-		
-		flip = Dialog.getCheckbox();
-		flipping = Dialog.getCheckbox();
-		if (flipping) {
-			if (flip == true) {
-				selectWindow("rotation");
-				run("Flip Vertically");
-				final_flip = !final_flip;
-			}
-		}
-	}
-
-	
-	while(rotating) {
-		selectWindow("rotation");
-		Dialog.createNonBlocking("Rotation");
-		Dialog.addMessage("Please adjust the rotation of your image to match the template.");
-		Dialog.addSlider("Rotation", -179.9, 179.9, 0);
-		Dialog.addCheckbox("Continue rotation?", true);
-		Dialog.show();
-		
-		rotation = Dialog.getNumber();
-		rotating = Dialog.getCheckbox();
-		if (rotating) {
-			if (rotation != 0) {
-				final_rotation = final_rotation + rotation;
-				selectWindow("rotation");
-				run("Rotate... ", "angle=" + rotation + " interpolation=Bilinear enlarge");
-			}
-			
-		}
-	} 
-	close("rotation");
-	
-	close("slice" + IJ.pad(atlas_slice, 3) + ".png");
-	
-	selectWindow(name);
-	return newArray(final_rotation, final_flip);
-}
 
 //prompts user, if they want to manually adjust any ROI. If yes:
 //turns an roi into a set of points, reduces the amount of points and makes it an editable polygon selection
