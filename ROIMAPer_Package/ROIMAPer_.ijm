@@ -465,6 +465,9 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		roiManager("select", full_atlas_ids);
 		roiManager("translate", xtrans, ytrans);
 		
+		roiManager("select", full_atlas_ids);
+		RoiManager.rotate(angle, xpoints[0], ypoints[0]);
+		
 		//put the new rois on top of the actual background image, check if this is okay
 		brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
 		
@@ -484,8 +487,6 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		rotate_array = Array.concat(rotate_array, 0);
 		flip_array = Array.concat(flip_array, 0); //still lengthen the rotation arrays, even if there were no ROIs for this image, because the saving process breaks otherwise
 	}
-	
-	
 }
 
 
