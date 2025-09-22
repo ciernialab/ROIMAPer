@@ -462,7 +462,6 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		xtrans = xbounding[0] - xatlas[0];
 		ytrans = ybounding[0] - yatlas[0];
 		
-		
 		roiManager("select", full_atlas_ids);
 		roiManager("translate", xtrans, ytrans);
 		
@@ -471,15 +470,12 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		//save the rois to the temp directory, named after the images
 		roiManager("select", brain_region_roi_ids);
-<<<<<<< HEAD
 		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
 		
-=======
 		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to imagenumber later
 		//delete these rois
 		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
 		//roiManager("delete");
->>>>>>> 2d72c48dff1fc70c2cda866279d11a6527f68431
 		roiManager("reset"); //not as elegant, but just selecting 
 		close(control_channel);
 
