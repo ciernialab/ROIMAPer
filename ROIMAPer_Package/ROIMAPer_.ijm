@@ -271,7 +271,7 @@ for (i = 1; i <= channelchoices.length; i++) {
 
 File.makeDirectory(output_path);
 if (combined_results) {
-	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
 
 	File.makeDirectory(combined_output_path);
 }
