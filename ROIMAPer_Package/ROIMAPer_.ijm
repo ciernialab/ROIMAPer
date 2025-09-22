@@ -241,7 +241,9 @@ channeloptions = Array.concat(channeloptions_array, "do not use");
 
 //now select labels for the individual channels 
 Dialog.create("Channels");
-Dialog.addMessage("Your image has " + channelnumber[0] + " channels. Please select, which ones to use");
+Dialog.addMessage("Your image has " + channelnumber[0] + " channels. Please select, which ones to use.");
+Dialog.addMessage("All images have to have the same channel order.");
+
 
 for (i = 1; i <= channelnumber[0]; i++) {
 	Dialog.addChoice("Channel " + i, channeloptions, "do not use");
