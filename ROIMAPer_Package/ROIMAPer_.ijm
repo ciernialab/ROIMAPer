@@ -156,7 +156,7 @@ for (i = 0; i < image_path.length; i++) {
 }
 Dialog.addCheckbox("Use one roi set for all", true);
 //Dialog.addCheckbox("Images have consistent channel order", true);
-Dialog.addCheckbox("Automatically create bounding box", false);
+//Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
 
@@ -169,7 +169,7 @@ for (i = 0; i < image_path.length; i++) {
 }
 one_roi_for_all = Dialog.getCheckbox();
 //one_channel_for_all = Dialog.getCheckbox();
-automatic_bounding_box = Dialog.getCheckbox();
+//automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getCheckbox();
 /*
