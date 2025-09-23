@@ -6,9 +6,6 @@
 var map_to_control_channel = false;
 var is_czi = newArray();
 var automatic_bounding_box = false;
-//store flipping/rotation information
-var rotate_array = newArray();
-var flip_array = newArray();
 var output_path = "";
 var combined_output_path = "";
 var control_channel = "";
@@ -77,9 +74,9 @@ image_name_without_extension = newArray();
 
 for (i = 0; i < image_selection_size; i++) {
 	if (file_chosen[i]) {
-	    image_path = Array.concat(image_path, replace(image_directory + image_list[i], "\\", "/"));
-	    image_name = Array.concat(image_name, File.getName(image_directory + image_list[i]));
-	    image_name_without_extension = Array.concat(image_name_without_extension, File.getNameWithoutExtension(image_directory + image_list[i]));
+	    image_path = Array.concat(image_path, replace(image_directory + image_list[i + image_selection_start], "\\", "/"));
+	    image_name = Array.concat(image_name, File.getName(image_directory + image_list[i + image_selection_start]));
+	    image_name_without_extension = Array.concat(image_name_without_extension, File.getNameWithoutExtension(image_directory + image_list[i + image_selection_start]));
 	}
 }
 
@@ -314,7 +311,7 @@ Dialog.show();
 
 
 
-function scaling(imagenumber, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
+function scaling(image_number, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
 	roi_path = newArray();
 	for (i = 0; i < regions.length; i++) {
 		if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
@@ -323,7 +320,7 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 	} //get the paths of individual ROIs 
 	
 	if (roi_path.length > 0) { //only do this, if there are saved ROIs for this slice of the ABA
-		if (!is_czi[imagenumber]) {
+		if (!is_czi[image_number]) {
 			run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + control_channel_id + " c_end=" + control_channel_id + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 		} else {
 			selectedslice = selectedslice;
@@ -333,20 +330,6 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		getDimensions(width, height, channels, slices, frames);
 		
 		selectWindow(control_channel);
-		
-		rotation_flip = rotate(home_directory, atlas_slice);
-		
-		rotate_array = Array.concat(rotate_array, rotation_flip[0]);
-		flip_array = Array.concat(flip_array, rotation_flip[1]);
-		
-		
-		if (rotation_flip[1]) {
-			run("Flip Vertically");
-		}
-		
-		run("Rotate... ", "angle=" + rotation_flip[0] + " interpolation=Bilinear enlarge");
-		/*
-		
 		
 		/*
 		//get feret diameters for rotation????
@@ -375,12 +358,30 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 			before_bounding_box = roiManager("count");
 			waiting_for_bounding_box = true;
 			while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
-				setTool(0);
+								
+				setTool("rotatedrect");
 				waitForUser(bounding_box_text);
 				
-				if (selectionType() == 0) {
-					roiManager("add");
+				if (selectionType() == 3) {
 					waiting_for_bounding_box = false;
+					
+					getSelectionCoordinates(xbounding, ybounding);
+					xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
+					ybounding = Array.rotate(ybounding, 1);
+					
+					angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+					if (xbounding[1]-xbounding[0] < 0) {
+						angle = angle + 180;
+					} else {
+						if (ybounding[1]-ybounding[0] < 0) {
+							angle = angle + 360;
+						}
+					}
+					
+					widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2));
+					heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+					run("Select None");
+					
 				} else {
 					bounding_box_text = "No rectangular selection provided, please try again.";
 				}
@@ -398,19 +399,11 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 			
 			run("Enhance Contrast", "saturated=0.35"); //better visibility
 			
-			roiManager("select",roi_id_brain);
-			roiManager("rename", "tissue");
-			//make the bounding box around the tissue and assure correctness
-			roiManager("select", roi_id_brain);
 			run("To Bounding Box");
-			roiManager("add");
-			roiManager("select", roi_id_brain);
-			roiManager("delete");
+			
+			getSelectionBounds(xbounding, ybounding, widthbounding, heightbounding);
 		}
 		
-		roi_id_bounding_box = roiManager("count") - 1;
-		roiManager("select", roi_id_bounding_box);
-		roiManager("rename", "bounding_box");
 		
 		
 		//open the atlas and save the indices of the first and the last entry
@@ -444,14 +437,11 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		
 		//get coordinates of unscaled atlas 
 		roiManager("select", atlas_bounding_box_id);
-		getSelectionBounds(xtemplate, ytemplate, widthtemplate, heighttemplate);
-		//get coords of bounding box around tissue
-		roiManager("select", roi_id_bounding_box);
-		getSelectionBounds(xsample, ysample, widthsample, heightsample);
+		getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
 		
 		//calculate scaling factor
-		xscale = widthsample / widthtemplate;
-		yscale = heightsample / heighttemplate;
+		xscale = widthbounding / widthatlas;
+		yscale = heightbounding / heightatlas;
 		
 		
 		//select all of the atlas
@@ -460,26 +450,48 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		//the actual scaling
 		RoiManager.scale(xscale, yscale, false);
 		
-		
 		//now do the same thing with translation (measure the coordinates again, because I do not want to bother with maths (maybe they do not even change, when scaling non-centered)
 		roiManager("select", atlas_bounding_box_id);
-		getSelectionBounds(xtemplate, ytemplate, widthtemplate, heighttemplate);
-		roiManager("select", roi_id_bounding_box);
-		getSelectionBounds(xsample, ysample, widthsample, heightsample);
+		getSelectionCoordinates(xatlas, yatlas);
 		
-		xtrans = xsample - xtemplate;
-		ytrans = ysample - ytemplate;
-		
+		xtrans = xbounding[0] - xatlas[0];
+		ytrans = ybounding[0] - yatlas[0];
 		
 		roiManager("select", full_atlas_ids);
 		roiManager("translate", xtrans, ytrans);
 		
+		roiManager("select", full_atlas_ids);
+		RoiManager.rotate(angle, xbounding[0], xbounding[0]);
+		roiManager("show all without labels");
+		
+		flipping = true;
+		while (flipping) {
+			Dialog.createNonBlocking("Are the ROIs flipped correctly?");
+			Dialog.addChoice("Flip direction:", newArray("no flip" , "flip x", "flip y"), "no flip");
+			Dialog.show();
+			flip = Dialog.getChoice();
+			if (flip == "flip x") {
+				flip_roi_x(brain_region_roi_ids, xbounding, ybounding, angle);
+			}
+			if (flip == "flip y") {
+				flip_roi_y(brain_region_roi_ids, xbounding, ybounding, angle);
+			}
+			if (flip == "no flip") {
+				flipping = false;
+			}
+			
+			roiManager("show all without labels");
+		}
+		
 		//put the new rois on top of the actual background image, check if this is okay
+		
 		brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
 		
 		//save the rois to the temp directory, named after the images
 		roiManager("select", brain_region_roi_ids);
-		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to imagenumber later
+		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
+		
+		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
 		//delete these rois
 		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
 		//roiManager("delete");
@@ -487,82 +499,56 @@ function scaling(imagenumber, local_image_path, local_image_name_without_extensi
 		close(control_channel);
 
 	} else {
-		print("Not found any of the specified regions in image " + local_image_name_without_extension);
-		rotate_array = Array.concat(rotate_array, 0);
-		flip_array = Array.concat(flip_array, 0); //still lengthen the rotation arrays, even if there were no ROIs for this image, because the saving process breaks otherwise
-	}
-	
-	
+		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
 
-function rotate(home_directory, atlas_slice) {
-	name = getTitle();
-	getDimensions(width, height, channels, slices, frames);
-	run("Scale...", "x=0.1 y=0.1 width=" + width/10 + " height=" + height/10 + " interpolation=Bilinear create");
-	run("Enhance Contrast", "saturated=0.35"); //better visibility
-	rename("rotation");
-	rotating = true;
-	flipping = true;
-	final_rotation = 0;
-	final_flip = false;
-	open(home_directory + "ABA_v3/slice" + IJ.pad(atlas_slice, 3) + ".png");
+//functions to flip ROIs
+function flip_roi_x(roi_indices, xbox, ybox, angle) {
+	roi_indices_new = newArray();
+	roi_indices_new = Array.concat(roi_indices_new,roi_indices);
 	
-	while(flipping) {
-		selectWindow("rotation");
-		Dialog.createNonBlocking("Flipping");
-		Dialog.addMessage("Does your image need to be flipped?");
-		Dialog.addMessage("The reference image has been opened, please compare.");
-		Dialog.addMessage("Once your are satisfied with the state of your image, uncheck the \"Continue flipping?\" checkmark");
+	for (i = 0; i < roi_indices_new.length; i++) {
+		roiManager("select", roi_indices_new[i]);
+		RoiManager.rotate(-angle, xbox[0], ybox[0]); //normalize rotation of the ROI for easier maths
 		
+		roiManager("select", roi_indices_new[i]);
+		getSelectionBounds(x, y, width, height);
 		
-		Dialog.addCheckbox("Flip vertically?", false);
-		Dialog.addCheckbox("Continue flipping?", true);
-		Dialog.show();
+		xdistance = x - xbox[0] + width; //distance of the top left corner of the bounding box to the top left corner of the brain selection. Plus width because after flipping, the roi is moved by one width to the right
+		ydistance = y - ybox[0];
+		RoiManager.scale(-1, 1, true);
 		
-		flip = Dialog.getCheckbox();
-		flipping = Dialog.getCheckbox();
-		if (flipping) {
-			if (flip == true) {
-				selectWindow("rotation");
-				run("Flip Vertically");
-				final_flip = !final_flip;
-			}
-		}
+		roiManager("select", roi_indices_new[i]);
+		Roi.move(xbox[1] - xdistance, ybox[1] + ydistance);
+		RoiManager.rotate(angle, xbox[1], ybox[1]);
 	}
+}
 
+function flip_roi_y(roi_indices, xbox, ybox, angle) {
+	roi_indices_new = newArray();
+	roi_indices_new = Array.concat(roi_indices_new,roi_indices);
 	
-	while(rotating) {
-		selectWindow("rotation");
-		Dialog.createNonBlocking("Rotation");
-		Dialog.addMessage("Please adjust the rotation of your image to match the template.");
-		Dialog.addSlider("Rotation", -179.9, 179.9, 0);
-		Dialog.addCheckbox("Continue rotation?", true);
-		Dialog.show();
+	for (i = 0; i < roi_indices_new.length; i++) {
+		roiManager("select", roi_indices_new[i]);
+		RoiManager.rotate(-angle, xbox[0], ybox[0]);
 		
-		rotation = Dialog.getNumber();
-		rotating = Dialog.getCheckbox();
-		if (rotating) {
-			if (rotation != 0) {
-				final_rotation = final_rotation + rotation;
-				selectWindow("rotation");
-				run("Rotate... ", "angle=" + rotation + " interpolation=Bilinear enlarge");
-			}
-			
-		}
-	} 
-	close("rotation");
-	
-	close("slice" + IJ.pad(atlas_slice, 3) + ".png");
-	
-	selectWindow(name);
-	return newArray(final_rotation, final_flip);
+		roiManager("select", roi_indices_new[i]);
+		getSelectionBounds(x, y, width, height);
+		
+		xdistance = x - xbox[0];
+		ydistance = y - ybox[0] + height; //distance of the top left corner of the bounding box to the top left corner of the brain selection. Plus height because after flipping, the roi is moved by one height to the bottom
+		RoiManager.scale(1, -1, true);
+		
+		roiManager("select", roi_indices_new[i]);
+		Roi.move(xbox[3] + xdistance, ybox[3] - ydistance);
+		RoiManager.rotate(angle, xbox[3], ybox[3]);
+	}
 }
 
 //prompts user, if they want to manually adjust any ROI. If yes:
 //turns an roi into a set of points, reduces the amount of points and makes it an editable polygon selection
 //then updates the array that stores the brain region ROIs
 function to_downsampled_selection(roi_ids) {
-	roiManager("select", roi_ids);
 	roiManager("show all without labels");
 	
 	Dialog.createNonBlocking("Brain region selection");
@@ -575,7 +561,6 @@ function to_downsampled_selection(roi_ids) {
 	
 	do_downsampling = Dialog.getCheckbox();
 	downsample_factor = Dialog.getNumber();
-	
 	
 	if (do_downsampling) {
 	
@@ -612,7 +597,7 @@ function to_downsampled_selection(roi_ids) {
 			roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
 			
 			waitForUser("Please adjust the ROI you have selected.");
-			roiManager("update");
+			roiManager("show all without labels");
 			
 			roi_ids = to_downsampled_selection(roi_ids);
 			
@@ -628,7 +613,7 @@ function to_downsampled_selection(roi_ids) {
 
 //saving the results
 //make this a seperate function that runs on all images after all the adjustment is done
-function saving(imagenumber, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory, atlas_slice, regions) {
+function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory, atlas_slice, regions) {
 	//open the saved scaled rois of the respective image
 	setBatchMode(true);
 	save_roi_ids_start = roiManager("count");
@@ -651,7 +636,7 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 				if (channelchoices[i-1] == channeloptions_array[j]) {
 					if ((channelchoices[i-1] != control_channel && !map_to_control_channel) || only_channelchoices.length <= 1 || map_to_control_channel) {
 						
-						if (!is_czi[imagenumber]) {
+						if (!is_czi[image_number]) {
 							run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + i + " c_end=" + i + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 						} else {
 							
@@ -660,13 +645,6 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 						
 						rename(channeloptions_array[j]);
 						
-						if (flip_array[imagenumber]) {
-							run("Flip Vertically");
-						}
-						
-						if (rotate_array[imagenumber] != 0) {
-							run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
-						}
 						
 						//go through all the individual rois of the atlas that are not the bounding box and save them as individual images on each of the selected channels
 						for (k = save_roi_ids_start; k <= save_roi_ids_end; k++) {
@@ -686,21 +664,15 @@ function saving(imagenumber, local_image_path, local_image_name_without_extensio
 		
 		if (combined_results) {//opens the whole image and saves all ROIs combined
 			
-			if (!is_czi[imagenumber]) {
+			if (!is_czi[image_number]) {
 				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 			} else {
 				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice);
 			}
 			rename("current_image");
-
-			if (flip_array[imagenumber]) {
-				run("Flip Vertically");
-			}
 			
-			if (rotate_array[imagenumber] != 0) {
-				run("Rotate... ", "angle=" + rotate_array[imagenumber] + " interpolation=Bilinear enlarge");
-			}
 			roiManager("select", roi_closing_array);
+			roiManager("show all without labels");
 			save(combined_output_path + local_image_name_without_extension + "_combined.tif");
 			
 			close("current_image");
