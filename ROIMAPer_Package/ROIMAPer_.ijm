@@ -350,58 +350,42 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		
 		//select the original background image again, for the user
 		
-		if (!automatic_bounding_box) {
-			selectWindow(control_channel);
-			run("Enhance Contrast", "saturated=0.35"); //better visibility
+		
+		//get bounding box from user
+		selectWindow(control_channel);
+		run("Enhance Contrast", "saturated=0.35"); //better visibility
+		
+		bounding_box_text = "Please create a bounding box around the tissue and click \"OK\" once you are satisfied with the selection.";
+		before_bounding_box = roiManager("count");
+		waiting_for_bounding_box = true;
+		while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
+							
+			setTool("rotatedrect");
+			waitForUser(bounding_box_text);
 			
-			bounding_box_text = "Please create a bounding box around the tissue and click \"OK\" once you are satisfied with the selection.";
-			before_bounding_box = roiManager("count");
-			waiting_for_bounding_box = true;
-			while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
-								
-				setTool("rotatedrect");
-				waitForUser(bounding_box_text);
+			if (selectionType() == 3) {
+				waiting_for_bounding_box = false;
 				
-				if (selectionType() == 3) {
-					waiting_for_bounding_box = false;
-					
-					getSelectionCoordinates(xbounding, ybounding);
-					xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
-					ybounding = Array.rotate(ybounding, 1);
-					
-					angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
-					if (xbounding[1]-xbounding[0] < 0) {
-						angle = angle + 180;
-					} else {
-						if (ybounding[1]-ybounding[0] < 0) {
-							angle = angle + 360;
-						}
-					}
-					
-					widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2));
-					heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
-					run("Select None");
-					
+				getSelectionCoordinates(xbounding, ybounding);
+				xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
+				ybounding = Array.rotate(ybounding, 1);
+				
+				angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+				if (xbounding[1]-xbounding[0] < 0) {
+					angle = angle + 180;
 				} else {
-					bounding_box_text = "No rectangular selection provided, please try again.";
+					if (ybounding[1]-ybounding[0] < 0) {
+						angle = angle + 360;
+					}
 				}
+				
+				widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
+				heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+				run("Select None");
+				
+			} else {
+				bounding_box_text = "No rectangular selection provided, please try again.";
 			}
-		} else { //automatically create a bounding box by thresholding
-			
-			setAutoThreshold("Default dark");
-			
-			//get the roi of the tissue detection
-			roi_id_brain = roiManager("count");
-			
-			run("Create Selection");
-			resetThreshold;
-			roiManager("add");
-			
-			run("Enhance Contrast", "saturated=0.35"); //better visibility
-			
-			run("To Bounding Box");
-			
-			getSelectionBounds(xbounding, ybounding, widthbounding, heightbounding);
 		}
 		
 		
@@ -447,6 +431,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		
 		//get coordinates of unscaled atlas 
 		roiManager("select", atlas_bounding_box_id);
+		
 		getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
 		
 		//calculate scaling factor
@@ -471,7 +456,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		roiManager("translate", xtrans, ytrans);
 		
 		roiManager("select", full_atlas_ids);
-		RoiManager.rotate(angle, xbounding[0], xbounding[0]);
+		RoiManager.rotate(angle, xbounding[0], ybounding[0]);
 		roiManager("show all without labels");
 		
 		flipping = true;
