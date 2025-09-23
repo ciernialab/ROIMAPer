@@ -28,7 +28,7 @@ File.setDefaultDir(home_directory);
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
 //get the directory
-image_directory = getDirectory("Please choosethe directory that contains your images.");
+image_directory = getDirectory("Please choose the directory that contains your images.");
 image_list = getFileList(image_directory);
 image_list = Array.sort(image_list);
 total_images = lengthOf(image_list);
@@ -409,10 +409,20 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		//open the atlas and save the indices of the first and the last entry
 		atlas_start_id = roiManager("count");
 		for (i = 0; i < roi_path.length; i++) {
+			roi_number_opening = roiManager("count");
 			roiManager("open", roi_path[i]); //open all the rois in the specified folder
+			roi_number_after_opening = roiManager("count");
 			if (i < roi_path.length - 1) {//for all but the last roi
-				roiManager("select", roiManager("count") - 1); //delete bounding box (which is the last entry in every individual roi set
-				roiManager("delete");
+				if (roi_number_after_opening > roi_number_opening + 1) {
+					for (j = roi_number_opening; j < roi_number_after_opening; j++) {
+						roiManager("select", j);
+						roitype = Roi.getType;
+						
+						if (roitype == "rectangle" && Roi.getName == "atlas_bounding_box") {
+							roiManager("delete");
+						} 
+					}
+				}
 			}
 		}
 		
@@ -424,7 +434,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 			roiManager("select", i);
 			roitype = Roi.getType;
 			
-			if (roitype == "rectangle") {
+			if (roitype == "rectangle" && Roi.getName == "atlas_bounding_box") {
 				atlas_bounding_box_id = i;
 			} else {
 				brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
