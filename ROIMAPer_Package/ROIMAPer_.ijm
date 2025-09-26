@@ -459,6 +459,16 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		RoiManager.rotate(angle, xbounding[0], ybounding[0]);
 		roiManager("show all without labels");
 		
+		Dialog.createNonBlocking("Rotation ROI by 90°");
+		Dialog.addMessage("Do you need to rotate the ROI by 90°?");
+		Dialog.addCheckbox("Rotate by 90°", false);
+		Dialog.show();
+		rotateROI = Dialog.getCheckbox();
+		
+		if (rotateROI) {
+			rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
+		}
+
 		flipping = true;
 		while (flipping) {
 			Dialog.createNonBlocking("Are the ROIs flipped correctly?");
@@ -497,6 +507,41 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
 
+
+function rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id) {
+	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];//figure out the center of the bounding rectangle
+	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+
+	roi_indices_new = newArray();
+	roi_indices_new = Array.concat(roi_indices_new,full_atlas_ids);
+	roiManager("select", roi_indices_new);
+	//normalize rotational axis so scaling is not skewed
+	RoiManager.rotate(-angle, xcenter, ycenter); 
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionCoordinates(xatlas_trans, yatlas_trans); //get the coordinates of the un-rotated rectangle boundaries
+	
+	
+	for (i = 0; i < roi_indices_new.length; i++) {
+		//scale the rois to squish them in opposite directions
+		roiManager("select", roi_indices_new[i]);
+		getSelectionBounds(xroiold, yroiold, widthroiold, heightroiold);
+		RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false); //squish it into the opposite direction
+		
+		roiManager("select", roi_indices_new[i]);
+		
+		Roi.move(xcenter + widthbounding * ((yroiold - ycenter) / heightbounding + 1), ycenter + heightbounding * ((xroiold - xcenter) / widthbounding));//move to accomodate for the squishing
+		RoiManager.rotate(90, xatlas_trans[1], yatlas_trans[1]); //the actual rotation by 90°
+		
+		
+	}
+	roiManager("select", roi_indices_new);
+	
+	//now rotate again to go back to the angled situation (reverting the previous step)
+	RoiManager.rotate(angle, xcenter, ycenter); 
+	roiManager("show all without labels");
+}
+
+
 //functions to flip ROIs
 function flip_roi_x(roi_indices, xbox, ybox, angle) {
 	roi_indices_new = newArray();
@@ -517,6 +562,7 @@ function flip_roi_x(roi_indices, xbox, ybox, angle) {
 		Roi.move(xbox[1] - xdistance, ybox[1] + ydistance);
 		RoiManager.rotate(angle, xbox[1], ybox[1]);
 	}
+	roiManager("show all without labels");
 }
 
 function flip_roi_y(roi_indices, xbox, ybox, angle) {
@@ -538,6 +584,7 @@ function flip_roi_y(roi_indices, xbox, ybox, angle) {
 		Roi.move(xbox[3] + xdistance, ybox[3] - ydistance);
 		RoiManager.rotate(angle, xbox[3], ybox[3]);
 	}
+	roiManager("show all without labels");
 }
 
 //prompts user, if they want to manually adjust any ROI. If yes:
