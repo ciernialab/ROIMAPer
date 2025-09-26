@@ -156,7 +156,7 @@ for (i = 0; i < image_path.length; i++) {
 }
 Dialog.addCheckbox("Use one roi set for all", true);
 //Dialog.addCheckbox("Images have consistent channel order", true);
-//Dialog.addCheckbox("Automatically create bounding box", false);
+Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
 
@@ -169,7 +169,7 @@ for (i = 0; i < image_path.length; i++) {
 }
 one_roi_for_all = Dialog.getCheckbox();
 //one_channel_for_all = Dialog.getCheckbox();
-//automatic_bounding_box = Dialog.getCheckbox();
+automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getCheckbox();
 /*
@@ -350,44 +350,68 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		
 		//select the original background image again, for the user
 		
-		
-		//get bounding box from user
-		selectWindow(control_channel);
-		run("Enhance Contrast", "saturated=0.35"); //better visibility
-		
-		bounding_box_text = "Please create a bounding box around the tissue and click \"OK\" once you are satisfied with the selection.";
-		before_bounding_box = roiManager("count");
-		waiting_for_bounding_box = true;
-		while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
-							
-			setTool("rotatedrect");
-			waitForUser(bounding_box_text);
+		if (automatic_bounding_box) {
+			selectWindow(control_channel);
 			
-			if (selectionType() == 3) {
-				waiting_for_bounding_box = false;
-				
-				getSelectionCoordinates(xbounding, ybounding);
-				xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
-				ybounding = Array.rotate(ybounding, 1);
-				
-				angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
-				if (xbounding[1]-xbounding[0] < 0) {
-					angle = angle + 180;
-				} else {
-					if (ybounding[1]-ybounding[0] < 0) {
-						angle = angle + 360;
-					}
-				}
-				
-				widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
-				heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
-				run("Select None");
-				
+			setAutoThreshold();
+			run("Create Selection");
+			run("Fit Rectangle");
+			
+			resetThreshold;
+			
+			getSelectionCoordinates(xbounding, ybounding);
+			xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
+			ybounding = Array.rotate(ybounding, 1);
+			
+			angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+			if (xbounding[1]-xbounding[0] < 0) {
+				angle = angle + 180;
 			} else {
-				bounding_box_text = "No rectangular selection provided, please try again.";
+				if (ybounding[1]-ybounding[0] < 0) {
+					angle = angle + 360;
+				}
+			}
+			
+			widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
+			heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+		} else {
+			//get bounding box from user
+			selectWindow(control_channel);
+			run("Enhance Contrast", "saturated=0.35"); //better visibility
+			
+			bounding_box_text = "Please create a bounding box around the tissue and click \"OK\" once you are satisfied with the selection.";
+			before_bounding_box = roiManager("count");
+			waiting_for_bounding_box = true;
+			while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
+								
+				setTool("rotatedrect");
+				waitForUser(bounding_box_text);
+				
+				if (selectionType() == 3) {
+					waiting_for_bounding_box = false;
+					
+					getSelectionCoordinates(xbounding, ybounding);
+					xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
+					ybounding = Array.rotate(ybounding, 1);
+					
+					angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+					if (xbounding[1]-xbounding[0] < 0) {
+						angle = angle + 180;
+					} else {
+						if (ybounding[1]-ybounding[0] < 0) {
+							angle = angle + 360;
+						}
+					}
+					
+					widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
+					heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+					run("Select None");
+					
+				} else {
+					bounding_box_text = "No rectangular selection provided, please try again.";
+				}
 			}
 		}
-		
 		
 		
 		//open the atlas and save the indices of the first and the last entry
@@ -476,10 +500,10 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 			Dialog.show();
 			flip = Dialog.getChoice();
 			if (flip == "flip x") {
-				flip_roi_x(brain_region_roi_ids, xbounding, ybounding, angle);
+				flip_roi_x(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
 			}
 			if (flip == "flip y") {
-				flip_roi_y(brain_region_roi_ids, xbounding, ybounding, angle);
+				flip_roi_y(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
 			}
 			if (flip == "no flip") {
 				flipping = false;
@@ -509,7 +533,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 
 
 function rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id) {
-	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];//figure out the center of the bounding rectangle
+	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];
 	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
 
 	roi_indices_new = newArray();
@@ -518,72 +542,74 @@ function rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atla
 	//normalize rotational axis so scaling is not skewed
 	RoiManager.rotate(-angle, xcenter, ycenter); 
 	roiManager("select", atlas_bounding_box_id);
-	getSelectionCoordinates(xatlas_trans, yatlas_trans); //get the coordinates of the un-rotated rectangle boundaries
+	getSelectionCoordinates(xatlas_trans, yatlas_trans); //get atlas coordinates after translation
 	
-	
-	for (i = 0; i < roi_indices_new.length; i++) {
-		//scale the rois to squish them in opposite directions
-		roiManager("select", roi_indices_new[i]);
-		getSelectionBounds(xroiold, yroiold, widthroiold, heightroiold);
-		RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false); //squish it into the opposite direction
-		
-		roiManager("select", roi_indices_new[i]);
-		
-		Roi.move(xcenter + widthbounding * ((yroiold - ycenter) / heightbounding + 1), ycenter + heightbounding * ((xroiold - xcenter) / widthbounding));//move to accomodate for the squishing
-		RoiManager.rotate(90, xatlas_trans[1], yatlas_trans[1]); //the actual rotation by 90°
-		
-		
-	}
 	roiManager("select", roi_indices_new);
+	getSelectionBounds(xroiold, yroiold, widthroiold, heightroiold);
+	RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false);
 	
-	//now rotate again to go back to the angled situation (reverting the previous step)
+	roiManager("select", roi_indices_new);
+	getSelectionBounds(xroinew, yroinew, widthroinew, heightroinew);
+	
+	RoiManager.translate(xatlas_trans[1] - xroinew, yatlas_trans[1] - yroinew); //move to top right corner to allow for 90 degree turn around that corner
+	
+	roiManager("select", full_atlas_ids);
+	
+	RoiManager.rotate(90, xatlas_trans[1], yatlas_trans[1]); 
+	//now rotate again
 	RoiManager.rotate(angle, xcenter, ycenter); 
 	roiManager("show all without labels");
 }
 
-
-//functions to flip ROIs
-function flip_roi_x(roi_indices, xbox, ybox, angle) {
+function flip_roi_x(roi_indices, xbounding, ybounding, angle, atlas_bounding_box_id) {
+	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];
+	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+	
 	roi_indices_new = newArray();
 	roi_indices_new = Array.concat(roi_indices_new,roi_indices);
 	
-	for (i = 0; i < roi_indices_new.length; i++) {
-		roiManager("select", roi_indices_new[i]);
-		RoiManager.rotate(-angle, xbox[0], ybox[0]); //normalize rotation of the ROI for easier maths
-		
-		roiManager("select", roi_indices_new[i]);
-		getSelectionBounds(x, y, width, height);
-		
-		xdistance = x - xbox[0] + width; //distance of the top left corner of the bounding box to the top left corner of the brain selection. Plus width because after flipping, the roi is moved by one width to the right
-		ydistance = y - ybox[0];
-		RoiManager.scale(-1, 1, true);
-		
-		roiManager("select", roi_indices_new[i]);
-		Roi.move(xbox[1] - xdistance, ybox[1] + ydistance);
-		RoiManager.rotate(angle, xbox[1], ybox[1]);
-	}
+	roiManager("select", roi_indices_new);
+	RoiManager.rotate(-angle, xcenter, ycenter); //bring into neutral orientation
+	
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionBounds(x, y, width, height);
+	
+	roiManager("select", roi_indices_new);
+	RoiManager.scale(-1, 1, false);//this is flipping the selection
+	
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionBounds(x_scale, y_scale, width_scale, height_scale); //get bounds after scale
+	roiManager("select", roi_indices_new);
+	RoiManager.translate(x - x_scale , y - y_scale); // move to original spot
+	
+	RoiManager.rotate(angle, xcenter, ycenter); //restore original orientation
+	
 	roiManager("show all without labels");
 }
 
-function flip_roi_y(roi_indices, xbox, ybox, angle) {
+function flip_roi_y(roi_indices, xbounding, ybounding, angle, atlas_bounding_box_id) {
+	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];
+	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+	
 	roi_indices_new = newArray();
 	roi_indices_new = Array.concat(roi_indices_new,roi_indices);
 	
-	for (i = 0; i < roi_indices_new.length; i++) {
-		roiManager("select", roi_indices_new[i]);
-		RoiManager.rotate(-angle, xbox[0], ybox[0]);
-		
-		roiManager("select", roi_indices_new[i]);
-		getSelectionBounds(x, y, width, height);
-		
-		xdistance = x - xbox[0];
-		ydistance = y - ybox[0] + height; //distance of the top left corner of the bounding box to the top left corner of the brain selection. Plus height because after flipping, the roi is moved by one height to the bottom
-		RoiManager.scale(1, -1, true);
-		
-		roiManager("select", roi_indices_new[i]);
-		Roi.move(xbox[3] + xdistance, ybox[3] - ydistance);
-		RoiManager.rotate(angle, xbox[3], ybox[3]);
-	}
+	roiManager("select", roi_indices_new);
+	RoiManager.rotate(-angle, xcenter, ycenter); //bring into neutral orientation
+	
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionBounds(x, y, width, height);
+	
+	roiManager("select", roi_indices_new);
+	RoiManager.scale(1, -1, false);//this is flipping the selection
+	
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionBounds(x_scale, y_scale, width_scale, height_scale); //get bounds after scale
+	roiManager("select", roi_indices_new);
+	RoiManager.translate(x - x_scale , y - y_scale); // move to original spot
+	
+	RoiManager.rotate(angle, xcenter, ycenter); //restore original orientation
+	
 	roiManager("show all without labels");
 }
 
