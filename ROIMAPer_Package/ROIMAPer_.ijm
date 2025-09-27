@@ -1,18 +1,20 @@
 //Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab, University of Calgary published on 12-07-2019
 //
 // Created 2025-09-15 by Julian Rodefeld
-// Ciernia Lab, University of British Columbia
+// Ciernia Lab, University of British Columbia, Vancouver
 
 var map_to_control_channel = false;
 var is_czi = newArray();
+var one_roi_for_all = true;
 var automatic_bounding_box = false;
 var output_path = "";
 var combined_output_path = "";
 var control_channel = "";
+var temp = "";
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 0.9 (Sep 2025)</p1>"
+    +"<p1>Version: 1.0 (Sep 2025)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -177,45 +179,54 @@ if(one_channel_for_all == false) {
 	exit("Differing channels have not been implemented yet. Please analyze these images seperately."); //fix this at some point
 }
 */
+
 Table.open(home_directory + "brain_region_mapping.csv");
-open(home_directory + "/atlas_overview.tif");
+
+defaultchannels = "DAPI, Iba1, GFAP, mOC87, Temp";
+
 if(one_roi_for_all) {
 	//get roi set from user
+	screen_height = screenHeight;
+	screen_width = screenWidth;
+	call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.4), round(screen_height*0.01));
+	
+	open(home_directory + "/atlas_overview.tif");
 	Dialog.createNonBlocking("Template selection");
 	Dialog.addMessage("What slice of the Allen Brain do you want to map to?");
 	Dialog.addNumber("Slice", 1, 0, 3, "");
 	Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
 	Dialog.addString("Brain regions:", "", 35);
+	Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
+	Dialog.addString("Default channels:", defaultchannels, 50);
+	
 	Dialog.show();
 	
 	template_slice_number = Array.concat(newArray(),Dialog.getNumber());
 	regions = split(Dialog.getString(), ",");
+	channeloptions_return = Dialog.getString();
+	
+	for (i = 0; i < template_slice_number.length; i++) {
+		template_slice_number[i] = parseInt(template_slice_number[i]); //because otherwise they get a decimal point, which messes up the folder system
+	}
+	close("atlas_overview.tif");
+
 
 } else {
 	//get roi set from user
 	
 	Dialog.createNonBlocking("Template selection");
-	Dialog.addMessage("Which image do you want to map to which slice of the Allen Brain?");
-	for (i = 0; i < image_name_without_extension.length; i++) {
-		Dialog.addNumber(image_name_without_extension[i], 1, 0, 3, "");
-	}
 	Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
 	Dialog.addMessage("Please refer to the opened table for correct acronyms. They need to first be created with the atlas_to_roi.ijm script.");
 	Dialog.addString("Brain regions:", "", 35);
+	Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
+	Dialog.addString("Default channels:", defaultchannels, 50);
+	
 	Dialog.show();
-	template_slice_number = newArray();
-	for (i = 0; i < image_name_without_extension.length; i++) {
-		template_slice_number = Array.concat(template_slice_number, Dialog.getNumber());
-	}
 	regions = split(Dialog.getString(), ",");
+	channeloptions_return = Dialog.getString();
 	
 }
-close("atlas_overview.tif");
 close("brain_region_mapping.csv");
-
-for (i = 0; i < template_slice_number.length; i++) {
-	template_slice_number[i] = parseInt(template_slice_number[i]); //because otherwise they get a decimal point, which messes up the folder system
-}
 
 for (i = 0; i < regions.length; i++) {
 	regions[i] = trim(regions[i]); //deal with whitespace in the brain region submission
@@ -223,13 +234,7 @@ for (i = 0; i < regions.length; i++) {
 
 //if there are channels, select which belongs to the respective fluorophor and only open those channels
 //make the user create custom channels
-defaultchannels = "DAPI, Iba1, GFAP, mOC87, Temp";
 
-Dialog.create("Channel types");
-Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
-Dialog.addString("Default channels:", defaultchannels, 50);
-Dialog.show();
-channeloptions_return = Dialog.getString();
 
 //channeloptions_array is the array of all possible channels, but without the "do not use"
 channeloptions_array = split(channeloptions_return, ", ");
@@ -279,24 +284,19 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 	if (one_roi_for_all) {
 		atlas_slice = template_slice_number[0];
 	} else {
-		atlas_slice = template_slice_number[current_image];
+		atlas_slice = 1; //gets changed in the scaling function
 	}
 	scaling(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
 
 	if (autosave) {//if we want to save after every image
-		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory);
 	}
 }
 
 //then save the rois on tifs
 if (!autosave) {
 	for (current_image = 0; current_image < image_path.length; current_image++) {
-		if (one_roi_for_all) {
-			atlas_slice = template_slice_number[0];
-		} else {
-			atlas_slice = template_slice_number[current_image];
-		}
-		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, atlas_slice, regions);
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory);
 	}
 }
 
@@ -312,14 +312,21 @@ Dialog.show();
 
 
 function scaling(image_number, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
-	roi_path = newArray();
-	for (i = 0; i < regions.length; i++) {
-		if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
-			roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
-		}
-	} //get the paths of individual ROIs 
 	
-	if (roi_path.length > 0) { //only do this, if there are saved ROIs for this slice of the ABA
+	roi_path = newArray();
+	exist_counter = 0;
+	if (one_roi_for_all) {
+		for (i = 0; i < regions.length; i++) {
+			if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
+				roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
+				exist_counter++;
+			}
+		} //get the paths of individual ROIs 
+	} else {
+		exist_counter++;
+	}
+	
+	if (exist_counter > 0) { //only do this, if there are saved ROIs for this slice of the ABA
 		if (!is_czi[image_number]) {
 			run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + control_channel_id + " c_end=" + control_channel_id + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 		} else {
@@ -349,15 +356,36 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		*/
 		
 		//select the original background image again, for the user
-		
+		selectWindow(control_channel);
+		run("Enhance Contrast", "saturated=0.35"); //better visibility
 		if (automatic_bounding_box) {
-			selectWindow(control_channel);
 			
 			setAutoThreshold();
 			run("Create Selection");
 			run("Fit Rectangle");
 			
 			resetThreshold;
+			
+			Dialog.createNonBlocking("Automatic selection");
+			Dialog.addMessage("Please adjust the created bounding rectangle if necessary.");
+			if (!one_roi_for_all) {
+				screen_height = screenHeight;
+				screen_width = screenWidth;
+				call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
+
+				open(home_directory + "/atlas_overview.tif");
+				selectWindow(control_channel);
+				
+				Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
+				Dialog.addNumber("Slice", 1, 0, 3, "");
+			}
+			Dialog.show();
+			
+			if (!one_roi_for_all) {
+				close("atlas_overview.tif");
+				atlas_slice = Dialog.getNumber();
+				atlas_slice = parseInt(atlas_slice);//removing decimal points
+			}
 			
 			getSelectionCoordinates(xbounding, ybounding);
 			xbounding = Array.rotate(xbounding, 1);//because rotated rectangles start in a different corner than normal rectangles
@@ -376,8 +404,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 			heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
 		} else {
 			//get bounding box from user
-			selectWindow(control_channel);
-			run("Enhance Contrast", "saturated=0.35"); //better visibility
+			
 			
 			bounding_box_text = "Please create a bounding box around the tissue and click \"OK\" once you are satisfied with the selection.";
 			before_bounding_box = roiManager("count");
@@ -385,9 +412,27 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 			while (waiting_for_bounding_box) {//so there is no chance to procede without providing a bounding box
 								
 				setTool("rotatedrect");
-				waitForUser(bounding_box_text);
+				Dialog.createNonBlocking("Brain selection");
+				Dialog.addMessage("Please create a rectangle that sits flush with the brain.");
+				if (!one_roi_for_all) {
+					screen_height = screenHeight;
+					screen_width = screenWidth;
+					call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
+
+					open(home_directory + "/atlas_overview.tif");
+					selectWindow(control_channel);
+					Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
+					Dialog.addNumber("Slice", atlas_slice, 0, 3, "");
+				}
+				Dialog.show();
 				
-				if (selectionType() == 3) {
+				if (!one_roi_for_all) {
+					close("atlas_overview.tif");
+					atlas_slice = Dialog.getNumber();
+					atlas_slice = parseInt(atlas_slice);//removing decimal points
+				}
+				
+				if (selectionType() == 3 || selectionType() == 0 || selectionType() == 2) {
 					waiting_for_bounding_box = false;
 					
 					getSelectionCoordinates(xbounding, ybounding);
@@ -413,6 +458,15 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 			}
 		}
 		
+		if (!one_roi_for_all) {
+			for (i = 0; i < regions.length; i++) {
+				if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
+					roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
+				} else {
+					print("Not found the region " + regions[i] + " in image " + local_image_name_without_extension);
+				}
+			} 
+		}
 		
 		//open the atlas and save the indices of the first and the last entry
 		atlas_start_id = roiManager("count");
@@ -426,7 +480,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 						roiManager("select", j);
 						roitype = Roi.getType;
 						
-						if (roitype == "rectangle" && Roi.getName == "atlas_bounding_box") {
+						if (Roi.getName == "atlas_bounding_box") {
 							roiManager("delete");
 						} 
 					}
@@ -436,97 +490,103 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		
 		atlas_end_id = roiManager("count") - 1;
 		
-		//go through the atlas, whichever entry is a rectangle is the bounding box (could add a "biggest rectangle" test to avoid mixups in case of multiple rois of type 0)
-		brain_region_roi_ids = newArray();
-		for (i = atlas_start_id; i <= atlas_end_id; i++) {
-			roiManager("select", i);
-			roitype = Roi.getType;
+		if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
+			print("Not found any of the specified regions in image wknwrngkrngk" + local_image_name_without_extension);
 			
-			if (roitype == "rectangle" && Roi.getName == "atlas_bounding_box") {
-				atlas_bounding_box_id = i;
-			} else {
-				brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
-			}
-		}
-		
-		full_atlas_ids = Array.concat(brain_region_roi_ids, atlas_bounding_box_id);
-		
-		
-		
-		//get coordinates of unscaled atlas 
-		roiManager("select", atlas_bounding_box_id);
-		
-		getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
-		
-		//calculate scaling factor
-		xscale = widthbounding / widthatlas;
-		yscale = heightbounding / heightatlas;
-		
-		
-		//select all of the atlas
-		roiManager("select", full_atlas_ids);
-		
-		//the actual scaling
-		RoiManager.scale(xscale, yscale, false);
-		
-		//now do the same thing with translation (measure the coordinates again, because I do not want to bother with maths (maybe they do not even change, when scaling non-centered)
-		roiManager("select", atlas_bounding_box_id);
-		getSelectionCoordinates(xatlas, yatlas);
-		
-		xtrans = xbounding[0] - xatlas[0];
-		ytrans = ybounding[0] - yatlas[0];
-		
-		roiManager("select", full_atlas_ids);
-		roiManager("translate", xtrans, ytrans);
-		
-		roiManager("select", full_atlas_ids);
-		RoiManager.rotate(angle, xbounding[0], ybounding[0]);
-		roiManager("show all without labels");
-		
-		Dialog.createNonBlocking("Rotation ROI by 90°");
-		Dialog.addMessage("Do you need to rotate the ROI by 90°?");
-		Dialog.addCheckbox("Rotate by 90°", false);
-		Dialog.show();
-		rotateROI = Dialog.getCheckbox();
-		
-		if (rotateROI) {
-			rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
-		}
-
-		flipping = true;
-		while (flipping) {
-			Dialog.createNonBlocking("Are the ROIs flipped correctly?");
-			Dialog.addChoice("Flip direction:", newArray("no flip" , "flip x", "flip y"), "no flip");
-			Dialog.show();
-			flip = Dialog.getChoice();
-			if (flip == "flip x") {
-				flip_roi_x(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
-			}
-			if (flip == "flip y") {
-				flip_roi_y(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
-			}
-			if (flip == "no flip") {
-				flipping = false;
+		} else {//only proceed, if ROIs were opened
+			
+			//go through the atlas, whichever entry is a rectangle is the bounding box 
+			brain_region_roi_ids = newArray();
+			for (i = atlas_start_id; i <= atlas_end_id; i++) {
+				roiManager("select", i);
+				roitype = Roi.getType;
+				
+				if (Roi.getName == "atlas_bounding_box") {
+					atlas_bounding_box_id = i;
+				} else {
+					brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
+				}
 			}
 			
+			full_atlas_ids = Array.concat(brain_region_roi_ids, atlas_bounding_box_id);
+			
+			
+			
+			//get coordinates of unscaled atlas 
+			roiManager("select", atlas_bounding_box_id);
+			
+			getSelectionBounds(xatlas, yatlas, widthatlas, heightatlas);
+			
+			//calculate scaling factor
+			xscale = widthbounding / widthatlas;
+			yscale = heightbounding / heightatlas;
+			
+			
+			//select all of the atlas
+			roiManager("select", full_atlas_ids);
+			
+			//the actual scaling
+			RoiManager.scale(xscale, yscale, false);
+			
+			//now do the same thing with translation (measure the coordinates again, because I do not want to bother with maths (maybe they do not even change, when scaling non-centered)
+			roiManager("select", atlas_bounding_box_id);
+			getSelectionCoordinates(xatlas, yatlas);
+			
+			xtrans = xbounding[0] - xatlas[0];
+			ytrans = ybounding[0] - yatlas[0];
+			
+			roiManager("select", full_atlas_ids);
+			roiManager("translate", xtrans, ytrans);
+			
+			roiManager("select", full_atlas_ids);
+			RoiManager.rotate(angle, xbounding[0], ybounding[0]);
 			roiManager("show all without labels");
+			
+			Dialog.createNonBlocking("Rotation ROI by 90°");
+			Dialog.addMessage("Do you need to rotate the ROI by 90°?");
+			Dialog.addCheckbox("Rotate by 90°", false);
+			Dialog.show();
+			rotateROI = Dialog.getCheckbox();
+			
+			if (rotateROI) {
+				rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
+			}
+	
+			flipping = true;
+			while (flipping) {
+				Dialog.createNonBlocking("Are the ROIs flipped correctly?");
+				Dialog.addChoice("Flip direction:", newArray("no flip" , "flip x", "flip y"), "no flip");
+				Dialog.show();
+				flip = Dialog.getChoice();
+				if (flip == "flip x") {
+					flip_roi_x(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
+				}
+				if (flip == "flip y") {
+					flip_roi_y(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
+				}
+				if (flip == "no flip") {
+					flipping = false;
+				}
+				
+				roiManager("show all without labels");
+			}
+			
+			//put the new rois on top of the actual background image, check if this is okay
+			
+			brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
+			
+			//save the rois to the temp directory, named after the images
+			if (brain_region_roi_ids.length > 0) {
+				roiManager("select", brain_region_roi_ids);
+				roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
+			
+			}
+			//delete these rois
+			//roiManager("select", full);
+			//roiManager("delete");
+			roiManager("reset"); //not as elegant, but selection of atlas_bounding box after the downsampling gets tricky
+			close(control_channel);
 		}
-		
-		//put the new rois on top of the actual background image, check if this is okay
-		
-		brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
-		
-		//save the rois to the temp directory, named after the images
-		roiManager("select", brain_region_roi_ids);
-		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
-		
-		roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
-		//delete these rois
-		//roiManager("select", Array.concat(brain_region_roi_ids, atlas_bounding_box_id, roi_id_bounding_box, roi_id_brain));
-		//roiManager("delete");
-		roiManager("reset"); //not as elegant, but just selecting 
-		close(control_channel);
-
 	} else {
 		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
@@ -681,18 +741,13 @@ function to_downsampled_selection(roi_ids) {
 
 //saving the results
 //make this a seperate function that runs on all images after all the adjustment is done
-function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory, atlas_slice, regions) {
+function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory) {
 	//open the saved scaled rois of the respective image
 	setBatchMode(true);
 	save_roi_ids_start = roiManager("count");
-	roi_path = newArray();
-	for (i = 0; i < regions.length; i++) {
-		if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
-			roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
-		}
-	}
 	
-	if (roi_path.length > 0) {
+	
+	if (File.exists(temp + local_image_name_without_extension + "roi.zip")) {
 		roiManager("open", temp + local_image_name_without_extension + "roi.zip");
 		save_roi_ids_end = roiManager("count") -1;
 		
