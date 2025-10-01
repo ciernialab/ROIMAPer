@@ -15,7 +15,7 @@ save_and_modify_svgs <- function(urls, prefix, suffix, destination, name, width,
     path <- paste0(destination, name, i, "_", urls[i], ".svg")
     download.file(url, destfile = path, mode = "wb")
     svg_string <- readLines(path, warn = FALSE)
-    svg_string <- stringr::str_replace_all(svg_string, "stroke:black", "stroke:none")
+    svg_string <- stringr::str_replace_all(svg_string, "stlye=\"stroke:black", "shape-rendering =\"crispEdges\" stroke:none")
     writeLines(svg_string,path)
     rsvg::rsvg_png(path, paste0(destination, name, i, "_", urls[i], ".png"), width, height)
     file.remove(path)
