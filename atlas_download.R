@@ -15,10 +15,8 @@ save_and_modify_svgs <- function(urls, prefix, suffix, destination, name, width,
     path <- paste0(destination, name, i, "_", urls[i], ".svg")
     download.file(url, destfile = path, mode = "wb")
     svg_string <- readLines(path, warn = FALSE)
-    svg_string <- stringr::str_replace_all(svg_string, "stlye=\"stroke:black", "shape-rendering =\"crispEdges\" stroke:none")
+    svg_string <- stringr::str_replace_all(svg_string, "stroke:black",  "stroke:none")
     writeLines(svg_string,path)
-    rsvg::rsvg_png(path, paste0(destination, name, i, "_", urls[i], ".png"), width, height)
-    file.remove(path)
   }
 }
 
@@ -37,6 +35,6 @@ save_and_modify_svgs(slice_ids_sagittal,
                      3744,
                      1904)
 
-brain_region_indices_xml <- xmlParse("http://api.brain-map.org/api/v2/structure_graph_download/1.xml")
-brain_region_indices <- xmlToList(brain_region_indices_xml)[[1]]
+brain_region_indices <- read.csv("http://api.brain-map.org/api/v2/data/query.csv?criteria=model::Structure,rma::criteria,[ontology_id$eq7],rma::options[order$eq%27structures.graph_order%27][num_rows$eqall]")
+brain_region_indices[, c("r","g","b")] <- t(col2rgb(brain_region_indices$color_hex_triplet))
 write.csv(brain_region_indices, file = paste0(destination, "brain_region_mapping.csv"))
