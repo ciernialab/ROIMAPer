@@ -3,6 +3,8 @@
 
 Semi-automatic FIJI macro to map an atlas of ROIs to tissue images. Currently setup to also download a coronal version of the P56 ABA\_v3.
 
+Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, Vancouver, in Sep 2025.
+
 This project is composed of four scripts that are used in three different situations:
 
 \* atlas\_download.R \& atlas\_setup.ijm: downloading the coronal ABA\_v3 and making it accessible for the other scripts; run once upon first install
@@ -71,31 +73,25 @@ Either download all files from github, or clone the repository using **git clone
 
 2\. Choose the directory in which the images, which you wish to map, are located
 
-3\. Specify the first and the last image of your analysis; these and all images inbetween will be mapped
+3\. Specify the first and the last image of your analysis; you can exclude images between those in the next window.
 
-4\. For each image, specify which slice you want to use, only this slice will be opened to save processing power. Also specify, whether or not to use the same slice of the ABA for each image or not
+4\. For each image, specify which slice you want to use, only this slice will be opened to save processing power. Also specify, whether or not to use the same slice of the ABA for each image or not. Specify if you want a combined result, meaning all ROIs and all channels saved within one file. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box".
 
 5\. Reference, which slice of the ABA should be used for **A)** all images or **B)** every image individually. A reference overview of the ABA slices will open
 
-6\. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "background channel"
+6\. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "background channel". The channel order needs to be consistent between all images.
 
 7\. Now each image will open one by one to allow for manual correction of the ROI scaling. 
 
 
 
-8.1\. First rotate the image, so it matches the orientation of the right hemisphere. Uncheck "continue rotation" to proceed to the next step
+8.1\. Create a rotated rectangle that sits flush with the image and that has the same angle as the reference slice of the atlas.
 
-
-
-8.2\. A rectangular selection will be created around your tissue, adjust it until it sits flush with the tissue
-
-
+8.2\. Rotate and flip the ROIs if necessary.
 
 8.3\. The ROIs will be set onto the tissue, adjust them, if the location or scale is off.
 
-
-
-9\. Do this for all images, and then let the plugin save your ROIs. They will be stored in a folder next to the one your images are in, titled with the date and time you started the mapping process.
+9\. Do this for all images, and then let the plugin save your ROIs. They will be stored in a folder next to the one your images are in, titled with the date and time when you started the mapping process.
 
 
 

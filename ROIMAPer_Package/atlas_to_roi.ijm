@@ -187,7 +187,11 @@ function savingRoi(image, directory, searchTerm) {
 	    	
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("save selected", directory + i + "/" + searchTerm + ".zip");
+	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("delete");
+	    } else {//if no brain region was found, delete the bounding box again
+	    	roiManager("select", roiManager("count")-1);
+			roiManager("delete");
 	    }
 	}
 	close("bw");
