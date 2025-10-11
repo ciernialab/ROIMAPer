@@ -11,6 +11,8 @@ var output_path = "";
 var combined_output_path = "";
 var control_channel = "";
 var temp = "";
+var atlas_directory = "";
+var text_file = "";
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
@@ -22,11 +24,23 @@ showMessage("ROIMAPer", "<html>
 	   +"<h0><font size=5> </h0>"
     +"");
 
+atlas_path = replace(File.openDialog("Please select which atlas you would like to work with"), "\\", "/"); //replace backslash with forwardslash
+atlas_name = File.getNameWithoutExtension(atlas_path);
+home_directory = File.getDirectory(atlas_path);
+atlas_directory = home_directory + atlas_name + "_setup/";
 
-home_directory = getDirectory("In which directory is the \"ABA_v3\" folder located?");
+atlas_name = File.getNameWithoutExtension(setup_directory);
+atlas_name = substring(atlas_name, 0, lastIndexOf(atlas_name, "_setup"));
+home_directory = File.getDirectory(atlas_directory);
+
+if (endsWith(atlas_name, "_halfbrain")) {
+	text_file = substring(atlas_name, 0, lastIndexOf(atlas_name, "_halfbrain")) + "_brain_region_mapping.csv";
+} else {
+	text_file = atlas_name + "_brain_region_mapping.csv";
+}
 
 temp = getDirectory("temp");
-File.setDefaultDir(home_directory);
+File.setDefaultDir(home_directory);//maybe does not actually make things easier
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
 //get the directory
@@ -180,7 +194,7 @@ if(one_channel_for_all == false) {
 }
 */
 
-Table.open(home_directory + "brain_region_mapping.csv");
+Table.open(home_directory + text_file);
 
 defaultchannels = "DAPI, Iba1, GFAP, mOC87, Temp";
 
@@ -190,7 +204,7 @@ if(one_roi_for_all) {
 	screen_width = screenWidth;
 	call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.4), round(screen_height*0.01));
 	
-	open(home_directory + "/atlas_overview.tif");
+	open(home_directory + atlas_name + "_overview.tif");
 	Dialog.createNonBlocking("Template selection");
 	Dialog.addMessage("What slice of the Allen Brain do you want to map to?");
 	Dialog.addNumber("Slice", 1, 0, 3, "");
@@ -208,7 +222,7 @@ if(one_roi_for_all) {
 	for (i = 0; i < template_slice_number.length; i++) {
 		template_slice_number[i] = parseInt(template_slice_number[i]); //because otherwise they get a decimal point, which messes up the folder system
 	}
-	close("atlas_overview.tif");
+	close(atlas_name + "_overview.tif");
 
 
 } else {
@@ -226,7 +240,7 @@ if(one_roi_for_all) {
 	channeloptions_return = Dialog.getString();
 	
 }
-close("brain_region_mapping.csv");
+close(text_file);
 
 for (i = 0; i < regions.length; i++) {
 	regions[i] = trim(regions[i]); //deal with whitespace in the brain region submission
@@ -317,8 +331,8 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 	exist_counter = 0;
 	if (one_roi_for_all) {
 		for (i = 0; i < regions.length; i++) {
-			if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
-				roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
+			if(File.exists(atlas_directory + atlas_slice + "/" + regions[i] + ".zip")) {
+				roi_path = Array.concat(roi_path, atlas_directory + atlas_slice + "/" + regions[i] + ".zip");
 				exist_counter++;
 			}
 		} //get the paths of individual ROIs 
@@ -373,7 +387,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 				screen_width = screenWidth;
 				call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
-				open(home_directory + "/atlas_overview.tif");
+				open(home_directory + atlas_name + "_overview.tif");
 				selectWindow(control_channel);
 				
 				Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
@@ -382,7 +396,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 			Dialog.show();
 			
 			if (!one_roi_for_all) {
-				close("atlas_overview.tif");
+				close(atlas_name + "_overview.tif");
 				atlas_slice = Dialog.getNumber();
 				atlas_slice = parseInt(atlas_slice);//removing decimal points
 			}
@@ -419,7 +433,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 					screen_width = screenWidth;
 					call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
-					open(home_directory + "/atlas_overview.tif");
+					open(home_directory + atlas_name + "_overview.tif");
 					selectWindow(control_channel);
 					Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 					Dialog.addNumber("Slice", atlas_slice, 0, 3, "");
@@ -427,7 +441,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 				Dialog.show();
 				
 				if (!one_roi_for_all) {
-					close("atlas_overview.tif");
+					close(atlas_name + "_overview.tif");
 					atlas_slice = Dialog.getNumber();
 					atlas_slice = parseInt(atlas_slice);//removing decimal points
 				}
@@ -460,8 +474,8 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		
 		if (!one_roi_for_all) {
 			for (i = 0; i < regions.length; i++) {
-				if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
-					roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
+				if(File.exists(atlas_directory + atlas_slice + "/" + regions[i] + ".zip")) {
+					roi_path = Array.concat(roi_path, atlas_directory + atlas_slice + "/" + regions[i] + ".zip");
 				} else {
 					print("Not found the region " + regions[i] + " in image " + local_image_name_without_extension);
 				}

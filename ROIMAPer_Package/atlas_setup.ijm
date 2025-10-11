@@ -10,12 +10,12 @@ halfbrain_crop = Dialog.getCheckbox();
 if (halfbrain_crop) {
 	atlas_name = atlas_name + "_halfbrain";
 }
-setup_directory = index_directory + atlas_name + "_setup/";
+//setup_directory = index_directory + atlas_name + "_setup/";
 
 
 
 
-File.makeDirectory(setup_directory);
+//File.makeDirectory(setup_directory);
 
 
 
@@ -35,13 +35,8 @@ for (i = 0; i < lengthOf(filelist); i++) {
 			run("Select None");
 		}
 		image_counter++;
-		save(setup_directory + File.separator + filelist[i]);
+		//save(setup_directory + File.separator + filelist[i]);
     } 
-}
-
-//creates structure for the ROIs to be saved in - might need to move this into the atlas_to_roi macro
-for (i = 1; i <= image_counter; i++) {
-	File.makeDirectory(setup_directory + i + "/");
 }
 
 run("Images to Stack", "fill=white use");
@@ -73,19 +68,19 @@ for (i = image_counter + 1; i <= grid_rows * grid_columns; i++) {
 	name = "slice" + IJ.pad(i, 3);
 	newImage(name, "RGB white", width, height, slices); //because the stitching fails otherwise
 	
-	save(setup_directory + name + ".png" );
+	save(download_directory + name + ".png" );
 	close(name);
 }
 
-run("Grid/Collection stitching", "type=[Grid: column-by-column] order=[Down & Right                ] grid_size_x=" + grid_columns + " grid_size_y=" + grid_rows + " tile_overlap=0 first_file_index_i=1 directory=" + setup_directory + " file_names=slice{iii}.png output_textfile_name=TileConfiguration.txt fusion_method=[Linear Blending] regression_threshold=0.30 max/avg_displacement_threshold=2.50 absolute_displacement_threshold=3.50 downsample_tiles computation_parameters=[Save memory (but be slower)] image_output=[Fuse and display] x=0.1 y=0.1 width=" + overview_width + " height=" + overview_height + " interpolation=Bicubic average");
+run("Grid/Collection stitching", "type=[Grid: column-by-column] order=[Down & Right                ] grid_size_x=" + grid_columns + " grid_size_y=" + grid_rows + " tile_overlap=0 first_file_index_i=1 directory=" + download_directory + " file_names=slice{iii}.png output_textfile_name=TileConfiguration.txt fusion_method=[Linear Blending] regression_threshold=0.30 max/avg_displacement_threshold=2.50 absolute_displacement_threshold=3.50 downsample_tiles computation_parameters=[Save memory (but be slower)] image_output=[Fuse and display] x=0.1 y=0.1 width=" + overview_width + " height=" + overview_height + " interpolation=Bicubic average");
 run("RGB Color");
 close("Fused");
 
 for (i = image_counter + 1; i <= grid_rows * grid_columns; i++) {
 	name = "slice" + IJ.pad(i, 3);
-	File.delete(setup_directory + name + ".png" );
+	File.delete(download_directory + name + ".png" );
 }
-File.delete(setup_directory + "TileConfiguration.txt");
+File.delete(download_directory + "TileConfiguration.txt");
 
 textsize = 30;
 setFont("SansSerif", textsize);

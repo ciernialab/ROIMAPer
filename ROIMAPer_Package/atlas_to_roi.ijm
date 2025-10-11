@@ -1,21 +1,30 @@
 //from scalablebrainatlas
 var text_file = "";
-setup_directory = replace(getDirectory("Please supply the directory, of the downloaded atlas"), "\\", "/"); //because windows is stupid
-atlas_name = File.getNameWithoutExtension(setup_directory);
-atlas_name = substring(atlas_name, 0, lastIndexOf(atlas_name, "_setup"));
-index_directory = File.getDirectory(setup_directory);
+atlas_path = replace(File.openDialog("Please select which atlas you would like to work with"), "\\", "/"); //replace backslash with forwardslash
+atlas_name = File.getNameWithoutExtension(atlas_path);
+home_directory = File.getDirectory(atlas_path);
+atlas_directory = home_directory + atlas_name + "_setup/";
 
 
 
-open(index_directory + atlas_name + ".tif");
+open(atlas_path);
+getDimensions(width, height, channels, slices, frames);
 title = getTitle();
-if (endsWith(atlas_name, "_halfbrain") {
+if (endsWith(atlas_name, "_halfbrain")) {
 	text_file = substring(atlas_name, 0, lastIndexOf(atlas_name, "_halfbrain")) + "_brain_region_mapping.csv";
 } else {
 	text_file = atlas_name + "_brain_region_mapping.csv";
 }
 
-Table.open(index_directory + text_file);
+if (!File.exists(atlas_directory)) {
+	//creates structure for the ROIs to be saved in - might need to move this into the atlas_to_roi macro
+	File.makeDirectory(atlas_directory);
+	for (i = 1; i <= slices; i++) {
+		File.makeDirectory(atlas_directory + i + "/");
+	}
+}
+
+Table.open(home_directory + text_file);
 Dialog.createNonBlocking("Select brain region(s) to map");
 Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
 Dialog.addString("Brain regions:", "", 35);
@@ -36,11 +45,11 @@ for (i = 0; i < searchTerm.length; i++) {
 	children = getRecursiveChildren(searchTerm[i]);
 	rows = getTableRowFromSearch(children);
 	if (rows.length > 0) { //only do the stuff, when region was found
-		thresholdfromtable(rows, title);
+		thresholdfromtable(rows, title, searchTerm[i]);
 	
-		savingRoi(title, setup_directory, searchTerm[i]);
+		savingRoi(title, atlas_directory, searchTerm[i]);
 	
-		close("finished");
+		close(searchTerm[i]);
 	} else {
 		print(searchTerm[i] + " was not found");
 	}
@@ -92,7 +101,7 @@ function getTableRowFromSearch(searchTerm) {
 	return rows;
 }
 
-function thresholdfromtable(rows, image) { 
+function thresholdfromtable(rows, image, searchTerm) { 
 	rows = Array.concat(newArray(), rows); //if rows is a single number, still make it an array
 	
 	selectWindow(text_file);
@@ -109,7 +118,7 @@ function thresholdfromtable(rows, image) {
 		}
 	}
 	selectWindow("threshold0");
-	rename("finished");
+	rename(searchTerm);
 }
 
 function thresholding(r,g,b, image, name) { 
@@ -150,16 +159,16 @@ function thresholding(r,g,b, image, name) {
 	close("color_threshold");
 }
 
-function savingRoi(image, setup_directory, searchTerm) {
+function savingRoi(image, atlas_directory, searchTerm) {
 	print("Saving ROIs.");
 	selectWindow(image);
 	run("Duplicate...", "title=bw duplicate");
 	run("8-bit");
-	selectWindow("finished");
+	selectWindow(searchTerm);
 	getDimensions(width, height, channels, slices, frames);
 	
 	for (i = 1; i <= nSlices; i++) {
-		selectWindow("finished");
+		selectWindow(searchTerm);
 	    setSlice(i);
 	    setThreshold(1, 255);
 	    run("Create Selection");
@@ -188,8 +197,8 @@ function savingRoi(image, setup_directory, searchTerm) {
 	    if (roiManager("count") > 1) {
 	    	
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
-	    	roiManager("save selected", setup_directory + i + "/" + searchTerm + ".zip");
-	    	print(setup_directory + i + "/" + searchTerm + ".zip");
+	    	roiManager("save selected", atlas_directory + i + "/" + searchTerm + ".zip");
+	    	print(atlas_directory + i + "/" + searchTerm + ".zip");
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("delete");
 	    } else {//if no brain region was found, delete the bounding box again
