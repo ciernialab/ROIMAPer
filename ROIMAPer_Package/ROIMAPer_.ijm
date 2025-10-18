@@ -467,8 +467,6 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 				 
 				 error_action = Dialog.getChoice();
 				 give_user_choice = true; //so the user can choose again in the next round
-				 //in case rotation was already attempted: restore the rotate option
-				 modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees - can only be performed once", "redo bounding box");
 		
 				 if (error_action == "No, skip this image") {
 				 	proceed = false;
@@ -492,6 +490,8 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 			}
 			if (modifyer == "redo bounding box") {
 				roiManager("reset");
+				 //in case rotation was already attempted: restore the rotate option
+				 modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees - can only be performed once", "redo bounding box");
 				
 				atlas_slice = user_bounding_box(atlas_slice);
 				
@@ -558,12 +558,12 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 				roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
 			
 			}
-			//delete these rois
-			//roiManager("select", full);
-			//roiManager("delete");
-			roiManager("reset"); //not as elegant, but selection of atlas_bounding box after the downsampling gets tricky
-			close(control_channel);
 		}
+		//delete these rois
+		//roiManager("select", full);
+		//roiManager("delete");
+		roiManager("reset"); //not as elegant, but selection of atlas_bounding box after the downsampling gets tricky
+		close(control_channel);
 	} else {
 		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
