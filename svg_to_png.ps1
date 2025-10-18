@@ -1,4 +1,1 @@
-﻿$Files = Get-ChildItem -Recurse -Include *.svg
-Foreach ($file in $Files) {
-    inkscape --export-type="png" --export-png-antialias=0 --export-width=1000 $file
-    }
+inkscape --export-type="png" --export-png-antialias=0 --export-width=2000 C:\Users\julia\OneDrive\Documents\Uni\Master\Ciernia_lab\test_images_for_imagej\test.svg
