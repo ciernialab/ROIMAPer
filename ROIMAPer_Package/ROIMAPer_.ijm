@@ -491,7 +491,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		atlas_end_id = roiManager("count") - 1;
 		
 		if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
-			print("Not found any of the specified regions in image wknwrngkrngk" + local_image_name_without_extension);
+			print("Not found any of the specified regions in image " + local_image_name_without_extension);
 			
 		} else {//only proceed, if ROIs were opened
 			
@@ -799,6 +799,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 			save(combined_output_path + local_image_name_without_extension + "_combined.tif");
 			
 			close("current_image");
+			File.copy(temp + local_image_name_without_extension + "roi.zip", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
 		}
 		
 		roiManager("select", roi_closing_array);
