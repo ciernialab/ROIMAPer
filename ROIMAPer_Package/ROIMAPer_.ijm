@@ -593,20 +593,20 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 
 
 function rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id) {
-	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];
+	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0]; //get center of the bounding box
 	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
 
 	roi_indices_new = newArray();
 	roi_indices_new = Array.concat(roi_indices_new,full_atlas_ids);
 	roiManager("select", roi_indices_new);
-	//normalize rotational axis so scaling is not skewed
+	//normalize rotational axis so scaling is not skewed, rotate around the bounding box center
 	RoiManager.rotate(-angle, xcenter, ycenter); 
 	roiManager("select", atlas_bounding_box_id);
 	getSelectionCoordinates(xatlas_trans, yatlas_trans); //get atlas coordinates after translation
 	
 	roiManager("select", roi_indices_new);
 	getSelectionBounds(xroiold, yroiold, widthroiold, heightroiold);
-	RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false);
+	RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false); //invert length and height scaling of all ROIs
 	
 	roiManager("select", roi_indices_new);
 	getSelectionBounds(xroinew, yroinew, widthroinew, heightroinew);
@@ -615,8 +615,8 @@ function rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atla
 	
 	roiManager("select", full_atlas_ids);
 	
-	RoiManager.rotate(90, xatlas_trans[1], yatlas_trans[1]); 
-	//now rotate again
+	RoiManager.rotate(90, xatlas_trans[1], yatlas_trans[1]); //rotate by 90 degrees
+	//now rotate again to restore the original tilt
 	RoiManager.rotate(angle, xcenter, ycenter); 
 	roiManager("show all without labels");
 }
