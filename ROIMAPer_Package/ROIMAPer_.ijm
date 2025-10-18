@@ -349,7 +349,7 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		selectWindow(control_channel);
 		
 		/*
-		//get feret diameters for rotation????
+		//get feret diameters for rotation???? - this would be an autofitting process
 		Roi.getFeretPoints(x,y);
 		
 		bigferetangle = atan2(y[1] - y[0], x[1] - x[0]) * 180 / PI;
