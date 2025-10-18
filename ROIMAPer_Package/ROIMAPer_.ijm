@@ -29,10 +29,6 @@ atlas_name = File.getNameWithoutExtension(atlas_path);
 home_directory = File.getDirectory(atlas_path);
 atlas_directory = home_directory + atlas_name + "_setup/";
 
-atlas_name = File.getNameWithoutExtension(setup_directory);
-atlas_name = substring(atlas_name, 0, lastIndexOf(atlas_name, "_setup"));
-home_directory = File.getDirectory(atlas_directory);
-
 if (endsWith(atlas_name, "_halfbrain")) {
 	text_file = substring(atlas_name, 0, lastIndexOf(atlas_name, "_halfbrain")) + "_brain_region_mapping.csv";
 } else {
@@ -505,7 +501,9 @@ function scaling(image_number, local_image_path, local_image_name_without_extens
 		atlas_end_id = roiManager("count") - 1;
 		
 		if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
-			print("Not found any of the specified regions in image wknwrngkrngk" + local_image_name_without_extension);
+			print("Not found any of the specified regions in image " + local_image_name_without_extension);
+			print("Moving on to the next image.");
+			close(control_channel);
 			
 		} else {//only proceed, if ROIs were opened
 			
