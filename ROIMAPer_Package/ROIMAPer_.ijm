@@ -5,7 +5,7 @@
 
 var map_to_control_channel = false;
 var is_czi = newArray();
-var one_roi_for_all = true;
+var one_roi_for_all = false;
 var automatic_bounding_box = false;
 var output_path = "";
 var combined_output_path = "";
@@ -156,7 +156,7 @@ for (i = 0; i < image_path.length; i++) {
 	checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0); //making an array of the numbers from 1 to slicenumber
 	Dialog.addChoice(image_name_without_extension[i], checkboxitems);
 }
-Dialog.addCheckbox("Use one roi set for all", true);
+Dialog.addCheckbox("Use one roi set for all", false);
 //Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
