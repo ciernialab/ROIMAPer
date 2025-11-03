@@ -97,7 +97,7 @@ for (i = 0; i < image_path.length; i++) {
 	is_czi = Array.concat(is_czi, endsWith(image_name[i], ".czi"));
 	//get metadata, so we do not have to open big stacks of images
 
-	run("Bio-Formats Importer", "open=" + image_path[i] + " color_mode=Default display_metadata rois_import=[ROI manager] view=[Metadata only] stack_order=Default");
+	run("Bio-Formats Importer", "open=[" + image_path[i] + "] color_mode=Default display_metadata rois_import=[ROI manager] view=[Metadata only] stack_order=Default");
 	
 	//selectWindow("Original Metadata - " + image_name[i]); //not sure if this is needed
 	//get the metadata as a string
@@ -127,6 +127,7 @@ for (i = 0; i < image_path.length; i++) {
 		slicenumber = Array.concat(slicenumber, metadata_answer[2]);
 	}
 	if (is_czi[i]) { //because .czi files have different metadata layout than .tif
+		//is not perfect yet
 		selectWindow("Original Metadata - " + image_name[i]);
 		
 		for (j = 0; indexOf(metadata, "Series " + j + " Name") > 0; j++) {
@@ -139,7 +140,7 @@ for (i = 0; i < image_path.length; i++) {
 		}
 		
 		if (indexOf(metadata, "macro image") > 0) {
-			j = j-1;//this only works, if the macro image aand the label image are the last in the series
+			j = j-1;//this only works, if the macro image and the label image are the last in the series
 		}
 		
 		slicenumber = Array.concat(slicenumber, j); //divide by six does not always work
@@ -150,35 +151,51 @@ for (i = 0; i < image_path.length; i++) {
 }
 setBatchMode(false);
 
+length_limit = 20;
+columns = Math.ceil(image_path.length/length_limit);
 Dialog.create("Slice selection");
-Dialog.addMessage("Which slices would you like to use for each image?");
-for (i = 0; i < image_path.length; i++) {
-	checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0); //making an array of the numbers from 1 to slicenumber
-	Dialog.addChoice(image_name_without_extension[i], checkboxitems);
-}
 Dialog.addCheckbox("Use one roi set for all", false);
 //Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
 
+Dialog.addMessage("Which slices would you like to use for each image?");
+for (i = 0; i < image_path.length; i++) {//Grid likeness enables the display of more file titles
+	checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0);
+	 //making an array of the numbers from 1 to slicenumber
+	Dialog.addChoice(image_name_without_extension[i], checkboxitems);
+
+	for (j = 1; j < columns; j++) {
+		if (i + 1 < image_path.length) {
+			Dialog.addToSameRow();
+			i++;
+			checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0);
+			 //making an array of the numbers from 1 to slicenumber
+			Dialog.addChoice(image_name_without_extension[i], checkboxitems);
+		}
+	}
+
+}
 
 Dialog.show();
 
-selected_slices = newArray();
-for (i = 0; i < image_path.length; i++) {
-	selected_slices = Array.concat(selected_slices, parseInt(Dialog.getChoice())); //choice puts out decimal figures as characters
-}
-one_roi_for_all = Dialog.getCheckbox();
+one_roi_for_all = Dialog.getCheckbox();
 //one_channel_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getCheckbox();
-/*
+
+/*
 if(one_channel_for_all == false) {
-	exit("Differing channels have not been implemented yet. Please analyze these images seperately."); //fix this at some point
+	exit("Differing channels have not been implemented yet. Please analyze these images seperately.");
+ //fix this at some point
 }
 */
+selected_slices = newArray();
+for (i = 0; i < image_path.length; i++) {
+	selected_slices = Array.concat(selected_slices, parseInt(Dialog.getChoice())); //choice puts out decimal figures as characters
+}
 
 Table.open(home_directory + "brain_region_mapping.csv");
 
@@ -325,10 +342,10 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 	
 	if (proceed) { //only do this, if there are saved ROIs for this slice of the ABA
 		if (!is_czi[image_number]) {
-			run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + control_channel_id + " c_end=" + control_channel_id + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
+			run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + control_channel_id + " c_end=" + control_channel_id + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 		} else {
 			selectedslice = selectedslice;
-			run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + control_channel_id + " c_end_" + selectedslice + "=" + control_channel_id + " c_step_" + selectedslice + "=1");
+			run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + control_channel_id + " c_end_" + selectedslice + "=" + control_channel_id + " c_step_" + selectedslice + "=1");
 		}
 		rename(control_channel);
 		getDimensions(width, height, channels, slices, frames);
