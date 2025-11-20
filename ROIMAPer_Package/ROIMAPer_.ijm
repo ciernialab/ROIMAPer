@@ -465,7 +465,7 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 			give_user_choice = true;
 		}
 		
-		modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees - can only be performed once", "redo bounding box");
+		modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
 		modifying = true;
 		
 		while (modifying) {
@@ -493,22 +493,22 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 			
 			//the normal actions that can be performed on this image
 			if (modifyer == "flip x") {
-				flip_roi_x(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
+				flip_roi_x(full_atlas_ids, angle, atlas_bounding_box_id);
 			}
 			if (modifyer == "flip y") {
-				flip_roi_y(full_atlas_ids, xbounding, ybounding, angle, atlas_bounding_box_id);
+				flip_roi_y(full_atlas_ids, angle, atlas_bounding_box_id);
 			}
 			if (modifyer == "Do not modify") {
 				modifying = false;
 			} 
-			if (modifyer == "rotate by 90 degrees - can only be performed once") {
-				rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
-				modifying_options = Array.deleteValue(modifying_options, "rotate by 90 degrees - can only be performed once");
+			if (modifyer == "rotate by 90 degrees") {
+				rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
+				//modifying_options = Array.deleteValue(modifying_options, "rotate by 90 degrees - can only be performed once");
 			}
 			if (modifyer == "redo bounding box") {
 				roiManager("reset");
 				 //in case rotation was already attempted: restore the rotate option
-				 modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees - can only be performed once", "redo bounding box");
+				 modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
 				
 				atlas_slice = user_bounding_box(atlas_slice);
 				
@@ -702,38 +702,51 @@ function scaling(atlas_bounding_box_id, full_atlas_ids, angle, widthbounding, he
 		
 }
 
-function rotate90(xbounding, ybounding, widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id) {
-	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0]; //get center of the bounding box
-	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+function rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id) {
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionCoordinates(xatlas, yatlas);
+	xcenter = (xatlas[2] - xatlas[0]) / 2 + xatlas[0]; //get center of the bounding box
+	ycenter = (yatlas[2] - yatlas[0]) / 2 + yatlas[0];
 
 	roi_indices_new = newArray();
-	roi_indices_new = Array.concat(roi_indices_new,full_atlas_ids);
+	roi_indices_new = Array.concat(roi_indices_new,full_atlas_ids); //so it is an array if there is only one ID to modify
 	roiManager("select", roi_indices_new);
 	//normalize rotational axis so scaling is not skewed, rotate around the bounding box center
 	RoiManager.rotate(-angle, xcenter, ycenter); 
 	roiManager("select", atlas_bounding_box_id);
 	getSelectionCoordinates(xatlas_trans, yatlas_trans); //get atlas coordinates after translation
-	
+	Array.print(xatlas_trans);
+	Array.print(yatlas_trans);
 	roiManager("select", roi_indices_new);
 	getSelectionBounds(xroiold, yroiold, widthroiold, heightroiold);
 	RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false); //invert length and height scaling of all ROIs
-	
 	roiManager("select", roi_indices_new);
 	getSelectionBounds(xroinew, yroinew, widthroinew, heightroinew);
 	
-	RoiManager.translate(xatlas_trans[1] - xroinew, yatlas_trans[1] - yroinew); //move to top right corner to allow for 90 degree turn around that corner
-	
+	RoiManager.translate(xatlas_trans[0] - xroinew, yatlas_trans[0] - yroinew); //move to top right corner to allow for 90 degree turn around that corner
 	roiManager("select", full_atlas_ids);
 	
-	RoiManager.rotate(90, xatlas_trans[1], yatlas_trans[1]); //rotate by 90 degrees
+	RoiManager.rotate(90, xatlas_trans[0], yatlas_trans[0]); //rotate by 90 degrees
 	//now rotate again to restore the original tilt
 	RoiManager.rotate(angle, xcenter, ycenter); 
+	
+	//get distance of new center from old center - move back to old center
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionCoordinates(xatlas_trans_rot, yatlas_trans_rot);
+	xcenter_trans_rot = (xatlas_trans_rot[2] - xatlas_trans_rot[0]) / 2 + xatlas_trans_rot[0]; //get center of the bounding box
+	ycenter_trans_rot = (yatlas_trans_rot[2] - yatlas_trans_rot[0]) / 2 + yatlas_trans_rot[0];
+
+	roiManager("select", roi_indices_new);
+	RoiManager.translate(xcenter - xcenter_trans_rot, ycenter - ycenter_trans_rot); //move to top right corner to allow for 90 degree turn around that corner
+	
 	roiManager("show all without labels");
 }
 
-function flip_roi_x(roi_indices, xbounding, ybounding, angle, atlas_bounding_box_id) {
-	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];
-	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+function flip_roi_x(roi_indices, angle, atlas_bounding_box_id) {
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionCoordinates(xatlas, yatlas);
+	xcenter = (xatlas[2] - xatlas[0]) / 2 + xatlas[0]; //get center of the bounding box
+	ycenter = (yatlas[2] - yatlas[0]) / 2 + yatlas[0];
 	
 	roi_indices_new = newArray();
 	roi_indices_new = Array.concat(roi_indices_new,roi_indices);
@@ -757,9 +770,11 @@ function flip_roi_x(roi_indices, xbounding, ybounding, angle, atlas_bounding_box
 	roiManager("show all without labels");
 }
 
-function flip_roi_y(roi_indices, xbounding, ybounding, angle, atlas_bounding_box_id) {
-	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0];
-	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+function flip_roi_y(roi_indices, angle, atlas_bounding_box_id) {
+	roiManager("select", atlas_bounding_box_id);
+	getSelectionCoordinates(xatlas, yatlas);
+	xcenter = (xatlas[2] - xatlas[0]) / 2 + xatlas[0]; //get center of the bounding box
+	ycenter = (yatlas[2] - yatlas[0]) / 2 + yatlas[0];
 	
 	roi_indices_new = newArray();
 	roi_indices_new = Array.concat(roi_indices_new,roi_indices);
