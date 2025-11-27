@@ -885,10 +885,10 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 					if ((channelchoices[i-1] != control_channel && !map_to_control_channel) || only_channelchoices.length <= 1 || map_to_control_channel) {
 						
 						if (!is_czi[image_number]) {
-							run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + i + " c_end=" + i + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
+							run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + i + " c_end=" + i + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 						} else {
 							
-							run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + i + " c_end_" + selectedslice + "=" + i + " c_step_" + selectedslice + "=1");
+							run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + i + " c_end_" + selectedslice + "=" + i + " c_step_" + selectedslice + "=1");
 						}
 						
 						rename(channeloptions_array[j]);
