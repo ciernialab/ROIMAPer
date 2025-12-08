@@ -297,7 +297,7 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 		atlas_slice = 1; //gets changed in the scaling function
 	}
 	scaling(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
-
+	run("Collect Garbage");
 	if (autosave) {//if we want to save after every image
 		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory);
 	}

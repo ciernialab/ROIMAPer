@@ -1,23 +1,25 @@
 //from scalablebrainatlas
 var text_file = "";
+default_directory = File.getDefaultDir;//to restore in the end
+home_directory = replace(getDirectory("imagej"), "\\" "/") + "scripts/Plugins/ROIMAPer/atlases/";
+
+File.setDefaultDir(home_directory);
 atlas_path = replace(File.openDialog("Please select which atlas you would like to work with"), "\\", "/"); //replace backslash with forwardslash
+
 atlas_name = File.getNameWithoutExtension(atlas_path);
-home_directory = File.getDirectory(atlas_path);
-atlas_directory = home_directory + atlas_name + "_setup/";
-
-
+atlas_directory = home_directory + atlas_name + "_ROIs/";
 
 open(atlas_path);
 getDimensions(width, height, channels, slices, frames);
 title = getTitle();
-if (endsWith(atlas_name, "_halfbrain")) {
-	text_file = substring(atlas_name, 0, lastIndexOf(atlas_name, "_halfbrain")) + "_brain_region_mapping.csv";
-} else {
-	text_file = atlas_name + "_brain_region_mapping.csv";
-}
+
+//get the corresponding ID to region info
+//the actual name of the atlas is only the part before the first dash
+text_file = substring(atlas_name, 0, indexOf(atlas_name, "-")) + "-brain_region_mapping.csv";
+
 
 if (!File.exists(atlas_directory)) {
-	//creates structure for the ROIs to be saved in - might need to move this into the atlas_to_roi macro
+	//creates structure for the ROIs to be saved in
 	File.makeDirectory(atlas_directory);
 	for (i = 1; i <= slices; i++) {
 		File.makeDirectory(atlas_directory + i + "/");
@@ -42,14 +44,26 @@ for (i = 0; i < searchTerm.length; i++) {
 	print("Working on:  " + searchTerm[i]);
 	roiManager("reset");
 	run("Select None");
-	children = getRecursiveChildren(searchTerm[i]);
+	//get the ID of the searchterm
+	search_id = "none";
+	selectWindow(text_file);
+	nrows = Table.size;
+	
+	for (j = 0; j < nrows; j++) {
+		
+		if (searchTerm[i] == Table.getString("acronym", j)) {
+			search_id = Table.getString("id", j);
+		}
+	}
+	
+	children = getRecursiveChildren(search_id);
 	rows = getTableRowFromSearch(children);
 	if (rows.length > 0) { //only do the stuff, when region was found
-		thresholdfromtable(rows, title, searchTerm[i]);
+		thresholdfromtable(rows, title, search_id);
 	
-		savingRoi(title, atlas_directory, searchTerm[i]);
+		savingRoi(title, atlas_directory, search_id, searchTerm[i]);
 	
-		close(searchTerm[i]);
+		close(search_id);
 	} else {
 		print(searchTerm[i] + " was not found");
 	}
@@ -60,10 +74,12 @@ for (i = 0; i < searchTerm.length; i++) {
 setBatchMode(false);
 close(title);
 close(text_file);
+File.setDefaultDir(default_directory);//restore default directory
 print("Macro finished");
 
 
 function getRecursiveChildren(parents) {
+	//search the table to find children of the searchterm, add them to the list of all the regions to combine
 	print("Getting sub-terms");
 	parents = Array.concat(newArray(), parents);
 	selectWindow(text_file);
@@ -75,7 +91,7 @@ function getRecursiveChildren(parents) {
 		for (j = 0; j < nrows; j++) {
 			
 			if (parents[i] == Table.getString("parent", j)) {
-				children = Array.concat(children, Table.getString("acronym", j));
+				children = Array.concat(children, Table.getString("id", j));
 			}
 		}
 	}
@@ -87,14 +103,16 @@ function getRecursiveChildren(parents) {
 
 
 function getTableRowFromSearch(searchTerm) {
+	//retrieve the rows of all entries in searchterm
+	//not really necessary anymore, but was useful for rgb coded images
 	print("Getting rows from table");
 	selectWindow(text_file);
-	searchTerm = Array.concat(newArray(), searchTerm);
+	searchTerm = Array.concat(newArray(), searchTerm);//to make sure that searchTerm is in array-form
 	rows = newArray();
 	for (i = 0; i < Table.size; i++) {
 		for (j = 0; j < searchTerm.length; j++) {
-			if (searchTerm[j] == Table.getString("acronym", i)) {
-				rows = Array.concat(rows, i);
+			if (searchTerm[j] == Table.getString("id", i)) {
+				rows = Array.concat(rows, i);//get the row of that entry of searchterm
 			}
 		}
 	}
@@ -106,12 +124,15 @@ function thresholdfromtable(rows, image, searchTerm) {
 	
 	selectWindow(text_file);
 	
+	//every row is one child-term
 	for (i = 0; i < rows.length; i++) {
+		selectWindow(image);
+		run("Duplicate...", "title=threshold" + i + " duplicate"); //duplicate the stack to threshold for one region
 		print("Processing subregions " + (i + 1) + " out of " + rows.length + ".");
-		r = Table.get("r", rows[i]);
-		g = Table.get("g", rows[i]);
-		b = Table.get("b", rows[i]);
-		thresholding(r,g,b, image, i); //this is the within-stack thresholding based on exact rgb values
+		threshold = Table.get("id", rows[i]);
+		setThreshold(threshold, threshold);
+		run("Convert to Mask", "background=Light");
+
 		if (i > 0) {
 			imageCalculator("OR stack", "threshold0", "threshold" + i); //calculate all subregions/children together
 			close("threshold" + i); 
@@ -121,54 +142,16 @@ function thresholdfromtable(rows, image, searchTerm) {
 	rename(searchTerm);
 }
 
-function thresholding(r,g,b, image, name) { 
-	
-	selectWindow(image);
-	getDimensions(width, height, channels, slices, frames);
-	
-	run("Duplicate...", "title=color_threshold duplicate");
-	run("RGB Stack");
-	
-	
-	selectWindow("color_threshold");
-	run("Duplicate...", "title=Red duplicate channels=1");
-	selectWindow("Red");
-	setThreshold(r, r);
-	run("Convert to Mask", "background=Light");
-	
-	selectWindow("color_threshold");
-	run("Duplicate...", "title=Green duplicate channels=2");
-	selectWindow("Green");
-	setThreshold(g, g);
-	run("Convert to Mask", "background=Light");
-	
-	selectWindow("color_threshold");
-	run("Duplicate...", "title=Blue duplicate channels=3");
-	selectWindow("Blue");
-	setThreshold(b, b);
-	run("Convert to Mask", "background=Light");
-	
-	
-	imageCalculator("AND create stack", "Red", "Green");
-	close("Green");
-	imageCalculator("AND stack", "Result of Red", "Blue");
-	close("Blue");
-	close("Red");
-	selectWindow("Result of Red");
-	rename("threshold" + name);
-	close("color_threshold");
-}
-
-function savingRoi(image, atlas_directory, searchTerm) {
+function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	print("Saving ROIs.");
 	selectWindow(image);
 	run("Duplicate...", "title=bw duplicate");
 	run("8-bit");
-	selectWindow(searchTerm);
+	selectWindow(searchID);
 	getDimensions(width, height, channels, slices, frames);
 	
 	for (i = 1; i <= nSlices; i++) {
-		selectWindow(searchTerm);
+		selectWindow(searchID);
 	    setSlice(i);
 	    setThreshold(1, 255);
 	    run("Create Selection");
@@ -177,13 +160,14 @@ function savingRoi(image, atlas_directory, searchTerm) {
 	    	
 	    	roiManager("add");
 	    	roiManager("select", roiManager("count") - 1);
-	    	roiManager("rename", searchTerm);
+	    	roiManager("rename", searchID);
 	    }
 
 	    
 	    selectWindow("bw");
 	    setSlice(i);
-
+	    	
+		//make bounding box to register where the brain was
 	    setThreshold(0, 254);
 	    run("Create Selection");
 	    run("To Bounding Box");
@@ -201,7 +185,8 @@ function savingRoi(image, atlas_directory, searchTerm) {
 	    	print(atlas_directory + i + "/" + searchTerm + ".zip");
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("delete");
-	    } else {//if no brain region was found, delete the bounding box again
+	    }
+ else {//if no brain region was found, delete the bounding box again
 	    	roiManager("select", roiManager("count")-1);
 			roiManager("delete");
 	    }
