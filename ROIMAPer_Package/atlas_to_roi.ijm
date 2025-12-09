@@ -168,7 +168,8 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    setSlice(i);
 	    	
 		//make bounding box to register where the brain was
-	    setThreshold(0, 254);
+		getStatistics(area, mean, min, max, std, histogram);
+	    setThreshold(1, max);
 	    run("Create Selection");
 	    run("To Bounding Box");
 	    
