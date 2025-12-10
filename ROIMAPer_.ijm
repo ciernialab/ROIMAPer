@@ -55,7 +55,7 @@ if (!File.exists(atlas_directory)) {
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
 
-//get the directory of the analysis
+//get the directory of the analysis
 image_directory = getDirectory("Please choose the directory that contains your images.");
 image_list = getFileList(image_directory);
 image_list = Array.sort(image_list);
@@ -1161,3 +1161,4 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	}
 	close("bw");
 }
+
