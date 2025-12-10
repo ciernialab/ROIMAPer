@@ -541,7 +541,7 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 			if (modifyer == "redo bounding box") {
 				roiManager("reset");
 				 //in case rotation was already attempted: restore the rotate option
-				 modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
+				modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
 				
 				atlas_slice = user_bounding_box(atlas_slice);
 				
@@ -617,9 +617,6 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 	} else {
 		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
-
-
-
 
 
 
