@@ -965,7 +965,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 
 //functions to create ROIs:
 function createROIs(atlas_name, mapping_index_path, searchTerm) {
-	
+	Table.open(home_directory + text_file);
 	for (i = 0; i < searchTerm.length; i++) {
 		searchTerm[i] = trim(searchTerm[i]); //deal with whitespace in the brain region submission
 	}
