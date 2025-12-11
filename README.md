@@ -1,17 +1,10 @@
 # ROIMAPer
 
 
-Semi-automatic FIJI macro to map an atlas of ROIs to tissue images. Currently setup to also download a coronal version of the P56 ABA\_v3.
+Semi-automatic FIJI macro to map an atlas of ROIs to tissue images. 
+Comes with the 2017 version of the adult mouse Allen Brain Atlas CCFv3 and version 4 of the Waxholm Space Atlas of the Sprague Dawley Rat Brain.
 
 Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, Vancouver, in Sep 2025.
-
-This project is composed of four scripts that are used in three different situations:
-
-\* atlas\_download.R \& atlas\_setup.ijm: downloading the coronal ABA\_v3 and making it accessible for the other scripts; run once upon first install
-
-\* atlas\_to\_roi.ijm: creating regions of interest (ROI) for specific brain regions from the atlas; run whenever you need access to a new brain region that is not yet stored
-
-\* ROIMAPer\_.ijm: map the stored brain regions to brain slices; this is the day-to-day script
 
 ---- INSTALLING ----
 
@@ -20,48 +13,22 @@ This project is composed of four scripts that are used in three different situat
 Either download all files from github, or clone the repository using **git clone https://github.com/ciernialab/ROIMAPer**
 
 
+Place the ROIMAPer folder in scripts/plugins/ in your FIJI folder (you can find the fiji folder under File>Show Folder>ImageJ in FIJI)
 
 
+---- Image Prerequisits ----
 
+1. Know your images
+    2. Do they have multiple slices?
+    3. Which slice do you want to analyze?
+    4.  Which channel corresponds to which label/stain/wavelength?
 
+3. Ideally: save your images as one-slice TIFF files. This ensures high image quality. 
 
-1\. run atlas\_download.R (specify the directory of installation for the atlas, or it will use the current working directory)
-
-
-
-
-
-
-
-2\. Install the .ijm scripts as Plugins in FIJI, by placing the folder ROIMAPer\_Package in Fiji.app/scripts/plugins
-
-
-
-
-
-
-
-3\. run atlas\_setup.ijm (specify the same directory as in 1.)
-
-
-
-
-
-
-
----- Obtaining ROIs ----
-
-
-
-1\. Run atlas\_to\_roi.ijm and specifiy the same directory as in the installation (this is where the folder ABA\_v3\\ and the files brain\_region\_mapping.csv, aba\_v3.tif and atlas\_overview.tif should be located)
-
-2\. Specify the brain regions you want to save as ROIs, use the brain region acronyms as specified by https://atlas.brain-map.org
-
-3\. When creating templates for multiple regions at the same time, separate the individual acronyms by commas, any whitespace will be trimmed
-
-
-
-
+4. When working with .czi files from Zen (Zeiss):
+    - Every scene gets saved multiple times at different resolutions (often times 6 duplicates in total).
+    - To make processing easier, batch convert your scenes to tiffs instead.
+    - Czi files can currently not be a Z-stack.
 
 
 
@@ -69,34 +36,33 @@ Either download all files from github, or clone the repository using **git clone
 
 
 
-1\. Start the ROIMAPer plugin and specify the directory in which the folder ABA\_v3\\ and the files brain\_region\_mapping.csv, aba\_v3.tif and atlas\_overview.tif are located (the installation folder from above)
+1. Start the ROIMAPer plugin and select the .tif file that corresponds to your atlas (e.g. "aba_v3-Coronal_halfbrain.tif" if you want to work with a coronal slice of one hemisphere of a mouse-brain).
 
-2\. Choose the directory in which the images, which you wish to map, are located
+2. Choose the directory in which the images that you wish to map are located. 
 
-3\. Specify the first and the last image of your analysis; you can exclude images between those in the next window.
+3. Specify the first and the last image of your analysis; you can exclude images between those in the next window. After this step, the metadata of every image is scanned. This might take a while for large/many files.
 
-4\. For each image, specify which slice you want to use, only this slice will be opened to save processing power. Also specify, whether or not to use the same slice of the ABA for each image or not. Specify if you want a combined result, meaning all ROIs and all channels saved within one file. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box".
+4. For each image, specify which slice you want to use, only this slice will be opened to save processing power.
+    5. Also specify, whether or not to use the same slice of the ABA for each image or not.
+    6. Specify if you want a combined result, meaning all ROIs and all channels saved within one file.
+    7. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box".
+    8. If you are worried about having to terminate the work midway, you can save after every image instead of saving all images at the end.
 
-5\. Reference, which slice of the ABA should be used for **A)** all images or **B)** every image individually. A reference overview of the ABA slices will open
+6. Reference, which regions you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
 
-6\. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "background channel". The channel order needs to be consistent between all images.
+7. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "control channel". If you want to create a result for the control channel, too, check the corresponding chechmark The channel order needs to be consistent between all images.
 
-7\. Now each image will open one by one to allow for manual correction of the ROI scaling. 
+8. Now each image will open one by one to allow for manual correction of the ROI scaling.
+    1. Create a rotated rectangle (called the bounding box) that sits flush with the image and contains the brain as straight as possible.
 
+    2. Rotate and flip the ROIs if necessary.
 
+    3. The ROIs will be set onto the tissue, adjust them manually (by double clicking the ROI or clicking the label in the ROI manager), if the location or scale is off.
 
-8.1\. Create a rotated rectangle that sits flush with the image and that has the same angle as the reference slice of the atlas.
+    4. If an ROI is not aligned with the actual region in the brain, this is often an issue of the atlas slice selection or the bounding box. You can choose to redo these. If you choose not to do this, you can convert any ROI into an editable point-selection. Enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept. **This is not recommended for ROIs made up of multiple parts**
 
-8.2\. Rotate and flip the ROIs if necessary.
-
-8.3\. The ROIs will be set onto the tissue, adjust them, if the location or scale is off.
-
-9\. Do this for all images, and then let the plugin save your ROIs. They will be stored in a folder next to the one your images are in, titled with the date and time when you started the mapping process.
-
-
-
-
-
+9. Do this for all images, and then let the plugin save your ROIs. 
+    - They will be stored in a folder next to the one your images are in, titled with the date and time when you started the mapping process.
 
 
 ---
@@ -107,8 +73,10 @@ Thank you for using this plugin.
 
 
 
-The RGB representation of the Allen Brain Atlas was obtained from [The Scalable Brain Atlas](https://scalablebrainatlas.incf.org/).
+The Allen Brain Atlas adult mouse brain was obtained from: [https://download.alleninstitute.org/informatics-archive/current-release/mouse_ccf/annotation/ccf_2017/] at a resolution of 10 µm.
+Allen Reference Atlas – Mouse Brain \[adult mouse\]. Available from [atlas.brain-map.org].
 
+The Waxholm Space Atlas of the Sprague Dawley Rat Brain version 4 was obtained from: [https://www.nitrc.org/projects/whs-sd-atlas].
 
 
 This plugin was inspired by the FASTMAP plugin by Dylan Terstege from the Epp lab, University of Calgary, published on 12-07-2019 [https://doi.org/10.1523/ENEURO.0325-21.2022](https://doi.org/10.1523/ENEURO.0325-21.2022), available at [https://github.com/dterstege/FASTMAP](https://github.com/dterstege/FASTMAP)
