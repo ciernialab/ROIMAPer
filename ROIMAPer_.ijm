@@ -44,14 +44,6 @@ mapping_index_path = home_directory + "mapping_index.csv";
 File.setDefaultDir(default_directory);
 //restore default directory
 
-//creates structure for the ROIs to be saved in, if it is run for the first time on this atlas
-if (!File.exists(atlas_directory)) {
-	File.makeDirectory(atlas_directory);
-	for (i = 1; i <= slices; i++) {
-		File.makeDirectory(atlas_directory + i + "/");
-	}
-}
-
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
 
@@ -519,6 +511,7 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 		
 				 if (error_action == "No, skip this image") {
 				 	proceed = false;
+				 	close(atlas_name + "_overview.tif");
 				 	break;
 				 }
 			}
@@ -647,7 +640,7 @@ function user_bounding_box(atlas_slice) {
 		screen_width = screenWidth;
 		call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
-		open(home_directory + "/atlas_overview.tif");
+		open(home_directory + atlas_name + "_overview.tif");
 		selectWindow(control_channel);
 		Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 		Dialog.addNumber("Slice", atlas_slice, 0, 3, "");
@@ -972,6 +965,14 @@ function createROIs(atlas_name, mapping_index_path, searchTerm) {
 	open(atlas_path);
 	title = getTitle();
 	getDimensions(width, height, channels, slices, frames);
+	
+	//creates structure for the ROIs to be saved in, if it is run for the first time on this atlas
+	if (!File.exists(atlas_directory)) {
+		File.makeDirectory(atlas_directory);
+		for (i = 1; i <= slices; i++) {
+			File.makeDirectory(atlas_directory + i + "/");
+		}
+	}
 
 	print("Creating ROIs");
 	setBatchMode(true);
