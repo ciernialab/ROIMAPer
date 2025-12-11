@@ -19,7 +19,7 @@ var atlas_path = "";
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 1.0 (Sep 2025)</p1>"
+    +"<p1>Version: 2.0.0 (Dec 2025)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -34,7 +34,7 @@ home_directory = replace(getDirectory("imagej"), "\\" "/") + "scripts/Plugins/RO
 File.setDefaultDir(home_directory);
 
 //get atlas specification
-atlas_path = replace(File.openDialog("Please select which atlas you would like to work with (select a .tif file)."), "\\", "/"); //replace backslash with forwardslash
+atlas_path = replace(File.openDialog("Please select which atlas (saved in the FIJI folder in \"scripts/Plugins/ROIMAPer/atlases\") you would like to work with (select a .tif file)."), "\\", "/"); //replace backslash with forwardslash
 atlas_name = File.getNameWithoutExtension(atlas_path);
 atlas_directory = home_directory + atlas_name + "_ROIs/";
 
@@ -616,8 +616,8 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 function check_roi_availability(atlas_slice, regions, local_image_name_without_extension) {
 	roi_path = newArray();
 	for (i = 0; i < regions.length; i++) {
-		if(File.exists(home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip")) {
-			roi_path = Array.concat(roi_path, home_directory + "ABA_v3/" + atlas_slice + "/" + regions[i] + ".zip");
+		if(File.exists(atlas_directory + atlas_slice + "/" + regions[i] + ".zip")) {
+			roi_path = Array.concat(roi_path, atlas_directory + atlas_slice + "/" + regions[i] + ".zip");
 		} else {
 			print("Not found the region " + regions[i] + " in image " + local_image_name_without_extension);
 		}
