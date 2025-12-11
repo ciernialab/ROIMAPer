@@ -419,6 +419,7 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 			
 			resetThreshold;
 			
+			setTool("rotatedrect");
 			Dialog.createNonBlocking("Automatic selection");
 			Dialog.addMessage("Please adjust the created bounding rectangle if necessary.");
 			if (!one_roi_for_all) {
@@ -661,7 +662,7 @@ function user_bounding_box(atlas_slice) {
 		Dialog.show();
 		
 		//even when same ROI set for all is specified, allow for change of atlas slice here
-		close("atlas_overview.tif");
+		close(atlas_name + "_overview.tif");
 		atlas_slice = Dialog.getNumber();
 		atlas_slice = parseInt(atlas_slice);//removing decimal points
 		
@@ -853,10 +854,9 @@ function to_downsampled_selection(roi_ids) {
 	downsample_factor = Dialog.getNumber();
 	
 	if (do_downsampling) {
-	
-		changing_roi = roiManager("index");
-		if (changing_roi >= 0) { //test, if an roi was selected
-			
+		selectiontype = selectionType();
+		if (selectiontype != -1) { //test, if an roi was selected
+			changing_roi = roiManager("index");
 			old_name = Roi.getName;//transfer this to the new, downsampled ROI
 			getSelectionCoordinates(xpoints, ypoints);
 			
@@ -893,6 +893,7 @@ function to_downsampled_selection(roi_ids) {
 			
 			
 		} else {
+			do_downsampling = false;
 			waitForUser("No ROI selected. Please do so. Press OK to try again");
 			to_downsampled_selection(roi_ids);
 		}
