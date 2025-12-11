@@ -1,0 +1,1328 @@
+"","id","acronym","name","parent"
+"1",997,"root","root",NA
+"2",8,"grey","Basic cell groups and regions",997
+"3",567,"CH","Cerebrum",8
+"4",688,"CTX","Cerebral cortex",567
+"5",695,"CTXpl","Cortical plate",688
+"6",315,"Isocortex","Isocortex",695
+"7",184,"FRP","Frontal pole, cerebral cortex",315
+"8",68,"FRP1","Frontal pole, layer 1",184
+"9",667,"FRP2-3","Frontal pole, layer 2/3",184
+"10",526157192,"FRP5","Frontal pole, layer 5",184
+"11",526157196,"FRP6a","Frontal pole, layer 6a",184
+"12",526322264,"FRP6b","Frontal pole, layer 6b",184
+"13",500,"MO","Somatomotor areas",315
+"14",107,"MO1","Somatomotor areas, Layer 1",500
+"15",219,"MO2-3","Somatomotor areas, Layer 2/3",500
+"16",299,"MO5","Somatomotor areas, Layer 5",500
+"17",644,"MO6a","Somatomotor areas, Layer 6a",500
+"18",947,"MO6b","Somatomotor areas, Layer 6b",500
+"19",985,"MOp","Primary motor area",500
+"20",320,"MOp1","Primary motor area, Layer 1",985
+"21",943,"MOp2-3","Primary motor area, Layer 2/3",985
+"22",648,"MOp5","Primary motor area, Layer 5",985
+"23",844,"MOp6a","Primary motor area, Layer 6a",985
+"24",882,"MOp6b","Primary motor area, Layer 6b",985
+"25",993,"MOs","Secondary motor area",500
+"26",656,"MOs1","Secondary motor area, layer 1",993
+"27",962,"MOs2-3","Secondary motor area, layer 2/3",993
+"28",767,"MOs5","Secondary motor area, layer 5",993
+"29",1021,"MOs6a","Secondary motor area, layer 6a",993
+"30",1085,"MOs6b","Secondary motor area, layer 6b",993
+"31",453,"SS","Somatosensory areas",315
+"32",12993,"SS1","Somatosensory areas, layer 1",453
+"33",12994,"SS2-3","Somatosensory areas, layer 2/3",453
+"34",12995,"SS4","Somatosensory areas, layer 4",453
+"35",12996,"SS5","Somatosensory areas, layer 5",453
+"36",12997,"SS6a","Somatosensory areas, layer 6a",453
+"37",12998,"SS6b","Somatosensory areas, layer 6b",453
+"38",322,"SSp","Primary somatosensory area",453
+"39",793,"SSp1","Primary somatosensory area, layer 1",322
+"40",346,"SSp2-3","Primary somatosensory area, layer 2/3",322
+"41",865,"SSp4","Primary somatosensory area, layer 4",322
+"42",921,"SSp5","Primary somatosensory area, layer 5",322
+"43",686,"SSp6a","Primary somatosensory area, layer 6a",322
+"44",719,"SSp6b","Primary somatosensory area, layer 6b",322
+"45",353,"SSp-n","Primary somatosensory area, nose",322
+"46",558,"SSp-n1","Primary somatosensory area, nose, layer 1",353
+"47",838,"SSp-n2-3","Primary somatosensory area, nose, layer 2/3",353
+"48",654,"SSp-n4","Primary somatosensory area, nose, layer 4",353
+"49",702,"SSp-n5","Primary somatosensory area, nose, layer 5",353
+"50",889,"SSp-n6a","Primary somatosensory area, nose, layer 6a",353
+"51",929,"SSp-n6b","Primary somatosensory area, nose, layer 6b",353
+"52",329,"SSp-bfd","Primary somatosensory area, barrel field",322
+"53",981,"SSp-bfd1","Primary somatosensory area, barrel field, layer 1",329
+"54",201,"SSp-bfd2-3","Primary somatosensory area, barrel field, layer 2/3",329
+"55",1047,"SSp-bfd4","Primary somatosensory area, barrel field, layer 4",329
+"56",1070,"SSp-bfd5","Primary somatosensory area, barrel field, layer 5",329
+"57",1038,"SSp-bfd6a","Primary somatosensory area, barrel field, layer 6a",329
+"58",1062,"SSp-bfd6b","Primary somatosensory area, barrel field, layer 6b",329
+"59",480149202,"VISrll","Rostrolateral lateral visual area",329
+"60",480149206,"VISrll1","Rostrolateral lateral visual area, layer 1",480149202
+"61",480149210,"VISrll2-3","Rostrolateral lateral visual area, layer 2/3",480149202
+"62",480149214,"VISrll4","Rostrolateral lateral visual area, layer 4",480149202
+"63",480149218,"VISrll5","Rostrolateral lateral visual area,layer 5",480149202
+"64",480149222,"VISrll6a","Rostrolateral lateral visual area, layer 6a",480149202
+"65",480149226,"VISrll6b","Rostrolateral lateral visual area, layer 6b",480149202
+"66",337,"SSp-ll","Primary somatosensory area, lower limb",322
+"67",1030,"SSp-ll1","Primary somatosensory area, lower limb, layer 1",337
+"68",113,"SSp-ll2-3","Primary somatosensory area, lower limb, layer 2/3",337
+"69",1094,"SSp-ll4","Primary somatosensory area, lower limb, layer 4",337
+"70",1128,"SSp-ll5","Primary somatosensory area, lower limb, layer 5",337
+"71",478,"SSp-ll6a","Primary somatosensory area, lower limb, layer 6a",337
+"72",510,"SSp-ll6b","Primary somatosensory area, lower limb, layer 6b",337
+"73",345,"SSp-m","Primary somatosensory area, mouth",322
+"74",878,"SSp-m1","Primary somatosensory area, mouth, layer 1",345
+"75",657,"SSp-m2-3","Primary somatosensory area, mouth, layer 2/3",345
+"76",950,"SSp-m4","Primary somatosensory area, mouth, layer 4",345
+"77",974,"SSp-m5","Primary somatosensory area, mouth, layer 5",345
+"78",1102,"SSp-m6a","Primary somatosensory area, mouth, layer 6a",345
+"79",2,"SSp-m6b","Primary somatosensory area, mouth, layer 6b",345
+"80",369,"SSp-ul","Primary somatosensory area, upper limb",322
+"81",450,"SSp-ul1","Primary somatosensory area, upper limb, layer 1",369
+"82",854,"SSp-ul2-3","Primary somatosensory area, upper limb, layer 2/3",369
+"83",577,"SSp-ul4","Primary somatosensory area, upper limb, layer 4",369
+"84",625,"SSp-ul5","Primary somatosensory area, upper limb, layer 5",369
+"85",945,"SSp-ul6a","Primary somatosensory area, upper limb, layer 6a",369
+"86",1026,"SSp-ul6b","Primary somatosensory area, upper limb, layer 6b",369
+"87",361,"SSp-tr","Primary somatosensory area, trunk",322
+"88",1006,"SSp-tr1","Primary somatosensory area, trunk, layer 1",361
+"89",670,"SSp-tr2-3","Primary somatosensory area, trunk, layer 2/3",361
+"90",1086,"SSp-tr4","Primary somatosensory area, trunk, layer 4",361
+"91",1111,"SSp-tr5","Primary somatosensory area, trunk, layer 5",361
+"92",9,"SSp-tr6a","Primary somatosensory area, trunk, layer 6a",361
+"93",461,"SSp-tr6b","Primary somatosensory area, trunk, layer 6b",361
+"94",182305689,"SSp-un","Primary somatosensory area, unassigned",322
+"95",182305693,"SSp-un1","Primary somatosensory area, unassigned, layer 1",182305689
+"96",182305697,"SSp-un2-3","Primary somatosensory area, unassigned, layer 2/3",182305689
+"97",182305701,"SSp-un4","Primary somatosensory area, unassigned, layer 4",182305689
+"98",182305705,"SSp-un5","Primary somatosensory area, unassigned, layer 5",182305689
+"99",182305709,"SSp-un6a","Primary somatosensory area, unassigned, layer 6a",182305689
+"100",182305713,"SSp-un6b","Primary somatosensory area, unassigned, layer 6b",182305689
+"101",378,"SSs","Supplemental somatosensory area",453
+"102",873,"SSs1","Supplemental somatosensory area, layer 1",378
+"103",806,"SSs2-3","Supplemental somatosensory area, layer 2/3",378
+"104",1035,"SSs4","Supplemental somatosensory area, layer 4",378
+"105",1090,"SSs5","Supplemental somatosensory area, layer 5",378
+"106",862,"SSs6a","Supplemental somatosensory area, layer 6a",378
+"107",893,"SSs6b","Supplemental somatosensory area, layer 6b",378
+"108",1057,"GU","Gustatory areas",315
+"109",36,"GU1","Gustatory areas, layer 1",1057
+"110",180,"GU2-3","Gustatory areas, layer 2/3",1057
+"111",148,"GU4","Gustatory areas, layer 4",1057
+"112",187,"GU5","Gustatory areas, layer 5",1057
+"113",638,"GU6a","Gustatory areas, layer 6a",1057
+"114",662,"GU6b","Gustatory areas, layer 6b",1057
+"115",677,"VISC","Visceral area",315
+"116",897,"VISC1","Visceral area, layer 1",677
+"117",1106,"VISC2-3","Visceral area, layer 2/3",677
+"118",1010,"VISC4","Visceral area, layer 4",677
+"119",1058,"VISC5","Visceral area, layer 5",677
+"120",857,"VISC6a","Visceral area, layer 6a",677
+"121",849,"VISC6b","Visceral area, layer 6b",677
+"122",247,"AUD","Auditory areas",315
+"123",1011,"AUDd","Dorsal auditory area",247
+"124",527,"AUDd1","Dorsal auditory area, layer 1",1011
+"125",600,"AUDd2-3","Dorsal auditory area, layer 2/3",1011
+"126",678,"AUDd4","Dorsal auditory area, layer 4",1011
+"127",252,"AUDd5","Dorsal auditory area, layer 5",1011
+"128",156,"AUDd6a","Dorsal auditory area, layer 6a",1011
+"129",243,"AUDd6b","Dorsal auditory area, layer 6b",1011
+"130",480149230,"VISlla","Laterolateral anterior visual area",1011
+"131",480149234,"VISlla1","Laterolateral anterior visual area, layer 1",480149230
+"132",480149238,"VISlla2-3","Laterolateral anterior visual area, layer 2/3",480149230
+"133",480149242,"VISlla4","Laterolateral anterior visual area, layer 4",480149230
+"134",480149246,"VISlla5","Laterolateral anterior visual area,layer 5",480149230
+"135",480149250,"VISlla6a","Laterolateral anterior visual area, layer 6a",480149230
+"136",480149254,"VISlla6b","Laterolateral anterior visual area, layer 6b",480149230
+"137",1002,"AUDp","Primary auditory area",247
+"138",735,"AUDp1","Primary auditory area, layer 1",1002
+"139",251,"AUDp2-3","Primary auditory area, layer 2/3",1002
+"140",816,"AUDp4","Primary auditory area, layer 4",1002
+"141",847,"AUDp5","Primary auditory area, layer 5",1002
+"142",954,"AUDp6a","Primary auditory area, layer 6a",1002
+"143",1005,"AUDp6b","Primary auditory area, layer 6b",1002
+"144",1027,"AUDpo","Posterior auditory area",247
+"145",696,"AUDpo1","Posterior auditory area, layer 1",1027
+"146",643,"AUDpo2-3","Posterior auditory area, layer 2/3",1027
+"147",759,"AUDpo4","Posterior auditory area, layer 4",1027
+"148",791,"AUDpo5","Posterior auditory area, layer 5",1027
+"149",249,"AUDpo6a","Posterior auditory area, layer 6a",1027
+"150",456,"AUDpo6b","Posterior auditory area, layer 6b",1027
+"151",1018,"AUDv","Ventral auditory area",247
+"152",959,"AUDv1","Ventral auditory area, layer 1",1018
+"153",755,"AUDv2-3","Ventral auditory area, layer 2/3",1018
+"154",990,"AUDv4","Ventral auditory area, layer 4",1018
+"155",1023,"AUDv5","Ventral auditory area, layer 5",1018
+"156",520,"AUDv6a","Ventral auditory area, layer 6a",1018
+"157",598,"AUDv6b","Ventral auditory area, layer 6b",1018
+"158",669,"VIS","Visual areas",315
+"159",801,"VIS1","Visual areas, layer 1",669
+"160",561,"VIS2-3","Visual areas, layer 2/3",669
+"161",913,"VIS4","Visual areas, layer 4",669
+"162",937,"VIS5","Visual areas, layer 5",669
+"163",457,"VIS6a","Visual areas, layer 6a",669
+"164",497,"VIS6b","Visual areas, layer 6b",669
+"165",402,"VISal","Anterolateral visual area",669
+"166",1074,"VISal1","Anterolateral visual area, layer 1",402
+"167",905,"VISal2-3","Anterolateral visual area, layer 2/3",402
+"168",1114,"VISal4","Anterolateral visual area, layer 4",402
+"169",233,"VISal5","Anterolateral visual area, layer 5",402
+"170",601,"VISal6a","Anterolateral visual area, layer 6a",402
+"171",649,"VISal6b","Anterolateral visual area, layer 6b",402
+"172",394,"VISam","Anteromedial visual area",669
+"173",281,"VISam1","Anteromedial visual area, layer 1",394
+"174",1066,"VISam2-3","Anteromedial visual area, layer 2/3",394
+"175",401,"VISam4","Anteromedial visual area, layer 4",394
+"176",433,"VISam5","Anteromedial visual area, layer 5",394
+"177",1046,"VISam6a","Anteromedial visual area, layer 6a",394
+"178",441,"VISam6b","Anteromedial visual area, layer 6b",394
+"179",409,"VISl","Lateral visual area",669
+"180",421,"VISl1","Lateral visual area, layer 1",409
+"181",973,"VISl2-3","Lateral visual area, layer 2/3",409
+"182",573,"VISl4","Lateral visual area, layer 4",409
+"183",613,"VISl5","Lateral visual area, layer 5",409
+"184",74,"VISl6a","Lateral visual area, layer 6a",409
+"185",121,"VISl6b","Lateral visual area, layer 6b",409
+"186",385,"VISp","Primary visual area",669
+"187",593,"VISp1","Primary visual area, layer 1",385
+"188",821,"VISp2-3","Primary visual area, layer 2/3",385
+"189",721,"VISp4","Primary visual area, layer 4",385
+"190",778,"VISp5","Primary visual area, layer 5",385
+"191",33,"VISp6a","Primary visual area, layer 6a",385
+"192",305,"VISp6b","Primary visual area, layer 6b",385
+"193",425,"VISpl","Posterolateral visual area",669
+"194",750,"VISpl1","Posterolateral visual area, layer 1",425
+"195",269,"VISpl2-3","Posterolateral visual area, layer 2/3",425
+"196",869,"VISpl4","Posterolateral visual area, layer 4",425
+"197",902,"VISpl5","Posterolateral visual area, layer 5",425
+"198",377,"VISpl6a","Posterolateral visual area, layer 6a",425
+"199",393,"VISpl6b","Posterolateral visual area, layer 6b",425
+"200",533,"VISpm","posteromedial visual area",669
+"201",805,"VISpm1","posteromedial visual area, layer 1",533
+"202",41,"VISpm2-3","posteromedial visual area, layer 2/3",533
+"203",501,"VISpm4","posteromedial visual area, layer 4",533
+"204",565,"VISpm5","posteromedial visual area, layer 5",533
+"205",257,"VISpm6a","posteromedial visual area, layer 6a",533
+"206",469,"VISpm6b","posteromedial visual area, layer 6b",533
+"207",312782574,"VISli","Laterointermediate area",669
+"208",312782578,"VISli1","Laterointermediate area, layer 1",312782574
+"209",312782582,"VISli2-3","Laterointermediate area, layer 2/3",312782574
+"210",312782586,"VISli4","Laterointermediate area, layer 4",312782574
+"211",312782590,"VISli5","Laterointermediate area, layer 5",312782574
+"212",312782594,"VISli6a","Laterointermediate area, layer 6a",312782574
+"213",312782598,"VISli6b","Laterointermediate area, layer 6b",312782574
+"214",312782628,"VISpor","Postrhinal area",669
+"215",312782632,"VISpor1","Postrhinal area, layer 1",312782628
+"216",312782636,"VISpor2-3","Postrhinal area, layer 2/3",312782628
+"217",312782640,"VISpor4","Postrhinal area, layer 4",312782628
+"218",312782644,"VISpor5","Postrhinal area, layer 5",312782628
+"219",312782648,"VISpor6a","Postrhinal area, layer 6a",312782628
+"220",312782652,"VISpor6b","Postrhinal area, layer 6b",312782628
+"221",31,"ACA","Anterior cingulate area",315
+"222",572,"ACA1","Anterior cingulate area, layer 1",31
+"223",1053,"ACA2-3","Anterior cingulate area, layer 2/3",31
+"224",739,"ACA5","Anterior cingulate area, layer 5",31
+"225",179,"ACA6a","Anterior cingulate area, layer 6a",31
+"226",227,"ACA6b","Anterior cingulate area, layer 6b",31
+"227",39,"ACAd","Anterior cingulate area, dorsal part",31
+"228",935,"ACAd1","Anterior cingulate area, dorsal part, layer 1",39
+"229",211,"ACAd2-3","Anterior cingulate area, dorsal part, layer 2/3",39
+"230",1015,"ACAd5","Anterior cingulate area, dorsal part, layer 5",39
+"231",919,"ACAd6a","Anterior cingulate area, dorsal part, layer 6a",39
+"232",927,"ACAd6b","Anterior cingulate area, dorsal part, layer 6b",39
+"233",48,"ACAv","Anterior cingulate area, ventral part",31
+"234",588,"ACAv1","Anterior cingulate area, ventral part, layer 1",48
+"235",296,"ACAv2-3","Anterior cingulate area, ventral part, layer 2/3",48
+"236",772,"ACAv5","Anterior cingulate area, ventral part, layer 5",48
+"237",810,"ACAv6a","Anterior cingulate area, ventral part, 6a",48
+"238",819,"ACAv6b","Anterior cingulate area, ventral part, 6b",48
+"239",972,"PL","Prelimbic area",315
+"240",171,"PL1","Prelimbic area, layer 1",972
+"241",195,"PL2","Prelimbic area, layer 2",972
+"242",304,"PL2-3","Prelimbic area, layer 2/3",972
+"243",363,"PL5","Prelimbic area, layer 5",972
+"244",84,"PL6a","Prelimbic area, layer 6a",972
+"245",132,"PL6b","Prelimbic area, layer 6b",972
+"246",44,"ILA","Infralimbic area",315
+"247",707,"ILA1","Infralimbic area, layer 1",44
+"248",747,"ILA2","Infralimbic area, layer 2",44
+"249",556,"ILA2-3","Infralimbic area, layer 2/3",44
+"250",827,"ILA5","Infralimbic area, layer 5",44
+"251",1054,"ILA6a","Infralimbic area, layer 6a",44
+"252",1081,"ILA6b","Infralimbic area, layer 6b",44
+"253",714,"ORB","Orbital area",315
+"254",264,"ORB1","Orbital area, layer 1",714
+"255",492,"ORB2-3","Orbital area, layer 2/3",714
+"256",352,"ORB5","Orbital area, layer 5",714
+"257",476,"ORB6a","Orbital area, layer 6a",714
+"258",516,"ORB6b","Orbital area, layer 6b",714
+"259",723,"ORBl","Orbital area, lateral part",714
+"260",448,"ORBl1","Orbital area, lateral part, layer 1",723
+"261",412,"ORBl2-3","Orbital area, lateral part, layer 2/3",723
+"262",630,"ORBl5","Orbital area, lateral part, layer 5",723
+"263",440,"ORBl6a","Orbital area, lateral part, layer 6a",723
+"264",488,"ORBl6b","Orbital area, lateral part, layer 6b",723
+"265",731,"ORBm","Orbital area, medial part",714
+"266",484,"ORBm1","Orbital area, medial part, layer 1",731
+"267",524,"ORBm2","Orbital area, medial part, layer 2",731
+"268",582,"ORBm2-3","Orbital area, medial part, layer 2/3",731
+"269",620,"ORBm5","Orbital area, medial part, layer 5",731
+"270",910,"ORBm6a","Orbital area, medial part, layer 6a",731
+"271",527696977,"ORBm6b","Orbital area, medial part, layer 6b",731
+"272",738,"ORBv","Orbital area, ventral part",714
+"273",746,"ORBvl","Orbital area, ventrolateral part",714
+"274",969,"ORBvl1","Orbital area, ventrolateral part, layer 1",746
+"275",288,"ORBvl2-3","Orbital area, ventrolateral part, layer 2/3",746
+"276",1125,"ORBvl5","Orbital area, ventrolateral part, layer 5",746
+"277",608,"ORBvl6a","Orbital area, ventrolateral part, layer 6a",746
+"278",680,"ORBvl6b","Orbital area, ventrolateral part, layer 6b",746
+"279",95,"AI","Agranular insular area",315
+"280",104,"AId","Agranular insular area, dorsal part",95
+"281",996,"AId1","Agranular insular area, dorsal part, layer 1",104
+"282",328,"AId2-3","Agranular insular area, dorsal part, layer 2/3",104
+"283",1101,"AId5","Agranular insular area, dorsal part, layer 5",104
+"284",783,"AId6a","Agranular insular area, dorsal part, layer 6a",104
+"285",831,"AId6b","Agranular insular area, dorsal part, layer 6b",104
+"286",111,"AIp","Agranular insular area, posterior part",95
+"287",120,"AIp1","Agranular insular area, posterior part, layer 1",111
+"288",163,"AIp2-3","Agranular insular area, posterior part, layer 2/3",111
+"289",344,"AIp5","Agranular insular area, posterior part, layer 5",111
+"290",314,"AIp6a","Agranular insular area, posterior part, layer 6a",111
+"291",355,"AIp6b","Agranular insular area, posterior part, layer 6b",111
+"292",119,"AIv","Agranular insular area, ventral part",95
+"293",704,"AIv1","Agranular insular area, ventral part, layer 1",119
+"294",694,"AIv2-3","Agranular insular area, ventral part, layer 2/3",119
+"295",800,"AIv5","Agranular insular area, ventral part, layer 5",119
+"296",675,"AIv6a","Agranular insular area, ventral part, layer 6a",119
+"297",699,"AIv6b","Agranular insular area, ventral part, layer 6b",119
+"298",254,"RSP","Retrosplenial area",315
+"299",894,"RSPagl","Retrosplenial area, lateral agranular part",254
+"300",671,"RSPagl1","Retrosplenial area, lateral agranular part, layer 1",894
+"301",965,"RSPagl2-3","Retrosplenial area, lateral agranular part, layer 2/3",894
+"302",774,"RSPagl5","Retrosplenial area, lateral agranular part, layer 5",894
+"303",906,"RSPagl6a","Retrosplenial area, lateral agranular part, layer 6a",894
+"304",279,"RSPagl6b","Retrosplenial area, lateral agranular part, layer 6b",894
+"305",480149258,"VISmma","Mediomedial anterior visual area",894
+"306",480149262,"VISmma1","Mediomedial anterior visual area, layer 1",480149258
+"307",480149266,"VISmma2-3","Mediomedial anterior visual area, layer 2/3",480149258
+"308",480149270,"VISmma4","Mediomedial anterior visual area, layer 4",480149258
+"309",480149274,"VISmma5","Mediomedial anterior visual area,layer 5",480149258
+"310",480149278,"VISmma6a","Mediomedial anterior visual area, layer 6a",480149258
+"311",480149282,"VISmma6b","Mediomedial anterior visual area, layer 6b",480149258
+"312",480149286,"VISmmp","Mediomedial posterior visual area",894
+"313",480149290,"VISmmp1","Mediomedial posterior visual area, layer 1",480149286
+"314",480149294,"VISmmp2-3","Mediomedial posterior visual area, layer 2/3",480149286
+"315",480149298,"VISmmp4","Mediomedial posterior visual area, layer 4",480149286
+"316",480149302,"VISmmp5","Mediomedial posterior visual area,layer 5",480149286
+"317",480149306,"VISmmp6a","Mediomedial posterior visual area, layer 6a",480149286
+"318",480149310,"VISmmp6b","Mediomedial posterior visual area, layer 6b",480149286
+"319",480149314,"VISm","Medial visual area",894
+"320",480149318,"VISm1","Medial visual area, layer 1",480149314
+"321",480149322,"VISm2-3","Medial visual area, layer 2/3",480149314
+"322",480149326,"VISm4","Medial visual area, layer 4",480149314
+"323",480149330,"VISm5","Medial visual area,layer 5",480149314
+"324",480149334,"VISm6a","Medial visual area, layer 6a",480149314
+"325",480149338,"VISm6b","Medial visual area, layer 6b",480149314
+"326",879,"RSPd","Retrosplenial area, dorsal part",254
+"327",442,"RSPd1","Retrosplenial area, dorsal part, layer 1",879
+"328",434,"RSPd2-3","Retrosplenial area, dorsal part, layer 2/3",879
+"329",545,"RSPd4","Retrosplenial area, dorsal part, layer 4",879
+"330",610,"RSPd5","Retrosplenial area, dorsal part, layer 5",879
+"331",274,"RSPd6a","Retrosplenial area, dorsal part, layer 6a",879
+"332",330,"RSPd6b","Retrosplenial area, dorsal part, layer 6b",879
+"333",886,"RSPv","Retrosplenial area, ventral part",254
+"334",542,"RSPv1","Retrosplenial area, ventral part, layer 1",886
+"335",606,"RSPv2","Retrosplenial area, ventral part, layer 2",886
+"336",430,"RSPv2-3","Retrosplenial area, ventral part, layer 2/3",886
+"337",687,"RSPv5","Retrosplenial area, ventral part, layer 5",886
+"338",590,"RSPv6a","Retrosplenial area, ventral part, layer 6a",886
+"339",622,"RSPv6b","Retrosplenial area, ventral part, layer 6b",886
+"340",22,"PTLp","Posterior parietal association areas",315
+"341",532,"PTLp1","Posterior parietal association areas, layer 1",22
+"342",241,"PTLp2-3","Posterior parietal association areas, layer 2/3",22
+"343",635,"PTLp4","Posterior parietal association areas, layer 4",22
+"344",683,"PTLp5","Posterior parietal association areas, layer 5",22
+"345",308,"PTLp6a","Posterior parietal association areas, layer 6a",22
+"346",340,"PTLp6b","Posterior parietal association areas, layer 6b",22
+"347",312782546,"VISa","Anterior area",22
+"348",312782550,"VISa1","Anterior area, layer 1",312782546
+"349",312782554,"VISa2-3","Anterior area, layer 2/3",312782546
+"350",312782558,"VISa4","Anterior area, layer 4",312782546
+"351",312782562,"VISa5","Anterior area, layer 5",312782546
+"352",312782566,"VISa6a","Anterior area, layer 6a",312782546
+"353",312782570,"VISa6b","Anterior area, layer 6b",312782546
+"354",417,"VISrl","Rostrolateral visual area",22
+"355",312782604,"VISrl1","Rostrolateral area, layer 1",417
+"356",312782608,"VISrl2-3","Rostrolateral area, layer 2/3",417
+"357",312782612,"VISrl4","Rostrolateral area, layer 4",417
+"358",312782616,"VISrl5","Rostrolateral area, layer 5",417
+"359",312782620,"VISrl6a","Rostrolateral area, layer 6a",417
+"360",312782624,"VISrl6b","Rostrolateral area, layer 6b",417
+"361",541,"TEa","Temporal association areas",315
+"362",97,"TEa1","Temporal association areas, layer 1",541
+"363",1127,"TEa2-3","Temporal association areas, layer 2/3",541
+"364",234,"TEa4","Temporal association areas, layer 4",541
+"365",289,"TEa5","Temporal association areas, layer 5",541
+"366",729,"TEa6a","Temporal association areas, layer 6a",541
+"367",786,"TEa6b","Temporal association areas, layer 6b",541
+"368",922,"PERI","Perirhinal area",315
+"369",540,"PERI1","Perirhinal area, layer 1",922
+"370",888,"PERI2-3","Perirhinal area, layer 2/3",922
+"371",692,"PERI5","Perirhinal area, layer 5",922
+"372",335,"PERI6a","Perirhinal area, layer 6a",922
+"373",368,"PERI6b","Perirhinal area, layer 6b",922
+"374",895,"ECT","Ectorhinal area",315
+"375",836,"ECT1","Ectorhinal area/Layer 1",895
+"376",427,"ECT2-3","Ectorhinal area/Layer 2/3",895
+"377",988,"ECT5","Ectorhinal area/Layer 5",895
+"378",977,"ECT6a","Ectorhinal area/Layer 6a",895
+"379",1045,"ECT6b","Ectorhinal area/Layer 6b",895
+"380",698,"OLF","Olfactory areas",695
+"381",507,"MOB","Main olfactory bulb",698
+"382",212,"MOBgl","Main olfactory bulb, glomerular layer",507
+"383",220,"MOBgr","Main olfactory bulb, granule layer",507
+"384",228,"MOBipl","Main olfactory bulb, inner plexiform layer",507
+"385",236,"MOBmi","Main olfactory bulb, mitral layer",507
+"386",244,"MOBopl","Main olfactory bulb, outer plexiform layer",507
+"387",151,"AOB","Accessory olfactory bulb",698
+"388",188,"AOBgl","Accessory olfactory bulb, glomerular layer",151
+"389",196,"AOBgr","Accessory olfactory bulb, granular layer",151
+"390",204,"AOBmi","Accessory olfactory bulb, mitral layer",151
+"391",159,"AON","Anterior olfactory nucleus",698
+"392",167,"AONd","Anterior olfactory nucleus, dorsal part",159
+"393",175,"AONe","Anterior olfactory nucleus, external part",159
+"394",183,"AONl","Anterior olfactory nucleus, lateral part",159
+"395",191,"AONm","Anterior olfactory nucleus, medial part",159
+"396",199,"AONpv","Anterior olfactory nucleus, posteroventral part",159
+"397",160,"AON1","Anterior olfactory nucleus, layer 1",159
+"398",168,"AON2","Anterior olfactory nucleus, layer 2",159
+"399",589,"TT","Taenia tecta",698
+"400",597,"TTd","Taenia tecta, dorsal part",589
+"401",297,"TTd1-4","Taenia tecta, dorsal part, layers 1-4",597
+"402",1034,"TTd1","Taenia tecta, dorsal part, layer 1",597
+"403",1042,"TTd2","Taenia tecta, dorsal part, layer 2",597
+"404",1050,"TTd3","Taenia tecta, dorsal part, layer 3",597
+"405",1059,"TTd4","Taenia tecta, dorsal part, layer 4",597
+"406",605,"TTv","Taenia tecta, ventral part",589
+"407",306,"TTv1-3","Taenia tecta, ventral part, layers 1-3",605
+"408",1067,"TTv1","Taenia tecta, ventral part, layer 1",605
+"409",1075,"TTv2","Taenia tecta, ventral part, layer 2",605
+"410",1082,"TTv3","Taenia tecta, ventral part, layer 3",605
+"411",814,"DP","Dorsal peduncular area",698
+"412",496,"DP1","Dorsal peduncular area, layer 1",814
+"413",535,"DP2","Dorsal peduncular area, layer 2",814
+"414",360,"DP2-3","Dorsal peduncular area, layer 2/3",814
+"415",646,"DP5","Dorsal peduncular area, layer 5",814
+"416",267,"DP6a","Dorsal peduncular area, layer 6a",814
+"417",961,"PIR","Piriform area",698
+"418",152,"PIR1-3","Piriform area, layers 1-3",961
+"419",276,"PIR1","Piriform area, molecular layer",961
+"420",284,"PIR2","Piriform area, pyramidal layer",961
+"421",291,"PIR3","Piriform area, polymorph layer",961
+"422",619,"NLOT","Nucleus of the lateral olfactory tract",698
+"423",392,"NLOT1-3","Nucleus of the lateral olfactory tract, layers 1-3",619
+"424",260,"NLOT1","Nucleus of the lateral olfactory tract, molecular layer",619
+"425",268,"NLOT2","Nucleus of the lateral olfactory tract, pyramidal layer",619
+"426",1139,"NLOT3","Nucleus of the lateral olfactory tract, layer 3",619
+"427",631,"COA","Cortical amygdalar area",698
+"428",639,"COAa","Cortical amygdalar area, anterior part",631
+"429",192,"COAa1","Cortical amygdalar area, anterior part, layer 1",639
+"430",200,"COAa2","Cortical amygdalar area, anterior part, layer 2",639
+"431",208,"COAa3","Cortical amygdalar area, anterior part, layer 3",639
+"432",647,"COAp","Cortical amygdalar area, posterior part",631
+"433",655,"COApl","Cortical amygdalar area, posterior part, lateral zone",647
+"434",584,"COApl1-2","Cortical amygdalar area, posterior part, lateral zone, layers 1-2",655
+"435",376,"COApl1-3","Cortical amygdalar area, posterior part, lateral zone, layers 1-3",655
+"436",216,"COApl1","Cortical amygdalar area, posterior part, lateral zone, layer 1",655
+"437",224,"COApl2","Cortical amygdalar area, posterior part, lateral zone, layer 2",655
+"438",232,"COApl3","Cortical amygdalar area, posterior part, lateral zone, layer 3",655
+"439",663,"COApm","Cortical amygdalar area, posterior part, medial zone",647
+"440",592,"COApm1-2","Cortical amygdalar area, posterior part, medial zone, layers 1-2",663
+"441",383,"COApm1-3","Cortical amygdalar area, posterior part, medial zone, layers 1-3",663
+"442",240,"COApm1","Cortical amygdalar area, posterior part, medial zone, layer 1",663
+"443",248,"COApm2","Cortical amygdalar area, posterior part, medial zone, layer 2",663
+"444",256,"COApm3","Cortical amygdalar area, posterior part, medial zone, layer 3",663
+"445",788,"PAA","Piriform-amygdalar area",698
+"446",400,"PAA1-3","Piriform-amygdalar area, layers 1-3",788
+"447",408,"PAA1","Piriform-amygdalar area, molecular layer",788
+"448",416,"PAA2","Piriform-amygdalar area, pyramidal layer",788
+"449",424,"PAA3","Piriform-amygdalar area, polymorph layer",788
+"450",566,"TR","Postpiriform transition area",698
+"451",517,"TR1-3","Postpiriform transition area, layers 1-3",566
+"452",1140,"TR1","Postpiriform transition area, layers 1",566
+"453",1141,"TR2","Postpiriform transition area, layers 2",566
+"454",1142,"TR3","Postpiriform transition area, layers 3",566
+"455",1089,"HPF","Hippocampal formation",695
+"456",1080,"HIP","Hippocampal region",1089
+"457",375,"CA","Ammon's horn",1080
+"458",382,"CA1","Field CA1",375
+"459",391,"CA1slm","Field CA1, stratum lacunosum-moleculare",382
+"460",399,"CA1so","Field CA1, stratum oriens",382
+"461",407,"CA1sp","Field CA1, pyramidal layer",382
+"462",415,"CA1sr","Field CA1, stratum radiatum",382
+"463",423,"CA2","Field CA2",375
+"464",431,"CA2slm","Field CA2, stratum lacunosum-moleculare",423
+"465",438,"CA2so","Field CA2, stratum oriens",423
+"466",446,"CA2sp","Field CA2, pyramidal layer",423
+"467",454,"CA2sr","Field CA2, stratum radiatum",423
+"468",463,"CA3","Field CA3",375
+"469",471,"CA3slm","Field CA3, stratum lacunosum-moleculare",463
+"470",479,"CA3slu","Field CA3, stratum lucidum",463
+"471",486,"CA3so","Field CA3, stratum oriens",463
+"472",495,"CA3sp","Field CA3, pyramidal layer",463
+"473",504,"CA3sr","Field CA3, stratum radiatum",463
+"474",726,"DG","Dentate gyrus",1080
+"475",10703,"DG-mo","Dentate gyrus, molecular layer",726
+"476",10704,"DG-po","Dentate gyrus, polymorph layer",726
+"477",632,"DG-sg","Dentate gyrus, granule cell layer",726
+"478",10702,"DG-sgz","Dentate gyrus, subgranular zone",726
+"479",734,"DGcr","Dentate gyrus crest",726
+"480",742,"DGcr-mo","Dentate gyrus crest, molecular layer",734
+"481",751,"DGcr-po","Dentate gyrus crest, polymorph layer",734
+"482",758,"DGcr-sg","Dentate gyrus crest, granule cell layer",734
+"483",766,"DGlb","Dentate gyrus lateral blade",726
+"484",775,"DGlb-mo","Dentate gyrus lateral blade, molecular layer",766
+"485",782,"DGlb-po","Dentate gyrus lateral blade, polymorph layer",766
+"486",790,"DGlb-sg","Dentate gyrus lateral blade, granule cell layer",766
+"487",799,"DGmb","Dentate gyrus medial blade",726
+"488",807,"DGmb-mo","Dentate gyrus medial blade, molecular layer",799
+"489",815,"DGmb-po","Dentate gyrus medial blade, polymorph layer",799
+"490",823,"DGmb-sg","Dentate gyrus medial blade, granule cell layer",799
+"491",982,"FC","Fasciola cinerea",1080
+"492",19,"IG","Induseum griseum",1080
+"493",822,"RHP","Retrohippocampal region",1089
+"494",909,"ENT","Entorhinal area",822
+"495",918,"ENTl","Entorhinal area, lateral part",909
+"496",1121,"ENTl1","Entorhinal area, lateral part, layer 1",918
+"497",20,"ENTl2","Entorhinal area, lateral part, layer 2",918
+"498",999,"ENTl2-3","Entorhinal area, lateral part, layer 2/3",918
+"499",715,"ENTl2a","Entorhinal area, lateral part, layer 2a",918
+"500",764,"ENTl2b","Entorhinal area, lateral part, layer 2b",918
+"501",52,"ENTl3","Entorhinal area, lateral part, layer 3",918
+"502",92,"ENTl4","Entorhinal area, lateral part, layer 4",918
+"503",312,"ENTl4-5","Entorhinal area, lateral part, layer 4/5",918
+"504",139,"ENTl5","Entorhinal area, lateral part, layer 5",918
+"505",387,"ENTl5-6","Entorhinal area, lateral part, layer 5/6",918
+"506",28,"ENTl6a","Entorhinal area, lateral part, layer 6a",918
+"507",60,"ENTl6b","Entorhinal area, lateral part, layer 6b",918
+"508",926,"ENTm","Entorhinal area, medial part, dorsal zone",909
+"509",526,"ENTm1","Entorhinal area, medial part, dorsal zone, layer 1",926
+"510",543,"ENTm2","Entorhinal area, medial part, dorsal zone, layer 2",926
+"511",468,"ENTm2a","Entorhinal area, medial part, dorsal zone, layer 2a",926
+"512",508,"ENTm2b","Entorhinal area, medial part, dorsal zone, layer 2b",926
+"513",664,"ENTm3","Entorhinal area, medial part, dorsal zone, layer 3",926
+"514",712,"ENTm4","Entorhinal area, medial part, dorsal zone, layer 4",926
+"515",727,"ENTm5","Entorhinal area, medial part, dorsal zone, layer 5",926
+"516",550,"ENTm5-6","Entorhinal area, medial part, dorsal zone, layer 5/6",926
+"517",743,"ENTm6","Entorhinal area, medial part, dorsal zone, layer 6",926
+"518",934,"ENTmv","Entorhinal area, medial part, ventral zone",909
+"519",259,"ENTmv1","Entorhinal area, medial part, ventral zone, layer 1",934
+"520",324,"ENTmv2","Entorhinal area, medial part, ventral zone, layer 2",934
+"521",371,"ENTmv3","Entorhinal area, medial part, ventral zone, layer 3",934
+"522",419,"ENTmv4","Entorhinal area, medial part, ventral zone, layer 4",934
+"523",1133,"ENTmv5-6","Entorhinal area, medial part, ventral zone, layer 5/6",934
+"524",843,"PAR","Parasubiculum",822
+"525",10693,"PAR1","Parasubiculum, layer 1",843
+"526",10694,"PAR2","Parasubiculum, layer 2",843
+"527",10695,"PAR3","Parasubiculum, layer 3",843
+"528",1037,"POST","Postsubiculum",822
+"529",10696,"POST1","Postsubiculum, layer 1",1037
+"530",10697,"POST2","Postsubiculum, layer 2",1037
+"531",10698,"POST3","Postsubiculum, layer 3",1037
+"532",1084,"PRE","Presubiculum",822
+"533",10699,"PRE1","Presubiculum, layer 1",1084
+"534",10700,"PRE2","Presubiculum, layer 2",1084
+"535",10701,"PRE3","Presubiculum, layer 3",1084
+"536",502,"SUB","Subiculum",822
+"537",509,"SUBd","Subiculum, dorsal part",502
+"538",829,"SUBd-m","Subiculum, dorsal part, molecular layer",509
+"539",845,"SUBd-sp","Subiculum, dorsal part, pyramidal layer",509
+"540",837,"SUBd-sr","Subiculum, dorsal part, stratum radiatum",509
+"541",518,"SUBv","Subiculum, ventral part",502
+"542",853,"SUBv-m","Subiculum, ventral part, molecular layer",518
+"543",870,"SUBv-sp","Subiculum, ventral part, pyramidal layer",518
+"544",861,"SUBv-sr","Subiculum, ventral part, stratum radiatum",518
+"545",484682470,"ProS","Prosubiculum",822
+"546",484682475,"ProSd","Prosubiculum, dorsal part",484682470
+"547",484682479,"ProSd-m","Prosubiculum, dorsal part, molecular layer",484682475
+"548",484682483,"ProSd-sp","Prosubiculum, dorsal part, pyramidal layer",484682475
+"549",484682487,"ProSd-sr","Prosubiculum, dorsal part, stratum radiatum",484682475
+"550",484682492,"ProSv","Prosubiculum, ventral part",484682470
+"551",484682496,"ProSv-m","Prosubiculum, ventral part, molecular layer",484682492
+"552",484682500,"ProSv-sp","Prosubiculum, ventral part, pyramidal layer",484682492
+"553",484682504,"Prosv-sr","Prosubiculum, ventral part, stratum radiatum",484682492
+"554",589508447,"HATA","Hippocampo-amygdalar transition area",822
+"555",484682508,"APr","Area prostriata",822
+"556",703,"CTXsp","Cortical subplate",688
+"557",16,"6b","Layer 6b, isocortex",703
+"558",583,"CLA","Claustrum",703
+"559",942,"EP","Endopiriform nucleus",703
+"560",952,"EPd","Endopiriform nucleus, dorsal part",942
+"561",966,"EPv","Endopiriform nucleus, ventral part",942
+"562",131,"LA","Lateral amygdalar nucleus",703
+"563",295,"BLA","Basolateral amygdalar nucleus",703
+"564",303,"BLAa","Basolateral amygdalar nucleus, anterior part",295
+"565",311,"BLAp","Basolateral amygdalar nucleus, posterior part",295
+"566",451,"BLAv","Basolateral amygdalar nucleus, ventral part",295
+"567",319,"BMA","Basomedial amygdalar nucleus",703
+"568",327,"BMAa","Basomedial amygdalar nucleus, anterior part",319
+"569",334,"BMAp","Basomedial amygdalar nucleus, posterior part",319
+"570",780,"PA","Posterior amygdalar nucleus",703
+"571",623,"CNU","Cerebral nuclei",567
+"572",477,"STR","Striatum",623
+"573",485,"STRd","Striatum dorsal region",477
+"574",672,"CP","Caudoputamen",485
+"575",493,"STRv","Striatum ventral region",477
+"576",56,"ACB","Nucleus accumbens",493
+"577",998,"FS","Fundus of striatum",493
+"578",754,"OT","Olfactory tubercle",493
+"579",481,"isl","Islands of Calleja",754
+"580",489,"islm","Major island of Calleja",754
+"581",144,"OT1-3","Olfactory tubercle, layers 1-3",754
+"582",458,"OT1","Olfactory tubercle, molecular layer",754
+"583",465,"OT2","Olfactory tubercle, pyramidal layer",754
+"584",473,"OT3","Olfactory tubercle, polymorph layer",754
+"585",549009199,"LSS","Lateral strip of striatum",493
+"586",275,"LSX","Lateral septal complex",477
+"587",242,"LS","Lateral septal nucleus",275
+"588",250,"LSc","Lateral septal nucleus, caudal (caudodorsal) part",242
+"589",258,"LSr","Lateral septal nucleus, rostral (rostroventral) part",242
+"590",266,"LSv","Lateral septal nucleus, ventral part",242
+"591",310,"SF","Septofimbrial nucleus",275
+"592",333,"SH","Septohippocampal nucleus",275
+"593",278,"sAMY","Striatum-like amygdalar nuclei",477
+"594",23,"AAA","Anterior amygdalar area",278
+"595",292,"BA","Bed nucleus of the accessory olfactory tract",278
+"596",536,"CEA","Central amygdalar nucleus",278
+"597",544,"CEAc","Central amygdalar nucleus, capsular part",536
+"598",551,"CEAl","Central amygdalar nucleus, lateral part",536
+"599",559,"CEAm","Central amygdalar nucleus, medial part",536
+"600",1105,"IA","Intercalated amygdalar nucleus",278
+"601",403,"MEA","Medial amygdalar nucleus",278
+"602",411,"MEAad","Medial amygdalar nucleus, anterodorsal part",403
+"603",418,"MEAav","Medial amygdalar nucleus, anteroventral part",403
+"604",426,"MEApd","Medial amygdalar nucleus, posterodorsal part",403
+"605",472,"MEApd-a","Medial amygdalar nucleus, posterodorsal part, sublayer a",426
+"606",480,"MEApd-b","Medial amygdalar nucleus, posterodorsal part, sublayer b",426
+"607",487,"MEApd-c","Medial amygdalar nucleus, posterodorsal part, sublayer c",426
+"608",435,"MEApv","Medial amygdalar nucleus, posteroventral part",403
+"609",803,"PAL","Pallidum",623
+"610",818,"PALd","Pallidum, dorsal region",803
+"611",1022,"GPe","Globus pallidus, external segment",818
+"612",1031,"GPi","Globus pallidus, internal segment",818
+"613",835,"PALv","Pallidum, ventral region",803
+"614",342,"SI","Substantia innominata",835
+"615",298,"MA","Magnocellular nucleus",835
+"616",826,"PALm","Pallidum, medial region",803
+"617",904,"MSC","Medial septal complex",826
+"618",564,"MS","Medial septal nucleus",904
+"619",596,"NDB","Diagonal band nucleus",904
+"620",581,"TRS","Triangular nucleus of septum",826
+"621",809,"PALc","Pallidum, caudal region",803
+"622",351,"BST","Bed nuclei of the stria terminalis",809
+"623",359,"BSTa","Bed nuclei of the stria terminalis, anterior division",351
+"624",537,"BSTal","Bed nuclei of the stria terminalis, anterior division, anterolateral area",359
+"625",498,"BSTam","Bed nuclei of the stria terminalis, anterior division, anteromedial area",359
+"626",505,"BSTdm","Bed nuclei of the stria terminalis, anterior division, dorsomedial nucleus",359
+"627",513,"BSTfu","Bed nuclei of the stria terminalis, anterior division, fusiform nucleus",359
+"628",546,"BSTju","Bed nuclei of the stria terminalis, anterior division, juxtacapsular nucleus",359
+"629",521,"BSTmg","Bed nuclei of the stria terminalis, anterior division, magnocellular nucleus",359
+"630",554,"BSTov","Bed nuclei of the stria terminalis, anterior division, oval nucleus",359
+"631",562,"BSTrh","Bed nuclei of the stria terminalis, anterior division, rhomboid nucleus",359
+"632",529,"BSTv","Bed nuclei of the stria terminalis, anterior division, ventral nucleus",359
+"633",367,"BSTp","Bed nuclei of the stria terminalis, posterior division",351
+"634",569,"BSTd","Bed nuclei of the stria terminalis, posterior division, dorsal nucleus",367
+"635",578,"BSTpr","Bed nuclei of the stria terminalis, posterior division, principal nucleus",367
+"636",585,"BSTif","Bed nuclei of the stria terminalis, posterior division, interfascicular nucleus",367
+"637",594,"BSTtr","Bed nuclei of the stria terminalis, posterior division, transverse nucleus",367
+"638",602,"BSTse","Bed nuclei of the stria terminalis, posterior division, strial extension",367
+"639",287,"BAC","Bed nucleus of the anterior commissure",809
+"640",343,"BS","Brain stem",8
+"641",1129,"IB","Interbrain",343
+"642",549,"TH","Thalamus",1129
+"643",864,"DORsm","Thalamus, sensory-motor cortex related",549
+"644",637,"VENT","Ventral group of the dorsal thalamus",864
+"645",629,"VAL","Ventral anterior-lateral complex of the thalamus",637
+"646",685,"VM","Ventral medial nucleus of the thalamus",637
+"647",709,"VP","Ventral posterior complex of the thalamus",637
+"648",718,"VPL","Ventral posterolateral nucleus of the thalamus",709
+"649",725,"VPLpc","Ventral posterolateral nucleus of the thalamus, parvicellular part",709
+"650",733,"VPM","Ventral posteromedial nucleus of the thalamus",709
+"651",741,"VPMpc","Ventral posteromedial nucleus of the thalamus, parvicellular part",709
+"652",563807435,"PoT","Posterior triangular thalamic nucleus",637
+"653",406,"SPF","Subparafascicular nucleus",864
+"654",414,"SPFm","Subparafascicular nucleus, magnocellular part",406
+"655",422,"SPFp","Subparafascicular nucleus, parvicellular part",406
+"656",609,"SPA","Subparafascicular area",864
+"657",1044,"PP","Peripeduncular nucleus",864
+"658",1008,"GENd","Geniculate group, dorsal thalamus",864
+"659",475,"MG","Medial geniculate complex",1008
+"660",1072,"MGd","Medial geniculate complex, dorsal part",475
+"661",1079,"MGv","Medial geniculate complex, ventral part",475
+"662",1088,"MGm","Medial geniculate complex, medial part",475
+"663",170,"LGd","Dorsal part of the lateral geniculate complex",1008
+"664",496345664,"LGd-sh","Dorsal part of the lateral geniculate complex, shell",170
+"665",496345668,"LGd-co","Dorsal part of the lateral geniculate complex, core",170
+"666",496345672,"LGd-ip","Dorsal part of the lateral geniculate complex, ipsilateral zone",170
+"667",856,"DORpm","Thalamus, polymodal association cortex related",549
+"668",138,"LAT","Lateral group of the dorsal thalamus",856
+"669",218,"LP","Lateral posterior nucleus of the thalamus",138
+"670",1020,"PO","Posterior complex of the thalamus",138
+"671",1029,"POL","Posterior limiting nucleus of the thalamus",138
+"672",325,"SGN","Suprageniculate nucleus",138
+"673",560581551,"Eth","Ethmoid nucleus of the thalamus",138
+"674",560581555,"REth","Retroethmoid nucleus",138
+"675",239,"ATN","Anterior group of the dorsal thalamus",856
+"676",255,"AV","Anteroventral nucleus of thalamus",239
+"677",127,"AM","Anteromedial nucleus",239
+"678",1096,"AMd","Anteromedial nucleus, dorsal part",127
+"679",1104,"AMv","Anteromedial nucleus, ventral part",127
+"680",64,"AD","Anterodorsal nucleus",239
+"681",1120,"IAM","Interanteromedial nucleus of the thalamus",239
+"682",1113,"IAD","Interanterodorsal nucleus of the thalamus",239
+"683",155,"LD","Lateral dorsal nucleus of thalamus",239
+"684",444,"MED","Medial group of the dorsal thalamus",856
+"685",59,"IMD","Intermediodorsal nucleus of the thalamus",444
+"686",362,"MD","Mediodorsal nucleus of thalamus",444
+"687",617,"MDc","Mediodorsal nucleus of the thalamus, central part",362
+"688",626,"MDl","Mediodorsal nucleus of the thalamus, lateral part",362
+"689",636,"MDm","Mediodorsal nucleus of the thalamus, medial part",362
+"690",366,"SMT","Submedial nucleus of the thalamus",444
+"691",1077,"PR","Perireunensis nucleus",444
+"692",571,"MTN","Midline group of the dorsal thalamus",856
+"693",149,"PVT","Paraventricular nucleus of the thalamus",571
+"694",15,"PT","Parataenial nucleus",571
+"695",181,"RE","Nucleus of reuniens",571
+"696",560581559,"Xi","Xiphoid thalamic nucleus",571
+"697",51,"ILM","Intralaminar nuclei of the dorsal thalamus",856
+"698",189,"RH","Rhomboid nucleus",51
+"699",599,"CM","Central medial nucleus of the thalamus",51
+"700",907,"PCN","Paracentral nucleus",51
+"701",575,"CL","Central lateral nucleus of the thalamus",51
+"702",930,"PF","Parafascicular nucleus",51
+"703",560581563,"PIL","Posterior intralaminar thalamic nucleus",51
+"704",262,"RT","Reticular nucleus of the thalamus",856
+"705",1014,"GENv","Geniculate group, ventral thalamus",856
+"706",27,"IGL","Intergeniculate leaflet of the lateral geniculate complex",1014
+"707",563807439,"IntG","Intermediate geniculate nucleus",1014
+"708",178,"LGv","Ventral part of the lateral geniculate complex",1014
+"709",300,"LGvl","Ventral part of the lateral geniculate complex, lateral zone",178
+"710",316,"LGvm","Ventral part of the lateral geniculate complex, medial zone",178
+"711",321,"SubG","Subgeniculate nucleus",1014
+"712",958,"EPI","Epithalamus",856
+"713",483,"MH","Medial habenula",958
+"714",186,"LH","Lateral habenula",958
+"715",953,"PIN","Pineal body",958
+"716",1097,"HY","Hypothalamus",1129
+"717",157,"PVZ","Periventricular zone",1097
+"718",390,"SO","Supraoptic nucleus",157
+"719",332,"ASO","Accessory supraoptic group",157
+"720",432,"NC","Nucleus circularis",332
+"721",38,"PVH","Paraventricular hypothalamic nucleus",157
+"722",71,"PVHm","Paraventricular hypothalamic nucleus, magnocellular division",38
+"723",47,"PVHam","Paraventricular hypothalamic nucleus, magnocellular division, anterior magnocellular part",71
+"724",79,"PVHmm","Paraventricular hypothalamic nucleus, magnocellular division, medial magnocellular part",71
+"725",103,"PVHpm","Paraventricular hypothalamic nucleus, magnocellular division, posterior magnocellular part",71
+"726",652,"PVHpml","Paraventricular hypothalamic nucleus, magnocellular division, posterior magnocellular part, lateral zone",103
+"727",660,"PVHpmm","Paraventricular hypothalamic nucleus, magnocellular division, posterior magnocellular part, medial zone",103
+"728",94,"PVHp","Paraventricular hypothalamic nucleus, parvicellular division",38
+"729",55,"PVHap","Paraventricular hypothalamic nucleus, parvicellular division, anterior parvicellular part",94
+"730",87,"PVHmpd","Paraventricular hypothalamic nucleus, parvicellular division, medial parvicellular part, dorsal zone",94
+"731",110,"PVHpv","Paraventricular hypothalamic nucleus, parvicellular division, periventricular part",94
+"732",30,"PVa","Periventricular hypothalamic nucleus, anterior part",157
+"733",118,"PVi","Periventricular hypothalamic nucleus, intermediate part",157
+"734",223,"ARH","Arcuate hypothalamic nucleus",157
+"735",141,"PVR","Periventricular region",1097
+"736",72,"ADP","Anterodorsal preoptic nucleus",141
+"737",80,"AHA","Anterior hypothalamic area",141
+"738",263,"AVP","Anteroventral preoptic nucleus",141
+"739",272,"AVPV","Anteroventral periventricular nucleus",141
+"740",830,"DMH","Dorsomedial nucleus of the hypothalamus",141
+"741",668,"DMHa","Dorsomedial nucleus of the hypothalamus, anterior part",830
+"742",676,"DMHp","Dorsomedial nucleus of the hypothalamus, posterior part",830
+"743",684,"DMHv","Dorsomedial nucleus of the hypothalamus, ventral part",830
+"744",452,"MEPO","Median preoptic nucleus",141
+"745",523,"MPO","Medial preoptic area",141
+"746",763,"OV","Vascular organ of the lamina terminalis",141
+"747",914,"PD","Posterodorsal preoptic nucleus",141
+"748",1109,"PS","Parastrial nucleus",141
+"749",1124,"PSCH","Suprachiasmatic preoptic nucleus",141
+"750",126,"PVp","Periventricular hypothalamic nucleus, posterior part",141
+"751",133,"PVpo","Periventricular hypothalamic nucleus, preoptic part",141
+"752",347,"SBPV","Subparaventricular zone",141
+"753",286,"SCH","Suprachiasmatic nucleus",141
+"754",338,"SFO","Subfornical organ",141
+"755",576073699,"VMPO","Ventromedial preoptic nucleus",141
+"756",689,"VLPO","Ventrolateral preoptic nucleus",141
+"757",467,"MEZ","Hypothalamic medial zone",1097
+"758",88,"AHN","Anterior hypothalamic nucleus",467
+"759",700,"AHNa","Anterior hypothalamic nucleus, anterior part",88
+"760",708,"AHNc","Anterior hypothalamic nucleus, central part",88
+"761",716,"AHNd","Anterior hypothalamic nucleus, dorsal part",88
+"762",724,"AHNp","Anterior hypothalamic nucleus, posterior part",88
+"763",331,"MBO","Mammillary body",467
+"764",210,"LM","Lateral mammillary nucleus",331
+"765",491,"MM","Medial mammillary nucleus",331
+"766",732,"MMme","Medial mammillary nucleus, median part",491
+"767",606826647,"MMl","Medial mammillary nucleus, lateral part",491
+"768",606826651,"MMm","Medial mammillary nucleus, medial part",491
+"769",606826655,"MMp","Medial mammillary nucleus, posterior part",491
+"770",606826659,"MMd","Medial mammillary nucleus, dorsal part",491
+"771",525,"SUM","Supramammillary nucleus",331
+"772",1110,"SUMl","Supramammillary nucleus, lateral part",525
+"773",1118,"SUMm","Supramammillary nucleus, medial part",525
+"774",557,"TM","Tuberomammillary nucleus",331
+"775",1126,"TMd","Tuberomammillary nucleus, dorsal part",557
+"776",1,"TMv","Tuberomammillary nucleus, ventral part",557
+"777",515,"MPN","Medial preoptic nucleus",467
+"778",740,"MPNc","Medial preoptic nucleus, central part",515
+"779",748,"MPNl","Medial preoptic nucleus, lateral part",515
+"780",756,"MPNm","Medial preoptic nucleus, medial part",515
+"781",980,"PMd","Dorsal premammillary nucleus",467
+"782",1004,"PMv","Ventral premammillary nucleus",467
+"783",63,"PVHd","Paraventricular hypothalamic nucleus, descending division",467
+"784",439,"PVHdp","Paraventricular hypothalamic nucleus, descending division, dorsal parvicellular part",63
+"785",447,"PVHf","Paraventricular hypothalamic nucleus, descending division, forniceal part",63
+"786",455,"PVHlp","Paraventricular hypothalamic nucleus, descending division, lateral parvicellular part",63
+"787",464,"PVHmpv","Paraventricular hypothalamic nucleus, descending division, medial parvicellular part, ventral zone",63
+"788",693,"VMH","Ventromedial hypothalamic nucleus",467
+"789",761,"VMHa","Ventromedial hypothalamic nucleus, anterior part",693
+"790",769,"VMHc","Ventromedial hypothalamic nucleus, central part",693
+"791",777,"VMHdm","Ventromedial hypothalamic nucleus, dorsomedial part",693
+"792",785,"VMHvl","Ventromedial hypothalamic nucleus, ventrolateral part",693
+"793",946,"PH","Posterior hypothalamic nucleus",467
+"794",290,"LZ","Hypothalamic lateral zone",1097
+"795",194,"LHA","Lateral hypothalamic area",290
+"796",226,"LPO","Lateral preoptic area",290
+"797",356,"PST","Preparasubthalamic nucleus",290
+"798",364,"PSTN","Parasubthalamic nucleus",290
+"799",576073704,"PeF","Perifornical nucleus",290
+"800",173,"RCH","Retrochiasmatic area",290
+"801",470,"STN","Subthalamic nucleus",290
+"802",614,"TU","Tuberal nucleus",290
+"803",797,"ZI","Zona incerta",290
+"804",796,"A13","Dopaminergic A13 group",797
+"805",804,"FF","Fields of Forel",797
+"806",10671,"ME","Median eminence",1097
+"807",313,"MB","Midbrain",343
+"808",339,"MBsen","Midbrain, sensory related",313
+"809",302,"SCs","Superior colliculus, sensory related",339
+"810",851,"SCop","Superior colliculus, optic layer",302
+"811",842,"SCsg","Superior colliculus, superficial gray layer",302
+"812",834,"SCzo","Superior colliculus, zonal layer",302
+"813",4,"IC","Inferior colliculus",339
+"814",811,"ICc","Inferior colliculus, central nucleus",4
+"815",820,"ICd","Inferior colliculus, dorsal nucleus",4
+"816",828,"ICe","Inferior colliculus, external nucleus",4
+"817",580,"NB","Nucleus of the brachium of the inferior colliculus",339
+"818",271,"SAG","Nucleus sagulum",339
+"819",874,"PBG","Parabigeminal nucleus",339
+"820",460,"MEV","Midbrain trigeminal nucleus",339
+"821",599626923,"SCO","Subcommissural organ",339
+"822",323,"MBmot","Midbrain, motor related",313
+"823",381,"SNr","Substantia nigra, reticular part",323
+"824",749,"VTA","Ventral tegmental area",323
+"825",607344830,"PN","Paranigral nucleus",323
+"826",246,"RR","Midbrain reticular nucleus, retrorubral area",323
+"827",128,"MRN","Midbrain reticular nucleus",323
+"828",539,"MRNm","Midbrain reticular nucleus, magnocellular part",128
+"829",548,"MRNmg","Midbrain reticular nucleus, magnocellular part, general",128
+"830",555,"MRNp","Midbrain reticular nucleus, parvicellular part",128
+"831",294,"SCm","Superior colliculus, motor related",323
+"832",26,"SCdg","Superior colliculus, motor related, deep gray layer",294
+"833",42,"SCdw","Superior colliculus, motor related, deep white layer",294
+"834",17,"SCiw","Superior colliculus, motor related, intermediate white layer",294
+"835",10,"SCig","Superior colliculus, motor related, intermediate gray layer",294
+"836",494,"SCig-a","Superior colliculus, motor related, intermediate gray layer, sublayer a",10
+"837",503,"SCig-b","Superior colliculus, motor related, intermediate gray layer, sublayer b",10
+"838",511,"SCig-c","Superior colliculus, motor related, intermediate gray layer, sublayer c",10
+"839",795,"PAG","Periaqueductal gray",323
+"840",50,"PRC","Precommissural nucleus",795
+"841",67,"INC","Interstitial nucleus of Cajal",795
+"842",587,"ND","Nucleus of Darkschewitsch",795
+"843",614454277,"Su3","Supraoculomotor periaqueductal gray",795
+"844",1100,"PRT","Pretectal region",323
+"845",215,"APN","Anterior pretectal nucleus",1100
+"846",531,"MPT","Medial pretectal area",1100
+"847",628,"NOT","Nucleus of the optic tract",1100
+"848",634,"NPC","Nucleus of the posterior commissure",1100
+"849",706,"OP","Olivary pretectal nucleus",1100
+"850",1061,"PPT","Posterior pretectal nucleus",1100
+"851",549009203,"RPF","Retroparafascicular nucleus",1100
+"852",549009207,"InCo","Intercollicular nucleus",323
+"853",616,"CUN","Cuneiform nucleus",323
+"854",214,"RN","Red nucleus",323
+"855",35,"III","Oculomotor nucleus",323
+"856",549009211,"MA3","Medial accesory oculomotor nucleus",323
+"857",975,"EW","Edinger-Westphal nucleus",323
+"858",115,"IV","Trochlear nucleus",323
+"859",606826663,"Pa4","Paratrochlear nucleus",323
+"860",757,"VTN","Ventral tegmental nucleus",323
+"861",231,"AT","Anterior tegmental nucleus",323
+"862",66,"LT","Lateral terminal nucleus of the accessory optic tract",323
+"863",75,"DT","Dorsal terminal nucleus of the accessory optic tract",323
+"864",58,"MT","Medial terminal nucleus of the accessory optic tract",323
+"865",615,"SNl","Substantia nigra, lateral part",323
+"866",348,"MBsta","Midbrain, behavioral state related",313
+"867",374,"SNc","Substantia nigra, compact part",348
+"868",1052,"PPN","Pedunculopontine nucleus",348
+"869",165,"RAmb","Midbrain raphe nuclei",348
+"870",12,"IF","Interfascicular nucleus raphe",165
+"871",100,"IPN","Interpeduncular nucleus",165
+"872",607344834,"IPR","Interpeduncular nucleus, rostral",100
+"873",607344838,"IPC","Interpeduncular nucleus, caudal",100
+"874",607344842,"IPA","Interpeduncular nucleus, apical",100
+"875",607344846,"IPL","Interpeduncular nucleus, lateral",100
+"876",607344850,"IPI","Interpeduncular nucleus, intermediate",100
+"877",607344854,"IPDM","Interpeduncular nucleus, dorsomedial",100
+"878",607344858,"IPDL","Interpeduncular nucleus, dorsolateral",100
+"879",607344862,"IPRL","Interpeduncular nucleus, rostrolateral",100
+"880",197,"RL","Rostral linear nucleus raphe",165
+"881",591,"CLI","Central linear nucleus raphe",165
+"882",872,"DR","Dorsal nucleus raphe",165
+"883",1065,"HB","Hindbrain",343
+"884",771,"P","Pons",1065
+"885",1132,"P-sen","Pons, sensory related",771
+"886",612,"NLL","Nucleus of the lateral lemniscus",1132
+"887",82,"NLLd","Nucleus of the lateral lemniscus, dorsal part",612
+"888",90,"NLLh","Nucleus of the lateral lemniscus, horizontal part",612
+"889",99,"NLLv","Nucleus of the lateral lemniscus, ventral part",612
+"890",7,"PSV","Principal sensory nucleus of the trigeminal",1132
+"891",867,"PB","Parabrachial nucleus",1132
+"892",123,"KF","Koelliker-Fuse subnucleus",867
+"893",881,"PBl","Parabrachial nucleus, lateral division",867
+"894",860,"PBlc","Parabrachial nucleus, lateral division, central lateral part",881
+"895",868,"PBld","Parabrachial nucleus, lateral division, dorsal lateral part",881
+"896",875,"PBle","Parabrachial nucleus, lateral division, external lateral part",881
+"897",883,"PBls","Parabrachial nucleus, lateral division, superior lateral part",881
+"898",891,"PBlv","Parabrachial nucleus, lateral division, ventral lateral part",881
+"899",890,"PBm","Parabrachial nucleus, medial division",867
+"900",899,"PBme","Parabrachial nucleus, medial division, external medial part",890
+"901",915,"PBmm","Parabrachial nucleus, medial division, medial medial part",890
+"902",923,"PBmv","Parabrachial nucleus, medial division, ventral medial part",890
+"903",398,"SOC","Superior olivary complex",1132
+"904",122,"POR","Superior olivary complex, periolivary region",398
+"905",105,"SOCm","Superior olivary complex, medial part",398
+"906",114,"SOCl","Superior olivary complex, lateral part",398
+"907",987,"P-mot","Pons, motor related",771
+"908",280,"B","Barrington's nucleus",987
+"909",880,"DTN","Dorsal tegmental nucleus",987
+"910",283,"LTN","Lateral tegmental nucleus",987
+"911",599626927,"PDTg","Posterodorsal tegmental nucleus",987
+"912",898,"PCG","Pontine central gray",987
+"913",931,"PG","Pontine gray",987
+"914",1093,"PRNc","Pontine reticular nucleus, caudal part",987
+"915",552,"PRNv","Pontine reticular nucleus, ventral part",987
+"916",318,"SG","Supragenual nucleus",987
+"917",462,"SSN","Superior salivatory nucleus",987
+"918",534,"SUT","Supratrigeminal nucleus",987
+"919",574,"TRN","Tegmental reticular nucleus",987
+"920",621,"V","Motor nucleus of trigeminal",987
+"921",549009215,"P5","Peritrigeminal zone",987
+"922",549009219,"Acs5","Accessory trigeminal nucleus",987
+"923",549009223,"PC5","Parvicellular motor 5 nucleus",987
+"924",549009227,"I5","Intertrigeminal nucleus",987
+"925",1117,"P-sat","Pons, behavioral state related",771
+"926",679,"CS","Superior central nucleus raphe",1117
+"927",137,"CSl","Superior central nucleus raphe, lateral part",679
+"928",130,"CSm","Superior central nucleus raphe, medial part",679
+"929",147,"LC","Locus ceruleus",1117
+"930",162,"LDT","Laterodorsal tegmental nucleus",1117
+"931",604,"NI","Nucleus incertus",1117
+"932",146,"PRNr","Pontine reticular nucleus",1117
+"933",238,"RPO","Nucleus raphe pontis",1117
+"934",350,"SLC","Subceruleus nucleus",1117
+"935",358,"SLD","Sublaterodorsal nucleus",1117
+"936",354,"MY","Medulla",1065
+"937",386,"MY-sen","Medulla, sensory related",354
+"938",207,"AP","Area postrema",386
+"939",607,"CN","Cochlear nuclei",386
+"940",112,"CNlam","Granular lamina of the cochlear nuclei",607
+"941",560,"CNspg","Cochlear nucleus, subpedunclular granular region",607
+"942",96,"DCO","Dorsal cochlear nucleus",607
+"943",101,"VCO","Ventral cochlear nucleus",607
+"944",720,"DCN","Dorsal column nuclei",386
+"945",711,"CU","Cuneate nucleus",720
+"946",1039,"GR","Gracile nucleus",720
+"947",903,"ECU","External cuneate nucleus",386
+"948",642,"NTB","Nucleus of the trapezoid body",386
+"949",651,"NTS","Nucleus of the solitary tract",386
+"950",659,"NTSce","Nucleus of the solitary tract, central part",651
+"951",666,"NTSco","Nucleus of the solitary tract, commissural part",651
+"952",674,"NTSge","Nucleus of the solitary tract, gelatinous part",651
+"953",682,"NTSl","Nucleus of the solitary tract, lateral part",651
+"954",691,"NTSm","Nucleus of the solitary tract, medial part",651
+"955",429,"SPVC","Spinal nucleus of the trigeminal, caudal part",386
+"956",437,"SPVI","Spinal nucleus of the trigeminal, interpolar part",386
+"957",445,"SPVO","Spinal nucleus of the trigeminal, oral part",386
+"958",77,"SPVOcdm","Spinal nucleus of the trigeminal, oral part, caudal dorsomedial part",445
+"959",53,"SPVOmdmd","Spinal nucleus of the trigeminal, oral part, middle dorsomedial part, dorsal zone",445
+"960",61,"SPVOmdmv","Spinal nucleus of the trigeminal, oral part, middle dorsomedial part, ventral zone",445
+"961",45,"SPVOrdm","Spinal nucleus of the trigeminal, oral part, rostral dorsomedial part",445
+"962",69,"SPVOvl","Spinal nucleus of the trigeminal, oral part, ventrolateral part",445
+"963",589508451,"Pa5","Paratrigeminal nucleus",386
+"964",789,"z","Nucleus z",386
+"965",370,"MY-mot","Medulla, motor related",354
+"966",653,"VI","Abducens nucleus",370
+"967",568,"ACVI","Accessory abducens nucleus",370
+"968",661,"VII","Facial motor nucleus",370
+"969",576,"ACVII","Accessory facial motor nucleus",370
+"970",640,"EV","Efferent vestibular nucleus",370
+"971",135,"AMB","Nucleus ambiguus",370
+"972",939,"AMBd","Nucleus ambiguus, dorsal division",135
+"973",143,"AMBv","Nucleus ambiguus, ventral division",135
+"974",839,"DMX","Dorsal motor nucleus of the vagus nerve",370
+"975",887,"ECO","Efferent cochlear group",370
+"976",1048,"GRN","Gigantocellular reticular nucleus",370
+"977",372,"ICB","Infracerebellar nucleus",370
+"978",83,"IO","Inferior olivary complex",370
+"979",136,"IRN","Intermediate reticular nucleus",370
+"980",106,"ISN","Inferior salivatory nucleus",370
+"981",203,"LIN","Linear nucleus of the medulla",370
+"982",235,"LRN","Lateral reticular nucleus",370
+"983",955,"LRNm","Lateral reticular nucleus, magnocellular part",235
+"984",963,"LRNp","Lateral reticular nucleus, parvicellular part",235
+"985",307,"MARN","Magnocellular reticular nucleus",370
+"986",395,"MDRN","Medullary reticular nucleus",370
+"987",1098,"MDRNd","Medullary reticular nucleus, dorsal part",395
+"988",1107,"MDRNv","Medullary reticular nucleus, ventral part",395
+"989",852,"PARN","Parvicellular reticular nucleus",370
+"990",859,"PAS","Parasolitary nucleus",370
+"991",938,"PGRN","Paragigantocellular reticular nucleus",370
+"992",970,"PGRNd","Paragigantocellular reticular nucleus, dorsal part",938
+"993",978,"PGRNl","Paragigantocellular reticular nucleus, lateral part",938
+"994",154,"PHY","Perihypoglossal nuclei",370
+"995",161,"NIS","Nucleus intercalatus",154
+"996",177,"NR","Nucleus of Roller",154
+"997",169,"PRP","Nucleus prepositus",154
+"998",995,"PMR","Paramedian reticular nucleus",370
+"999",1069,"PPY","Parapyramidal nucleus",370
+"1000",185,"PPYd","Parapyramidal nucleus, deep part",1069
+"1001",193,"PPYs","Parapyramidal nucleus, superficial part",1069
+"1002",701,"VNC","Vestibular nuclei",370
+"1003",209,"LAV","Lateral vestibular nucleus",701
+"1004",202,"MV","Medial vestibular nucleus",701
+"1005",225,"SPIV","Spinal vestibular nucleus",701
+"1006",217,"SUV","Superior vestibular nucleus",701
+"1007",765,"x","Nucleus x",370
+"1008",773,"XII","Hypoglossal nucleus",370
+"1009",781,"y","Nucleus y",370
+"1010",76,"INV","Interstitial nucleus of the vestibular nerve",370
+"1011",379,"MY-sat","Medulla, behavioral state related",354
+"1012",206,"RM","Nucleus raphe magnus",379
+"1013",230,"RPA","Nucleus raphe pallidus",379
+"1014",222,"RO","Nucleus raphe obscurus",379
+"1015",512,"CB","Cerebellum",8
+"1016",528,"CBX","Cerebellar cortex",512
+"1017",1144,"CBXmo","Cerebellar cortex, molecular layer",528
+"1018",1145,"CBXpu","Cerebellar cortex, Purkinje layer",528
+"1019",1143,"CBXgr","Cerebellar cortex, granular layer",528
+"1020",645,"VERM","Vermal regions",528
+"1021",912,"LING","Lingula (I)",645
+"1022",10707,"LINGmo","Lingula (I), molecular layer",912
+"1023",10706,"LINGpu","Lingula (I), Purkinje layer",912
+"1024",10705,"LINGgr","Lingula (I), granular layer",912
+"1025",920,"CENT","Central lobule",645
+"1026",976,"CENT2","Lobule II",920
+"1027",10710,"CENT2mo","Lobule II, molecular layer",976
+"1028",10709,"CENT2pu","Lobule II, Purkinje layer",976
+"1029",10708,"CENT2gr","Lobule II, granular layer",976
+"1030",984,"CENT3","Lobule III",920
+"1031",10713,"CENT3mo","Lobule III, molecular layer",984
+"1032",10712,"CENT3pu","Lobule III, Purkinje layer",984
+"1033",10711,"CENT3gr","Lobule III, granular layer",984
+"1034",928,"CUL","Culmen",645
+"1035",992,"CUL4","Lobule IV",928
+"1036",10716,"CUL4mo","Lobule IV, molecular layer",992
+"1037",10715,"CUL4pu","Lobule IV, Purkinje layer",992
+"1038",10714,"CUL4gr","Lobule IV, granular layer",992
+"1039",1001,"CUL5","Lobule V",928
+"1040",10719,"CUL5mo","Lobule V, molecular layer",1001
+"1041",10718,"CUL5pu","Lobule V, Purkinje layer",1001
+"1042",10717,"CUL5gr","Lobule V, granular layer",1001
+"1043",1091,"CUL4, 5","Lobules IV-V",928
+"1044",10722,"CUL4, 5mo","Lobules IV-V, molecular layer",1091
+"1045",10721,"CUL4, 5pu","Lobules IV-V, Purkinje layer",1091
+"1046",10720,"CUL4, 5gr","Lobules IV-V, granular layer",1091
+"1047",936,"DEC","Declive (VI)",645
+"1048",10725,"DECmo","Declive (VI), molecular layer",936
+"1049",10724,"DECpu","Declive (VI), Purkinje layer",936
+"1050",10723,"DECgr","Declive (VI), granular layer",936
+"1051",944,"FOTU","Folium-tuber vermis (VII)",645
+"1052",10728,"FOTUmo","Folium-tuber vermis (VII), molecular layer",944
+"1053",10727,"FOTUpu","Folium-tuber vermis (VII), Purkinje layer",944
+"1054",10726,"FOTUgr","Folium-tuber vermis (VII), granular layer",944
+"1055",951,"PYR","Pyramus (VIII)",645
+"1056",10731,"PYRmo","Pyramus (VIII), molecular layer",951
+"1057",10730,"PYRpu","Pyramus (VIII), Purkinje layer",951
+"1058",10729,"PYRgr","Pyramus (VIII), granular layer",951
+"1059",957,"UVU","Uvula (IX)",645
+"1060",10734,"UVUmo","Uvula (IX), molecular layer",957
+"1061",10733,"UVUpu","Uvula (IX), Purkinje layer",957
+"1062",10732,"UVUgr","Uvula (IX), granular layer",957
+"1063",968,"NOD","Nodulus (X)",645
+"1064",10737,"NODmo","Nodulus (X), molecular layer",968
+"1065",10736,"NODpu","Nodulus (X), Purkinje layer",968
+"1066",10735,"NODgr","Nodulus (X), granular layer",968
+"1067",1073,"HEM","Hemispheric regions",528
+"1068",1007,"SIM","Simple lobule",1073
+"1069",10674,"SIMmo","Simple lobule, molecular layer",1007
+"1070",10673,"SIMpu","Simple lobule, Purkinje layer",1007
+"1071",10672,"SIMgr","Simple lobule, granular layer",1007
+"1072",1017,"AN","Ansiform lobule",1073
+"1073",1056,"ANcr1","Crus 1",1017
+"1074",10677,"ANcr1mo","Crus 1, molecular layer",1056
+"1075",10676,"ANcr1pu","Crus 1, Purkinje layer",1056
+"1076",10675,"ANcr1gr","Crus 1, granular layer",1056
+"1077",1064,"ANcr2","Crus 2",1017
+"1078",10680,"ANcr2mo","Crus 2, molecular layer",1064
+"1079",10679,"ANcr2pu","Crus 2, Purkinje layer",1064
+"1080",10678,"ANcr2gr","Crus 2, granular layer",1064
+"1081",1025,"PRM","Paramedian lobule",1073
+"1082",10683,"PRMmo","Paramedian lobule, molecular layer",1025
+"1083",10682,"PRMpu","Paramedian lobule, Purkinje layer",1025
+"1084",10681,"PRMgr","Paramedian lobule, granular layer",1025
+"1085",1033,"COPY","Copula pyramidis",1073
+"1086",10686,"COPYmo","Copula pyramidis, molecular layer",1033
+"1087",10685,"COPYpu","Copula pyramidis, Purkinje layer",1033
+"1088",10684,"COPYgr","Copula pyramidis, granular layer",1033
+"1089",1041,"PFL","Paraflocculus",1073
+"1090",10689,"PFLmo","Paraflocculus, molecular layer",1041
+"1091",10688,"PFLpu","Paraflocculus, Purkinje layer",1041
+"1092",10687,"PFLgr","Paraflocculus, granular layer",1041
+"1093",1049,"FL","Flocculus",1073
+"1094",10692,"FLmo","Flocculus, molecular layer",1049
+"1095",10691,"FLpu","Flocculus, Purkinje layer",1049
+"1096",10690,"FLgr","Flocculus, granular layer",1049
+"1097",519,"CBN","Cerebellar nuclei",512
+"1098",989,"FN","Fastigial nucleus",519
+"1099",91,"IP","Interposed nucleus",519
+"1100",846,"DN","Dentate nucleus",519
+"1101",589508455,"VeCB","Vestibulocerebellar nucleus",519
+"1102",1009,"fiber tracts","fiber tracts",997
+"1103",967,"cm","cranial nerves",1009
+"1104",885,"tn","terminal nerve",967
+"1105",949,"von","vomeronasal nerve",967
+"1106",840,"In","olfactory nerve",967
+"1107",1016,"onl","olfactory nerve layer of main olfactory bulb",840
+"1108",21,"lotg","lateral olfactory tract, general",840
+"1109",665,"lot","lateral olfactory tract, body",21
+"1110",538,"lotd","dorsal limb",21
+"1111",459,"aolt","accessory olfactory tract",21
+"1112",900,"aco","anterior commissure, olfactory limb",840
+"1113",848,"IIn","optic nerve",967
+"1114",876,"aot","accessory optic tract",848
+"1115",916,"bsc","brachium of the superior colliculus",848
+"1116",336,"csc","superior colliculus commissure",848
+"1117",117,"och","optic chiasm",848
+"1118",125,"opt","optic tract",848
+"1119",357,"ttp","tectothalamic pathway",848
+"1120",832,"IIIn","oculomotor nerve",967
+"1121",62,"mlf","medial longitudinal fascicle",832
+"1122",158,"pc","posterior commissure",832
+"1123",911,"IVn","trochlear nerve",967
+"1124",384,"IVd","trochlear nerve decussation",911
+"1125",710,"VIn","abducens nerve",967
+"1126",901,"Vn","trigeminal nerve",967
+"1127",93,"moV","motor root of the trigeminal nerve",901
+"1128",229,"sV","sensory root of the trigeminal nerve",901
+"1129",705,"mtV","midbrain tract of the trigeminal nerve",229
+"1130",794,"sptV","spinal tract of the trigeminal nerve",229
+"1131",798,"VIIn","facial nerve",967
+"1132",1131,"iVIIn","intermediate nerve",798
+"1133",1116,"gVIIn","genu of the facial nerve",798
+"1134",933,"VIIIn","vestibulocochlear nerve",967
+"1135",1076,"cvb","efferent cochleovestibular bundle",933
+"1136",413,"vVIIIn","vestibular nerve",933
+"1137",948,"cVIIIn","cochlear nerve",933
+"1138",841,"tb","trapezoid body",948
+"1139",641,"ias","intermediate acoustic stria",948
+"1140",506,"das","dorsal acoustic stria",948
+"1141",658,"ll","lateral lemniscus",948
+"1142",633,"cic","inferior colliculus commissure",948
+"1143",482,"bic","brachium of the inferior colliculus",948
+"1144",808,"IXn","glossopharyngeal nerve",967
+"1145",917,"Xn","vagus nerve",967
+"1146",237,"ts","solitary tract",917
+"1147",717,"XIn","accessory spinal nerve",967
+"1148",813,"XIIn","hypoglossal nerve",967
+"1149",925,"vrt","ventral roots",967
+"1150",792,"drt","dorsal roots",967
+"1151",932,"cett","cervicothalamic tract",792
+"1152",570,"dl","dorsolateral fascicle",932
+"1153",522,"dcm","dorsal commissure of the spinal cord",932
+"1154",858,"vc","ventral commissure of the spinal cord",932
+"1155",586,"fpr","fasciculus proprius",932
+"1156",514,"dc","dorsal column",932
+"1157",380,"cuf","cuneate fascicle",514
+"1158",388,"grf","gracile fascicle",514
+"1159",396,"iaf","internal arcuate fibers",514
+"1160",697,"ml","medial lemniscus",932
+"1161",871,"sst","spinothalamic tract",967
+"1162",29,"sttl","lateral spinothalamic tract",871
+"1163",389,"sttv","ventral spinothalamic tract",871
+"1164",245,"scrt","spinocervical tract",871
+"1165",261,"sop","spino-olivary pathway",871
+"1166",270,"srp","spinoreticular pathway",871
+"1167",293,"svp","spinovestibular pathway",871
+"1168",277,"stp","spinotectal pathway",871
+"1169",253,"shp","spinohypothalamic pathway",871
+"1170",285,"step","spinotelenchephalic pathway",871
+"1171",627,"hht","hypothalamohypophysial tract",285
+"1172",960,"cbf","cerebellum related fiber tracts",1009
+"1173",744,"cbc","cerebellar commissure",960
+"1174",752,"cbp","cerebellar peduncles",960
+"1175",326,"scp","superior cerebelar peduncles",752
+"1176",812,"dscp","superior cerebellar peduncle decussation",326
+"1177",85,"sct","spinocerebellar tract",812
+"1178",850,"uf","uncinate fascicle",326
+"1179",866,"sctv","ventral spinocerebellar tract",326
+"1180",78,"mcp","middle cerebellar peduncle",752
+"1181",1123,"icp","inferior cerebellar peduncle",752
+"1182",553,"sctd","dorsal spinocerebellar tract",1123
+"1183",499,"cct","cuneocerebellar tract",1123
+"1184",650,"jrb","juxtarestiform body",1123
+"1185",490,"bct","bulbocerebellar tract",1123
+"1186",404,"oct","olivocerebellar tract",490
+"1187",410,"rct","reticulocerebellar tract",490
+"1188",373,"tct","trigeminocerebellar tract",752
+"1189",728,"arb","arbor vitae",960
+"1190",484682512,"scwm","supra-callosal cerebral white matter",1009
+"1191",983,"lfbs","lateral forebrain bundle system",1009
+"1192",776,"cc","corpus callosum",983
+"1193",956,"fa","corpus callosum, anterior forceps",776
+"1194",579,"ec","external capsule",956
+"1195",964,"ee","corpus callosum, extreme capsule",776
+"1196",1108,"ccg","genu of corpus callosum",776
+"1197",971,"fp","corpus callosum, posterior forceps",776
+"1198",979,"ccr","corpus callosum, rostrum",776
+"1199",484682516,"ccb","corpus callosum, body",776
+"1200",986,"ccs","corpus callosum, splenium",776
+"1201",784,"cst","corticospinal tract",983
+"1202",6,"int","internal capsule",784
+"1203",924,"cpd","cerebal peduncle",784
+"1204",1036,"cte","corticotectal tract",784
+"1205",1012,"crt","corticorubral tract",784
+"1206",1003,"cpt","corticopontine tract",784
+"1207",994,"cbt","corticobulbar tract",784
+"1208",190,"py","pyramid",784
+"1209",198,"pyd","pyramidal decussation",784
+"1210",1019,"cstc","corticospinal tract, crossed",784
+"1211",1028,"cstu","corticospinal tract, uncrossed",784
+"1212",896,"lfbst","thalamus related",983
+"1213",1092,"em","external medullary lamina of the thalamus",896
+"1214",14,"im","internal medullary lamina of the thalamus",896
+"1215",86,"mtc","middle thalamic commissure",896
+"1216",365,"tp","thalamic peduncles",896
+"1217",484682520,"or","optic radiation",896
+"1218",484682524,"ar","auditory radiation",896
+"1219",1000,"eps","extrapyramidal fiber systems",1009
+"1220",760,"epsc","cerebral nuclei related",1000
+"1221",142,"pap","pallidothalamic pathway",760
+"1222",102,"nst","nigrostriatal tract",760
+"1223",109,"ntt","nigrothalamic fibers",760
+"1224",134,"ptf","pallidotegmental fascicle",760
+"1225",309,"snp","striatonigral pathway",760
+"1226",317,"stf","subthalamic fascicle",760
+"1227",877,"tsp","tectospinal pathway",1000
+"1228",1051,"tspd","direct tectospinal pathway",877
+"1229",1060,"dtd","doral tegmental decussation",877
+"1230",1043,"tspc","crossed tectospinal pathway",877
+"1231",863,"rust","rubrospinal tract",1000
+"1232",397,"vtd","ventral tegmental decussation",863
+"1233",221,"rrt","rubroreticular tract",863
+"1234",736,"ctb","central tegmental bundle",1000
+"1235",855,"rst","retriculospinal tract",1000
+"1236",205,"rstl","retriculospinal tract, lateral part",855
+"1237",213,"rstm","retriculospinal tract, medial part",855
+"1238",941,"vsp","vestibulospinal pathway",1000
+"1239",991,"mfbs","medial forebrain bundle system",1009
+"1240",768,"mfbc","cerebrum related",991
+"1241",884,"amc","amygdalar capsule",768
+"1242",892,"apd","ansa peduncularis",768
+"1243",908,"act","anterior commissure, temporal limb",768
+"1244",940,"cing","cingulum bundle",768
+"1245",1099,"fxs","fornix system",768
+"1246",466,"alv","alveus",1099
+"1247",530,"df","dorsal fornix",1099
+"1248",603,"fi","fimbria",1099
+"1249",745,"fxprg","precommissural fornix, general",1099
+"1250",420,"db","precommissural fornix diagonal band",745
+"1251",737,"fxpo","postcommissural fornix",1099
+"1252",428,"mct","medial corticohypothalamic tract",737
+"1253",436,"fx","columns of the fornix",737
+"1254",618,"hc","hippocampal commissures",1099
+"1255",443,"dhc","dorsal hippocampal commissure",618
+"1256",449,"vhc","ventral hippocampal commissure",618
+"1257",713,"per","perforant path",1099
+"1258",474,"ab","angular path",1099
+"1259",37,"lab","longitudinal association bundle",768
+"1260",301,"st","stria terminalis",768
+"1261",484682528,"stc","commissural branch of stria terminalis",301
+"1262",824,"mfsbshy","hypothalamus related",991
+"1263",54,"mfb","medial forebrain bundle",824
+"1264",405,"vlt","ventrolateral hypothalamic tract",824
+"1265",174,"poc","preoptic commissure",824
+"1266",349,"sup","supraoptic commissures",824
+"1267",817,"supa","supraoptic commissures, anterior",349
+"1268",825,"supd","supraoptic commissures, dorsal",349
+"1269",833,"supv","supraoptic commissures, ventral",349
+"1270",166,"pmx","premammillary commissure",824
+"1271",341,"smd","supramammillary decussation",824
+"1272",182,"php","propriohypothalamic pathways",824
+"1273",762,"phpd","propriohypothalamic pathways, dorsal",182
+"1274",770,"phpl","propriohypothalamic pathways, lateral",182
+"1275",779,"phpm","propriohypothalamic pathways, medial",182
+"1276",787,"phpv","propriohypothalamic pathways, ventral",182
+"1277",150,"pvbh","periventricular bundle of the hypothalamus",824
+"1278",46,"mfbsma","mammillary related",824
+"1279",753,"pm","principal mammillary tract",46
+"1280",690,"mtt","mammillothalamic tract",46
+"1281",681,"mtg","mammillotegmental tract",46
+"1282",673,"mp","mammillary peduncle",46
+"1283",1068,"mfbst","dorsal thalamus related",824
+"1284",722,"pvbt","periventricular bundle of the thalamus",1068
+"1285",1083,"mfbse","epithalamus related",824
+"1286",802,"sm","stria medullaris",1083
+"1287",595,"fr","fasciculus retroflexus",1083
+"1288",611,"hbc","habenular commissure",1083
+"1289",730,"PIS","pineal stalk",1083
+"1290",70,"mfbsm","midbrain related",824
+"1291",547,"dlf","dorsal longitudinal fascicle",70
+"1292",563,"dtt","dorsal tegmental tract",70
+"1293",73,"VS","ventricular systems",997
+"1294",81,"VL","lateral ventricle",73
+"1295",89,"RC","rhinocele",81
+"1296",98,"SEZ","subependymal zone",81
+"1297",108,"chpl","choroid plexus",81
+"1298",116,"chfl","choroid fissure",81
+"1299",124,"IVF","interventricular foramen",73
+"1300",129,"V3","third ventricle",73
+"1301",140,"AQ","cerebral aqueduct",73
+"1302",145,"V4","fourth ventricle",73
+"1303",153,"V4r","lateral recess",145
+"1304",164,"c","central canal, spinal cord/medulla",73
+"1305",1024,"grv","grooves",997
+"1306",1032,"grv of CTX","grooves of the cerebral cortex",1024
+"1307",1055,"eg","endorhinal groove",1032
+"1308",1063,"hf","hippocampal fissure",1032
+"1309",1071,"rf","rhinal fissure",1032
+"1310",1078,"ri","rhinal incisure",1032
+"1311",1040,"grv of CBX","grooves of the cerebellar cortex",1024
+"1312",1087,"pce","precentral fissure",1040
+"1313",1095,"pcf","preculminate fissure",1040
+"1314",1103,"pri","primary fissure",1040
+"1315",1112,"psf","posterior superior fissure",1040
+"1316",1119,"ppf","prepyramidal fissure",1040
+"1317",3,"sec","secondary fissure",1040
+"1318",11,"plf","posterolateral fissure",1040
+"1319",18,"nf","nodular fissure",1040
+"1320",25,"sif","simple fissure",1040
+"1321",34,"icf","intercrural fissure",1040
+"1322",43,"apf","ansoparamedian fissure",1040
+"1323",49,"ipf","intraparafloccular fissure",1040
+"1324",57,"pms","paramedian sulcus",1040
+"1325",65,"pfs","parafloccular sulcus",1040
+"1326",624,"IPF","Interpeduncular fossa",1024
+"1327",304325711,"retina","retina",997
