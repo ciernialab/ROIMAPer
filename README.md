@@ -6,7 +6,7 @@ Comes with the 2017 version of the adult mouse Allen Brain Atlas CCFv3 and versi
 
 Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, Vancouver, in Sep 2025.
 
----- INSTALLING ----
+### Installation
 
 
 
@@ -16,7 +16,7 @@ Either download all files from github, or clone the repository using **git clone
 Place the ROIMAPer folder in scripts/plugins/ in your FIJI folder (you can find the fiji folder under File>Show Folder>ImageJ in FIJI)
 
 
----- Image Prerequisits ----
+### Image Prerequisits 
 
 1. Know your images
     2. Do they have multiple slices?
@@ -32,7 +32,7 @@ Place the ROIMAPer folder in scripts/plugins/ in your FIJI folder (you can find 
 
 
 
----- Mapping the ROIs ----
+### Mapping the ROIs 
 
 
 
@@ -73,8 +73,8 @@ Thank you for using this plugin.
 
 
 
-The Allen Brain Atlas adult mouse brain was obtained from: [https://download.alleninstitute.org/informatics-archive/current-release/mouse_ccf/annotation/ccf_2017/] at a resolution of 10 µm.
-Allen Reference Atlas – Mouse Brain \[adult mouse\]. Available from [atlas.brain-map.org].
+The Allen Brain Atlas adult mouse brain was obtained from: [https://download.alleninstitute.org/informatics-archive/current-release/mouse_ccf/annotation/ccf_2017/] at a resolution of 10 µm.  
+Allen Reference Atlas – Mouse Brain \[adult mouse\]. Available from [https://atlas.brain-map.org/].
 
 The Waxholm Space Atlas of the Sprague Dawley Rat Brain version 4 was obtained from: [https://www.nitrc.org/projects/whs-sd-atlas].
 
