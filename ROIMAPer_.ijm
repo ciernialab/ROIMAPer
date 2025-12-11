@@ -1128,7 +1128,7 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    	
 	    	roiManager("add");
 	    	roiManager("select", roiManager("count") - 1);
-	    	roiManager("rename", searchID);
+	    	roiManager("rename", searchTerm);
 	    }
 
 	    
@@ -1150,13 +1150,17 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    	roiManager("rename", "atlas_bounding_box");
 	    }
 	    
-	    if (roiManager("count") > 1) {
+	    if (roiManager("count") > 1) {//only save ROIs if both a bounding box and a region was created
 	    	
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("save selected", atlas_directory + i + "/" + searchTerm + ".zip");
 	    	//print(atlas_directory + i + "/" + searchTerm + ".zip");
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("delete");
+	    } else {//if only the bounding box was created, delete it again
+	    	if (roiManager("count") == 1) {
+	    		roiManager("delete");
+	    	}
 	    }
 	    run("Select None");
 	}
