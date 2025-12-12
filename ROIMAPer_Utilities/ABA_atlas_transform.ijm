@@ -31,7 +31,7 @@ run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Horizontal_halfbrain
 
 close("aba_v3-Horizontal");
 call("java.lang.System.gc");
-*/
+
 //end horizontal
 //do coronal
 open(dir + "atlases/annotation_10.nrrd");
@@ -57,17 +57,23 @@ run("Crop");
 run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Coronal_halfbrain.tif compression=zlib");
 
 close("aba_v3-Coronal");
+*/
 
-/*
 //do sagittal
 open(dir + "atlases/annotation_10.nrrd");
 rename("aba_v3-Sagittal");
-for (i = nSlices; i >= 1; i--) {
-	if ((i + 1)/20 != round(i/20) || i >= nSlices / 2) {//only take every 20th slice, and only do one half of the stack, because symmetry
+slices = nSlices;
+for (i = slices; i >= 1; i--) {
+	if ((i + 1)/20 != round(i/20) || i >= slices / 2) {//only take every 20th slice
 	    setSlice(i);
 	    run("Delete Slice");
 	}
 }
+setSlice(2);
+run("Delete Slice");
+setSlice(1);
+run("Delete Slice");//these are black
+
 run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Sagittal.tif compression=zlib");
 
 close("aba_v3-Sagittal");
