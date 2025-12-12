@@ -9,11 +9,12 @@ Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, V
 ### Installation
 
 
-
 Either download all files from github, or clone the repository using **git clone https://github.com/ciernialab/ROIMAPer**
 
 
-Place the ROIMAPer folder in scripts/plugins/ in your FIJI folder (you can find the fiji folder under File>Show Folder>ImageJ in FIJI)
+Place the ROIMAPer-main folder in scripts/plugins/ in your FIJI folder (you can find the fiji folder under File>Show Folder>ImageJ in FIJI)
+
+The scripts in ROIMAPer_Utilities are not necessary for ROI mapping. They were used to create the atlas and can be used to create ROIs outside of the main program.
 
 
 ### Image Prerequisits 
@@ -60,6 +61,7 @@ Place the ROIMAPer folder in scripts/plugins/ in your FIJI folder (you can find 
     3. The ROIs will be set onto the tissue, adjust them manually (by double clicking the ROI or clicking the label in the ROI manager), if the location or scale is off.
 
     4. If an ROI is not aligned with the actual region in the brain, this is often an issue of the atlas slice selection or the bounding box. You can choose to redo these. If you choose not to do this, you can convert any ROI into an editable point-selection. Enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept. **This is not recommended for ROIs made up of multiple parts**
+    5. Instead, if ROIs are made up of multiple parts, first use the "Split" function in the ROI Manager under "More > Split"
 
 9. Do this for all images, and then let the plugin save your ROIs. 
     - They will be stored in a folder next to the one your images are in, titled with the date and time when you started the mapping process.
@@ -76,12 +78,11 @@ Thank you for using this plugin.
 The Allen Brain Atlas adult mouse brain was obtained from: [https://download.alleninstitute.org/informatics-archive/current-release/mouse_ccf/annotation/ccf_2017/] at a resolution of 10 µm.  
 Allen Reference Atlas – Mouse Brain \[adult mouse\]. Available from [https://atlas.brain-map.org/].
 
-The Waxholm Space Atlas of the Sprague Dawley Rat Brain version 4 was obtained from: [https://www.nitrc.org/projects/whs-sd-atlas].
+The Waxholm Space Atlas of the Sprague Dawley Rat Brain version 4 was obtained from: [www.nitrc.org](https://www.nitrc.org/projects/whs-sd-atlas).
 
+This plugin was inspired by the FASTMAP plugin by Dylan Terstege from the Epp lab, University of Calgary, published on 12-07-2019 [doi.org/10.1523/ENEURO.0325-21.2022](https://doi.org/10.1523/ENEURO.0325-21.2022), available at [github.com/dterstege/FASTMAP](https://github.com/dterstege/FASTMAP)
 
-This plugin was inspired by the FASTMAP plugin by Dylan Terstege from the Epp lab, University of Calgary, published on 12-07-2019 [https://doi.org/10.1523/ENEURO.0325-21.2022](https://doi.org/10.1523/ENEURO.0325-21.2022), available at [https://github.com/dterstege/FASTMAP](https://github.com/dterstege/FASTMAP)
-
-
+Atlas files were compressed using the Bio-Formats plugin suite: Linkert, M., Rueden, C. T., Allan, C., Burel, J.-M., Moore, W., Patterson, A., … Swedlow, J. R. (2010). Metadata matters: access to image data in the real world. Journal of Cell Biology, 189(5), 777–782. [doi.org/10.1083/jcb.201004104](https://doi.org/10.1083/jcb.201004104)
 
 
 
