@@ -60,8 +60,7 @@ The scripts in ROIMAPer_Utilities are not necessary for ROI mapping. They were u
 
     3. The ROIs will be set onto the tissue, adjust them manually (by double clicking the ROI or clicking the label in the ROI manager), if the location or scale is off.
 
-    4. If an ROI is not aligned with the actual region in the brain, this is often an issue of the atlas slice selection or the bounding box. You can choose to redo these. If you choose not to do this, you can convert any ROI into an editable point-selection. Enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept. **This is not recommended for ROIs made up of multiple parts**
-    5. Instead, if ROIs are made up of multiple parts, first use the "Split" function in the ROI Manager under "More > Split"
+    4. If an ROI is not aligned with the actual region in the brain, this is often an issue of the atlas slice selection or the bounding box. You can choose to redo these. If you choose not to do this, you can convert any ROI into an editable point-selection. Enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept.
 
 9. Do this for all images, and then let the plugin save your ROIs. 
     - They will be stored in a folder next to the one your images are in, titled with the date and time when you started the mapping process.

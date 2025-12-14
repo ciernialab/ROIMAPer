@@ -856,38 +856,102 @@ function to_downsampled_selection(roi_ids) {
 	if (do_downsampling) {
 		selectiontype = selectionType();
 		if (selectiontype != -1) { //test, if an roi was selected
-			changing_roi = roiManager("index");
+			roi_type = Roi.getType;
+			changing_roi = roiManager("index");
 			old_name = Roi.getName;//transfer this to the new, downsampled ROI
-			getSelectionCoordinates(xpoints, ypoints);
 			
-			new_xpoints = newArray();
-			new_ypoints = newArray();
-			
-			for (i = 0; i < maxOf(Math.floor(xpoints.length / downsample_factor), 1); i++) {//only adding downsample_factor few points to the new selection (this is the downsampling
-				new_xpoints = Array.concat(new_xpoints,xpoints[i*downsample_factor]);
-				new_ypoints = Array.concat(new_ypoints,ypoints[i*downsample_factor]);
-			}
-			makeSelection("polygon", new_xpoints, new_ypoints);
-			
-			roiManager("add");//this is the new version of the roi
-			
-			roi_ids = Array.delete(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
-			roiManager("select", changing_roi);
-			roiManager("delete");
-			for (i = 0; i < roi_ids.length; i++) {//after deletion, the index of all higher ROIs will change, so have to adjust all higher ones
-				if (roi_ids[i] > changing_roi) {
-					roi_ids[i] = roi_ids[i]-1;
+			//if ROI is composite, split it and handle every ROI individually
+			if (roi_type == "composite") {
+				first_split = roiManager("count");
+				roiManager("split");
+				last_split = roiManager("count");
+				
+				intermediate_rois = newArray();
+				
+				for (i = first_split; i < last_split; i++) {
+					roiManager("select", i);
+					getSelectionCoordinates(xpoints, ypoints);
+				
+					new_xpoints = newArray();
+					new_ypoints = newArray();
+					
+					for (j = 0; j < maxOf(Math.floor(xpoints.length / downsample_factor), 1); j++) {//only adding downsample_factor few points to the new selection (this is the downsampling
+						new_xpoints = Array.concat(new_xpoints,xpoints[j*downsample_factor]);
+						new_ypoints = Array.concat(new_ypoints,ypoints[j*downsample_factor]);
+					}
+					makeSelection("polygon", new_xpoints, new_ypoints);
+					roiManager("add");//this is the new version of the roi
+					roiManager("select", roiManager("count") - 1);
+					new_name = old_name + "_" + (i - first_split);
+					roiManager("rename", new_name);
+					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we delete the original ROI
 				}
+				
+				roi_ids = Array.delete(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
+				roiManager("select", changing_roi);
+				roiManager("delete");
+				
+				for (i = 0; i < roi_ids.length; i++) {//after deletion, the index of all higher ROIs will change, so have to adjust all higher ones
+					if (roi_ids[i] > changing_roi) {
+						roi_ids[i] = roi_ids[i]-1;
+					}
+				}
+				
+				//delete the intermediate, split ROIs
+				roiManager("select", intermediate_rois);
+				roiManager("delete");
+				//after deletion, the downsampled ROIs are the same indices
+				
+				roiManager("select", intermediate_rois);
+				waitForUser("Please adjust the ROI you have selected.");
+				roiManager("show all without labels");
+				
+				//make composite ROI again
+				roiManager("select", intermediate_rois);
+				roiManager("combine");
+				roiManager("add");
+				roiManager("rename", old_name);
+				
+				roiManager("select", intermediate_rois);
+				roiManager("delete");
+				
+				new_roi_index = roiManager("count") - 1;
+				
+				roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
+				
+			} else { //if ROI is not composite
+				
+				getSelectionCoordinates(xpoints, ypoints);
+				
+				new_xpoints = newArray();
+				new_ypoints = newArray();
+				
+				for (i = 0; i < maxOf(Math.floor(xpoints.length / downsample_factor), 1); i++) {//only adding downsample_factor few points to the new selection (this is the downsampling
+					new_xpoints = Array.concat(new_xpoints,xpoints[i*downsample_factor]);
+					new_ypoints = Array.concat(new_ypoints,ypoints[i*downsample_factor]);
+				}
+				makeSelection("polygon", new_xpoints, new_ypoints);
+				
+				roiManager("add");//this is the new version of the roi
+			
+				roi_ids = Array.delete(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
+				roiManager("select", changing_roi);
+				roiManager("delete");
+				for (i = 0; i < roi_ids.length; i++) {//after deletion, the index of all higher ROIs will change, so have to adjust all higher ones
+					if (roi_ids[i] > changing_roi) {
+						roi_ids[i] = roi_ids[i]-1;
+					}
+				}
+				
+				roiManager("select", roiManager("count")-1);//select the newly added roi
+				roiManager("rename", old_name);
+				new_roi_index = roiManager("index");
+				
+				roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
+				
+				waitForUser("Please adjust the ROI you have selected.");
+				roiManager("show all without labels");
 			}
-			
-			roiManager("select", roiManager("count")-1);//select the newly added roi
-			roiManager("rename", old_name);
-			new_roi_index = roiManager("index");
-			
-			roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
-			
-			waitForUser("Please adjust the ROI you have selected.");
-			roiManager("show all without labels");
 			
 			roi_ids = to_downsampled_selection(roi_ids);
 			
