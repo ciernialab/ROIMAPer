@@ -16,6 +16,7 @@ var text_file = "";
 var mapping_index_path = "";
 var atlas_name = "";
 var atlas_path = "";
+var skip_choice = "Continue";
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
@@ -367,7 +368,7 @@ Dialog.show();
 
 
 function image_processing(image_number, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
-	
+	skip_choice = "Continue";//reset this, in case the last image was skipped
 	proceed = false;
 	if (one_roi_for_all) {
 		roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
@@ -432,7 +433,9 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 				
 				Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 				Dialog.addNumber("Slice", 1, 0, 3, "");
+				
 			}
+			Dialog.addChoice("Continue or skip this image:", newArray("Continue", "Skip"), "Continue");
 			Dialog.show();
 			
 			if (!one_roi_for_all) {
@@ -440,182 +443,191 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 				atlas_slice = Dialog.getNumber();
 				atlas_slice = parseInt(atlas_slice);//removing decimal points
 			}
+			skip_choice = Dialog.getChoice();
 			
-			getSelectionCoordinates(xbounding, ybounding);
+			if (skip_choice == "Continue") {//only get this if user wants to continue
+				getSelectionCoordinates(xbounding, ybounding);
+			}
 			
 		} else {//if not automatic bounding box
 			
 			atlas_slice = user_bounding_box(atlas_slice);
 			
-			getSelectionCoordinates(xbounding, ybounding);
-			run("Select None");
-		}
-		
-		//because rotated rectangles start in a different corner than normal rectangles
-		xbounding = Array.rotate(xbounding, 1);
-		ybounding = Array.rotate(ybounding, 1);
-		
-		//angle of the bounding box
-		angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
-		//roll-over of the angle
-		if (xbounding[1]-xbounding[0] < 0) {
-			angle = angle + 180;
-		} else {
-			if (ybounding[1]-ybounding[0] < 0) {
-				angle = angle + 360;
-			}
-		}
-		widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
-		heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
-		
-		//have to check for availability of ROIs separately because these are per-image and not for the whole analysis
-		if (!one_roi_for_all) {
-			roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
-		}
-		
-		atlas_combined_ids = open_rois(roi_path);
-		atlas_start_id = atlas_combined_ids[0];
-		atlas_end_id = atlas_combined_ids[1];
-		
-		
-		if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
-			print("Not found any of the specified regions in image " + local_image_name_without_extension);
-			give_user_choice = false;
-		} else {//only proceed, if ROIs were opened - could put this in a loop with a retry
-			
-			//go through the atlas, whichever entry is a rectangle is the bounding box 
-			brain_region_roi_ids = newArray();
-			for (i = atlas_start_id; i <= atlas_end_id; i++) {
-				roiManager("select", i);
-				roitype = Roi.getType;
-				
-				if (Roi.getName == "atlas_bounding_box") {
-					atlas_bounding_box_id = i;
-				} else {
-					brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
-				}
-			}
-			
-			full_atlas_ids = Array.concat(brain_region_roi_ids, atlas_bounding_box_id);
-			
-			//this moves the ROIs in the right scaling and orientation inside the bounding box
-			scaling(atlas_bounding_box_id, full_atlas_ids, angle, widthbounding, heightbounding, xbounding, ybounding);
-			
-			give_user_choice = true;
-		}
-		
-		modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
-		modifying = true;
-		
-		while (modifying) {
-			if (give_user_choice) {//only allow this if there were no problems in the previous round
-				Dialog.createNonBlocking("Are the ROIs oriented correctly?");
-				Dialog.addChoice("Modify orientation:", modifying_options, modifying_options[0]);
-				Dialog.show();
-				modifyer = Dialog.getChoice();
-				
-			} else {
-				 modifyer = "redo bounding box";
-				 Dialog.createNonBlocking("Error in ROI search");
-				 Dialog.addMessage("Not found any of the specified regions in image " + local_image_name_without_extension + ". Please select a different atlas slice");
-				 Dialog.addChoice("Retry mapping of this image with a new atlas slice?", newArray("Yes", "No, skip this image"), "Yes");
-				 Dialog.show();
-				 
-				 error_action = Dialog.getChoice();
-				 give_user_choice = true; //so the user can choose again in the next round
-		
-				 if (error_action == "No, skip this image") {
-				 	proceed = false;
-				 	close(atlas_name + "_overview.tif");
-				 	break;
-				 }
-			}
-			
-			//the normal actions that can be performed on this image
-			if (modifyer == "flip x") {
-				flip_roi_x(full_atlas_ids, angle, atlas_bounding_box_id);
-			}
-			if (modifyer == "flip y") {
-				flip_roi_y(full_atlas_ids, angle, atlas_bounding_box_id);
-			}
-			if (modifyer == "Do not modify") {
-				modifying = false;
-			} 
-			if (modifyer == "rotate by 90 degrees") {
-				rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
-				//modifying_options = Array.deleteValue(modifying_options, "rotate by 90 degrees - can only be performed once");
-			}
-			if (modifyer == "redo bounding box") {
-				roiManager("reset");
-				 //in case rotation was already attempted: restore the rotate option
-				modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
-				
-				atlas_slice = user_bounding_box(atlas_slice);
-				
+			if (skip_choice == "Continue") {//only get this if user wants to continue
 				getSelectionCoordinates(xbounding, ybounding);
 				run("Select None");
-				
-				//because rotated rectangles start in a different corner than normal rectangles
-				xbounding = Array.rotate(xbounding, 1);
-				ybounding = Array.rotate(ybounding, 1);
-				
-				angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
-				//roll-over of the angle
-				if (xbounding[1]-xbounding[0] < 0) {
-					angle = angle + 180;
-				} else {
-					if (ybounding[1]-ybounding[0] < 0) {
-						angle = angle + 360;
-					}
-				}
-				widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
-				heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
-				
-				if (!one_roi_for_all) {//get the roi_paths of the possibly new slice
-					roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
-				}
-				
-				atlas_combined_ids = open_rois(roi_path);
-				atlas_start_id = atlas_combined_ids[0];
-				atlas_end_id = atlas_combined_ids[1];
-				if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
-					give_user_choice = false;
-				} else {//allow scaling when there were ROIs opened
-					
-					//go through the atlas, whichever entry is a rectangle is the bounding box 
-					brain_region_roi_ids = newArray();
-					for (i = atlas_start_id; i <= atlas_end_id; i++) {
-						roiManager("select", i);
-						roitype = Roi.getType;
-						
-						if (Roi.getName == "atlas_bounding_box") {
-							atlas_bounding_box_id = i;
-						} else {
-							brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
-						}
-					}
-					
-					full_atlas_ids = Array.concat(brain_region_roi_ids, atlas_bounding_box_id);
-					
-					scaling(atlas_bounding_box_id, full_atlas_ids, angle, widthbounding, heightbounding, xbounding, ybounding);
-				}
 			}
-			
-			roiManager("show all without labels");
 		}
 		
-		if (proceed) {
-			//put the new rois on top of the actual background image, check if this is okay
+		if (skip_choice == "Continue") {//only do this if user wants to continue
 			
-			brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
+			//because rotated rectangles start in a different corner than normal rectangles
+			xbounding = Array.rotate(xbounding, 1);
+			ybounding = Array.rotate(ybounding, 1);
 			
-			//save the rois to the temp directory, named after the images
-			if (brain_region_roi_ids.length > 0) {
-				roiManager("select", brain_region_roi_ids);
-				roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
-			
+			//angle of the bounding box
+			angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+			//roll-over of the angle
+			if (xbounding[1]-xbounding[0] < 0) {
+				angle = angle + 180;
+			} else {
+				if (ybounding[1]-ybounding[0] < 0) {
+					angle = angle + 360;
+				}
 			}
-		}
+			widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
+			heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+			
+			//have to check for availability of ROIs separately because these are per-image and not for the whole analysis
+			if (!one_roi_for_all) {
+				roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
+			}
+			
+			atlas_combined_ids = open_rois(roi_path);
+			atlas_start_id = atlas_combined_ids[0];
+			atlas_end_id = atlas_combined_ids[1];
+			
+			
+			if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
+				print("Not found any of the specified regions in image " + local_image_name_without_extension);
+				give_user_choice = false;
+			} else {//only proceed, if ROIs were opened - could put this in a loop with a retry
+				
+				//go through the atlas, whichever entry is a rectangle is the bounding box 
+				brain_region_roi_ids = newArray();
+				for (i = atlas_start_id; i <= atlas_end_id; i++) {
+					roiManager("select", i);
+					roitype = Roi.getType;
+					
+					if (Roi.getName == "atlas_bounding_box") {
+						atlas_bounding_box_id = i;
+					} else {
+						brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
+					}
+				}
+				
+				full_atlas_ids = Array.concat(brain_region_roi_ids, atlas_bounding_box_id);
+				
+				//this moves the ROIs in the right scaling and orientation inside the bounding box
+				scaling(atlas_bounding_box_id, full_atlas_ids, angle, widthbounding, heightbounding, xbounding, ybounding);
+				
+				give_user_choice = true;
+			}
+			
+			modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
+			modifying = true;
+			
+			while (modifying) {
+				if (give_user_choice) {//only allow this if there were no problems in the previous round
+					Dialog.createNonBlocking("Are the ROIs oriented correctly?");
+					Dialog.addChoice("Modify orientation:", modifying_options, modifying_options[0]);
+					Dialog.show();
+					modifyer = Dialog.getChoice();
+					
+				} else {
+					 modifyer = "redo bounding box";
+					 Dialog.createNonBlocking("Error in ROI search");
+					 Dialog.addMessage("Not found any of the specified regions in image " + local_image_name_without_extension + ". Please select a different atlas slice");
+					 Dialog.addChoice("Retry mapping of this image with a new atlas slice?", newArray("Yes", "No, skip this image"), "Yes");
+					 Dialog.show();
+					 
+					 error_action = Dialog.getChoice();
+					 give_user_choice = true; //so the user can choose again in the next round
+			
+					 if (error_action == "No, skip this image") {
+					 	proceed = false;
+					 	close(atlas_name + "_overview.tif");
+					 	break;
+					 }
+				}
+				
+				//the normal actions that can be performed on this image
+				if (modifyer == "flip x") {
+					flip_roi_x(full_atlas_ids, angle, atlas_bounding_box_id);
+				}
+				if (modifyer == "flip y") {
+					flip_roi_y(full_atlas_ids, angle, atlas_bounding_box_id);
+				}
+				if (modifyer == "Do not modify") {
+					modifying = false;
+				} 
+				if (modifyer == "rotate by 90 degrees") {
+					rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
+					//modifying_options = Array.deleteValue(modifying_options, "rotate by 90 degrees - can only be performed once");
+				}
+				if (modifyer == "redo bounding box") {
+					roiManager("reset");
+					 //in case rotation was already attempted: restore the rotate option
+					modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
+					
+					atlas_slice = user_bounding_box(atlas_slice);
+					
+					getSelectionCoordinates(xbounding, ybounding);
+					run("Select None");
+					
+					//because rotated rectangles start in a different corner than normal rectangles
+					xbounding = Array.rotate(xbounding, 1);
+					ybounding = Array.rotate(ybounding, 1);
+					
+					angle = atan((ybounding[1]-ybounding[0])/(xbounding[1]-xbounding[0]))*180/PI;
+					//roll-over of the angle
+					if (xbounding[1]-xbounding[0] < 0) {
+						angle = angle + 180;
+					} else {
+						if (ybounding[1]-ybounding[0] < 0) {
+							angle = angle + 360;
+						}
+					}
+					widthbounding = sqrt(Math.pow(xbounding[1]-xbounding[0], 2) + Math.pow(ybounding[1]-ybounding[0], 2)); //pythagoras
+					heightbounding = sqrt(Math.pow(xbounding[2]-xbounding[1], 2) + Math.pow(ybounding[2]-ybounding[1], 2));
+					
+					if (!one_roi_for_all) {//get the roi_paths of the possibly new slice
+						roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
+					}
+					
+					atlas_combined_ids = open_rois(roi_path);
+					atlas_start_id = atlas_combined_ids[0];
+					atlas_end_id = atlas_combined_ids[1];
+					if (atlas_start_id >= atlas_end_id) {//if no ROIs were opened
+						give_user_choice = false;
+					} else {//allow scaling when there were ROIs opened
+						
+						//go through the atlas, whichever entry is a rectangle is the bounding box 
+						brain_region_roi_ids = newArray();
+						for (i = atlas_start_id; i <= atlas_end_id; i++) {
+							roiManager("select", i);
+							roitype = Roi.getType;
+							
+							if (Roi.getName == "atlas_bounding_box") {
+								atlas_bounding_box_id = i;
+							} else {
+								brain_region_roi_ids = Array.concat(brain_region_roi_ids, i);
+							}
+						}
+						
+						full_atlas_ids = Array.concat(brain_region_roi_ids, atlas_bounding_box_id);
+						
+						scaling(atlas_bounding_box_id, full_atlas_ids, angle, widthbounding, heightbounding, xbounding, ybounding);
+					}
+				}
+				
+				roiManager("show all without labels");
+			}
+			
+			if (proceed) {
+				//put the new rois on top of the actual background image, check if this is okay
+				
+				brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
+				
+				//save the rois to the temp directory, named after the images
+				if (brain_region_roi_ids.length > 0) {
+					roiManager("select", brain_region_roi_ids);
+					roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
+				
+				}
+			}
+		}//all this is skipped if user decided to skip this image
+		
 		//delete these rois
 		//roiManager("select", full);
 		//roiManager("delete");
@@ -659,15 +671,17 @@ function user_bounding_box(atlas_slice) {
 		selectWindow(control_channel);
 		Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 		Dialog.addNumber("Slice", atlas_slice, 0, 3, "");
+		
+		Dialog.addChoice("Continue or skip this image:", newArray("Continue", "Skip"), "Continue");
 		Dialog.show();
 		
 		//even when same ROI set for all is specified, allow for change of atlas slice here
 		close(atlas_name + "_overview.tif");
 		atlas_slice = Dialog.getNumber();
 		atlas_slice = parseInt(atlas_slice);//removing decimal points
+		skip_choice = Dialog.getChoice();
 		
-		
-		if (selectionType() == 3 || selectionType() == 0 || selectionType() == 2) {
+		if (selectionType() == 3 || selectionType() == 0 || selectionType() == 2 || skip_choice == "Skip") {//break the loop when correct bounding box or user wants to skip
 			waiting_for_bounding_box = false;
 			
 			
@@ -974,7 +988,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 	save_roi_ids_start = roiManager("count");
 	
 	
-	if (File.exists(temp + local_image_name_without_extension + "roi.zip")) {
+	if (File.exists(temp + local_image_name_without_extension + "roi.zip")) {//only do this if ROIs were actually saved
 		roiManager("open", temp + local_image_name_without_extension + "roi.zip");
 		save_roi_ids_end = roiManager("count") -1;
 		
