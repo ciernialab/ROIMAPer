@@ -446,7 +446,20 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 			skip_choice = Dialog.getChoice();
 			
 			if (skip_choice == "Continue") {//only get this if user wants to continue
-				getSelectionCoordinates(xbounding, ybounding);
+				if (selectionType() == 3 || selectionType() == 0 || selectionType() == 2) {
+					
+					getSelectionCoordinates(xbounding, ybounding);
+					
+				} else {// if no valid bounding box was created default to manual box creation
+					print("Bounding box was removed. Please add a bounding box manually.");
+					atlas_slice = user_bounding_box(atlas_slice);
+					
+					if (skip_choice == "Continue") {//only get this if user wants to continue
+						
+						getSelectionCoordinates(xbounding, ybounding);
+						run("Select None");
+					}
+				}
 			}
 			
 		} else {//if not automatic bounding box
@@ -562,6 +575,10 @@ function image_processing(image_number, local_image_path, local_image_name_witho
 					
 					atlas_slice = user_bounding_box(atlas_slice);
 					
+					if (skip_choice == "Skip") {
+						proceed = false;
+						break;//exits the "modifying" while loop
+					}
 					getSelectionCoordinates(xbounding, ybounding);
 					run("Select None");
 					
