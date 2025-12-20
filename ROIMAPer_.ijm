@@ -20,7 +20,7 @@ var skip_choice = "Continue";
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.0.0 (Dec 2025)</p1>"
+    +"<p1>Version: 2.0.1 (Dec 2025)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -368,7 +368,8 @@ Dialog.show();
 
 
 function image_processing(image_number, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
-	skip_choice = "Continue";//reset this, in case the last image was skipped
+	
+skip_choice = "Continue";//reset this, in case the last image was skipped
 	proceed = false;
 	if (one_roi_for_all) {
 		roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
@@ -696,9 +697,11 @@ function user_bounding_box(atlas_slice) {
 		close(atlas_name + "_overview.tif");
 		atlas_slice = Dialog.getNumber();
 		atlas_slice = parseInt(atlas_slice);//removing decimal points
-		skip_choice = Dialog.getChoice();
 		
-		if (selectionType() == 3 || selectionType() == 0 || selectionType() == 2 || skip_choice == "Skip") {//break the loop when correct bounding box or user wants to skip
+skip_choice = Dialog.getChoice();
+		
+		if (selectionType() == 3 || selectionType() == 0 || selectionType() == 2 || skip_choice == "Skip") {
+//break the loop when correct bounding box or user wants to skip
 			waiting_for_bounding_box = false;
 			
 			
@@ -1005,7 +1008,8 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 	save_roi_ids_start = roiManager("count");
 	
 	
-	if (File.exists(temp + local_image_name_without_extension + "roi.zip")) {//only do this if ROIs were actually saved
+	if (File.exists(temp + local_image_name_without_extension + "roi.zip")) {
+//only do this if ROIs were actually saved
 		roiManager("open", temp + local_image_name_without_extension + "roi.zip");
 		save_roi_ids_end = roiManager("count") -1;
 		
@@ -1068,7 +1072,8 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 
 //functions to create ROIs:
 function createROIs(atlas_name, mapping_index_path, searchTerm) {
-	Table.open(home_directory + text_file);
+	
+Table.open(home_directory + text_file);
 	for (i = 0; i < searchTerm.length; i++) {
 		searchTerm[i] = trim(searchTerm[i]); //deal with whitespace in the brain region submission
 	}
@@ -1260,14 +1265,16 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    	roiManager("rename", "atlas_bounding_box");
 	    }
 	    
-	    if (roiManager("count") > 1) {//only save ROIs if both a bounding box and a region was created
+	    if (roiManager("count") > 1) {
+//only save ROIs if both a bounding box and a region was created
 	    	
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("save selected", atlas_directory + i + "/" + searchTerm + ".zip");
 	    	//print(atlas_directory + i + "/" + searchTerm + ".zip");
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("delete");
-	    } else {//if only the bounding box was created, delete it again
+	    }
+ else {//if only the bounding box was created, delete it again
 	    	if (roiManager("count") == 1) {
 	    		roiManager("delete");
 	    	}
@@ -1276,4 +1283,5 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	}
 	close("bw");
 }
+
 
