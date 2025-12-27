@@ -43,13 +43,15 @@ The scripts in ROIMAPer_Utilities are not necessary for ROI mapping. They were u
 
 3. Specify the first and the last image of your analysis; you can exclude images between those in the next window. After this step, the metadata of every image is scanned. This might take a while for large/many files.
 
-4. For each image, specify which slice you want to use, only this slice will be opened to save processing power.
-    5. Also specify, whether or not to use the same slice of the ABA for each image or not.
-    6. Specify if you want a combined result, meaning all ROIs and all channels saved within one file.
-    7. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box".
-    8. If you are worried about having to terminate the work midway, you can save after every image instead of saving all images at the end.
+4. Select the settings for this run
 
-6. Reference, which regions you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
+    5. Specify, whether or not to use the same slice of the ABA for each image or not.
+    6. Do you want a combined result, meaning all ROIs and all channels of one image saved within one file. 
+    8. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box". 
+    9. If you are worried about having to terminate the work midway, you can save after every image instead of saving all images at the end.
+    10. Do you want to select individual slices for each image, or can the first slice be used in each image?
+
+9. Reference, which regions you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
 
 7. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "control channel". If you want to create a result for the control channel, too, check the corresponding chechmark The channel order needs to be consistent between all images.
 
