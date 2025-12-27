@@ -188,32 +188,14 @@ setBatchMode(false);
 
 length_limit = 20;
 columns = Math.ceil(image_path.length/length_limit);
-Dialog.create("Slice selection");
+Dialog.create("Settings");
 Dialog.addCheckbox("Use one roi set for all", false);
 //Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
-
-Dialog.addMessage("Which slices would you like to use for each image?");
-for (i = 0; i < image_path.length; i++) {//Grid likeness enables the display of more file titles
-	checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0);
-	 //making an array of the numbers from 1 to slicenumber
-	Dialog.addChoice(image_name_without_extension[i], checkboxitems);
-
-	for (j = 1; j < columns; j++) {
-		if (i + 1 < image_path.length) {
-			Dialog.addToSameRow();
-			i++;
-			checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0);
-			 //making an array of the numbers from 1 to slicenumber
-			Dialog.addChoice(image_name_without_extension[i], checkboxitems);
-		}
-	}
-
-}
-
-Dialog.show();
+Dialog.addCheckbox("Specify slices on import. If no it uses the first slice in every image", false);
+Dialog.show();
 
 
 one_roi_for_all = Dialog.getCheckbox();
@@ -221,18 +203,49 @@ one_roi_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getCheckbox();
+do_slice_selection = Dialog.getCheckbox();
 
-/*
-if(one_channel_for_all == false) {
-	exit("Differing channels have not been implemented yet. Please analyze these images seperately.");
- //fix this at some point
+if (do_slice_selection) {
+	Dialog.create("Slice selection");
+	Dialog.addMessage("Which slices would you like to use for each image?");
+	for (i = 0; i < image_path.length; i++) {//Grid likeness enables the display of more file titles
+		checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0);
+		 //making an array of the numbers from 1 to slicenumber
+		Dialog.addChoice(image_name_without_extension[i], checkboxitems);
+	
+		for (j = 1; j < columns; j++) {
+			if (i + 1 < image_path.length) {
+				Dialog.addToSameRow();
+				i++;
+				checkboxitems = Array.deleteValue(Array.getSequence(slicenumber[i] + 1), 0);
+				 //making an array of the numbers from 1 to slicenumber
+				Dialog.addChoice(image_name_without_extension[i], checkboxitems);
+			}
+		}
+	
+	}
+	
+	Dialog.show();
+
+	/*
+	if(one_channel_for_all == false) {
+		exit("Differing channels have not been implemented yet. Please analyze these images seperately.");
+	 //fix this at some point
+	}
+	*/
+	selected_slices = newArray();
+	for (i = 0; i < image_path.length; i++) {
+		selected_slices = Array.concat(selected_slices, parseInt(Dialog.getChoice()));
+	 //choice puts out decimal figures as characters
+	}
+} else { //if no slice selection
+	selected_slices = newArray(image_path.length);
+	for (i = 0; i < selected_slices.length; i++) {
+		selected_slices[i] = 1;
+	}
+
 }
-*/
-selected_slices = newArray();
-for (i = 0; i < image_path.length; i++) {
-	selected_slices = Array.concat(selected_slices, parseInt(Dialog.getChoice()));
- //choice puts out decimal figures as characters
-}
+
 
 Table.open(home_directory + text_file);
 
