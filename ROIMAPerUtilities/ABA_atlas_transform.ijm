@@ -35,6 +35,7 @@ call("java.lang.System.gc");
 //end horizontal
 */
 //do coronal
+/*
 open(dir + "atlases/annotation_10_float_adjusted.nrrd");
 rename("aba_v3-Sagittal");
 run("Reslice [/]...", "start=Left rotate avoid");
@@ -52,15 +53,17 @@ for (i = nSlices; i >= 1; i--) {
 	}
 }
 //run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Coronal.tif compression=zlib");
+
 getDimensions(width, height, channels, slices, frames);
 makeSelection("polygon", newArray(width/2, width/2, width, width), newArray(0,height,height,0));
 run("Crop");
 run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Coronal_halfbrain.tif compression=zlib");
 
 close("aba_v3-Coronal");
+*/
 
-/*
 //do sagittal
+/*
 open(dir + "atlases/annotation_10_float_adjusted.nrrd");
 rename("aba_v3-Sagittal");
 slices = nSlices;
@@ -78,7 +81,7 @@ run("Delete Slice");//these are black
 run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Sagittal.tif compression=zlib");
 
 close("aba_v3-Sagittal");
-*/
+*/
 
 
 /*
