@@ -20,7 +20,7 @@ var skip_choice = "Continue";
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.0.1 (Dec 2025)</p1>"
+    +"<p1>Version: 2.1.0 (Dec 2025)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -195,7 +195,8 @@ Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
 Dialog.addCheckbox("Specify slices on import. If no it uses the first slice in every image", false);
-Dialog.show();
+
+Dialog.show();
 
 
 one_roi_for_all = Dialog.getCheckbox();
@@ -933,7 +934,8 @@ function to_downsampled_selection(roi_ids) {
 					roiManager("select", roiManager("count") - 1);
 					new_name = old_name + "_" + (i - first_split);
 					roiManager("rename", new_name);
-					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we will delete the original ROI, which is before the newly added ROIs
+					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we will delete the original ROI
+, which is before the newly added ROIs
 				}
 				
 				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
@@ -1300,5 +1302,6 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	}
 	close("bw");
 }
+
 
 
