@@ -962,7 +962,8 @@ function to_downsampled_selection(roi_ids) {
 				roiManager("select", intermediate_rois);
 				roiManager("delete");
 				
-				new_roi_index = roiManager("count") - 1;
+				
+				new_roi_index = roiManager("count") - intermediate_rois.length;
 				
 				roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
 				
