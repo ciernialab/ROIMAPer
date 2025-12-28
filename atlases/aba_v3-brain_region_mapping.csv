@@ -58,12 +58,12 @@
 "57",1038,"SSp-bfd6a","Primary somatosensory area, barrel field, layer 6a",329
 "58",1062,"SSp-bfd6b","Primary somatosensory area, barrel field, layer 6b",329
 "59",49202,"VISrll","Rostrolateral lateral visual area",329
-"60",49206,"VISrll1","Rostrolateral lateral visual area, layer 1",480149202
-"61",49210,"VISrll2-3","Rostrolateral lateral visual area, layer 2/3",480149202
-"62",49214,"VISrll4","Rostrolateral lateral visual area, layer 4",480149202
-"63",49218,"VISrll5","Rostrolateral lateral visual area,layer 5",480149202
-"64",49222,"VISrll6a","Rostrolateral lateral visual area, layer 6a",480149202
-"65",49226,"VISrll6b","Rostrolateral lateral visual area, layer 6b",480149202
+"60",49206,"VISrll1","Rostrolateral lateral visual area, layer 1",49202
+"61",49210,"VISrll2-3","Rostrolateral lateral visual area, layer 2/3",49202
+"62",49214,"VISrll4","Rostrolateral lateral visual area, layer 4",49202
+"63",49218,"VISrll5","Rostrolateral lateral visual area,layer 5",49202
+"64",49222,"VISrll6a","Rostrolateral lateral visual area, layer 6a",49202
+"65",49226,"VISrll6b","Rostrolateral lateral visual area, layer 6b",49202
 "66",337,"SSp-ll","Primary somatosensory area, lower limb",322
 "67",1030,"SSp-ll1","Primary somatosensory area, lower limb, layer 1",337
 "68",113,"SSp-ll2-3","Primary somatosensory area, lower limb, layer 2/3",337
@@ -93,12 +93,12 @@
 "92",9,"SSp-tr6a","Primary somatosensory area, trunk, layer 6a",361
 "93",461,"SSp-tr6b","Primary somatosensory area, trunk, layer 6b",361
 "94",5689,"SSp-un","Primary somatosensory area, unassigned",322
-"95",5693,"SSp-un1","Primary somatosensory area, unassigned, layer 1",182305689
-"96",5697,"SSp-un2-3","Primary somatosensory area, unassigned, layer 2/3",182305689
-"97",5701,"SSp-un4","Primary somatosensory area, unassigned, layer 4",182305689
-"98",5705,"SSp-un5","Primary somatosensory area, unassigned, layer 5",182305689
-"99",5709,"SSp-un6a","Primary somatosensory area, unassigned, layer 6a",182305689
-"100",5713,"SSp-un6b","Primary somatosensory area, unassigned, layer 6b",182305689
+"95",5693,"SSp-un1","Primary somatosensory area, unassigned, layer 1",5689
+"96",5697,"SSp-un2-3","Primary somatosensory area, unassigned, layer 2/3",5689
+"97",5701,"SSp-un4","Primary somatosensory area, unassigned, layer 4",5689
+"98",5705,"SSp-un5","Primary somatosensory area, unassigned, layer 5",5689
+"99",5709,"SSp-un6a","Primary somatosensory area, unassigned, layer 6a",5689
+"100",5713,"SSp-un6b","Primary somatosensory area, unassigned, layer 6b",5689
 "101",378,"SSs","Supplemental somatosensory area",453
 "102",873,"SSs1","Supplemental somatosensory area, layer 1",378
 "103",806,"SSs2-3","Supplemental somatosensory area, layer 2/3",378
@@ -129,12 +129,12 @@
 "128",156,"AUDd6a","Dorsal auditory area, layer 6a",1011
 "129",243,"AUDd6b","Dorsal auditory area, layer 6b",1011
 "130",49230,"VISlla","Laterolateral anterior visual area",1011
-"131",49234,"VISlla1","Laterolateral anterior visual area, layer 1",480149230
-"132",49238,"VISlla2-3","Laterolateral anterior visual area, layer 2/3",480149230
-"133",49242,"VISlla4","Laterolateral anterior visual area, layer 4",480149230
-"134",49246,"VISlla5","Laterolateral anterior visual area,layer 5",480149230
-"135",49250,"VISlla6a","Laterolateral anterior visual area, layer 6a",480149230
-"136",49254,"VISlla6b","Laterolateral anterior visual area, layer 6b",480149230
+"131",49234,"VISlla1","Laterolateral anterior visual area, layer 1",49230
+"132",49238,"VISlla2-3","Laterolateral anterior visual area, layer 2/3",49230
+"133",49242,"VISlla4","Laterolateral anterior visual area, layer 4",49230
+"134",49246,"VISlla5","Laterolateral anterior visual area,layer 5",49230
+"135",49250,"VISlla6a","Laterolateral anterior visual area, layer 6a",49230
+"136",49254,"VISlla6b","Laterolateral anterior visual area, layer 6b",49230
 "137",1002,"AUDp","Primary auditory area",247
 "138",735,"AUDp1","Primary auditory area, layer 1",1002
 "139",251,"AUDp2-3","Primary auditory area, layer 2/3",1002
@@ -206,19 +206,19 @@
 "205",257,"VISpm6a","posteromedial visual area, layer 6a",533
 "206",469,"VISpm6b","posteromedial visual area, layer 6b",533
 "207",82574,"VISli","Laterointermediate area",669
-"208",82578,"VISli1","Laterointermediate area, layer 1",312782574
-"209",82582,"VISli2-3","Laterointermediate area, layer 2/3",312782574
-"210",82586,"VISli4","Laterointermediate area, layer 4",312782574
-"211",82590,"VISli5","Laterointermediate area, layer 5",312782574
-"212",82594,"VISli6a","Laterointermediate area, layer 6a",312782574
-"213",82598,"VISli6b","Laterointermediate area, layer 6b",312782574
+"208",82578,"VISli1","Laterointermediate area, layer 1",82574
+"209",82582,"VISli2-3","Laterointermediate area, layer 2/3",82574
+"210",82586,"VISli4","Laterointermediate area, layer 4",82574
+"211",82590,"VISli5","Laterointermediate area, layer 5",82574
+"212",82594,"VISli6a","Laterointermediate area, layer 6a",82574
+"213",82598,"VISli6b","Laterointermediate area, layer 6b",82574
 "214",82628,"VISpor","Postrhinal area",669
-"215",82632,"VISpor1","Postrhinal area, layer 1",312782628
-"216",82636,"VISpor2-3","Postrhinal area, layer 2/3",312782628
-"217",82640,"VISpor4","Postrhinal area, layer 4",312782628
-"218",82644,"VISpor5","Postrhinal area, layer 5",312782628
-"219",82648,"VISpor6a","Postrhinal area, layer 6a",312782628
-"220",82652,"VISpor6b","Postrhinal area, layer 6b",312782628
+"215",82632,"VISpor1","Postrhinal area, layer 1",82628
+"216",82636,"VISpor2-3","Postrhinal area, layer 2/3",82628
+"217",82640,"VISpor4","Postrhinal area, layer 4",82628
+"218",82644,"VISpor5","Postrhinal area, layer 5",82628
+"219",82648,"VISpor6a","Postrhinal area, layer 6a",82628
+"220",82652,"VISpor6b","Postrhinal area, layer 6b",82628
 "221",31,"ACA","Anterior cingulate area",315
 "222",572,"ACA1","Anterior cingulate area, layer 1",31
 "223",1053,"ACA2-3","Anterior cingulate area, layer 2/3",31
@@ -304,26 +304,26 @@
 "303",906,"RSPagl6a","Retrosplenial area, lateral agranular part, layer 6a",894
 "304",279,"RSPagl6b","Retrosplenial area, lateral agranular part, layer 6b",894
 "305",49258,"VISmma","Mediomedial anterior visual area",894
-"306",49262,"VISmma1","Mediomedial anterior visual area, layer 1",480149258
-"307",49266,"VISmma2-3","Mediomedial anterior visual area, layer 2/3",480149258
-"308",49270,"VISmma4","Mediomedial anterior visual area, layer 4",480149258
-"309",49274,"VISmma5","Mediomedial anterior visual area,layer 5",480149258
-"310",49278,"VISmma6a","Mediomedial anterior visual area, layer 6a",480149258
-"311",49282,"VISmma6b","Mediomedial anterior visual area, layer 6b",480149258
+"306",49262,"VISmma1","Mediomedial anterior visual area, layer 1",49258
+"307",49266,"VISmma2-3","Mediomedial anterior visual area, layer 2/3",49258
+"308",49270,"VISmma4","Mediomedial anterior visual area, layer 4",49258
+"309",49274,"VISmma5","Mediomedial anterior visual area,layer 5",49258
+"310",49278,"VISmma6a","Mediomedial anterior visual area, layer 6a",49258
+"311",49282,"VISmma6b","Mediomedial anterior visual area, layer 6b",49258
 "312",49286,"VISmmp","Mediomedial posterior visual area",894
-"313",49290,"VISmmp1","Mediomedial posterior visual area, layer 1",480149286
-"314",49294,"VISmmp2-3","Mediomedial posterior visual area, layer 2/3",480149286
-"315",49298,"VISmmp4","Mediomedial posterior visual area, layer 4",480149286
-"316",49302,"VISmmp5","Mediomedial posterior visual area,layer 5",480149286
-"317",49306,"VISmmp6a","Mediomedial posterior visual area, layer 6a",480149286
-"318",49310,"VISmmp6b","Mediomedial posterior visual area, layer 6b",480149286
+"313",49290,"VISmmp1","Mediomedial posterior visual area, layer 1",49286
+"314",49294,"VISmmp2-3","Mediomedial posterior visual area, layer 2/3",49286
+"315",49298,"VISmmp4","Mediomedial posterior visual area, layer 4",49286
+"316",49302,"VISmmp5","Mediomedial posterior visual area,layer 5",49286
+"317",49306,"VISmmp6a","Mediomedial posterior visual area, layer 6a",49286
+"318",49310,"VISmmp6b","Mediomedial posterior visual area, layer 6b",49286
 "319",49314,"VISm","Medial visual area",894
-"320",49318,"VISm1","Medial visual area, layer 1",480149314
-"321",49322,"VISm2-3","Medial visual area, layer 2/3",480149314
-"322",49326,"VISm4","Medial visual area, layer 4",480149314
-"323",49330,"VISm5","Medial visual area,layer 5",480149314
-"324",49334,"VISm6a","Medial visual area, layer 6a",480149314
-"325",49338,"VISm6b","Medial visual area, layer 6b",480149314
+"320",49318,"VISm1","Medial visual area, layer 1",49314
+"321",49322,"VISm2-3","Medial visual area, layer 2/3",49314
+"322",49326,"VISm4","Medial visual area, layer 4",49314
+"323",49330,"VISm5","Medial visual area,layer 5",49314
+"324",49334,"VISm6a","Medial visual area, layer 6a",49314
+"325",49338,"VISm6b","Medial visual area, layer 6b",49314
 "326",879,"RSPd","Retrosplenial area, dorsal part",254
 "327",442,"RSPd1","Retrosplenial area, dorsal part, layer 1",879
 "328",434,"RSPd2-3","Retrosplenial area, dorsal part, layer 2/3",879
@@ -346,12 +346,12 @@
 "345",308,"PTLp6a","Posterior parietal association areas, layer 6a",22
 "346",340,"PTLp6b","Posterior parietal association areas, layer 6b",22
 "347",82546,"VISa","Anterior area",22
-"348",82550,"VISa1","Anterior area, layer 1",312782546
-"349",82554,"VISa2-3","Anterior area, layer 2/3",312782546
-"350",82558,"VISa4","Anterior area, layer 4",312782546
-"351",82562,"VISa5","Anterior area, layer 5",312782546
-"352",82566,"VISa6a","Anterior area, layer 6a",312782546
-"353",82570,"VISa6b","Anterior area, layer 6b",312782546
+"348",82550,"VISa1","Anterior area, layer 1",82546
+"349",82554,"VISa2-3","Anterior area, layer 2/3",82546
+"350",82558,"VISa4","Anterior area, layer 4",82546
+"351",82562,"VISa5","Anterior area, layer 5",82546
+"352",82566,"VISa6a","Anterior area, layer 6a",82546
+"353",82570,"VISa6b","Anterior area, layer 6b",82546
 "354",417,"VISrl","Rostrolateral visual area",22
 "355",82604,"VISrl1","Rostrolateral area, layer 1",417
 "356",82608,"VISrl2-3","Rostrolateral area, layer 2/3",417
@@ -544,14 +544,14 @@
 "543",870,"SUBv-sp","Subiculum, ventral part, pyramidal layer",518
 "544",861,"SUBv-sr","Subiculum, ventral part, stratum radiatum",518
 "545",82470,"ProS","Prosubiculum",822
-"546",82475,"ProSd","Prosubiculum, dorsal part",484682470
-"547",82479,"ProSd-m","Prosubiculum, dorsal part, molecular layer",484682475
-"548",82483,"ProSd-sp","Prosubiculum, dorsal part, pyramidal layer",484682475
-"549",82487,"ProSd-sr","Prosubiculum, dorsal part, stratum radiatum",484682475
-"550",82492,"ProSv","Prosubiculum, ventral part",484682470
-"551",82496,"ProSv-m","Prosubiculum, ventral part, molecular layer",484682492
-"552",82500,"ProSv-sp","Prosubiculum, ventral part, pyramidal layer",484682492
-"553",82504,"Prosv-sr","Prosubiculum, ventral part, stratum radiatum",484682492
+"546",82475,"ProSd","Prosubiculum, dorsal part",82470
+"547",82479,"ProSd-m","Prosubiculum, dorsal part, molecular layer",82475
+"548",82483,"ProSd-sp","Prosubiculum, dorsal part, pyramidal layer",82475
+"549",82487,"ProSd-sr","Prosubiculum, dorsal part, stratum radiatum",82475
+"550",82492,"ProSv","Prosubiculum, ventral part",82470
+"551",82496,"ProSv-m","Prosubiculum, ventral part, molecular layer",82492
+"552",82500,"ProSv-sp","Prosubiculum, ventral part, pyramidal layer",82492
+"553",82504,"Prosv-sr","Prosubiculum, ventral part, stratum radiatum",82492
 "554",8447,"HATA","Hippocampo-amygdalar transition area",822
 "555",82508,"APr","Area prostriata",822
 "556",703,"CTXsp","Cortical subplate",688
