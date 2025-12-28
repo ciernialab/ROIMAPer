@@ -934,8 +934,7 @@ function to_downsampled_selection(roi_ids) {
 					roiManager("select", roiManager("count") - 1);
 					new_name = old_name + "_" + (i - first_split);
 					roiManager("rename", new_name);
-					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we will delete the original ROI
-, which is before the newly added ROIs
+					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we will delete the original ROI, which is before the newly added ROIs
 				}
 				
 				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
@@ -1302,6 +1301,7 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	}
 	close("bw");
 }
+
 
 
 
