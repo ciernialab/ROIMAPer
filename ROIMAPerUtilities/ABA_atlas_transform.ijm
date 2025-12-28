@@ -5,7 +5,7 @@
 
 dir = replace(getDir("Please select the ROIMAPer folder"), "\\", "/");
 /*
-open(dir + "atlases/annotation_10.nrrd");
+open(dir + "atlases/annotation_10_float_adjusted.nrrd");
 setMinAndMax(0, 1000);
 
 rename("aba_v3-Sagittal");
@@ -33,8 +33,9 @@ close("aba_v3-Horizontal");
 call("java.lang.System.gc");
 
 //end horizontal
+*/
 //do coronal
-open(dir + "atlases/annotation_10.nrrd");
+open(dir + "atlases/annotation_10_float_adjusted.nrrd");
 rename("aba_v3-Sagittal");
 run("Reslice [/]...", "start=Left rotate avoid");
 close("aba_v3-Sagittal");
@@ -57,10 +58,10 @@ run("Crop");
 run("Bio-Formats Exporter", "save=" + dir + "atlases/aba_v3-Coronal_halfbrain.tif compression=zlib");
 
 close("aba_v3-Coronal");
-*/
 
+/*
 //do sagittal
-open(dir + "atlases/annotation_10.nrrd");
+open(dir + "atlases/annotation_10_float_adjusted.nrrd");
 rename("aba_v3-Sagittal");
 slices = nSlices;
 for (i = slices; i >= 1; i--) {
