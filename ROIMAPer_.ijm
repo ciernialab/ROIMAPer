@@ -587,6 +587,8 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 					 //in case rotation was already attempted: restore the rotate option
 					modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
 					
+					//restore the previous bounding rectangle as a selection, to make for easier editing
+					makeRotatedRectangle((xbounding[0]+xbounding[1])/2, (ybounding[0]+ybounding[1])/2, (xbounding[2]+xbounding[3])/2, (ybounding[2]+ybounding[3])/2, widthbounding);
 					atlas_slice = user_bounding_box(atlas_slice);
 					
 					if (skip_choice == "Skip") {
@@ -931,10 +933,10 @@ function to_downsampled_selection(roi_ids) {
 					roiManager("select", roiManager("count") - 1);
 					new_name = old_name + "_" + (i - first_split);
 					roiManager("rename", new_name);
-					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we delete the original ROI
+					intermediate_rois = Array.concat(intermediate_rois, i - 1); //has to be one smaller because we will delete the original ROI, which is before the newly added ROIs
 				}
 				
-				roi_ids = Array.delete(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
+				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
 				roiManager("select", changing_roi);
 				roiManager("delete");
 				
@@ -947,23 +949,24 @@ function to_downsampled_selection(roi_ids) {
 				//delete the intermediate, split ROIs
 				roiManager("select", intermediate_rois);
 				roiManager("delete");
-				//after deletion, the downsampled ROIs are the same indices
+				//after deletion, the new, downsampled ROIs are the same indices
+				downsampled_rois = intermediate_rois;
 				
-				roiManager("select", intermediate_rois);
-				waitForUser("Please adjust the ROI you have selected.");
+				roiManager("select", downsampled_rois);
+				waitForUser("Please adjust the ROIs you have selected. They are at the bottom of the ROI Manager list");
 				roiManager("show all without labels");
 				
 				//make composite ROI again
-				roiManager("select", intermediate_rois);
+				roiManager("select", downsampled_rois);
 				roiManager("combine");
 				roiManager("add");
 				roiManager("rename", old_name);
 				
-				roiManager("select", intermediate_rois);
+				roiManager("select", downsampled_rois);
 				roiManager("delete");
 				
-				
-				new_roi_index = roiManager("count") - intermediate_rois.length;
+				//latest index is of the newly added ROI
+				new_roi_index = roiManager("count") - 1;
 				
 				roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
 				
@@ -982,7 +985,7 @@ function to_downsampled_selection(roi_ids) {
 				
 				roiManager("add");//this is the new version of the roi
 			
-				roi_ids = Array.delete(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
+				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
 				roiManager("select", changing_roi);
 				roiManager("delete");
 				for (i = 0; i < roi_ids.length; i++) {//after deletion, the index of all higher ROIs will change, so have to adjust all higher ones
