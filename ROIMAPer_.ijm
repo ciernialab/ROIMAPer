@@ -30,7 +30,7 @@ showMessage("ROIMAPer", "<html>
 
 //directory setup
 default_directory = File.getDefaultDir;//to restore in the end
-temp = getDirectory("temp");
+
 //find the ROIMAPer plugin
 plugin_list = getFileList(getDirectory("imagej") + "scripts/Plugins/");
 found_roimapper = false;
@@ -61,6 +61,12 @@ File.setDefaultDir(default_directory);
 
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
+
+//make folder in temporary directory
+temp = getDirectory("temp");
+temp = replace(temp, "\\", "/");
+temp = temp + "ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+File.makeDirectory(temp);
 
 //get the directory of the analysis
 image_directory = getDirectory("Please choose the directory that contains your images.");
