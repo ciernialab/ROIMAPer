@@ -548,7 +548,7 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 				give_user_choice = true;
 			}
 			
-			modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
+			modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "change one roi", "redo bounding box");
 			modifying = true;
 			
 			while (modifying) {
@@ -587,12 +587,13 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 				} 
 				if (modifyer == "rotate by 90 degrees") {
 					rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
-					//modifying_options = Array.deleteValue(modifying_options, "rotate by 90 degrees - can only be performed once");
+				}
+				if (modifier == "change one roi") {
+					brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
+
 				}
 				if (modifyer == "redo bounding box") {
 					roiManager("reset");
-					 //in case rotation was already attempted: restore the rotate option
-					modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "redo bounding box");
 					
 					//restore the previous bounding rectangle as a selection, to make for easier editing
 					makeRotatedRectangle((xbounding[0]+xbounding[1])/2, (ybounding[0]+ybounding[1])/2, (xbounding[2]+xbounding[3])/2, (ybounding[2]+ybounding[3])/2, widthbounding);
@@ -651,13 +652,9 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 					}
 				}
 				
-				roiManager("show all without labels");
 			}
 			
 			if (proceed) {
-				//put the new rois on top of the actual background image, check if this is okay
-				
-				brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
 				
 				//save the rois to the temp directory, named after the images
 				if (brain_region_roi_ids.length > 0) {
