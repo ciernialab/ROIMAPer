@@ -548,12 +548,12 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 				give_user_choice = true;
 			}
 			
-			modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "change one roi", "redo bounding box");
+			modifying_options = newArray("Do not modify" , "flip x", "flip y", "rotate by 90 degrees", "change one roi", "mesh transform", "redo bounding box");
 			modifying = true;
 			
 			while (modifying) {
 				if (give_user_choice) {//only allow this if there were no problems in the previous round
-					Dialog.createNonBlocking("Are the ROIs oriented correctly?");
+					Dialog.createNonBlocking("Modifying.\nAre the ROIs oriented correctly?");
 					Dialog.addChoice("Modify orientation:", modifying_options, modifying_options[0]);
 					Dialog.show();
 					modifyer = Dialog.getChoice();
@@ -588,9 +588,11 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 				if (modifyer == "rotate by 90 degrees") {
 					rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bounding_box_id);
 				}
-				if (modifier == "change one roi") {
+				if (modifyer == "change one roi") {
 					brain_region_roi_ids = to_downsampled_selection(brain_region_roi_ids);
-
+				}
+				if (modifyer == "mesh transform") {
+					brain_region_roi_ids = mesh_transform(brain_region_roi_ids);
 				}
 				if (modifyer == "redo bounding box") {
 					roiManager("reset");
@@ -896,7 +898,7 @@ function to_downsampled_selection(roi_ids) {
 	roiManager("show all without labels");
 	
 	Dialog.createNonBlocking("Brain region selection");
-	Dialog.addMessage("Is the brain region selection okay? If yes, click \"OK\"");
+	Dialog.addMessage("Is the brain region selection okay? If yes, click \"OK\", you will be redirected to the \"Modifying\" window, where you can proceed");
 	Dialog.addMessage("Otherwise please select an roi to adjust, uncheck the following box, and enter a downsampling factor for the amount of points in the ROI");
 	Dialog.addCheckbox("Change an ROI", false);
 	Dialog.addToSameRow();
@@ -988,7 +990,9 @@ function to_downsampled_selection(roi_ids) {
 				makeSelection("polygon", new_xpoints, new_ypoints);
 				
 				roiManager("add");//this is the new version of the roi
-			
+				roiManager("select", roiManager("count")-1);//select the newly added roi
+				roiManager("rename", old_name);
+
 				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
 				roiManager("select", changing_roi);
 				roiManager("delete");
@@ -998,8 +1002,7 @@ function to_downsampled_selection(roi_ids) {
 					}
 				}
 				
-				roiManager("select", roiManager("count")-1);//select the newly added roi
-				roiManager("rename", old_name);
+				
 				new_roi_index = roiManager("index");
 				
 				roi_ids = Array.concat(roi_ids, new_roi_index);//and update the brain_region selection that will be saved to reflect this change
@@ -1020,6 +1023,441 @@ function to_downsampled_selection(roi_ids) {
 	return roi_ids;
 }
 
+
+function mesh_transform(roi_ids) {
+	current_tool = IJ.getToolName();
+	
+	//first split composites into individual rois
+	split_composite_rois = newArray();
+	split_composite_names = newArray();
+	skip_composites = newArray();
+	for (i = 0; i < roi_ids.length; i++) {//roi_ids.length
+		roiManager("select", roi_ids[i]);
+		
+		roi_type = Roi.getType;
+		old_name = Roi.getName;
+		//if ROI is composite, split it and handle every ROI individually
+		if (roi_type == "composite") {
+			skip_composites = Array.concat(skip_composites, roi_ids[i]);
+			changing_roi = roi_ids[i];
+			
+			
+			first_split = roiManager("count");
+			roiManager("split");
+			last_split = roiManager("count");
+			
+			
+			for (j = first_split; j < last_split; j++) {
+				split_composite_names = Array.concat(split_composite_names, old_name);
+				split_composite_rois = Array.concat(split_composite_rois, j);
+				new_name = old_name + "_" + (j - first_split);
+				roiManager("select", j);
+				roiManager("rename", new_name);
+			}
+		}
+	} //done with spliting
+	full_and_composite_roi_ids = Array.concat(roi_ids, split_composite_rois);
+	
+	
+	//let user create a mesh
+	roiManager("show all without labels");
+	setTool("multipoint");
+	waitForUser("Please left-click to create points that define the transformation mesh.\nThe points must not be placed outside of the bounding box.\nPlace at leas one point.");
+	
+	//so the macro does not break
+	if (selectionType() == -1) {
+		makePoint((xbounding[0] + xbounding[1]) / 2, (ybounding[0] + ybounding[1]) / 2);
+	}
+	roiManager("add");
+	mesh_id = roiManager("count") - 1;
+	
+	roiManager("select", mesh_id);
+	roiManager("rename", "Transform_mesh");
+	
+	getSelectionCoordinates(x_mesh, y_mesh);
+	
+	//all vortices
+	//bounding values are global variables
+	xvertex_array = Array.concat(x_mesh, xbounding);
+	yvertex_array = Array.concat(y_mesh, ybounding);
+	
+	//every ROI gets three vertices of the delauney triangle
+	all_delauney_vertex_positions = newArray();
+	
+	for (i = 0; i < full_and_composite_roi_ids.length; i++) {//full_and_composite_roi_ids.length
+		//only if this is not one of the original composites
+		if (!value_is_in_array(skip_composites, full_and_composite_roi_ids[i])) {
+				
+			roiManager("select", full_and_composite_roi_ids[i]);
+		
+			getSelectionCoordinates(xroi, yroi);
+			
+			//run through every probed point and find closest comparison vertex
+			for (j = 0; j < xroi.length; j++) {//xroi.length
+				xcandidate = xroi[j]; 
+				ycandidate = yroi[j];
+				if (!check_if_in_bounding(xcandidate, ycandidate)) {
+					moved_coords = move_into_bounding(xcandidate, ycandidate);
+					xcandidate = moved_coords[0];
+					ycandidate = moved_coords[1];
+					print("yes");
+				}
+				delauney_vertex_positions = get_delauney_triangle(xcandidate, ycandidate);
+				all_delauney_vertex_positions = Array.concat(all_delauney_vertex_positions, delauney_vertex_positions);
+				
+			}
+		}
+	}
+	roiManager("select", mesh_id);
+	
+	waitForUser("Please modify the points of the mesh.\nBe carefull not to add or remove any points.");
+	
+	roiManager("select", mesh_id);
+	getSelectionCoordinates(newx_mesh, newy_mesh);
+	Overlay.remove;
+	roiManager("show all without labels");
+	newxvertex_array = Array.concat(newx_mesh, xbounding);
+	newyvertex_array = Array.concat(newy_mesh, ybounding);
+	
+	//do not need the mesh anymore
+	roiManager("select", mesh_id);
+	roiManager("delete");
+	
+	delauney_position_counter = 0;
+	
+	//this will be the output
+	transformed_roi_ids = newArray();
+	//index of the split composites after transform
+	transformed_split_composite_rois = Array.concat(newArray(), split_composite_rois);
+	
+	
+	for (i = 0; i < full_and_composite_roi_ids.length; i++) { //full_and_composite_roi_ids.length
+		//have to skip the value if it is an original composite
+		if (!value_is_in_array(skip_composites, full_and_composite_roi_ids[i])) {
+			
+			roiManager("select", full_and_composite_roi_ids[i]);
+			
+			getSelectionCoordinates(xroi, yroi);
+			
+			roiname = Roi.getName;
+			new_xroi = newArray(xroi.length);
+			new_yroi = newArray(yroi.length);
+			
+			for (j = 0; j < new_xroi.length; j++) { //xroi.length
+				//because every point has three associated vertices
+				triangle1 = all_delauney_vertex_positions[delauney_position_counter];
+				delauney_position_counter++;
+				triangle2 = all_delauney_vertex_positions[delauney_position_counter];
+				delauney_position_counter++;
+				triangle3 = all_delauney_vertex_positions[delauney_position_counter];
+				delauney_position_counter++;
+				
+				//use barycentric coordinates
+				//first get coordinates of the triangle that this point is in
+				x1 = xvertex_array[triangle1];
+				x2 = xvertex_array[triangle2];
+				x3 = xvertex_array[triangle3];
+				y1 = yvertex_array[triangle1];
+				y2 = yvertex_array[triangle2];
+				y3 = yvertex_array[triangle3];
+				
+				barycentric_weights = barycentric(x1, y1, x2, y2, x3, y3, xroi[j], yroi[j]);
+				
+				w1 = barycentric_weights[0];
+				w2 = barycentric_weights[1];
+				w3 = barycentric_weights[2];
+				
+				//print(w1 + ", " + w2 + ", " + w3);
+					
+				
+				
+				x1new = newxvertex_array[triangle1];
+				x2new = newxvertex_array[triangle2];
+				x3new = newxvertex_array[triangle3];
+				y1new = newyvertex_array[triangle1];
+				y2new = newyvertex_array[triangle2];
+				y3new = newyvertex_array[triangle3];
+				
+				//makePolygon(x1new, y1new, x2new, y2new, x3new, y3new);
+				//run("Draw");
+				
+				new_xroi[j] = w1 * x1new + w2 * x2new + w3 * x3new;
+				new_yroi[j] = w1 * y1new + w2 * y2new + w3 * y3new;
+				if (!(0 <= w1 && w1 <= 1 && 0 <= w2 && w2 <= 1 && 0 <= w3 && w3 <= 1)) {
+					print("An error in the affine transform occured. This might result in deformed regions.");
+					new_xroi[j] = xroi[j];
+					new_yroi[j] = yroi[j];
+					
+				}
+			}
+			//Array.print(new_xroi);
+			//Array.print(new_yroi);
+			makeSelection("polygon", new_xroi, new_yroi);
+			roiManager("add");
+			roiManager("select", roiManager("count") - 1);
+			roiManager("rename", roiname);
+			
+			not_composite = true;
+			//if this was a composite, update the array of composite ROIs with the id of the new ROI
+			for (j = 0; j < transformed_split_composite_rois.length; j++) {
+				if (transformed_split_composite_rois[j] == full_and_composite_roi_ids[i]) {
+					transformed_split_composite_rois[j] = roiManager("count") - 1;
+					not_composite = false;
+				}
+			}
+			//if this was not a composite, add the ID to the output
+			if (not_composite) {
+				
+				transformed_roi_ids = Array.concat(transformed_roi_ids, roiManager("count") - 1);
+			}
+		}
+	}
+	
+	//fuse the ROIs that were split from composites
+	split_rois_delete_array = newArray();
+	for (i = 0; i < transformed_split_composite_rois.length; i++) {
+		split_roi_search_name = split_composite_names[i];
+		fuse_array = Array.concat(newArray(), transformed_split_composite_rois[i]);
+		
+		//find those with the same name and take all ids of the ones with the same name together
+		for (j = i + 1; j < split_composite_names.length; j++) {
+			if (split_roi_search_name == split_composite_names[j]) {
+				//add this id to an array of all the IDs of ROIs with the same parent name
+				fuse_array = Array.concat(fuse_array, transformed_split_composite_rois[j]);
+				
+				//advance i, because we already compared this j
+				i = j;
+			}
+		}
+		//creates the composite again
+		roiManager("select", fuse_array);
+		roiManager("combine");
+		roiManager("add");
+		roiManager("select", roiManager("count") - 1);
+		roiManager("rename", split_roi_search_name);
+		
+		//because the composites will be deleted in the end
+		// so we substract their number from the ROI index now
+		//with additional one because roimanager index is zero based but count not
+		//I think the following line contains a mistake
+		
+		transformed_roi_ids = Array.concat(transformed_roi_ids, roiManager("count") - 1); 
+		
+		//add all those that were fused to an array of ROIs that need to be deleted
+		split_rois_delete_array = Array.concat(split_rois_delete_array, fuse_array);
+	}
+	
+	setTool(current_tool);
+	
+	print("done");
+	all_delete_array =  Array.concat(roi_ids, Array.concat(split_composite_rois, split_rois_delete_array));
+	roiManager("select", all_delete_array);
+	roiManager("delete");
+	
+	//adjust output roi ids, because other ROIs were deleted
+	for (i = 0; i < transformed_roi_ids.length; i++) {
+		value = transformed_roi_ids[i];
+		for (j = 0; j < all_delete_array.length; j++) {
+			if (value > all_delete_array[j]) {
+				transformed_roi_ids[i] = transformed_roi_ids[i] - 1;
+			}
+		}
+	}
+	return transformed_roi_ids;
+}
+
+function get_delauney_triangle(xcandidate, ycandidate) {
+	distances = newArray(xvertex_array.length);
+	
+	for (i = 0; i < distances.length; i++) {
+		distances[i] = distance(xcandidate, ycandidate, xvertex_array[i], yvertex_array[i]);
+	}
+	
+	rank_distances = Array.rankPositions(distances);
+	//iteratively go through the closest vertices, if no delauney triangle is found, add another vertex and try again 
+	for (i = 2; i < rank_distances.length; i++) {
+		x3 = xvertex_array[rank_distances[i]];
+		y3 = yvertex_array[rank_distances[i]];
+		
+		for (j = 1; j < i; j++) {
+			x2 = xvertex_array[rank_distances[j]];
+			y2 = yvertex_array[rank_distances[j]];
+			
+			for (k = 0; k < j; k++) {
+				x1 = xvertex_array[rank_distances[k]];
+				y1 = yvertex_array[rank_distances[k]];
+				
+				//check if the three corners of the trianle are on the same line, if that is the case search for other candidate
+				check = (y1 - y2)*(x1 - x3) != (y1 - y3)*(x1 - x2);
+				
+				//if it is confirmed that the three points are not one one line
+				if (check) {
+					barycentric_weights = barycentric(x1, y1, x2, y2, x3, y3, xcandidate, ycandidate);
+			
+					w1 = barycentric_weights[0];
+					w2 = barycentric_weights[1];
+					w3 = barycentric_weights[2];
+					
+					//if all barycentric weights are in 0-1 then the point is in the triangle
+					if (0 <= w1 && w1 <= 1 && 0 <= w2 && w2 <= 1 && 0 <= w3 && w3 <= 1) {
+						check = true;
+					} else {
+						check = false;
+					}
+				}
+				
+				//now test if there is any other vertex in the circumcircle
+				if (check) {
+					circumcircle_dim = circumcircle(x1, y1, x2, y2, x3, y3);
+					for (l = 0; l < rank_distances.length; l++) {
+						if (l != i && l != j && l != k) {
+							
+							circum_distance = distance(circumcircle_dim[0], circumcircle_dim[1], xvertex_array[rank_distances[l]], yvertex_array[rank_distances[l]]);
+							
+							//if the distance from this candidate to the circumcenter is smaller than the circle radius, look for another candidate
+							if (circum_distance < circumcircle_dim[2]) {
+								
+								check = false;
+								break; 
+							}
+						}
+					}
+				}
+				//now check if those three conditions were fullfilled
+				if (check) {
+					break;
+				}
+			}
+			if (check) {
+				break;
+			}
+		}
+		if (check) {
+			break;
+		}
+	}
+	if (!check) {
+		print(w1 + ", " + w2 + ", " + w3);
+		print(xcandidate + ", " + ycandidate);
+				
+		print("candidate outside of box");
+		makePoint(xcandidate, ycandidate);
+		i = rank_distances.length - 1;
+	}
+	
+	return newArray(rank_distances[k], rank_distances[j], rank_distances[i]);
+}
+
+function barycentric(x1, y1, x2, y2, x3, y3, xpoint, ypoint) {
+	//find barycentric weights
+	//https://codeplea.com/triangular-interpolation
+	
+	//a is a helper-value so the term does not become too long
+	a = (y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3);
+		
+	w1 = ((y2 - y3) * (xpoint - x3) + (x3 - x2) * (ypoint - y3)) / a;
+	w2 = ((y3 - y1) * (xpoint - x3) + (x1 - x3) * (ypoint - y3)) / a;
+	w3 = 1 - w1 - w2;
+	return newArray(w1, w2, w3);
+}
+
+
+function distance(x1, y1, x2, y2) {
+	return Math.sqrt(Math.sqr(x1 - x2) + Math.sqr(y1 - y2));
+}
+
+function circumcircle(x1, y1, x2, y2, x3, y3) {
+	//from https://en.wikipedia.org/wiki/Circumcircle
+	bx = x2 - x1;
+	cx = x3 - x1;
+	by = y2 - y1;
+	cy = y3 - y1;
+	
+	D = 2 * (bx * cy - by * cx);
+	xcircumcenter = 1 / D * (cy * (Math.sqr(bx) + Math.sqr(by)) - by * (Math.sqr(cx) + Math.sqr(cy)));
+	ycircumcenter = 1 / D * (bx * (Math.sqr(cx) + Math.sqr(cy)) - cx * (Math.sqr(bx) + Math.sqr(by)));
+	
+	//circumradius is distance of circumcenter to any point
+	circumradius = Math.sqrt(Math.sqr(xcircumcenter) + Math.sqr(ycircumcenter));
+	
+	xcircumcenter = xcircumcenter + x1;
+	ycircumcenter = ycircumcenter + y1;
+	return newArray(xcircumcenter, ycircumcenter, circumradius);
+}
+
+function value_is_in_array(array, value) {
+	for (i = 0; i < array.length; i++) {
+		if (value == array[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+function move_into_bounding(xcandidate, ycandidate) {
+	//get distance of all corners
+	first_distance = distance(xcandidate, ycandidate, xbounding[0], ybounding[0]);
+	second_distance = distance(xcandidate, ycandidate, xbounding[1], ybounding[1]);
+	third_distance = distance(xcandidate, ycandidate, xbounding[2], ybounding[2]);
+	fourth_distance = distance(xcandidate, ycandidate, xbounding[3], ybounding[3]);
+	
+	first_distance_comp = (first_distance <= second_distance) + (first_distance <= third_distance) + (first_distance <= fourth_distance);
+	second_distance_comp = (second_distance <= first_distance) + (second_distance <= third_distance) + (second_distance <= fourth_distance);
+	third_distance_comp = (third_distance <= first_distance) + (third_distance <= second_distance) + (third_distance <= fourth_distance);
+	fourth_distance_comp = (fourth_distance <= first_distance) + (fourth_distance <= second_distance) + (fourth_distance <= third_distance);
+	
+	corner_distance_array = newArray();
+	if (first_distance_comp >=2) {
+		corner_distance_array = Array.concat(corner_distance_array, 0);
+	}
+	if (second_distance_comp >=2) {
+		corner_distance_array = Array.concat(corner_distance_array, 1);
+	}
+	if (third_distance_comp >=2) {
+		corner_distance_array = Array.concat(corner_distance_array, 2);
+	}
+	if (fourth_distance_comp >=2) {
+		corner_distance_array = Array.concat(corner_distance_array, 3);
+	}
+	
+	a_x = xbounding[corner_distance_array[0]];
+	a_y = ybounding[corner_distance_array[0]];
+	b_x = xbounding[corner_distance_array[1]];
+	b_y = ybounding[corner_distance_array[1]];
+	
+	a_b_x = b_x - a_x;
+	a_b_y = b_y - a_y;
+	a_c_x = xcandidate - a_x;
+	a_c_y = ycandidate - a_y;
+	
+	ab_ac = scalar_product(a_b_x, a_b_y, a_c_x, a_c_y);
+	ab_ab = scalar_product(a_b_x, a_b_y, a_b_x, a_b_y);
+	
+	a_d_x = a_b_x * ab_ac / ab_ab;
+	a_d_y = a_b_y * ab_ac / ab_ab;
+	return newArray(a_x + a_d_x, a_y + a_d_y);
+}
+
+function check_if_in_bounding(xcandidate, ycandidate) {
+	a_m_x = xcandidate - xbounding[0];
+	a_m_y = ycandidate - ybounding[0];
+	a_b_x = xbounding[1] - xbounding[0];
+	a_b_y = ybounding[1] - ybounding[0];
+	a_d_x = xbounding[3] - xbounding[0];
+	a_d_y = ybounding[3] - ybounding[0];
+	first_term = 0 < scalar_product(a_m_x, a_m_y, a_b_x, a_b_y);
+	second_term = scalar_product(a_m_x, a_m_y, a_b_x, a_b_y) < scalar_product(a_b_x, a_b_y, a_b_x, a_b_y);
+	
+	third_term = 0 < scalar_product(a_m_x, a_m_y, a_d_x, a_d_y);
+	fourth_term = scalar_product(a_m_x, a_m_y, a_d_x, a_d_y) < scalar_product(a_d_x, a_d_y, a_d_x, a_d_y);
+	
+	return (first_term && second_term && third_term && fourth_term);
+}
+
+function scalar_product(x1, y1, x2, y2) {
+	return x1 * x2 + y1 * y2;
+}
 
 //saving the results
 //make this a seperate function that runs on all images after all the adjustment is done
