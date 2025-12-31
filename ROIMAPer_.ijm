@@ -17,6 +17,8 @@ var mapping_index_path = "";
 var atlas_name = "";
 var atlas_path = "";
 var skip_choice = "Continue";
+var xvertex_array = 0;
+var yvertex_array = 0;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
