@@ -23,7 +23,7 @@ var utilities_directory = 0;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.1.0 (Dec 2025)</p1>"
+    +"<p1>Version: 2.2.0 (Dec 2025)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -994,7 +994,8 @@ function to_downsampled_selection(roi_ids) {
 				makeSelection("polygon", new_xpoints, new_ypoints);
 				
 				roiManager("add");//this is the new version of the roi
-				roiManager("select", roiManager("count")-1);//select the newly added roi
+			
+	roiManager("select", roiManager("count")-1);//select the newly added roi
 				roiManager("rename", old_name);
 
 				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
@@ -1746,6 +1747,7 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	}
 	close("bw");
 }
+
 
 
 
