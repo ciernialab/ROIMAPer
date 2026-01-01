@@ -19,6 +19,7 @@ var atlas_path = "";
 var skip_choice = "Continue";
 var xvertex_array = 0;
 var yvertex_array = 0;
+var utilities_directory = 0;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
@@ -48,6 +49,7 @@ if (!found_roimapper) {
 }
 
 home_directory = replace(getDirectory("imagej"), "\\", "/") + "scripts/Plugins/" + plugin_name + "atlases/";
+utilities_directory = replace(getDirectory("imagej"), "\\", "/") + "scripts/Plugins/" + plugin_name + "ROIMAPerUtilities/";
 File.setDefaultDir(home_directory);
 
 //get atlas specification
@@ -57,7 +59,7 @@ atlas_directory = home_directory + atlas_name + "_ROIs/";
 
 //the atlas id to brain region information
 text_file = substring(atlas_name, 0, indexOf(atlas_name, "-")) + "-brain_region_mapping.csv";
-mapping_index_path = home_directory + "mapping_index.csv";
+mapping_index_path = utilities_directory + "mapping_index.csv";
 File.setDefaultDir(default_directory);
 //restore default directory
 
@@ -256,7 +258,7 @@ if (do_slice_selection) {
 }
 
 
-Table.open(home_directory + text_file);
+Table.open(utilities_directory + text_file);
 
 defaultchannels = "DAPI, Iba1, GFAP, mOC87, Temp";
 
@@ -266,7 +268,7 @@ if(one_roi_for_all) {
 	screen_width = screenWidth;
 	call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.4), round(screen_height*0.01));
 	
-	open(home_directory + atlas_name + "_overview.tif");
+	open(utilities_directory + atlas_name + "_overview.tif");
 	Dialog.createNonBlocking("Template selection");
 	Dialog.addMessage("What slice of the Allen Brain do you want to map to?");
 	Dialog.addNumber("Slice", 1, 0, 3, "");
@@ -451,7 +453,7 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 				screen_width = screenWidth;
 				call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
-				open(home_directory + atlas_name + "_overview.tif");
+				open(utilities_directory + atlas_name + "_overview.tif");
 				selectWindow(control_channel);
 				
 				Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
@@ -708,7 +710,7 @@ function user_bounding_box(atlas_slice) {
 		screen_width = screenWidth;
 		call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
-		open(home_directory + atlas_name + "_overview.tif");
+		open(utilities_directory + atlas_name + "_overview.tif");
 		selectWindow(control_channel);
 		Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 		Dialog.addNumber("Slice", atlas_slice, 0, 3, "");
@@ -1534,7 +1536,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 //functions to create ROIs:
 function createROIs(atlas_name, mapping_index_path, searchTerm) {
 	
-Table.open(home_directory + text_file);
+Table.open(utilities_directory + text_file);
 	for (i = 0; i < searchTerm.length; i++) {
 		searchTerm[i] = trim(searchTerm[i]); //deal with whitespace in the brain region submission
 	}
