@@ -209,6 +209,7 @@ Dialog.addCheckbox("Use one roi set for all", false);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addCheckbox("Create additional combined result?", false);
+Dialog.addChoice("Output channels individually or combined?", newArray("individual", "combined", "both"), "both");
 Dialog.addCheckbox("Specify slices on import. If no it uses the first slice in every image", false);
 
 Dialog.show();
@@ -218,7 +219,7 @@ one_roi_for_all = Dialog.getCheckbox();
 //one_channel_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
-combined_results = Dialog.getCheckbox();
+combined_results = Dialog.getChoice();
 do_slice_selection = Dialog.getCheckbox();
 
 if (do_slice_selection) {
@@ -355,9 +356,10 @@ for (i = 1; i <= channelchoices.length; i++) {
 		control_channel_id = i;
 	}
 }
-
-File.makeDirectory(output_path);
-if (combined_results) {
+if (combined_output == "individual" || combined_output == "both") {
+	File.makeDirectory(output_path);
+}
+if (combined_results == "combined" || combined_output == "both") {
 	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
 
 	File.makeDirectory(combined_output_path);
@@ -1492,28 +1494,31 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 		
 		//get the array of selected channels to go through
 		only_channelchoices = Array.deleteValue(channelchoices, "do not use");
-		for (i = 1; i <= channelchoices.length; i++) {
-			//open the channels specified for analysis (so everything in channeloptions, which does not include "do not use", other than the background image)
-			for (j = 0; j < channeloptions_array.length; j++) {
-				if (channelchoices[i-1] == channeloptions_array[j]) {
-					if ((channelchoices[i-1] != control_channel && !map_to_control_channel) || only_channelchoices.length <= 1 || map_to_control_channel) {
-						
-						if (!is_czi[image_number]) {
-							run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + i + " c_end=" + i + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
-						} else {
+		
+		if (combined_output == "individual" || combined_output == "both") {
+			for (i = 1; i <= channelchoices.length; i++) {
+				//open the channels specified for analysis (so everything in channeloptions, which does not include "do not use", other than the background image)
+				for (j = 0; j < channeloptions_array.length; j++) {
+					if (channelchoices[i-1] == channeloptions_array[j]) {
+						if ((channelchoices[i-1] != control_channel && !map_to_control_channel) || only_channelchoices.length <= 1 || map_to_control_channel) {
 							
-							run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + i + " c_end_" + selectedslice + "=" + i + " c_step_" + selectedslice + "=1");
+							if (!is_czi[image_number]) {
+								run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + i + " c_end=" + i + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
+							} else {
+								
+								run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + i + " c_end_" + selectedslice + "=" + i + " c_step_" + selectedslice + "=1");
+							}
+							
+							rename(channeloptions_array[j]);
+							
+							
+							//go through all the individual rois of the atlas that are not the bounding box and save them as individual images on each of the selected channels
+							for (k = save_roi_ids_start; k <= save_roi_ids_end; k++) {
+								roiManager("select", k);
+								save(output_path + local_image_name_without_extension + "_" + channeloptions[j] + "_" + getInfo("selection.name") + ".tif");
+							}
+							close(channeloptions_array[j]);
 						}
-						
-						rename(channeloptions_array[j]);
-						
-						
-						//go through all the individual rois of the atlas that are not the bounding box and save them as individual images on each of the selected channels
-						for (k = save_roi_ids_start; k <= save_roi_ids_end; k++) {
-							roiManager("select", k);
-							save(output_path + local_image_name_without_extension + "_" + channeloptions[j] + "_" + getInfo("selection.name") + ".tif");
-						}
-						close(channeloptions_array[j]);
 					}
 				}
 			}
@@ -1524,7 +1529,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 			roi_closing_array = Array.concat(roi_closing_array, i);
 		}
 		
-		if (combined_results) {//opens the whole image and saves all ROIs combined
+		if (combined_results == "combined" || combined_output == "both") {//opens the whole image and saves all ROIs combined
 			
 			if (!is_czi[image_number]) {
 				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
