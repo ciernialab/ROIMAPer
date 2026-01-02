@@ -355,10 +355,10 @@ for (i = 1; i <= channelchoices.length; i++) {
 		control_channel_id = i;
 	}
 }
-if (combined_output == "individual" || combined_output == "both") {
+if (combined_results == "individual" || combined_results == "both") {
 	File.makeDirectory(output_path);
 }
-if (combined_results == "combined" || combined_output == "both") {
+if (combined_results == "combined" || combined_results == "both") {
 	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
 
 	File.makeDirectory(combined_output_path);
@@ -1494,7 +1494,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 		//get the array of selected channels to go through
 		only_channelchoices = Array.deleteValue(channelchoices, "do not use");
 		
-		if (combined_output == "individual" || combined_output == "both") {
+		if (combined_results == "individual" || combined_results == "both") {
 			for (i = 1; i <= channelchoices.length; i++) {
 				//open the channels specified for analysis (so everything in channeloptions, which does not include "do not use", other than the background image)
 				for (j = 0; j < channeloptions_array.length; j++) {
@@ -1528,7 +1528,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 			roi_closing_array = Array.concat(roi_closing_array, i);
 		}
 		
-		if (combined_results == "combined" || combined_output == "both") {//opens the whole image and saves all ROIs combined
+		if (combined_results == "combined" || combined_results == "both") {//opens the whole image and saves all ROIs combined
 			
 			if (!is_czi[image_number]) {
 				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
