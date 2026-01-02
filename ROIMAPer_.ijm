@@ -20,6 +20,11 @@ var skip_choice = "Continue";
 var xvertex_array = 0;
 var yvertex_array = 0;
 var utilities_directory = 0;
+var xbounding = 0;
+var ybounding = 0;
+var widthbounding = 0;
+var heightbounding = 0;
+
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
@@ -557,7 +562,7 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 			
 			while (modifying) {
 				if (give_user_choice) {//only allow this if there were no problems in the previous round
-					Dialog.createNonBlocking("Modifying.\nAre the ROIs oriented correctly?");
+					Dialog.createNonBlocking("Modifying.\nAre the ROIs oriented correctly?\nUsing both the mesh transform and \"change one roi\" in the same image will result in a crash.");
 					Dialog.addChoice("Modify orientation:", modifying_options, modifying_options[0]);
 					Dialog.show();
 					modifyer = Dialog.getChoice();
@@ -1062,22 +1067,35 @@ function mesh_transform(roi_ids) {
 		}
 	} //done with spliting
 	full_and_composite_roi_ids = Array.concat(roi_ids, split_composite_rois);
+	xcenter = (xbounding[2] - xbounding[0]) / 2 + xbounding[0]; //get center of the bounding box
+	ycenter = (ybounding[2] - ybounding[0]) / 2 + ybounding[0];
+	min_x_bounding = minOf(xbounding[0], minOf(xbounding[1], minOf(xbounding[2], xbounding[3])));
+	max_x_bounding = maxOf(xbounding[0], maxOf(xbounding[1], maxOf(xbounding[2], xbounding[3])));
+	min_y_bounding = minOf(ybounding[0], minOf(ybounding[1], minOf(ybounding[2], ybounding[3])));
+	max_y_bounding = maxOf(ybounding[0], maxOf(ybounding[1], maxOf(ybounding[2], ybounding[3])));
+	start_mesh_points_x = newArray(min_x_bounding - 100, xcenter, max_x_bounding + 100, xcenter);
+	start_mesh_points_y = newArray(ycenter, min_y_bounding - 100, ycenter, max_y_bounding + 100);
 	
+	Array.print(start_mesh_points_x);
+	Array.print(start_mesh_points_y);
 	
+	makeSelection("multipoint", start_mesh_points_x, start_mesh_points_y);
+	roiManager("add");
+	mesh_id = roiManager("count") - 1;
+	roiManager("select", mesh_id);
+	roiManager("rename", "Transform_mesh");
 	//let user create a mesh
 	roiManager("show all without labels");
 	setTool("multipoint");
-	waitForUser("Please left-click to create points that define the transformation mesh.\nThe points must not be placed outside of the bounding box.\nPlace at leas one point.");
+	roiManager("select", mesh_id);
+	waitForUser("Please left-click to create points that define the transformation mesh.\nIf some of your regions border the bounding box, there has to be a mesh point outside of the bounding box on that side.\nPlace at leas one point.");
 	
 	//so the macro does not break
 	if (selectionType() == -1) {
 		makePoint((xbounding[0] + xbounding[1]) / 2, (ybounding[0] + ybounding[1]) / 2);
 	}
-	roiManager("add");
-	mesh_id = roiManager("count") - 1;
 	
 	roiManager("select", mesh_id);
-	roiManager("rename", "Transform_mesh");
 	
 	getSelectionCoordinates(x_mesh, y_mesh);
 	
@@ -1105,7 +1123,6 @@ function mesh_transform(roi_ids) {
 					moved_coords = move_into_bounding(xcandidate, ycandidate);
 					xcandidate = moved_coords[0];
 					ycandidate = moved_coords[1];
-					print("yes");
 				}
 				delauney_vertex_positions = get_delauney_triangle(xcandidate, ycandidate);
 				all_delauney_vertex_positions = Array.concat(all_delauney_vertex_positions, delauney_vertex_positions);
@@ -1342,11 +1359,7 @@ function get_delauney_triangle(xcandidate, ycandidate) {
 		}
 	}
 	if (!check) {
-		print(w1 + ", " + w2 + ", " + w3);
-		print(xcandidate + ", " + ycandidate);
-				
-		print("candidate outside of box");
-		makePoint(xcandidate, ycandidate);
+		
 		i = rank_distances.length - 1;
 	}
 	
