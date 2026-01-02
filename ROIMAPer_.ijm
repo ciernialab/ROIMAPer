@@ -208,7 +208,6 @@ Dialog.addCheckbox("Use one roi set for all", false);
 //Dialog.addCheckbox("Images have consistent channel order", true);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
-Dialog.addCheckbox("Create additional combined result?", false);
 Dialog.addChoice("Output channels individually or combined?", newArray("individual", "combined", "both"), "both");
 Dialog.addCheckbox("Specify slices on import. If no it uses the first slice in every image", false);
 
