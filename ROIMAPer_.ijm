@@ -82,6 +82,7 @@ image_directory = getDirectory("Please choose the directory that contains your i
 image_list = getFileList(image_directory);
 image_list = Array.sort(image_list);
 total_images = lengthOf(image_list);
+directory_name = File.getNameWithoutExtension(image_directory);
 higher_directory = File.getDirectory(image_directory);
 
 Dialog.create("Image selection");
@@ -130,7 +131,7 @@ for (i = 0; i < image_selection_size; i++) {
 	}
 }
 
-output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+output_path = higher_directory + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
 
 //make empty array of roi-set names
 xpixelnumber = newArray();//could re-sort the image_path index (and all others belonging to it) to start with smallest image or smthg
@@ -359,7 +360,7 @@ for (i = 1; i <= channelchoices.length; i++) {
 	File.makeDirectory(output_path);
 }
 if (combined_results == "combined" || combined_results == "both") {
-	combined_output_path = higher_directory + "/ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
+	combined_output_path = higher_directory + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
 
 	File.makeDirectory(combined_output_path);
 }
