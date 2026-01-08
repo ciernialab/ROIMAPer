@@ -12,12 +12,32 @@ brain_region_indices_ABA$parent <- c(
 #get modulo, so only the part that is smaller than 100,000
 #see allen_atlas_float_conversion.py for replacing of values
 float_correct_ids <- brain_region_indices_ABA$id %% 100000
+float_correct_parents <- brain_region_indices_ABA$parent_structure_id %% 100000
 
 roimaper_aba <- data.frame(
   id = float_correct_ids,
   acronym = stringr::str_replace_all(brain_region_indices_ABA$acronym,
                                      pattern = "/", replacement = "-"),
   name = brain_region_indices_ABA$name,
-  parent = brain_region_indices_ABA$parent_structure_id)
+  parent = float_correct_parents)
 
-write.csv(roimaper_aba, file = "ROIMAPer/atlases/aba_v3-brain_region_mapping.csv")
+write.csv(roimaper_aba, file = "ROIMAPer/atlases/aba_v3_adult-brain_region_mapping.csv")
+write.csv(roimaper_aba, file = "ROIMAPer/atlases/aba_v3_p56-brain_region_mapping.csv")
+
+
+#now for dev mouse
+#id is 12 instead of 1
+brain_region_indices_ABA_devmouse <- read.csv("http://api.brain-map.org/api/v2/data/query.csv?criteria=model::Structure,rma::criteria,[ontology_id$eq12],rma::options[order$eq%27structures.graph_order%27][num_rows$eqall]")
+
+float_correct_ids_devmouse <- brain_region_indices_ABA_devmouse$id %% 100000
+length(unique(float_correct_ids_devmouse)) == length(unique(brain_region_indices_ABA_devmouse$id))
+float_correct_parents_devmouse <- brain_region_indices_ABA_devmouse$parent_structure_id %% 100000
+
+roimaper_aba_devmouse <- data.frame(
+  id = float_correct_ids_devmouse,
+  acronym = stringr::str_replace_all(brain_region_indices_ABA_devmouse$acronym,
+                                     pattern = "/", replacement = "-"),
+  name = brain_region_indices_ABA_devmouse$name,
+  parent = float_correct_parents_devmouse)
+
+write.csv(roimaper_aba_devmouse, file = "ROIMAPer/atlases/aba_v3_devmouse-brain_region_mapping.csv")
