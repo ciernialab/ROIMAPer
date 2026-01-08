@@ -1,0 +1,1840 @@
+"","id","acronym","name","parent"
+"1",4005,"Br","brain",NA
+"2",4006,"GM","gray matter",4005
+"3",4007,"Tel","telencephalon",4006
+"4",4008,"Cx","cerebral cortex",4007
+"5",4009,"FL","frontal lobe",4008
+"6",4053,"AOrG","anterior orbital gyrus",4009
+"7",4054,"AOrG","anterior orbital gyrus, left",4053
+"8",4055,"AOrG","anterior orbital gyrus, right",4053
+"9",4078,"fro","frontal operculum",4009
+"10",4079,"fro","frontal operculum, left",4078
+"11",4080,"fro","frontal operculum, right",4078
+"12",4888,"FP","frontal pole",4009
+"13",4889,"FP","frontal pole, left",4888
+"14",4890,"FP-s","frontal pole, left, superior aspect",4889
+"15",4891,"FPi","frontal pole, left, inferior aspect",4889
+"16",4892,"FPm","frontal pole, left, medial aspect",4889
+"17",4893,"FP","frontal pole, right",4888
+"18",4894,"FP-s","frontal pole, right, superior aspect",4893
+"19",4895,"FPi","frontal pole, right, inferior aspect",4893
+"20",4896,"FPm","frontal pole, right, medial aspect",4893
+"21",4047,"GRe","gyrus rectus",4009
+"22",4048,"GRe","gyrus rectus, left",4047
+"23",4049,"GRe","gyrus rectus, right",4047
+"24",4035,"IFG","inferior frontal gyrus",4009
+"25",4036,"IFG","inferior frontal gyrus, left",4035
+"26",4037,"IFG","inferior frontal gyrus, right",4035
+"27",4041,"opIFG","inferior frontal gyrus, opercular part",4035
+"28",4042,"opIFG","inferior frontal gyrus, opercular part, left",4041
+"29",4043,"opIFG","inferior frontal gyrus, opercular part, right",4041
+"30",4044,"orIFG","inferior frontal gyrus, orbital part",4035
+"31",4045,"orIFG","inferior frontal gyrus, orbital part, left",4044
+"32",4046,"orIFG","inferior frontal gyrus, orbital part, right",4044
+"33",4038,"trIFG","inferior frontal gyrus, triangular part",4035
+"34",4039,"trIFG","inferior frontal gyrus, triangular part, left",4038
+"35",4040,"trIFG","inferior frontal gyrus, triangular part, right",4038
+"36",4900,"IRoG","inferior rostral gyrus",4009
+"37",4901,"IRoG","inferior rostral gyrus, left",4900
+"38",4902,"IRoG","inferior rostral gyrus, right",4900
+"39",4059,"LOrG","lateral orbital gyrus",4009
+"40",4060,"LOrG","lateral orbital gyrus, left",4059
+"41",4061,"LOrG","lateral orbital gyrus, right",4059
+"42",4050,"MOrG","medial orbital gyrus",4009
+"43",4051,"MOrG","medial orbital gyrus, left",4050
+"44",4052,"MOrG","medial orbital gyrus, right",4050
+"45",4028,"MFG","middle frontal gyrus",4009
+"46",4029,"MFG","middle frontal gyrus, left",4028
+"47",4030,"MFG-s","middle frontal gyrus, left, superior bank of gyrus",4029
+"48",4031,"MFG-i","middle frontal gyrus, left, inferior bank of gyrus",4029
+"49",4032,"MFG","middle frontal gyrus, right",4028
+"50",4033,"MFG-s","middle frontal gyrus, right, superior bank of gyrus",4032
+"51",4034,"MFG-i","middle frontal gyrus, right, inferior bank of gyrus",4032
+"52",504406,"OlfA","olfactory area",4009
+"53",504410,"OlfA","olfactory area, left",504406
+"54",504414,"OlfA","olfactory area, right",504406
+"55",4071,"PCLa","paracentral lobule, anterior part",4009
+"56",4072,"PCLa","paracentral lobule, anterior part, left",4071
+"57",4073,"PCLa-s","paracentral lobule, anterior part, left, superior bank of gyrus",4072
+"58",4074,"PCLa-i","paracentral lobule, anterior part, left, inferior bank of gyrus",4072
+"59",4075,"PCLa","paracentral lobule, anterior part, right",4071
+"60",4076,"PCLa-s","paracentral lobule, anterior part, right, superior bank of gyrus",4075
+"61",4077,"PCLa-i","paracentral lobule, anterior part, right, inferior bank of gyrus",4075
+"62",4065,"PTG","paraterminal gyrus",4009
+"63",4066,"PTG","paraterminal gyrus, left",4065
+"64",4067,"PTG","paraterminal gyrus, right",4065
+"65",4068,"PaOG","parolfactory gyri",4009
+"66",4069,"PaOG","parolfactory gyri, left",4068
+"67",4070,"PaOG","parolfactory gyri, right",4068
+"68",4056,"POrG","posterior orbital gyrus",4009
+"69",4057,"POrG","posterior orbital gyrus, left",4056
+"70",4058,"POrG","posterior orbital gyrus, right",4056
+"71",4010,"PrG","precentral gyrus",4009
+"72",4011,"PrG","precentral gyrus, left",4010
+"73",4012,"PrG-prc","precentral gyrus, left, bank of the precentral sulcus",4011
+"74",4013,"PrG-sl","precentral gyrus, left, superior lateral aspect of gyrus",4011
+"75",4014,"PrG-il","precentral gyrus, left, inferior lateral aspect of gyrus",4011
+"76",4015,"PrG-cs","precentral gyrus, left, bank of the central sulcus",4011
+"77",4016,"PrG","precentral gyrus, right",4010
+"78",4017,"PrG-prc","precentral gyrus, right, bank of the precentral sulcus",4016
+"79",4018,"PrG-sl","precentral gyrus, right, superior lateral aspect of gyrus",4016
+"80",4019,"PrG-il","precentral gyrus, right, inferior lateral aspect of gyrus",4016
+"81",4020,"PrG-cs","precentral gyrus, right, bank of the central sulcus",4016
+"82",4021,"SFG","superior frontal gyrus",4009
+"83",4022,"SFG","superior frontal gyrus, left",4021
+"84",4023,"SFG-m","superior frontal gyrus, left, medial bank of gyrus",4022
+"85",4024,"SFG-l","superior frontal gyrus, left, lateral bank of gyrus",4022
+"86",4025,"SFG","superior frontal gyrus, right",4021
+"87",4026,"SFG-m","superior frontal gyrus, right, medial bank of gyrus",4025
+"88",4027,"SFG-l","superior frontal gyrus, right, lateral bank of gyrus",4025
+"89",4897,"SRoG","superior rostral gyrus",4009
+"90",4898,"SRoG","superior rostral gyrus, left",4897
+"91",4899,"SRoG","superior rostral gyrus, right",4897
+"92",4268,"Ins","insula",4008
+"93",4269,"LIG","long insular gyri",4268
+"94",4270,"LIG","long insular gyri, left",4269
+"95",4271,"LIG","long insular gyri, right",4269
+"96",4272,"SIG","short insular gyri",4268
+"97",4273,"SIG","short insular gyri, left",4272
+"98",4274,"SIG","short insular gyri, right",4272
+"99",4219,"LL","limbic lobe",4008
+"100",4220,"CgG","cingulate gyrus",4219
+"101",4221,"CgGf","cingulate gyrus, frontal part",4220
+"102",4222,"CgGf","cingulate gyrus, frontal part, left",4221
+"103",4223,"CgGf-s","cingulate gyrus, frontal part, left, superior bank of gyrus",4222
+"104",4224,"CgGf-i","cingulate gyrus, frontal part, left, inferior bank of gyrus",4222
+"105",4225,"CgGf","cingulate gyrus, frontal part, right",4221
+"106",4226,"CgGf-s","cingulate gyrus, frontal part, right, superior bank of gyrus",4225
+"107",4227,"CgGf-i","cingulate gyrus, frontal part, right, inferior bank of gyrus",4225
+"108",4228,"CgGp","cingulate gyrus, parietal part",4220
+"109",4229,"CgGp","cingulate gyrus, parietal part, left",4228
+"110",4230,"CgGp-s","cingulate gyrus, parietal part, left, superior bank of gyrus",4229
+"111",4231,"CgGp-i","cingulate gyrus, parietal part, left, inferior bank of gyrus",4229
+"112",4232,"CgGp","cingulate gyrus, parietal part, right",4228
+"113",4233,"CgGp-s","cingulate gyrus, parietal part, right, superior bank of gyrus",4232
+"114",4234,"CgGp-i","cingulate gyrus, parietal part, right, inferior bank of gyrus",4232
+"115",4235,"CgGr","cingulate gyrus, retrosplenial part",4220
+"116",4236,"CgGr","cingulate gyrus, retrosplenial part, left",4235
+"117",4237,"CgGr-s","cingulate gyrus, retrosplenial part, left, superior bank of gyrus",4236
+"118",4238,"CgGr-i","cingulate gyrus, retrosplenial part, left, inferior bank of gyrus",4236
+"119",4239,"CgGr","cingulate gyrus, retrosplenial part, right",4235
+"120",4240,"CgGr-s","cingulate gyrus, retrosplenial part, right, superior bank of gyrus",4239
+"121",4241,"CgGr-i","cingulate gyrus, retrosplenial part, right, inferior bank of gyrus",4239
+"122",4062,"SCG","subcallosal cingulate gyrus",4220
+"123",4063,"SCG","subcallosal cingulate gyrus, left",4062
+"124",4064,"SCG","subcallosal cingulate gyrus, right",4062
+"125",4249,"HiF","hippocampal formation",4219
+"126",12891,"DG","dentate gyrus",4249
+"127",4258,"DG","dentate gyrus, left",12891
+"128",4267,"DG","dentate gyrus, right",12891
+"129",12892,"CA1","CA1 field",4249
+"130",4254,"CA1","CA1 field, left",12892
+"131",4263,"CA1","CA1 field, right",12892
+"132",12893,"CA2","CA2 field",4249
+"133",4255,"CA2","CA2 field, left",12893
+"134",4264,"CA2","CA2 field, right",12893
+"135",12894,"CA3","CA3 field",4249
+"136",4256,"CA3","CA3 field, left",12894
+"137",4265,"CA3","CA3 field, right",12894
+"138",12895,"CA4","CA4 field",4249
+"139",4257,"CA4","CA4 field, left",12895
+"140",4266,"CA4","CA4 field, right",12895
+"141",504424,"IG","indusium griseum",4249
+"142",504428,"IG","indusium griseum, left",504424
+"143",504432,"IG","indusium griseum, right",504424
+"144",12896,"S","subiculum",4249
+"145",4251,"S","subiculum, left",12896
+"146",4252,"PrS","presubiculum, left",4251
+"147",4253,"PaS","parasubiculum, left",4251
+"148",504436,"ProS","prosubiculum, left",4251
+"149",504440,"Sub","subiculum proper, left",4251
+"150",4260,"S","subiculum, right",12896
+"151",4261,"PrS","presubiculum, right",4260
+"152",4262,"PaS","parasubiculum, right",4260
+"153",504444,"ProS","prosubiculum, right",4260
+"154",504448,"Sub","subiculum proper, right",4260
+"155",4242,"PHG","parahippocampal gyrus",4219
+"156",4243,"PHG","parahippocampal gyrus, left",4242
+"157",4244,"PHG-l","parahippocampal gyrus, left, lateral bank of gyrus",4243
+"158",4245,"PHG-cos","parahippocampal gyrus, left, bank of the cos",4243
+"159",4246,"PHG","parahippocampal gyrus, right",4242
+"160",4247,"PHG-l","parahippocampal gyrus, right, lateral bank of gyrus",4246
+"161",4248,"PHG-cos","parahippocampal gyrus, right, bank of the cos",4246
+"162",10142,"Pir","piriform cortex",4219
+"163",10143,"Pir","piriform cortex, left",10142
+"164",10144,"Pir","piriform cortex, right",10142
+"165",4180,"OL","occipital lobe",4008
+"166",4184,"Cun","cuneus",4180
+"167",4185,"Cun","cuneus, left",4184
+"168",4186,"Cun-pest","cuneus, left, peristriate",4185
+"169",4187,"Cun-str","cuneus, left, striate",4185
+"170",4188,"Cun","cuneus, right",4184
+"171",4189,"Cun-pest","cuneus, right, peristriate",4188
+"172",4190,"Cun-str","cuneus, right, striate",4188
+"173",4205,"IOG","inferior occipital gyrus",4180
+"174",4206,"IOG","inferior occipital gyrus, left",4205
+"175",4207,"IOG-s","inferior occipital gyrus, left, superior bank of gyrus",4206
+"176",4208,"IOG-i","inferior occipital gyrus, left, inferior bank of gyrus",4206
+"177",4209,"IOG","inferior occipital gyrus, right",4205
+"178",4210,"IOG-s","inferior occipital gyrus, right, superior bank of gyrus",4209
+"179",4211,"IOG-i","inferior occipital gyrus, right, inferior bank of gyrus",4209
+"180",4191,"LiG","lingual gyrus",4180
+"181",4192,"LiG","lingual gyrus, left",4191
+"182",4193,"LiG-pest","lingual gyrus, left, peristriate",4192
+"183",4194,"LiG-str","lingual gyrus, left, striate",4192
+"184",4195,"LiG","lingual gyrus, right",4191
+"185",4196,"LiG-pest","lingual gyrus, right, peristriate",4195
+"186",4197,"LiG-str","lingual gyrus, right, striate",4195
+"187",4181,"OP","occipital pole",4180
+"188",4182,"OP","occipital pole, left",4181
+"189",4909,"OPs","occipital pole, left, superior aspect",4182
+"190",4910,"OPi","occipital pole, left, inferior aspect",4182
+"191",4911,"OPl","occipital pole, left, lateral aspect",4182
+"192",4183,"OP","occipital pole, right",4181
+"193",4912,"OPs","occipital pole, right, superior aspect",4183
+"194",4913,"OPi","occipital pole, right, inferior aspect",4183
+"195",4914,"OPl","occipital pole, right, lateral aspect",4183
+"196",4198,"OTG","occipito-temporal gyrus",4180
+"197",4199,"OTG","occipito-temporal gyrus, left",4198
+"198",4200,"OTG-s","occipito-temporal gyrus, left, superior bank of gyrus",4199
+"199",4201,"OTG-i","occipito-temporal gyrus, left, inferior bank of gyrus",4199
+"200",4202,"OTG","occipito-temporal gyrus, right",4198
+"201",4203,"OTG-s","occipito-temporal gyrus, right, superior bank of gyrus",4202
+"202",4204,"OTG-i","occipito-temporal gyrus, right, inferior bank of gyrus",4202
+"203",4212,"SOG","superior occipital gyrus",4180
+"204",4213,"SOG","superior occipital gyrus, left",4212
+"205",4214,"SOG-s","superior occipital gyrus, left, superior bank of gyrus",4213
+"206",4215,"SOG-i","superior occipital gyrus, left, inferior bank of gyrus",4213
+"207",4216,"SOG","superior occipital gyrus, right",4212
+"208",4217,"SOG-s","superior occipital gyrus, right, superior bank of gyrus",4216
+"209",4218,"SOG-i","superior occipital gyrus, right, inferior bank of gyrus",4216
+"210",4084,"PL","parietal lobe",4008
+"211",4103,"IPL","inferior parietal lobule",4084
+"212",4111,"AnG","angular gyrus",4103
+"213",4112,"AnG","angular gyrus, left",4111
+"214",4113,"AnG-s","angular gyrus, left, superior bank of gyrus",4112
+"215",4114,"AnG-i","angular gyrus, left, inferior bank of gyrus",4112
+"216",4115,"AnG","angular gyrus, right",4111
+"217",4116,"AnG-s","angular gyrus, right, superior bank of gyrus",4115
+"218",4117,"AnG-i","angular gyrus, right, inferior bank of gyrus",4115
+"219",4104,"SMG","supramarginal gyrus",4103
+"220",4105,"SMG","supramarginal gyrus, left",4104
+"221",4106,"SMG-s","supramarginal gyrus, left, superior bank of gyrus",4105
+"222",4107,"SMG-i","supramarginal gyrus, left, inferior bank of gyrus",4105
+"223",4108,"SMG","supramarginal gyrus, right",4104
+"224",4109,"SMG-s","supramarginal gyrus, right, superior bank of gyrus",4108
+"225",4110,"SMG-i","supramarginal gyrus, right, inferior bank of gyrus",4108
+"226",4125,"PCLp","paracentral lobule, posterior part",4084
+"227",4126,"PCLp","paracentral lobule, posterior part, left",4125
+"228",4127,"PCLp-l","paracentral lobule, posterior part, left, lateral bank of gyrus",4126
+"229",4128,"PCLp-cs","paracentral lobule, posterior part, left, bank of cingulate sulcus",4126
+"230",4129,"PCLp","paracentral lobule, posterior part, right",4125
+"231",4130,"PCLp-l","paracentral lobule, posterior part, right, lateral bank of gyrus",4129
+"232",4131,"PCLp-cs","paracentral lobule, posterior part, right, bank of cingulate sulcus",4129
+"233",4085,"PoG","postcentral gyrus",4084
+"234",4086,"PoG","postcentral gyrus, left",4085
+"235",4087,"PoG-cs","postcentral gyrus, left, bank of the central sulcus",4086
+"236",4088,"PoG-sl","postcentral gyrus, left, superior lateral aspect of gyrus",4086
+"237",4089,"PoG-il","postcentral gyrus, left, inferior lateral aspect of gyrus",4086
+"238",4090,"PoG-pcs","postcentral gyrus, left, bank of the posterior central sulcus",4086
+"239",4091,"PoG","postcentral gyrus, right",4085
+"240",4092,"PoG-cs","postcentral gyrus, right, bank of the central sulcus",4091
+"241",4093,"PoG-sl","postcentral gyrus, right, superior lateral aspect of gyrus",4091
+"242",4094,"PoG-il","postcentral gyrus, right, inferior lateral aspect of gyrus",4091
+"243",4095,"PoG-pcs","postcentral gyrus, right, bank of the posterior central sulcus",4091
+"244",4118,"PCu","precuneus",4084
+"245",4119,"PCu","precuneus, left",4118
+"246",4120,"Pcu-s","precuneus, left, superior lateral bank of gyrus",4119
+"247",4121,"Pcu-i","precuneus, left, inferior lateral bank of gyrus",4119
+"248",4122,"PCu","precuneus, right",4118
+"249",4123,"Pcu-s","precuneus, right, superior lateral bank of gyrus",4122
+"250",4124,"Pcu-i","precuneus, right, inferior lateral bank of gyrus",4122
+"251",4096,"SPL","superior parietal lobule",4084
+"252",4097,"SPL","superior parietal lobule, left",4096
+"253",4098,"SPL-s","superior parietal lobule, left, superior bank of gyrus",4097
+"254",4099,"SPL-i","superior parietal lobule, left, inferior bank of gyrus",4097
+"255",4100,"SPL","superior parietal lobule, right",4096
+"256",4101,"SPL-s","superior parietal lobule, right, superior bank of gyrus",4100
+"257",4102,"SPL-i","superior parietal lobule, right, inferior bank of gyrus",4100
+"258",4132,"TL","temporal lobe",4008
+"259",4156,"FuG","fusiform gyrus",4132
+"260",4157,"FuG","fusiform gyrus, left",4156
+"261",4158,"FuG-its","fusiform gyrus, left, bank of the its",4157
+"262",4159,"FuG-l","fusiform gyrus, left, lateral bank of gyrus",4157
+"263",4160,"FuG-cos","fusiform gyrus, left, bank of cos",4157
+"264",4161,"FuG","fusiform gyrus, right",4156
+"265",4162,"FuG-its","fusiform gyrus, right, bank of the its",4161
+"266",4163,"FuG-l","fusiform gyrus, right, lateral bank of gyrus",4161
+"267",4164,"FuG-cos","fusiform gyrus, right, bank of cos",4161
+"268",4165,"HG","Heschl's gyrus",4132
+"269",4166,"HG","Heschl's gyrus, left",4165
+"270",4167,"HG","Heschl's gyrus, right",4165
+"271",4147,"ITG","inferior temporal gyrus",4132
+"272",4148,"ITG","inferior temporal gyrus, left",4147
+"273",4149,"ITG-its","inferior temporal gyrus, left, bank of the its",4148
+"274",4150,"ITG-l","inferior temporal gyrus, left, lateral bank of gyrus",4148
+"275",4151,"ITG-mts","inferior temporal gyrus, left, bank of mts",4148
+"276",4152,"ITG","inferior temporal gyrus, right",4147
+"277",4153,"ITG-its","inferior temporal gyrus, right, bank of the its",4152
+"278",4154,"ITG-l","inferior temporal gyrus, right, lateral bank of gyrus",4152
+"279",4155,"ITG-mts","inferior temporal gyrus, right, bank of mts",4152
+"280",4140,"MTG","middle temporal gyrus",4132
+"281",4141,"MTG","middle temporal gyrus, left",4140
+"282",4142,"MTG-s","middle temporal gyrus, left, superior bank of gyrus",4141
+"283",4143,"MTG-i","middle temporal gyrus, left, inferior bank of gyrus",4141
+"284",4144,"MTG","middle temporal gyrus, right",4140
+"285",4145,"MTG-s","middle temporal gyrus, right, superior bank of gyrus",4144
+"286",4146,"MTG-i","middle temporal gyrus, right, inferior bank of gyrus",4144
+"287",4177,"PLP","planum polare",4132
+"288",4178,"PLP","planum polare, left",4177
+"289",4179,"PLP","planum polare, right",4177
+"290",4171,"PLT","planum temporale",4132
+"291",4172,"PLT","planum temporale, left",4171
+"292",4173,"PLT","planum temporale, right",4171
+"293",4133,"STG","superior temporal gyrus",4132
+"294",4134,"STG","superior temporal gyrus, left",4133
+"295",4135,"STG-l","superior temporal gyrus, left, lateral bank of gyrus",4134
+"296",4136,"STG-i","superior temporal gyrus, left, inferior bank of gyrus",4134
+"297",4137,"STG","superior temporal gyrus, right",4133
+"298",4138,"STG-l","superior temporal gyrus, right, lateral bank of gyrus",4137
+"299",4139,"STG-i","superior temporal gyrus, right, inferior bank of gyrus",4137
+"300",4174,"TP","temporal pole",4132
+"301",4175,"TP","temporal pole, left",4174
+"302",4903,"TP-s","temporal pole, left, superior aspect",4175
+"303",4904,"TP-i","temporal pole, left, inferior aspect",4175
+"304",4905,"TP-m","temporal pole, left, medial aspect",4175
+"305",4176,"TP","temporal pole, right",4174
+"306",4906,"TP-s","temporal pole, right, superior aspect",4176
+"307",4907,"TP-i","temporal pole, right, inferior aspect",4176
+"308",4908,"TP-m","temporal pole, right, medial aspect",4176
+"309",4168,"TG","transverse gyri",4132
+"310",4169,"TG","transverse gyri, left",4168
+"311",4170,"TG","transverse gyri, right",4168
+"312",4275,"CxN","cerebral nuclei",4007
+"313",4327,"Amg","amygdala",4275
+"314",4328,"ATZ","amygdalohippocampal transition zone",4327
+"315",4329,"ATZ","amygdalohippocampal transition zone, left",4328
+"316",4330,"AHiA","amygdalohippocampal area, left",4329
+"317",504452,"AHiAm","amygdalohippocampal area, left, magnocellular division",4330
+"318",504456,"AHiAp","amygdalohippocampal area, left, parvocellular division",4330
+"319",504460,"AHiAml","amygdalohippocampal area, left, marginal layer",4330
+"320",4335,"ATZ","amygdalohippocampal transition zone, right",4328
+"321",4336,"AHiA","amygdalohippocampal area, right",4335
+"322",504464,"AHiAm","amygdalohippocampal area, right, magnocellular division",4336
+"323",504468,"AHiAp","amygdalohippocampal area, right, parvocellular division",4336
+"324",504472,"AHiAml","amygdalohippocampal area, right, marginal layer",4336
+"325",504476,"AAA","anterior amygdaloid area",4327
+"326",504480,"AAA","anterior amygdaloid area, left",504476
+"327",504484,"AAAd","anterior amygdaloid area, left, dorsal division",504480
+"328",504488,"AAAv","anterior amygdaloid area, left, ventral division",504480
+"329",504492,"AAA","anterior amygdaloid area, right",504476
+"330",504496,"AAAd","anterior amygdaloid area, right, dorsal division",504492
+"331",504500,"AAAv","anterior amygdaloid area, right, ventral division",504492
+"332",4341,"BLA","basolateral nucleus",4327
+"333",4342,"BLA","basolateral nucleus, left",4341
+"334",4343,"BLAm","basolateral nucleus, left, magnocellular (dorsal)",4342
+"335",504504,"BLAdl","basolateral nucleus, left, dorsolateral division",4343
+"336",4344,"BLAi","basolateral nucleus, left, intermediate",4342
+"337",4345,"BLAp","basolateral nucleus, left, parvicellular (ventral)",4342
+"338",504508,"BLAvl","basolateral nucleus, left, ventrolateral division",4345
+"339",504512,"BLAvm","basolateral nucleus, left, ventromedial divison",4345
+"340",4346,"BLA","basolateral nucleus, right",4341
+"341",4347,"BLAm","basolateral nucleus, right, magnocellular (dorsal)",4346
+"342",504516,"BLAdl","basolateral nucleus, right, dorsolateral division",4347
+"343",4348,"BLAi","basolateral nucleus, right, intermediate",4346
+"344",4349,"BLAp","basolateral nucleus, right, parvicellular (ventral)",4346
+"345",504520,"BLAvl","basolateral nucleus, right, ventrolateral division",4349
+"346",504524,"BLAvm","basolateral nucleus, right, ventromedial divison",4349
+"347",4350,"BMA","basomedial nucleus",4327
+"348",4351,"BMA","basomedial nucleus, left",4350
+"349",504528,"BMAd","basomedial nucleus, left, dorsal division",4351
+"350",4352,"BMAmc","basomedial nucleus, left, magnocellular division",504528
+"351",504534,"BMAdl","basomedial nucleus, left, dorsolateral division",504528
+"352",504538,"BMAm","basomedial nucleus, left, medial division",504528
+"353",504542,"BMAv","basomedial nucleus, left, ventral division",4351
+"354",4353,"BMApc","basomedial nucleus, left, parvicellular division",504542
+"355",4354,"BMAvm","basomedial nucleus, left, ventromedial division",504542
+"356",4355,"BMA","basomedial nucleus, right",4350
+"357",504550,"BMAd","basomedial nucleus, right, dorsal division",4355
+"358",4356,"BMAmc","basomedial nucleus, right, magnocellular division",504550
+"359",504556,"BMAdl","basomedial nucleus, right, dorsolateral division",504550
+"360",504561,"BMAm","basomedial nucleus, right, medial division",504550
+"361",504565,"BMAv","basomedial nucleus, right, ventral division",4355
+"362",4357,"BMApc","basomedial nucleus, right, parvicellular division",504565
+"363",4358,"BMAvm","basomedial nucleus, right, ventromedial division",504565
+"364",4359,"CeA","central nucleus",4327
+"365",4360,"CeA","central nucleus, left",4359
+"366",4361,"CeAm","central nucleus, medial division, left",4360
+"367",504574,"CeAmd","central nucleus, medial division, left, dorsal part",4361
+"368",504578,"CeAmv","central nucleus, medial division, left, ventral part",4361
+"369",4362,"CeAl","central nucleus, lateral division, left",4360
+"370",504583,"CeAla","central nucleus, lateral division, left, apical part",4362
+"371",504587,"CeAlca","central nucleus, lateral division, left, capsular part",4362
+"372",504591,"CeAlp","central nucleus, lateral division, left, paracapsular part",4362
+"373",504596,"CeAlc","central nucleus, lateral division, left, central part",4362
+"374",4363,"CeA","central nucleus, right",4359
+"375",4364,"CeAm","central nucleus, medial division, right",4363
+"376",504600,"CeAmd","central nucleus, medial division, right, dorsal part",4364
+"377",504604,"CeAmv","central nucleus, medial division, right, ventral part",4364
+"378",4365,"CeAl","central nucleus, lateral division, right",4363
+"379",504608,"CeAla","central nucleus, lateral division, right, apical part",4365
+"380",504612,"CeAlca","central nucleus, lateral division, right, capsular part",4365
+"381",504616,"CeAlp","central nucleus, lateral division, right, paracapsular part",4365
+"382",504620,"CeAlc","central nucleus, lateral division, right, central part",4365
+"383",4366,"COMA","cortico-medial group",4327
+"384",4367,"COMA","cortico-medial group, left",4366
+"385",4368,"COAa","anterior cortical nucleus, left",4367
+"386",504624,"COAad","anterior cortical nucleus, left, dorsal division",4368
+"387",504628,"COAav","anterior cortical nucleus, left, ventral division",4368
+"388",504632,"COAam","anterior cortical nucleus, left, marginal layer",4368
+"389",4370,"MA","medial nucleus, left",4367
+"390",504636,"MAa","medial nucleus, left, anterior division",4370
+"391",504640,"MAp","medial nucleus, left, posterior division",4370
+"392",504644,"MApd","medial nucleus, left, posterior division, dorsal part",504640
+"393",504648,"MApv","medial nucleus, left, posterior division, ventral part",504640
+"394",504652,"MAm","medial nucleus, left, marginal layer",4370
+"395",4369,"COAp","posterior cortical nucleus, left",4367
+"396",504656,"COApd","posterior cortical nucleus, left, dorsal division",4369
+"397",504660,"COApv","posterior cortical nucleus, left, ventral division",4369
+"398",504664,"COApm","posterior cortical nucleus, left, marginal layer",4369
+"399",4371,"COMA","cortico-medial group, right",4366
+"400",4372,"COAa","anterior cortical nucleus, right",4371
+"401",504668,"COAad","anterior cortical nucleus, right, dorsal division",4372
+"402",504672,"COAav","anterior cortical nucleus, right, ventral division",4372
+"403",504676,"COAam","anterior cortical nucleus, right, marginal layer",4372
+"404",4374,"MA","medial nucleus, right",4371
+"405",504680,"MAa","medial nucleus, right, anterior division",4374
+"406",504684,"MAp","medial nucleus, right, posterior division",4374
+"407",504688,"MApd","medial nucleus, right, posterior division, dorsal part",504684
+"408",504692,"MApv","medial nucleus, right, posterior division, ventral part",504684
+"409",504696,"MAm","medial nucleus, right, marginal layer",4374
+"410",4373,"COAp","posterior cortical nucleus, right",4371
+"411",504700,"COApd","posterior cortical nucleus, right, dorsal division",4373
+"412",504704,"COApv","posterior cortical nucleus, right, ventral division",4373
+"413",504708,"COApm","posterior cortical nucleus, right, marginal layer",4373
+"414",4375,"IA","intercalated nuclei",4327
+"415",4376,"IA","intercalated nuclei, left",4375
+"416",4377,"IA","intercalated nuclei, right",4375
+"417",4378,"LA","lateral nucleus",4327
+"418",4379,"LA","lateral nucleus, left",4378
+"419",504712,"LAd","lateral nucleus, left, dorsal division",4379
+"420",504716,"LAda","lateral nucleus, left, dorsal anterior division",504712
+"421",4380,"LAdm","lateral nucleus, left, dorsal medial division",504712
+"422",504722,"LAdl","lateral nucleus, left, dorsal lateral division",504712
+"423",504726,"LAdl-com","lateral nucleus, left, dorsal lateral division, comb-like part",504722
+"424",504730,"LAi","lateral nucleus, left, intermediate division",4379
+"425",504734,"LAv","lateral nucleus, left, ventral division",4379
+"426",4381,"LAvl","lateral nucleus, left, ventral lateral division",504734
+"427",504740,"LAvm","lateral nucleus, left, ventral medial division",504734
+"428",504744,"LAvglo","lateral nucleus, left, glomerular division",504734
+"429",4382,"LA","lateral nucleus, right",4378
+"430",504748,"LAd","lateral nucleus, right, dorsal division",4382
+"431",504752,"LAda","lateral nucleus, right, dorsal anterior division",504748
+"432",4383,"LAdm","lateral nucleus, right, dorsal medial division",504748
+"433",504758,"LAdl","lateral nucleus, right, dorsal lateral division",504748
+"434",504762,"LAdl-com","lateral nucleus, right, dorsal lateral division, comb-like part",504758
+"435",504766,"LAi","lateral nucleus, right, intermediate division",4382
+"436",504770,"LAv","lateral nucleus, right, ventral division",4382
+"437",4384,"LAvl","lateral nucleus, right, ventral lateral division",504770
+"438",504776,"LAvm","lateral nucleus, right, ventral medial division",504770
+"439",504780,"LAvglo","lateral nucleus, right, glomerular division",504770
+"440",4385,"NLOT","nucleus of the lateral olfactory tract",4327
+"441",4386,"NLOT","nucleus of the lateral olfactory tract, left",4385
+"442",4387,"NLOT","nucleus of the lateral olfactory tract, right",4385
+"443",4388,"PLA","paralaminar nucleus",4327
+"444",4389,"PLA","paralmainar nucleus, left",4388
+"445",504784,"PLAglo","paralmainar nucleus, left, glomerular part",4389
+"446",4390,"PLA","paralmainar nucleus, right",4388
+"447",504788,"PLAglo","paralmainar nucleus, right, glomerular part",4390
+"448",4324,"AO","anterior olfactory nucleus",4275
+"449",4325,"AO","anterior olfactory nucleus, left",4324
+"450",4326,"AO","anterior olfactory nucleus, right",4324
+"451",4300,"BF","basal forebrain",4275
+"452",13002,"SptN","septal nuclei",4300
+"453",4301,"SptN","septal nuclei, left",13002
+"454",4302,"MS","medial septal nucleus, left",4301
+"455",4303,"LS","lateral septal nucleus, left",4301
+"456",4304,"SptN","septal nuclei, right",13002
+"457",4305,"MS","medial septal nucleus, right",4304
+"458",4306,"LS","lateral septal nucleus, right",4304
+"459",13003,"SI","substantia innominata",4300
+"460",4307,"SI","substantia innominata, left",13003
+"461",4308,"nbM","basal nucleus of meynert, left",4307
+"462",4309,"DB","nucleus of the diagonal band, left",4307
+"463",4310,"DBv","nucleus of the diagonal band, left, horizontal division",4309
+"464",4311,"DBh","nucleus of the diagonal band, left, vertical division",4309
+"465",4312,"Nac","nucleus of the anterior commissure, left",4307
+"466",4313,"BST","bed  nucleus of stria terminalis, left",4307
+"467",10145,"OlfT","olfactory tubercle, left",4307
+"468",504792,"IslC","islands of calleja, left",10145
+"469",4314,"SI","substantia innominata, right",13003
+"470",4315,"nbM","basal nucleus of meynert, right",4314
+"471",4316,"DB","nucleus of the diagonal band, right ",4314
+"472",4317,"DBv","nucleus of the diagonal band, right, horizontal division",4316
+"473",4318,"DBh","nucleus of the diagonal band, right, vertical division",4316
+"474",4319,"Nac","nucleus of the anterior commissure, right",4314
+"475",4320,"BST","bed  nucleus of stria terminalis, right",4314
+"476",10146,"OlfT","olfactory tubercle, right",4314
+"477",504796,"IslC","islands of calleja, right",10146
+"478",4276,"BG","basal ganglia",4275
+"479",4293,"GP","globus pallidus",4276
+"480",12897,"GPe","globus pallidus, external segment",4293
+"481",4295,"GPe","globus pallidus, external segment, left",12897
+"482",4298,"GPe","globus pallidus, external segment, right",12897
+"483",12898,"GPi","globus pallidus, internal segment",4293
+"484",4296,"GPi","globus pallidus, internal segment, left",12898
+"485",4299,"GPi","globus pallidus, internal segment, right",12898
+"486",4277,"Str","striatum",4276
+"487",4278,"Cd","caudate nucleus",4277
+"488",12899,"BCd","body of the caudate nucleus",4278
+"489",4282,"BCd","body of caudate nucleus, left",12899
+"490",4286,"BCd","body of caudate nucleus, right",12899
+"491",12900,"HCd","head of the caudate nucleus",4278
+"492",4280,"HCd","head of caudate nucleus, left",12900
+"493",4284,"HCd","head of caudate nucleus, right",12900
+"494",12901,"TCd","tail of the caudate nucleus",4278
+"495",4281,"TCd","tail of caudate nucleus, left",12901
+"496",4285,"TCd","tail of caudate nucleus, right",12901
+"497",4290,"Acb","nucleus accumbens",4277
+"498",4291,"Acb","nucleus accumbens, left",4290
+"499",4292,"Acb","nucleus accumbens, right",4290
+"500",4287,"Pu","putamen",4277
+"501",4288,"Pu","putamen, left",4287
+"502",4289,"Pu","putamen, right",4287
+"503",4321,"Cl","claustrum",4275
+"504",4322,"Cl","claustrum, left",4321
+"505",4323,"Cl","claustrum, right",4321
+"506",4391,"DiE","diencephalon",4006
+"507",4520,"ET","epithalamus",4391
+"508",4521,"Hb","habenular nuclei",4520
+"509",4522,"Hb","habenular nuclei, left",4521
+"510",4524,"Hl","lateral habenular nucleus, left",4522
+"511",4525,"Hlm","lateral habenular nucleus, left, magnocellular division",4524
+"512",4526,"Hlp","lateral habenular nucleus, left, parvocellular division",4524
+"513",4523,"Hm","medial habenular nucleus, left",4522
+"514",4527,"Hb","habenular nuclei, right",4521
+"515",4529,"Hl","lateral habenular nucleus, right",4527
+"516",4530,"Hlm","lateral habenular nucleus, right, magnocellular division",4529
+"517",4531,"Hlp","lateral habenular nucleus, right, parvocellular division",4529
+"518",4528,"Hm","medial habenular nucleus, right",4527
+"519",4533,"Pa","paraventricular nuclei of thalamus",4520
+"520",4534,"Pa","paraventricular nuclei, left of thalamus, left",4533
+"521",4535,"PARA","anterior paraventricular nucleus of thalamus, left",4534
+"522",4536,"PARP","posterior paraventricular nucleus of thalamus, left",4534
+"523",4537,"Pa","paraventricular nuclei, right of thalamus, right",4533
+"524",4538,"PARA","anterior paraventricular nucleus of thalamus, right",4537
+"525",4539,"PARP","posterior paraventricular nucleus of thalamus, right",4537
+"526",4532,"PIN","pineal gland",4520
+"527",4540,"Hy","hypothalamus",4391
+"528",4570,"AHR","anterior hypothalamic region",4540
+"529",12902,"AHA","anterior hypothalamic area",4570
+"530",4598,"AHA","anterior hypothalamic area, left",12902
+"531",4599,"AHAA","anterior hypothalamic area, left, anterior part",4598
+"532",4600,"AHC","anterior hypothalamic area, left, central part",4598
+"533",4629,"AHA","anterior hypothalamic area, right",12902
+"534",4630,"AHAA","anterior hypothalamic area, right, anterior part",4629
+"535",4631,"AHC","anterior hypothalamic area, right, central part",4629
+"536",12903,"AHN","anterior hypothalamic nucleus",4570
+"537",4601,"AHN","anterior hypothalamic nucleus, left",12903
+"538",4632,"AHN","anterior hypothalamic nucleus, right",12903
+"539",12904,"LHA","lateral hypothalamic area, anterior region",4570
+"540",4596,"LHA","lateral hypothalamic area, anterior region, left",12904
+"541",4627,"LHA","lateral hypothalamic area, anterior region, right",12904
+"542",12905,"PVH","paraventricular nucleus of the hypothalamus",4570
+"543",4573,"PVH","paraventricular nucleus of the hypothalamus, left",12905
+"544",4574,"SPZ","subparaventricular zone, left",4573
+"545",4575,"PVHd","paraventricular nucleus of the hypothalamus, left, descending division",4573
+"546",4577,"PVHdp","paraventricular nucleus of the hypothalamus, left, descending division, dorsal parvicellular part",4575
+"547",4579,"PVHf","paraventricular nucleus of the hypothalamus, left, descending division, forniceal part",4575
+"548",4578,"PVHlp","paraventricular nucleus of the hypothalamus, left, descending division, lateral parvicellular part",4575
+"549",4576,"PVHmpv","paraventricular nucleus of the hypothalamus, left, descending division, medial parvicellular part, ventral zone",4575
+"550",4580,"PVHm","paraventricular nucleus of the hypothalamus, left, magnocellular division",4573
+"551",4581,"PVHam","paraventricular nucleus of the hypothalamus, left, magnocellular division, anterior magnocellular part",4580
+"552",4582,"PVHmm","paraventricular nucleus of the hypothalamus, left, magnocellular division, medial magnocellular part",4580
+"553",4583,"PVHpm","paraventricular nucleus of the hypothalamus, left, magnocellular division, posterior magnocellular part",4580
+"554",4585,"PVHpml","paraventricular nucleus of the hypothalamus, left, magnocellular division, posterior magnocellular part, lateral zone",4583
+"555",4584,"PVHpmm","paraventricular nucleus of the hypothalamus, left, magnocellular division, posterior magnocellular part, medial zone",4583
+"556",4586,"PVHp","paraventricular nucleus of the hypothalamus, left, parvicellular division",4573
+"557",4587,"PVHap","paraventricular nucleus of the hypothalamus, left, parvicellular division, anterior parvicellular part",4586
+"558",4588,"PVHmpd","paraventricular nucleus of the hypothalamus, left, parvicellular division, medial parvicellular part, dorsal zone",4586
+"559",4589,"PVHpv","paraventricular nucleus of the hypothalamus, left, parvicellular division, periventricular part",4586
+"560",4604,"PVH","paraventricular nucleus of the hypothalamus, right",12905
+"561",4605,"SPZ","subparaventricular zone, right",4604
+"562",4606,"PVHd","paraventricular nucleus of the hypothalamus, right, descending division",4604
+"563",4608,"PVHdp","paraventricular nucleus of the hypothalamus, right, descending division, dorsal parvicellular part",4606
+"564",4610,"PVHf","paraventricular nucleus of the hypothalamus, right, descending division, forniceal part",4606
+"565",4609,"PVHlp","paraventricular nucleus of the hypothalamus, right, descending division, lateral parvicellular part",4606
+"566",4607,"PVHmpv","paraventricular nucleus of the hypothalamus, right, descending division, medial parvicellular part, ventral zone",4606
+"567",4611,"PVHm","paraventricular nucleus of the hypothalamus, right, magnocellular division",4604
+"568",4612,"PVHam","paraventricular nucleus of the hypothalamus, right, magnocellular division, anterior magnocellular part",4611
+"569",4613,"PVHmm","paraventricular nucleus of the hypothalamus, right, magnocellular division, medial magnocellular part",4611
+"570",4614,"PVHpm","paraventricular nucleus of the hypothalamus, right, magnocellular division, posterior magnocellular part",4611
+"571",4616,"PVHpml","paraventricular nucleus of the hypothalamus, right, magnocellular division, posterior magnocellular part, lateral zone",4614
+"572",4615,"PVHpmm","paraventricular nucleus of the hypothalamus, right, magnocellular division, posterior magnocellular part, medial zone",4614
+"573",4617,"PVHp","paraventricular nucleus of the hypothalamus, right, parvicellular division",4604
+"574",4618,"PVHap","paraventricular nucleus of the hypothalamus, right, parvicellular division, anterior parvicellular part",4617
+"575",4619,"PVHmpd","paraventricular nucleus of the hypothalamus, right, parvicellular division, medial parvicellular part, dorsal zone",4617
+"576",4620,"PVHpv","paraventricular nucleus of the hypothalamus, right, parvicellular division, periventricular part",4617
+"577",12906,"PVa","periventricular nucleus of the hypothalamus, anterior part",4570
+"578",4572,"PVa","periventricular nucleus of the hypohalamus, anterior part, left",12906
+"579",4603,"PVa","periventricular nucleus of the hypohalamus, anterior part, right",12906
+"580",12907,"SO","supraoptic nucleus",4570
+"581",4593,"SO","supraoptic nucleus, left",12907
+"582",4594,"SODL","supraoptic nucleus, left, dorsolateral part",4593
+"583",4595,"SOVM","supraoptic nucleus, left, ventromedial part",4593
+"584",4624,"SO","supraoptic nucleus, right",12907
+"585",4625,"SODL","supraoptic nucleus, right, dorsolateral part",4624
+"586",4626,"SOVM","supraoptic nucleus, right, ventromedial part",4624
+"587",12908,"SCN","suprachiasmatic nucleus",4570
+"588",4590,"SCN","suprachiasmatic nucleus, left",12908
+"589",4591,"SCNd","suprachiasmatic nucleus, left, dorsomedial part",4590
+"590",4592,"SCNv","suprachiasmatic nucleus, left, ventrolateral part",4590
+"591",4621,"SCN","suprachiasmatic nucleus, right",12908
+"592",4622,"SCNd","suprachiasmatic nucleus, right, dorsomedial part",4621
+"593",4623,"SCNv","suprachiasmatic nucleus, right, ventrolateral part",4621
+"594",4665,"MamR","mammillary region",4540
+"595",13004,"LHM","lateral hypothalamic area, mammillary region",4665
+"596",13005,"LHM","lateral hypothalamic area, mammillary region, left",13004
+"597",4597,"PalHy","pallidohypothalamic nucleus, left",13005
+"598",13006,"LHM","lateral hypothalamic area, mammillary region, right",13004
+"599",4628,"PalHy","pallidohypothalamic nucleus, right",13006
+"600",12909,"MB","mammillary body",4665
+"601",4671,"MB","mammillary body, left",12909
+"602",4675,"LM","lateral mammillary nucleus, left",4671
+"603",4672,"MM","medial mammillary nucleus, left",4671
+"604",4673,"MMl","medial mammillary nucleus, left, lateral part",4672
+"605",4674,"MMm","medial mammillary nucleus, left, medial part",4672
+"606",504804,"MMb","medial mammillary nucleus, left, basal division",4672
+"607",4676,"PMm","premammillary nucleus, left",4671
+"608",4677,"PMD","premammillary nucleus, left, dorsal part",4676
+"609",4678,"PMV","premammillary nucleus, left, ventral part",4676
+"610",4685,"MB","mammillary body, right",12909
+"611",4689,"LM","lateral mammillary nucleus, right",4685
+"612",4686,"MM","medial mammillary nucleus, right",4685
+"613",4687,"MMl","medial mammillary nucleus, right, lateral part",4686
+"614",4688,"MMm","medial mammillary nucleus, right, medial part",4686
+"615",504808,"MMb","medial mammillary nucleus, right, basal division",4686
+"616",4690,"PMm","premammillary nucleus, right",4685
+"617",4691,"PMD","premammillary nucleus, right, dorsal part",4690
+"618",4692,"PMV","premammillary nucleus, right, ventral part",4690
+"619",12910,"PHA","posterior hypothalamic area",4665
+"620",4679,"PHA","posterior hypothalamic area, left",12910
+"621",4693,"PHA","posterior hypothalamic area, right",12910
+"622",12911,"SuM","supramammillary nucleus",4665
+"623",4669,"SuM","supramammillary nucleus, left",12911
+"624",4670,"SuMM","supramammillary nucleus, left, medial part",4669
+"625",4683,"SuM","supramammillary nucleus, right",12911
+"626",4684,"SuMM","supramammillary nucleus, right, medial part",4683
+"627",12912,"TM","tuberomammillary nucleus",4665
+"628",4667,"TM","tuberomammillary nucleus, left",12912
+"629",4668,"TMp","tuberomammillary nucleus, left, principle part",4667
+"630",4681,"TM","tuberomammillary nucleus, right",12912
+"631",4682,"TMp","tuberomammillary nucleus, right, principle part",4681
+"632",4541,"PrOR","preoptic region",4540
+"633",4542,"PrOR","preoptic region, left",4541
+"634",4553,"IMH","intermediate hypothalamic nuclei, left",4542
+"635",4554,"IN","intermediate nucleus, left",4553
+"636",4555,"UN","uncinate nucleus, left",4553
+"637",4552,"LPO","lateral preoptic area, left",4542
+"638",4543,"MPA","medial preoptic area, left",4542
+"639",4544,"MPO","medial preoptic nucleus, left",4543
+"640",4547,"MPOC","medial preoptic nucleus, left, central part",4544
+"641",4545,"MPOL","medial preoptic nucleus, left, lateral part",4544
+"642",4546,"MPOM","medial preoptic nucleus, left, medial part",4544
+"643",4548,"MnPO","median preoptic nucleus, left",4543
+"644",4549,"PVpo","periventricular nucleus of the hypothalamus, left, preoptic part",4542
+"645",4550,"AVPV","anteroventral periventricular nucleus, left",4549
+"646",4551,"DPV","dorsal periventricular nucleus, left",4549
+"647",4556,"PrOR","preoptic region, right",4541
+"648",4567,"IMH","intermediate hypothalamic nuclei, right",4556
+"649",4568,"IN","intermediate nucleus, right",4567
+"650",4569,"UN","uncinate nucleus, right",4567
+"651",4566,"LPO","lateral preoptic area, right",4556
+"652",4557,"MPA","medial preoptic area, right",4556
+"653",4558,"MPO","medial preoptic nucleus, right",4557
+"654",4561,"MPOC","medial preoptic nucleus, right, central part",4558
+"655",4559,"MPOL","medial preoptic nucleus, right, lateral part",4558
+"656",4560,"MPOM","medial preoptic nucleus, right, medial part",4558
+"657",4562,"MnPO","median preoptic nucleus, right",4557
+"658",4563,"PVpo","periventricular nucleus of the hypothalamus, right, preoptic part",4556
+"659",4564,"AVPV","anteroventral periventricular nucleus, right",4563
+"660",4565,"DPV","dorsal periventricular nucleus, right",4563
+"661",4633,"TubR","tuberal region",4540
+"662",4634,"Pit","pituitary body",4633
+"663",12913,"ARH","arcuate nucleus of the hypothalamus",4633
+"664",4644,"ARH","arcuate nucleus of the hypothalamus, left",12913
+"665",4645,"ArcD","arcuate nucleus of the hypothalamus, left, dorsal part",4644
+"666",4646,"ArcL","arcuate nucleus of the hypothalamus, left, lateral part",4644
+"667",4647,"ArcM","arcuate nucleus of the hypothalamus, left, medial part",4644
+"668",4659,"ARH","arcuate nucleus of the hypothalamus, right",12913
+"669",4660,"ArcD","arcuate nucleus of the hypothalamus, right, dorsal part",4659
+"670",4661,"ArcL","arcuate nucleus of the hypothalamus, right, lateral part",4659
+"671",4662,"ArcM","arcuate nucleus of the hypothalamus, right, medial part",4659
+"672",12914,"DMH","dorsomedial hypothalamic nucleus",4633
+"673",4641,"DMH","dorsomedial hypothalamic nucleus, left",12914
+"674",4642,"DMC","dorsomedial hypothalamic nucleus, left, compact part",4641
+"675",4643,"DMD","dorsomedial hypothalamic nucleus, left, diffuse part",4641
+"676",4656,"DMH","dorsomedial hypothalamic nucleus, right",12914
+"677",4657,"DMC","dorsomedial hypothalamic nucleus, right, compact part",4656
+"678",4658,"DMD","dorsomedial hypothalamic nucleus, right, diffuse part",4656
+"679",13007,"LHT","lateral hypothalamic area, tuberal region",4633
+"680",13008,"LHT","lateral hypothalamic area, tuberal region, left",13007
+"681",13009,"LHT","lateral hypothalamic area, tuberal region, right",13007
+"682",12915,"LTu","lateral tuberal nucleus",4633
+"683",10151,"LTu","lateral tuberal nucleus, left",12915
+"684",10152,"LTu","lateral tuberal nucleus, right",12915
+"685",12916,"ME","median eminence",4633
+"686",4649,"ME","median eminence, left",12916
+"687",4664,"ME","median eminence, right",12916
+"688",12917,"PeF","perifornical nucleus",4633
+"689",4648,"PeF","perifornical nucleus, left",12917
+"690",4663,"PeF","perifornical nucleus, right",12917
+"691",12918,"PVt","periventricular nucleus of the hypothalamus, tuberal part",4633
+"692",4636,"PVt","periventricular nucleus of the hypothalamus, tuberal part, left",12918
+"693",4651,"PVt","periventricular nucleus of the hypothalamus, tuberal part, right",12918
+"694",12919,"VMH","ventromedial hypothalamic nucleus",4633
+"695",4637,"VMH","ventromedial hypothalamic nucleus, left",12919
+"696",4639,"VMHd","ventromedial hypothalamic nucleus, left, dorsal part",4637
+"697",4640,"VMHc","ventromedial hypothalamic nucleus, left, central part",4637
+"698",4638,"VMHv","ventromedial hypothalamic nucleus, left, ventral part",4637
+"699",4652,"VMH","ventromedial hypothalamic nucleus, right",12919
+"700",4654,"VMHd","ventromedial hypothalamic nucleus, right, dorsal part",4652
+"701",4655,"VMHc","ventromedial hypothalamic nucleus, right, central part",4652
+"702",4653,"VMHv","ventromedial hypothalamic nucleus, right, ventral part",4652
+"703",4517,"SbT","subthalamus",4391
+"704",4518,"Sb","subthalamic nucleus, left",4517
+"705",4519,"Sb","subthalamic nucleus, right",4517
+"706",4392,"TH","thalamus",4391
+"707",4393,"DT","dorsal thalamus",4392
+"708",12920,"DTA","anterior group of nuclei",4393
+"709",4395,"DTA","anterior group of nuclei, left",12920
+"710",4398,"AD","anterodorsal nucleus of the thalamus, left",4395
+"711",4396,"AM","anteromedial nucleus of the thalamus, left",4395
+"712",4397,"AV","anteroventral nucleus of the thalamus, left",4395
+"713",4399,"LD","lateral dorsal nucleus of the thalamus, left",4395
+"714",4450,"DTA","anterior group of nuclei, right",12920
+"715",4453,"AD","anterodorsal nucleus of the thalamus, right",4450
+"716",4451,"AM","anteromedial nucleus of the thalamus, right",4450
+"717",4452,"AV","anteroventral nucleus of the thalamus, right",4450
+"718",4454,"LD","lateral dorsal nucleus of the thalamus, right",4450
+"719",12921,"ILc","caudal group of intralaminar nuclei",4393
+"720",4437,"ILc","caudal group of intralaminar nuclei, left",12921
+"721",4438,"CM","centre median nucleus of the thalamus, left",4437
+"722",4439,"pf","parafascicular nucleus of the thalamus, left",4437
+"723",4492,"ILc","caudal group of intralaminar nuclei, right",12921
+"724",4493,"CM","centre median nucleus of the thalamus, right",4492
+"725",4494,"pf","parafascicular nucleus of the thalamus, right",4492
+"726",12922,"LGd","dorsal lateral geneiculate nucleus",4393
+"727",4440,"LGd","dorsal lateral geniculate nucleus, left",12922
+"728",4441,"LGdm","dorsal lateral geniculate nucleus, left, magnocellular layers",4440
+"729",4442,"LGdp","dorsal lateral geniculate nucleus, left, parvocellular layers",4440
+"730",4443,"LGds","dorsal lateral geniculate nucleus, left, s and intercalated layers",4440
+"731",4495,"LGd","dorsal lateral geniculate nucleus, right",12922
+"732",4496,"LGdm","dorsal lateral geniculate nucleus, right, magnocellular layers",4495
+"733",4497,"LGdp","dorsal lateral geniculate nucleus, right, parvocellular layers",4495
+"734",4498,"LGds","dorsal lateral geniculate nucleus, right, s and intercalated layers",4495
+"735",12923,"DTL","lateral group of nuclei",4393
+"736",12924,"DTLd","lateral group of nuclei, dorsal division",12923
+"737",4409,"DTLd","lateral group of nuclei, left, dorsal division",12924
+"738",4410,"LP","lateral posterior nucleus of the thalamus, left",4409
+"739",4411,"Pla","anterior nucleus of the pulvinar, left",4409
+"740",4414,"Pli","inferior nucleus of the pulvinar, left",4409
+"741",4415,"Plil","inferior nucleus of the pulvinar, left, lateral division",4414
+"742",4416,"Plim","inferior nucleus of the pulvinar, left, medial division",4414
+"743",4413,"Pll","lateral nucleus of the pulvinar, left",4409
+"744",4412,"Plm","medial nucleus of the pulvinar, left",4409
+"745",4464,"DTLd","lateral group of nuclei, right, dorsal division",12924
+"746",4465,"LP","lateral posterior nucleus of the thalamus, right",4464
+"747",4466,"Pla","anterior nucleus of the pulvinar, right",4464
+"748",4469,"Pli","inferior nucleus of the pulvinar, right",4464
+"749",4470,"Plil","inferior nucleus of the pulvinar, right, lateral division",4469
+"750",4471,"Plim","inferior nucleus of the pulvinar, right, medial division",4469
+"751",4468,"Pll","lateral nucleus of the pulvinar, right",4464
+"752",4467,"Plm","medial nucleus of the pulvinar, right",4464
+"753",12925,"DTLv","lateral group of nuclei, ventral division",12923
+"754",4417,"DTLv","lateral group of nuclei, left, ventral division",12925
+"755",4427,"VMb","basal ventral medial nucleus of the thalamus, left",4417
+"756",4418,"VA","ventral anterior nucleus of the thalamus, left",4417
+"757",4420,"VAmc","ventral anterior nucleus of the thalamus, left, magnocellular division",4418
+"758",4419,"VAp","ventral anterior nucleus of the thalamus, left, principal division",4418
+"759",4422,"VLa","ventral lateral anterior nucleus of the thalamus, left",4417
+"760",4423,"VLp","ventral lateral posterior nucleus of the thalamus, left",4417
+"761",4421,"VM","ventral medial nucleus of the thalamus, left",4417
+"762",4426,"VPI","ventral posterior inferior nucleus of the thalamus, left",4417
+"763",4425,"VPL","ventral posterior lateral nucleus of the thalamus, left",4417
+"764",504812,"VPLa","ventral posterior lateral nucleus of the thalamus, left, anterior division",4425
+"765",504816,"VPLp","ventral posterior lateral nucleus of the thalamus, left, posterior division",4425
+"766",4424,"VPM","ventral posterior medial nucleus of the thalamus, left",4417
+"767",4472,"DTLv","lateral group of nuclei, right, ventral division",12925
+"768",4482,"VMb","basal ventral medial nucleus of the thalamus, right",4472
+"769",4473,"VA","ventral anterior nucleus of the thalamus, right",4472
+"770",4475,"VAmc","ventral anterior nucleus of the thalamus, right, magnocellular division",4473
+"771",4474,"VAp","ventral anterior nucleus of the thalamus, right, principal division",4473
+"772",4477,"VLa","ventral lateral anterior nucleus of the thalamus, right",4472
+"773",4478,"VLp","ventral lateral posterior nucleus of the thalamus, right",4472
+"774",4476,"VM","ventral medial nucleus of the thalamus, right",4472
+"775",4481,"VPI","ventral posterior inferior nucleus of the thalamus, right",4472
+"776",4480,"VPL","ventral posterior lateral nucleus of the thalamus, right",4472
+"777",504820,"VPLa","ventral posterior lateral nucleus of the thalamus, right, anterior division",4480
+"778",504824,"VPLp","ventral posterior lateral nucleus of the thalamus, right, posterior division",4480
+"779",4479,"VPM","ventral posterior medial nucleus of the thalamus, right",4472
+"780",12926,"MG","medial geniculate complex",4393
+"781",4444,"MG","medial geniculate complex, left",12926
+"782",504828,"MGd","dorsal nucelus of medial geniculate complex, left",4444
+"783",4446,"MGad","anterodorsal nucleus of medial geniculate complex, left",504828
+"784",4447,"MGpd","posterodorsal nucleus of medial geniculate complex, left",504828
+"785",4448,"MGmc","magnocellular nucleus of the medial geniculate complex, left",4444
+"786",4445,"MGv","ventral nucleus of the medial geniculate complex, left",4444
+"787",4499,"MG","medial geniculate complex, right",12926
+"788",504836,"MGd","dorsal nucelus of medial geniculate complex, right",4499
+"789",4501,"MGad","anterodorsal nucleus of medial geniculate complex, right",504836
+"790",4502,"MGpd","posterodorsal nucleus of medial geniculate complex, right",504836
+"791",4503,"MGmc","magnocellular nucleus of the medial geniculate complex, right",4499
+"792",4500,"MGv","ventral nucleus of the medial geniculate complex, right",4499
+"793",12927,"DTM","medial group of nuclei",4393
+"794",4400,"DTM","medial group of nuclei, left",12927
+"795",4401,"MD","mediodorsal nucleus of the thalamus, left",4400
+"796",4402,"MDp","mediodorsal nucleus of the thalamus, left, parvocellular division",4401
+"797",4403,"MDm","mediodorsal nucleus of the thalamus, left, magnocellular division",4401
+"798",4404,"MDd","mediodorsal nucleus of the thalamus, left, densocelllular division",4401
+"799",504844,"MDl","mediodorsal nucleus of thalamus, left, multiform (lateral) division",4401
+"800",4407,"MV","medioventral nucleus of the thalamus, left",4400
+"801",4405,"Pt","parataenial nucleus of the thalamus, left",4400
+"802",4406,"Sm","submedial nucleus of the thalamus, left",4400
+"803",4455,"DTM","medial group of nuclei, right",12927
+"804",4456,"MD","mediodorsal nucleus of the thalamus, right",4455
+"805",4457,"MDp","mediodorsal nucleus of the thalamus, right, parvocellular division",4456
+"806",4458,"MDm","mediodorsal nucleus of the thalamus, right, magnocellular division",4456
+"807",4459,"MDd","mediodorsal nucleus of the thalamus, right, densocelllular division",4456
+"808",504848,"MDl","mediodorsal nucleus of thalamus, right, multiform (lateral) division",4456
+"809",4462,"MV","medioventral nucleus of the thalamus, right",4455
+"810",4460,"Pt","parataenial nucleus of the thalamus, right",4455
+"811",4461,"Sm","submedial nucleus of the thalamus, right",4455
+"812",12928,"DTP","posterior group of nuclei",4393
+"813",4428,"DTP","posterior group of nuclei, left",12928
+"814",4429,"L","limitans nucleus of the thalamus, left",4428
+"815",4431,"Po","posterior nucleus of the thalamus, left",4428
+"816",4430,"SG","suprageniculate nucleus of the thalamus, left",4428
+"817",4483,"DTP","posterior group of nuclei, right",12928
+"818",4484,"L","limitans nucleus of the thalamus, right",4483
+"819",4486,"Po","posterior nucleus of the thalamus, right",4483
+"820",4485,"SG","suprageniculate nucleus of the thalamus, right",4483
+"821",12929,"ILr","rostral group of intralaminar nuclei",4393
+"822",4432,"ILr","rostral group of intralaminar nuclei, left",12929
+"823",4434,"CL","central lateral nucleus of the thalamus, left",4432
+"824",4436,"CeM","central medial nucleus of the thalamus, left",4432
+"825",4435,"Pc","paracentral nucleus of the thalamus, left",4432
+"826",4433,"Rh","rhomboid nucleus of the thalamus, left",4432
+"827",4487,"ILr","rostral group of intralaminar nuclei, right",12929
+"828",4489,"CL","central lateral nucleus of the thalamus, right",4487
+"829",4491,"CeM","central medial nucleus of the thalamus, right",4487
+"830",4490,"Pc","paracentral nucleus of the thalamus, right",4487
+"831",4488,"Rh","rhomboid nucleus of the thalamus, right",4487
+"832",4504,"VT","ventral thalamus",4392
+"833",4505,"VT","ventral thalamus, left",4504
+"834",4508,"FF","nucleus of the H field of Forel, left",4505
+"835",4506,"R","reticular nucleus of thalamus, left",4505
+"836",4507,"ZI","zona incerta, left",4505
+"837",4511,"VT","ventral thalamus, right",4504
+"838",4514,"FF","nucleus of the H field of Forel, right",4511
+"839",4512,"R","reticular nucleus of thalamus, right",4511
+"840",4513,"ZI","zona incerta, right",4511
+"841",9001,"MES","mesencephalon",4006
+"842",9101,"Tec","midbrain tectum",9001
+"843",9102,"IC","inferior colliculus",9101
+"844",9103,"IC","inferior colliculus, left",9102
+"845",9104,"CIC","central nucleus of the inferior colliculus, left",9103
+"846",9105,"EIC","external nucleus of the inferior colliculus, left",9103
+"847",9106,"PCIC","pericentral nucleus of the inferior colliculus, left",9103
+"848",9107,"IC","inferior colliculus, right",9102
+"849",9108,"CIC","central nucleus of the inferior colliculus, right",9107
+"850",9109,"EIC","external nucleus of the inferior colliculus, right",9107
+"851",9110,"PCIC","pericentral nucleus of the inferior colliculus, right",9107
+"852",9480,"ICN","intercollicular nucleus",9101
+"853",9481,"ICN","intercollicular nucleus, left",9480
+"854",9482,"ICN","intercollicular nucleus, right",9480
+"855",9483,"BrC","nucleus of the brachium of the inferior colliculus",9101
+"856",9484,"BrC","nucleus of the brachium of the inferior colliculus, left",9483
+"857",9485,"BrC","nucleus of the brachium of the inferior colliculus, right",9483
+"858",9111,"PBG","parabigeminal nucleus",9101
+"859",9112,"PBG","parabigeminal nucleus, left",9111
+"860",9113,"PBG","parabigeminal nucleus, right",9111
+"861",9114,"SC","superior colliculus",9101
+"862",9115,"SC","superior colliculus, left",9114
+"863",9116,"StL","stratum lemnisci of the superior colliculus, left",9115
+"864",9117,"DpG","deep gray layer of the superior colliculus, left",9116
+"865",9118,"DpWh","deep white layer of the superior colliculus, left",9116
+"866",9119,"MGr","middle gray layer of the superior colliculus, left",9116
+"867",9120,"MWh","middle white layer of the superior colliculus, left",9116
+"868",9121,"SuG","superficial gray layer of the superior colliculus, left",9115
+"869",9122,"SuWh","superficial white layer of the superior colliculus, left",9115
+"870",9123,"SC","superior colliculus, right",9114
+"871",9124,"StL","stratum lemnisci of the superior colliculus, right",9123
+"872",9125,"DpG","deep gray layer of the superior colliculus, right",9124
+"873",9126,"DpWh","deep white layer of the superior colliculus, right",9124
+"874",9127,"MGr","middle gray layer of the superior colliculus, right",9124
+"875",9128,"MWh","middle white layer of the superior colliculus, right",9124
+"876",9129,"SuG","superficial gray layer of the superior colliculus, right",9123
+"877",9130,"SuWh","superficial white layer of the superior colliculus, right",9123
+"878",9486,"Sag","sagulum nucleus",9101
+"879",9487,"Sag","sagulum nucleus, left",9486
+"880",9488,"Sag","sagulum, nucleus, right",9486
+"881",9489,"SCO","subcommissural organ",9101
+"882",9490,"SCO","subcommissural organ, left",9489
+"883",9491,"SCO","subcommissural organ, right",9489
+"884",9002,"MTg","midbrain tegmentum",9001
+"885",9003,"CGMB","central gray substance of midbrain",9002
+"886",9004,"CGMB","central gray substance of midbrain, left",9003
+"887",9440,"CGMBdl","central gray substance of midbrain, left, dorsolateral division",9004
+"888",9439,"CGMBdm","central gray substance of midbrain, left, dorsomedial division",9004
+"889",9441,"CGMBl","central gray substance of midbrain, left, lateral division",9004
+"890",9443,"CGMBpl","central gray substance of midbrain, left, pleioglial division",9004
+"891",9442,"CGMBvl","central gray substance of midbrain, left, ventrolateral division",9004
+"892",9005,"CGMB","central gray substance of midbrain, right",9003
+"893",9445,"CGMBdl","central gray substance of midbrain, right, dorsolateral division",9005
+"894",9444,"CGMBdm","central gray substance of midbrain, right, dorsomedial division",9005
+"895",9446,"CGMBl","central gray substance of midbrain, right, lateral division",9005
+"896",9448,"CGMBpl","central gray substance of midbrain, right, pleioglial division",9005
+"897",9447,"CGMBvl","central gray substance of midbrain, right, ventrolateral division",9005
+"898",9449,"EW","Edinger-Westphal nucleus",9002
+"899",9450,"EW","Edinger-Westphal nucleus, left",9449
+"900",9451,"EW","Edinger-Westphal nucleus, right",9449
+"901",9012,"IP","interpeduncular nucleus",9002
+"902",9013,"IP","interpeduncular nucleus, left",9012
+"903",9014,"IP","interpeduncular nucleus, right",9012
+"904",9015,"ICjl","interstitial nucleus of Cajal",9002
+"905",9016,"ICjl","interstitial nucleus of Cajal, left",9015
+"906",9017,"ICjl","interstitial nucleus of Cajal, right",9015
+"907",504852,"isRt","isthmic reticular formation",9002
+"908",504856,"isRt","isthmic reticular formation, left",504852
+"909",504860,"isRt","isthmic reticular formation, right",504852
+"910",9455,"MBRa","midbrain raphe nuclei",9002
+"911",9456,"MBRa","midbrain raphe nuclei, left",9455
+"912",9457,"DR","dorsal raphe nucleus, left",9456
+"913",9458,"DRD","dorsal raphe nucleus, left, dorsal part",9457
+"914",9459,"DRI","dorsal raphe nucleus, left, interfascicular part",9457
+"915",9461,"DRrc","dorsal raphe nucleus, left, raphe cap",9457
+"916",9460,"DRV","dorsal raphe nucleus, left, ventral part",9457
+"917",9462,"MnR","median raphe, left",9456
+"918",9463,"MBRa","midbrain raphe nuclei, right",9455
+"919",9464,"DR","dorsal raphe nucleus, right",9463
+"920",9465,"DRD","dorsal raphe nucleus, right, dorsal part",9464
+"921",9466,"DRI","dorsal raphe nucleus, right, interfascicular part",9464
+"922",9468,"DRrc","dorsal raphe nucleus, right, raphe cap",9464
+"923",9467,"DRV","dorsal raphe nucleus, right, ventral part",9464
+"924",9469,"MnR","median raphe, right",9463
+"925",9018,"MBRF","midbrain reticular formation",9002
+"926",9019,"MBRF","midbrain reticular formation, left",9018
+"927",9020,"CnF","cuneiform nucleus, left",9019
+"928",9021,"PPTg","pedunculopontine tegmental nucleus, left",9019
+"929",9022,"SubCn","subcuneiform nucleus, left",9019
+"930",9023,"MBRF","midbrain reticular formation, right",9018
+"931",9024,"CnF","cuneiform nucleus, right",9023
+"932",9025,"PPTg","pedunculopontine tegmental nucleus, right",9023
+"933",9026,"SubCn","subcuneiform nucleus, right",9023
+"934",9047,"Dk","nucleus of Darkschewitsch",9002
+"935",9048,"Dk","nucleus of Darkschewitsch, left",9047
+"936",9049,"Dk","nucleus of Darkschewitsch, right",9047
+"937",9027,"PCom","nucleus of the posterior commissure",9002
+"938",9028,"PCom","nucleus of the posterior commissure, left",9027
+"939",9029,"PCom","nucleus of the posterior commissure, right",9027
+"940",9030,"3","oculomotor nuclear complex",9002
+"941",9031,"3","oculomotor nuclear complex, left",9030
+"942",9032,"AM3","anterior median oculomotor nucleus, left",9031
+"943",9033,"CC3","caudal central oculomotor nucleus, left",9031
+"944",9034,"C3","central oculomotor nucleus, left",9031
+"945",9035,"D3","dorsal oculomotor nucleus, left",9031
+"946",9036,"I3","intermediate oculomotor nucleus, left",9031
+"947",9037,"M3","medial oculomotor nucleus, left",9031
+"948",9038,"V3","ventral oculomotor nucleus, left",9031
+"949",9039,"3","oculomotor nuclear complex, right",9030
+"950",9040,"AM3","anterior median oculomotor nucleus, right",9039
+"951",9041,"CC3","caudal central oculomotor nucleus, right",9039
+"952",9042,"C3","central oculomotor nucleus, right",9039
+"953",9043,"D3","dorsal oculomotor nucleus, right",9039
+"954",9044,"I3","intermediate oculomotor nucleus, right",9039
+"955",9045,"M3","medial oculomotor nucleus, right",9039
+"956",9046,"V3","ventral oculomotor nucleus, right",9039
+"957",9050,"PPd","peripeduncular nucleus",9002
+"958",9051,"PPd","peripeduncular nucleus, left",9050
+"959",9052,"PPd","peripeduncular nucleus, right",9050
+"960",9053,"RN","red nucleus",9002
+"961",9054,"RN","red nucleus, left",9053
+"962",9055,"RMC","magnocellular part of the red nucleus, left",9054
+"963",9056,"RPC","parvocellular part of the red nucleus, left",9054
+"964",9057,"RN","red nucleus, right",9053
+"965",9058,"RMC","magnocellular part of the red nucleus, right",9057
+"966",9059,"RPC","parvocellular part of thered nucleus, right",9057
+"967",9060,"RI","rostral interstitial nucleus of the medial longitudinal fasciculus",9002
+"968",9061,"RI","rostral interstitial nucleus of the medial longitudinal fasciculus, left",9060
+"969",9062,"RI","rostral interstitial nucleus of the medial longitudinal fasciculus, right",9060
+"970",9072,"SN","substantia nigra",9002
+"971",9073,"SN","substantia nigra, left",9072
+"972",9074,"SNC","substantia nigra, pars compacta, left",9073
+"973",9075,"SNR","substantia nigra, pars reticulata, left",9073
+"974",9076,"SN","substantia nigra, right",9072
+"975",9077,"SNC","substantia nigra, pars compacta, right",9076
+"976",9078,"SNR","substantia nigra, pars reticulata, right",9076
+"977",9063,"4","trochlear nucleus",9002
+"978",9064,"4","trochlear nucleus, left",9063
+"979",9065,"4","trochlear nucleus, right",9063
+"980",9066,"VTA","ventral tegmental area",9002
+"981",9067,"VTA","ventral tegmental area, left",9066
+"982",9470,"CLN","caudal linear nucleus, left",9067
+"983",9472,"IF","interfascicular nucleus, left",9067
+"984",9473,"PBP","parabrachial pigmented nucleus, left",9067
+"985",9474,"PN","paranigral nucleus, left",9067
+"986",9471,"RL","rostral linear nucleus, left",9067
+"987",9068,"VTA","ventral tegmental area, right",9066
+"988",9475,"CLN","caudal linear nucleus, right",9068
+"989",9477,"IF","interfascicular nucleus, right",9068
+"990",9478,"PBP","parabrachial pigmented nucleus, right",9068
+"991",9479,"PN","paranigral nucleus, right",9068
+"992",9476,"RL","rostral linear nucleus, right",9068
+"993",9069,"VTg","ventral tegmental nucleus",9002
+"994",9070,"VTg","ventral tegmental nucleus, left",9069
+"995",9071,"VTg","ventral tegmental nucleus, right",9069
+"996",9079,"PTec","pretectal region",9001
+"997",9080,"OT","nucleus of the optic tract",9079
+"998",9081,"OT","nucleus of the optic tract, left",9080
+"999",9082,"OT","nucleus of the optic tract, right",9080
+"1000",9083,"PTA","nucleus of the pretectal area",9079
+"1001",9084,"PTA","nucleus of the pretectal area, left",9083
+"1002",9085,"PTA","nucleus of the pretectal area, right",9083
+"1003",9086,"OPt","olivary pretectal nucleus",9079
+"1004",9087,"OPt","olivary pretectal nucleus, left",9086
+"1005",9088,"OPt","olivary pretectal nucleus, right",9086
+"1006",9089,"PPt","principal pretectal nucleus",9079
+"1007",9090,"PPt","principal pretectal nucleus, left",9089
+"1008",9091,"PPt","principal pretectal nucleus, right",9089
+"1009",9092,"SLn","sublentiform nucleus",9079
+"1010",9093,"SLn","sublentiform nucleus, left",9092
+"1011",9094,"SLn","sublentiform nucleus, right",9092
+"1012",4833,"MET","metencephalon",4006
+"1013",4696,"Cb","cerebellum",4833
+"1014",4697,"CbCx","cerebellar cortex",4696
+"1015",4698,"Ve","vermis",4697
+"1016",4699,"ALVCb","anterior lobe of the vermis",4698
+"1017",4700,"Ve-I-II","I-II",4699
+"1018",4701,"Ve-III","III",4699
+"1019",4702,"Ve-IV","IV",4699
+"1020",4703,"Ve-V","V",4699
+"1021",4704,"PLVCb","posterior lobe of the vermis",4698
+"1022",4705,"Ve-VI","VI",4704
+"1023",4706,"Ve-VIIAf","VIIAf",4704
+"1024",4707,"Ve-VIIAt","VIIAt",4704
+"1025",4708,"Ve-VIIB","VIIB",4704
+"1026",4709,"Ve-VIIIA","VIIIA",4704
+"1027",4710,"Ve-VIIIB","VIIIB",4704
+"1028",4711,"Ve-IX","IX",4704
+"1029",4712,"FNL","Flocculonodular Lobe of the Vermis",4698
+"1030",4713,"Ve-X","X",4712
+"1031",12930,"CbH","cerebellar hemispheres",4697
+"1032",12931,"Cb-AL","Anterior Lobe",12930
+"1033",12932,"Cb-I-II","I-II",12931
+"1034",4717,"PV-I-II","I-II, left, paravermis",12932
+"1035",4733,"He-I-II","I-II, left, lateral hemisphere",12932
+"1036",4750,"PV-I-II","I-II, right, paravermis",12932
+"1037",4766,"He-I-II","I-II, right, lateral hemisphere",12932
+"1038",12933,"Cb-III","III",12931
+"1039",4718,"PV-III","III, left, paravermis",12933
+"1040",4734,"He-III","III, left, lateral hemisphere",12933
+"1041",4751,"PV-III","III, right, paravermis",12933
+"1042",4767,"He-III","III, right, lateral hemisphere",12933
+"1043",12934,"Cb-IV","IV",12931
+"1044",4719,"PV-IV","IV, left, paravermis",12934
+"1045",4735,"He-IV","IV, left, lateral hemisphere",12934
+"1046",4752,"PV-IV","IV, right, paravermis",12934
+"1047",4768,"He-IV","IV, right, lateral hemisphere",12934
+"1048",12935,"Cb-V","V",12931
+"1049",4720,"PV-V","V, left, paravermis",12935
+"1050",4736,"He-V","V, left, lateral hemisphere",12935
+"1051",4753,"PV-V","V, right, paravermis",12935
+"1052",4769,"He-V","V, right, lateral hemisphere",12935
+"1053",12936,"Cb-PL","Posterior Lobe",12930
+"1054",12937,"Cb-VI","VI",12936
+"1055",4722,"PV-VI","VI, left, paravermis",12937
+"1056",4738,"He-VI","VI, left, lateral hemisphere",12937
+"1057",4755,"PV-VI","VI, right, paravermis",12937
+"1058",4771,"He-VI","VI, right, lateral hemisphere",12937
+"1059",12938,"Cb-Crus I","crus I",12936
+"1060",4723,"PV-Crus I","Crus I, left, paravermis",12938
+"1061",4739,"He-Crus I","Crus I, left, lateral hemisphere",12938
+"1062",4756,"PV-Crus I","Crus I, right, paravermis",12938
+"1063",4772,"He-Crus I","Crus I, right, lateral hemisphere",12938
+"1064",12939,"Cb-Crus II","crus II",12936
+"1065",4724,"PV-Crus II","Crus II, left, paravermis",12939
+"1066",4740,"He-Crus II","Crus II, left, lateral hemisphere",12939
+"1067",4757,"PV-Crus II","Crus II, right, paravermis",12939
+"1068",4773,"He-Crus II","Crus II, right, lateral hemisphere",12939
+"1069",12940,"Cb-VIIB","VIIB",12936
+"1070",4725,"PV-VIIB","VIIB, left, paravermis",12940
+"1071",4741,"He-VIIB","VIIB, left, lateral hemisphere",12940
+"1072",4758,"PV-VIIB","VIIB, right, paravermis",12940
+"1073",4774,"He-VIIB","VIIB, right, lateral hemisphere",12940
+"1074",12941,"Cb-VIIIA","VIIIA",12936
+"1075",4726,"PV-VIIIA","VIIIA, left, paravermis",12941
+"1076",4742,"He-VIIIA","VIIIA, left, lateral hemisphere",12941
+"1077",4759,"PV-VIIIA","VIIIA, right, paravermis",12941
+"1078",4775,"He-VIIIA","VIIIA, right, lateral hemisphere",12941
+"1079",12942,"Cb-VIIIB","VIIIB",12936
+"1080",4727,"PV-VIIIB","VIIIB, left, paravermis",12942
+"1081",4743,"He-VIIIB","VIIIB, left, lateral hemisphere",12942
+"1082",4760,"PV-VIIIB","VIIIB, right, paravermis",12942
+"1083",4776,"He-VIIIB","VIIIB, right, lateral hemisphere",12942
+"1084",12943,"Cb-IX","IX",12936
+"1085",4728,"PV-IX","IX, left, paravermis",12943
+"1086",4744,"He-IX","IX, left, lateral hemisphere",12943
+"1087",4761,"PV-IX","IX, right, paravermis",12943
+"1088",4777,"He-IX","IX, right, lateral hemisphere",12943
+"1089",12944,"Cb-FNL","flocculonodular lobe",12930
+"1090",12945,"Cb-X","X",12944
+"1091",4730,"PV-X","X, left, paravermis",12945
+"1092",4746,"He-X","X, left, lateral hemisphere",12945
+"1093",4763,"PV-X","X, right, paravermis",12945
+"1094",4779,"He-X","X, right, lateral hemisphere",12945
+"1095",4780,"CbN","cerebellar nuclei",4696
+"1096",12946,"Dt","dentate nucleus",4780
+"1097",4782,"Dt","dentate nucleus, left",12946
+"1098",4787,"Dt","dentate nucleus, right",12946
+"1099",12947,"Emb","emboliform nucleus",4780
+"1100",4783,"Emb","emboliform nucleus, left",12947
+"1101",4788,"Emb","emboliform nucleus, right",12947
+"1102",12948,"Fas","fastigial nucleus",4780
+"1103",4784,"Fas","fastigial nucleus, left",12948
+"1104",4789,"Fas","fastigial nucleus, right",12948
+"1105",12949,"Glo","globose nucleus",4780
+"1106",4785,"Glo","globose nucleus, left",12949
+"1107",4790,"Glo","globose nucleus, right",12949
+"1108",9131,"Pons","pons",4833
+"1109",9132,"Bpons","basal part of pons",9131
+"1110",9133,"Pn","pontine nuclei",9132
+"1111",9492,"Pn","pontine nuclei, left",9133
+"1112",9493,"Pn","pontine nuclei, right",9133
+"1113",9135,"PTg","pontine tegmentum",9131
+"1114",9136,"6","abducens nucleus",9135
+"1115",9137,"6","abducens nucleus, left",9136
+"1116",9138,"6","abducens nucleus, right",9136
+"1117",9494,"Acs7","accessory facial nucleus",9135
+"1118",9495,"Acs7","accessory facial nucleus, left",9494
+"1119",9496,"Acs7","accessory facial nucleus, right",9494
+"1120",9497,"Acs5","accessory trigeminal nucleus",9135
+"1121",9498,"Acs5","accessory trigeminal nucleus, left",9497
+"1122",9499,"Acs5","accessory trigeminal nucleus, right",9497
+"1123",10147,"CGPo","central gray of the pons",9135
+"1124",10148,"CGPo","central gray of the pons, left",10147
+"1125",10149,"CGPo","central gray of the pons, right",10147
+"1126",9139,"DLL","dorsal nucleus of lateral lemniscus",9135
+"1127",9140,"DLL","dorsal nucleus of lateral lemniscus, left",9139
+"1128",9141,"DLL","dorsal nucleus of lateral lemniscus, right",9139
+"1129",504864,"DMTg","dorsomedial tegmental area",9135
+"1130",504868,"DMTg","dorsomedial tegmental area, left",504864
+"1131",504872,"DMTg","dorsomedial tegmental area, right",504864
+"1132",504876,"DTg","dorsal tegmental nucleus",9135
+"1133",504880,"DTg","dorsal tegmental nucleus, left",504876
+"1134",504884,"DTg","dorsal tegmental nucleus, right",504876
+"1135",9142,"7","facial motor nucleus",9135
+"1136",9143,"7","facial motor nucleus, left",9142
+"1137",9501,"7L","facial motor nucleus, left, lateral part",9143
+"1138",9502,"7I","facial motor nucleus, left, intermediate part",9143
+"1139",9500,"7M","facial motor nucleus, left, medial part",9143
+"1140",9505,"P7","facial motor nucleus, left, perifacial zone",9143
+"1141",9503,"7vl","facial motor nucleus, left, ventral part",9143
+"1142",9504,"7VL","facial motor nucleus, left, ventrolateral part",9143
+"1143",9144,"7","facial motor nucleus, right",9142
+"1144",9507,"7L","facial motor nucleus, right, lateral part",9144
+"1145",9508,"7I","facial motor nucleus, right, intermediate part",9144
+"1146",9506,"7M","facial motor nucleus, right, medial part",9144
+"1147",9511,"P7","facial motor nucleus, right, perifacial zone",9144
+"1148",9509,"7vl","facial motor nucleus, right, ventral part",9144
+"1149",9510,"7VL","facial motor nucleus, right, ventrolateral part",9144
+"1150",504888,"ILL","intermediate nucleus of lateral lemniscus",9135
+"1151",504892,"ILL","intermediate nucleus of lateral lemniscus, left",504888
+"1152",504896,"ILL","intermediate nucleus of lateral lemniscus, right",504888
+"1153",9452,"LDTg","lateral dorsal tegmental nucleus",9135
+"1154",9453,"LDTg","lateral dorsal tegmental nucleus, left",9452
+"1155",9454,"LDTg","lateral dorsal tegmental nucleus, right",9452
+"1156",9145,"LPB","lateral parabrachial nucleus",9135
+"1157",9146,"LPB","lateral parabrachial nucleus, left",9145
+"1158",9147,"LPB","lateral parabrachial nucleus, right",9145
+"1159",9148,"LC","locus ceruleus",9135
+"1160",9149,"LC","locus ceruleus, left",9148
+"1161",9150,"LC","locus ceruleus, right",9148
+"1162",9151,"MPB","medial parabrachial nucleus",9135
+"1163",9152,"MPB","medial parabrachial nucleus, left",9151
+"1164",9153,"MPB","medial parabrachial nucleus,right",9151
+"1165",9154,"SubC","nucleus subceruleus",9135
+"1166",9155,"SubC","nucleus subceruleus, left",9154
+"1167",9156,"SubC","nucleus subceruleus, right",9154
+"1168",788859,"PnG","pontine gamma nucleus",9135
+"1169",788863,"PnG","pontine gamma nucleus, left",788859
+"1170",788867,"PnG","pontine gamma nucleus, right",788859
+"1171",9157,"RPn","pontine raphe nucleus",9135
+"1172",9158,"RPn","pontine raphe nucleus, left",9157
+"1173",9159,"RPn","pontine raphe nucleus,right",9157
+"1174",9160,"PPRF","paramedian pontine reticular formation",9135
+"1175",9161,"PRF","pontine reticular formation, left",9160
+"1176",9162,"PnC","caudal pontine reticular nucleus, left",9161
+"1177",9166,"PnO","oral pontine reticular nucleus, left",9161
+"1178",9167,"RtTg","reticulotegmental nucleus, left",9161
+"1179",9169,"PRF","pontine reticular formation, right",9160
+"1180",9170,"PnC","caudal pontine reticular nucleus, right",9169
+"1181",9174,"PnO","oral pontine reticular nucleus, right",9169
+"1182",9175,"RtTg","reticulotegmental nucleus, right",9169
+"1183",9177,"SOC","superior olivary complex",9135
+"1184",9178,"SOC","superior olivary complex, left",9177
+"1185",9179,"PeO","periolivary nucleus, left",9178
+"1186",9180,"PrO","preolivary nucleus, left",9178
+"1187",9181,"RO","retro-olivary cell group, left",9178
+"1188",9182,"SOl","superior olive, left",9178
+"1189",9183,"LSO","lateral superior olivary nucleus, left",9182
+"1190",9184,"MSO","medial superior olivary nucleus, left",9182
+"1191",504906,"SPO","superior paraolivary nucleus, left",9178
+"1192",9185,"Tz","trapezoid nuclei, left",9178
+"1193",9186,"SOC","superior olivary complex, right",9177
+"1194",9187,"PeO","periolivary nucleus, right",9186
+"1195",9188,"PrO","preolivary nucleus, right",9186
+"1196",9189,"RO","retro-olivary cell group, right",9186
+"1197",9190,"SOl","superior olive, right",9186
+"1198",9191,"LSO","lateral superior olivary nucleus, right",9190
+"1199",9192,"MSO","medial superior olivary nucleus, right",9190
+"1200",504910,"SPO","superior paraolivary nucleus, right",9186
+"1201",9193,"Tz","trapezoid nuclei, right",9186
+"1202",9194,"SuS","superior salivatory nucleus",9135
+"1203",9195,"SuS","superior salivatory nucleus, left",9194
+"1204",9196,"SuS","superior salivatory nucleus, right",9194
+"1205",9197,"tz","trapezoid body",9135
+"1206",9198,"tz","trapezoid body, left",9197
+"1207",9199,"tz","trapezoid body, right",9197
+"1208",9203,"5","trigeminal nuclei",9135
+"1209",9204,"5","trigeminal nuclei, left",9203
+"1210",9205,"Me5","mesencephalic nucleus of trigeminal nerve, left",9204
+"1211",9206,"Mo5","motor nucleus of trigeminal nerve, left",9204
+"1212",9207,"Pr5","principal sensory nucleus of trigeminal nerve, left",9204
+"1213",9211,"5","trigeminal nuclei, right",9203
+"1214",9212,"Me5","mesencephalic nucleus of trigeminal nerve, right",9211
+"1215",9213,"Mo5","motor nucleus of trigeminal nerve, right",9211
+"1216",9214,"Pr5","principal sensory nucleus of trigeminal nerve, right",9211
+"1217",9200,"VLL","ventral nucleus of lateral lemniscus",9135
+"1218",9201,"VLL","ventral nucleus of lateral lemniscus, left",9200
+"1219",9202,"VLL","ventral nucleus of lateral lemniscus, right",9200
+"1220",9512,"MY","myelencephalon",4006
+"1221",9513,"ACu","accessory cuneate nucleus",9512
+"1222",9514,"ACu","accessory cuneate nucleus, left",9513
+"1223",9515,"ACu","accessory cuneate nucleus, right",9513
+"1224",9516,"Amb","ambiguus nucleus",9512
+"1225",9517,"Amb","ambiguus nucleus, left",9516
+"1226",9518,"Amb","ambiguus nucleus, right",9516
+"1227",9519,"Arc","arcuate nucleus of medulla",9512
+"1228",9520,"Arc","arcuate nucleus of medulla, left",9519
+"1229",9521,"Arc","arcuate nucleus of medulla, right",9519
+"1230",9522,"AP","area postrema",9512
+"1231",9523,"AP","area postrema, left",9522
+"1232",9524,"AP","area postrema, right",9522
+"1233",9525,"CGS","central glial substance",9512
+"1234",9526,"CGS","central glial substance, left",9525
+"1235",9527,"CGS","central glial substance, right",9525
+"1236",504914,"CGMe","central gray of the medulla",9512
+"1237",504918,"CGMe","central gray of the medulla, left",504914
+"1238",504922,"CGMe","central gray of the medulla, right",504914
+"1239",9528,"8Co","cochlear nuclei",9512
+"1240",9529,"8Co","cochlear nuclei, left",9528
+"1241",9530,"DCo","dorsal cochlear nucleus, left",9529
+"1242",9531,"VCo","ventral cochlear nuclei, left",9529
+"1243",9532,"AVCo","anteroventral cochlear nucleus, left",9531
+"1244",9533,"PVCo","posteroventral cochlear nucleus, left",9531
+"1245",9534,"8Co","cochlear nuclei, right",9528
+"1246",9535,"DCo","dorsal cochlear nucleus, right",9534
+"1247",9536,"VCo","ventral cochlear nuclei, right",9534
+"1248",9537,"AVCo","anteroventral cochlear nucleus, right",9536
+"1249",9538,"PVCo","posteroventral cochlear nucleus, right",9536
+"1250",9539,"CT","conterminalis",9512
+"1251",9540,"CT","conterminalis, left",9539
+"1252",9541,"CT","conterminalis, right",9539
+"1253",9542,"Cu","cuneate nucleus",9512
+"1254",9543,"Cu","cuneate nucleus, left",9542
+"1255",9544,"Cu","cuneate nucleus, right",9542
+"1256",9545,"10","dorsal motor nucleus of the vagus",9512
+"1257",9546,"10","dorsal motor nucleus of the vagus, left",9545
+"1258",9547,"10","dorsal motor nucleus of the vagus, right",9545
+"1259",9548,"EL","endolemniscal nucleus",9512
+"1260",9549,"EL","endolemniscal nucleus, left",9548
+"1261",9550,"EL","endolemniscal nucleus, right",9548
+"1262",9551,"EF","epifascicular nucleus",9512
+"1263",9552,"EF","epifascicular nucleus, left",9551
+"1264",9553,"EF","epifascicular nucleus, right",9551
+"1265",504926,"ECu","external (accessory/lateral) cuneate nucleus",9512
+"1266",504930,"ECu","external (accessory/lateral) cuneate nucleus, left",504926
+"1267",504934,"ECu","external (accessory/lateral) cuneate nucleus, right",504926
+"1268",9554,"Gr","gracile nucleus",9512
+"1269",9555,"Gr","gracile nucleus, left",9554
+"1270",9556,"Gr","gracile nucleus, right",9554
+"1271",9557,"12","hypoglossal nucleus",9512
+"1272",9558,"12","hypoglossal nucleus, left",9557
+"1273",9559,"12","hypoglossal nucleus, right",9557
+"1274",9560,"IO","inferior olivary complex",9512
+"1275",9561,"IO","inferior olivary complex, left",9560
+"1276",9562,"DIO","dorsal accessory inferior olivary nucleus, left",9561
+"1277",9563,"MIO","medial accessory inferior olivary nucleus, left",9561
+"1278",9564,"PrIO","principal inferior olivary nucleus, left",9561
+"1279",504938,"BIO","beta inferior olivary nucleus, left",9561
+"1280",9565,"IO","inferior olivary complex, right",9560
+"1281",9566,"DIO","dorsal accessory inferior olivary nucleus, right",9565
+"1282",9567,"MIO","medial accessory inferior olivary nucleus, right",9565
+"1283",9568,"PrIO","principal inferior olivary nucleus, right",9565
+"1284",504942,"BIO","beta inferior olivary nucleus, right",9565
+"1285",9569,"IS","inferior salivatory nucleus",9512
+"1286",9570,"IS","inferior salivatory nucleus, left",9569
+"1287",9571,"IS","inferior salivatory nucleus, right",9569
+"1288",9572,"In","intercalated nucleus",9512
+"1289",9573,"In","intercalated nucleus, left",9572
+"1290",9574,"In","intercalated nucleus, right",9572
+"1291",9575,"IFH","interfascicular hypoglossal nucleus",9512
+"1292",9576,"IFH","interfascicular hypoglossal nucleus, left",9575
+"1293",9577,"IFH","interfascicular hypoglossal nucleus, right",9575
+"1294",9578,"IPo","interpositus nucleus",9512
+"1295",9579,"IPo","interpositus nucleus, left",9578
+"1296",9580,"IPo","interpositus nucleus, right",9578
+"1297",9581,"LPCu","lateral pericuneate nucleus",9512
+"1298",9582,"LPCu","lateral pericuneate nucleus, left",9581
+"1299",9583,"LPCu","lateral pericuneate nucleus, right",9581
+"1300",9584,"MPCu","medial pericuneate nucleus",9512
+"1301",9585,"MPCu","medial pericuneate nucleus, left",9584
+"1302",9586,"MPCu","medial pericuneate nucleus, right",9584
+"1303",9587,"MeRF","medullary reticular formation",9512
+"1304",9588,"CMRt","central medullary reticular group",9587
+"1305",9589,"CMRt","central medullary reticular group, left",9588
+"1306",9590,"CRt","central reticular nucleus of the medulla, left",9589
+"1307",9591,"MRt","medial reticular nucleus of the medulla, left",9589
+"1308",9592,"VRt","ventral reticular nucleus of the medulla, left",9589
+"1309",9611,"Irt","intermediate zone, left",9589
+"1310",9593,"CMRt","central medullary reticular group, right",9588
+"1311",9594,"CRt","central reticular nucleus of the medulla, right",9593
+"1312",9595,"MRt","medial reticular nucleus of the medulla, right",9593
+"1313",9596,"VRt","ventral reticular nucleus of the medulla, right",9593
+"1314",9612,"Irt","intermediate zone, right",9593
+"1315",9597,"GiRt","gigantocellular group",9587
+"1316",9598,"GiRt","gigantocellular group, left",9597
+"1317",9600,"DPGi","dorsal paragigantocellular nucleus, left",9598
+"1318",9601,"LPGi","lateral paragigantocellular nucleus, left",9598
+"1319",9602,"Gi","gigantocellular nucleus, left",9598
+"1320",9603,"GiV","gigantocellular nucleus, ventral part, left",9598
+"1321",9599,"Gia","paragigantocellular nucleus, alpha part, left",9598
+"1322",9604,"GiRt","gigantocellular group, right",9597
+"1323",9606,"DPGi","dorsal paragigantocellular nucleus, right",9604
+"1324",9607,"LPGi","lateral paragigantocellular nucleus, right",9604
+"1325",9608,"Gi","gigantocellular nucleus, right",9604
+"1326",9609,"GiV","gigantocellular nucleus, ventral part, right",9604
+"1327",9605,"Gia","paragigantocellular nucleus, alpha part, right",9604
+"1328",9613,"LMRt","lateral medullary reticular group",9587
+"1329",9614,"LMRt","lateral medullary reticular group, left",9613
+"1330",9615,"EO","epiolivary nucleus, left",9614
+"1331",9616,"LRt","lateral reticular nucleus, left",9614
+"1332",9618,"LRtPC","parvocellular division, left",9614
+"1333",9617,"LRtS5","subtrigeminal division, left",9614
+"1334",9619,"LMRt","lateral medullary reticular group, right",9613
+"1335",9620,"EO","epiolivary nucleus, right",9619
+"1336",9621,"LRt","lateral reticular nucleus, right",9619
+"1337",9623,"LRtPC","parvocellular division, right",9619
+"1338",9622,"LRtS5","subtrigeminal division, right",9619
+"1339",9624,"PCRt","parvicellular reticular nucleus",9587
+"1340",9625,"PCRt","parvicellular reticular nucleus, left",9624
+"1341",9626,"PCRt","parvicellular reticular nucleus, right",9624
+"1342",9627,"Ro","nucleus of Roller",9512
+"1343",9628,"Ro","nucleus of Roller, left",9627
+"1344",9629,"Ro","nucleus of Roller, right",9627
+"1345",9630,"Pa5","paratrigeminal nucleus",9512
+"1346",9631,"Pa5","paratrigeminal nucleus, left",9630
+"1347",9632,"Pa5","paratrigeminal nucleus, right",9630
+"1348",9633,"Pe5","peritrigeminal nucleus",9512
+"1349",9634,"Pe5","peritrigeminal nucleus, left",9633
+"1350",9635,"Pe5","peritrigeminal nucleus, right",9633
+"1351",9636,"PnB","pontobulbar nucleus",9512
+"1352",9637,"PnB","pontobulbar nucleus, left",9636
+"1353",9638,"PnB","pontobulbar nucleus, right",9636
+"1354",9639,"Pr","prepositus nucleus",9512
+"1355",9640,"Pr","prepositus nucleus, left",9639
+"1356",9641,"Pr","prepositus nucleus, right",9639
+"1357",9642,"RaM","raphe nuclei of medulla",9512
+"1358",9643,"RMg","nucleus raphe magnus",9642
+"1359",9644,"RMg","nucleus raphe magnus, left",9643
+"1360",9645,"RMg","nucleus raphe magnus, right",9643
+"1361",9646,"ROb","nucleus raphe obscurus",9642
+"1362",9647,"ROb","nucleus raphe obscurus, left",9646
+"1363",9648,"ROb","nucleus raphe obscurus, right",9646
+"1364",9649,"RPa","nucleus raphe pallidus",9642
+"1365",504950,"RPRa","nucleus pararaphales",9642
+"1366",504954,"RPRa","nucleus pararaphales, left",504950
+"1367",504958,"RPRa","nucleus pararaphales, right",504950
+"1368",9650,"Ramb","retroambiguus nucleus",9512
+"1369",9651,"Ramb","retroambiguus nucleus, left",9650
+"1370",9652,"Ramb","retroambiguus nucleus, right",9650
+"1371",9653,"Sol","solitary nucleus",9512
+"1372",9654,"Sol","solitary nucleus, left",9653
+"1373",9655,"SolC","solitary nucleus, left, commissural subnucleus",9654
+"1374",9656,"SolD","solitary nucleus, left, dorsal subnucleus",9654
+"1375",9657,"SolDL","solitary nucleus, left, dorsolateral subnucleus",9654
+"1376",9658,"SolG","solitary nucleus, left, gelantinosus subnucleus",9654
+"1377",9659,"SolI","solitary nucleus, left, interstitial subnucleus",9654
+"1378",9660,"SolIM","solitary nucleus, left, intermediate subnucleus",9654
+"1379",9661,"SolM","solitary nucleus, left, meidal subnucleus",9654
+"1380",9662,"SolPaC","solitary nucleus, left, paracommissural part",9654
+"1381",9663,"SolV","solitary nucleus, left, ventral subnucleus",9654
+"1382",9664,"SolVL","ventrolateral subnucleus of solitary tract, left",9654
+"1383",9665,"Sol","solitary nucleus, right",9653
+"1384",9666,"SolC","solitary nucleus, right, commissural subnucleus",9665
+"1385",9667,"SolD","solitary nucleus, right, dorsal subnucleus",9665
+"1386",9668,"SolDL","solitary nucleus, right, dorsolateral subnucleus",9665
+"1387",9669,"SolG","solitary nucleus, right, gelantinosus subnucleus",9665
+"1388",9670,"SolI","solitary nucleus, right, interstitial subnucleus",9665
+"1389",9671,"SolIM","solitary nucleus, right, intermediate subnucleus",9665
+"1390",9672,"SolM","solitary nucleus, right, meidal subnucleus",9665
+"1391",9673,"SolPaC","solitary nucleus, right, paracommissural part",9665
+"1392",9674,"SolV","solitary nucleus, right, ventral subnucleus",9665
+"1393",9675,"SolVL","ventrolateral subnucleus of solitary tract, right",9665
+"1394",9676,"Sp5","spinal trigeminal nucleus",9512
+"1395",9677,"Sp5","spinal trigeminal nucleus, left",9676
+"1396",9680,"Sp5C","caudal spinal trigeminal nucleus, left",9677
+"1397",9681,"Sp5Cg","caudal spinal trigeminal nucleus, left, gelatenous part",9680
+"1398",9682,"SP5Cm","caudal spinal trigeminal nucleus, left, magnocellular part",9680
+"1399",9683,"SP5Cz","caudal spinal trigeminal nucleus, left, zonal part",9680
+"1400",9678,"Sp5I","interpolar part of spinal trigeminal nucleus, left",9677
+"1401",9679,"Sp5O","oral part of spinal trigeminal nucleus, left",9677
+"1402",9684,"Sp5","spinal trigeminal nucleus, right",9676
+"1403",9687,"Sp5C","caudal spinal trigeminal nucleus, right",9684
+"1404",9688,"Sp5Cg","caudal spinal trigeminal nucleus, right, gelatenous part",9687
+"1405",9689,"SP5Cm","caudal spinal trigeminal nucleus, right, magnocellular part",9687
+"1406",9690,"SP5Cz","caudal spinal trigeminal nucleus, right, zonal part",9687
+"1407",9685,"Sp5I","interpolar part of spinal trigeminal nucleus, right",9684
+"1408",9686,"Sp5O","oral part of spinal trigeminal nucleus, right",9684
+"1409",9691,"Sge","suprageniculate nucleus of the medulla",9512
+"1410",9692,"Sge","suprageniculate nucleus of the medulla, left",9691
+"1411",9693,"Sge","suprageniculate nucleus of the medulla, right",9691
+"1412",9694,"SSp","supraspinal nucleus",9512
+"1413",9695,"SSp","supraspinal nucleus, left",9694
+"1414",9696,"SSp","supraspinal nucleus, right",9694
+"1415",9697,"8Ve","vestibular nuclei",9512
+"1416",9698,"8Ve","vestibular nuclei, left",9697
+"1417",9699,"LVe","lateral vestibular nucleus, left",9698
+"1418",9700,"MVe","medial vestibular nucleus, left",9698
+"1419",9702,"SpVe","spinal vestibular nucleus, left",9698
+"1420",9701,"SuVe","superior vestibular nucleus, left",9698
+"1421",9703,"8Ve","vestibular nuclei, right",9697
+"1422",9704,"LVe","lateral vestibular nucleus, right",9703
+"1423",9705,"MVe","medial vestibular nucleus, right",9703
+"1424",9707,"SpVe","spinal vestibular nucleus, right",9703
+"1425",9706,"SuVe","superior vestibular nucleus, right",9703
+"1426",9218,"WM","white matter",4005
+"1427",9219,"TELWM","telencephalic white matter",9218
+"1428",9220,"TELCom","telencephalic commissures",9219
+"1429",9221,"ac","anterior commissure",9220
+"1430",9222,"cc","corpus callosum",9220
+"1431",9224,"bcc","body of the corpus callosum",9222
+"1432",9223,"gcc","genu of the corpus callosum",9222
+"1433",9226,"rcc","rostrum of the corpus callosum",9222
+"1434",9225,"scc","splenium of the corpus callosum",9222
+"1435",504962,"rdcc","radiations of corpus callosum",9222
+"1436",504966,"tap","tapetum of corpus callosum",9222
+"1437",9227,"hbc","habenular commissure",9220
+"1438",9228,"hc","hippocampal commissure",9220
+"1439",9229,"pc","posterior commissure",9220
+"1440",504970,"smc","supramamillary commissure",9220
+"1441",9230,"TelTr","telencephalic white matter tracts",9219
+"1442",504974,"ar","acoustic radiation",9230
+"1443",504978,"ar","acoustic radiation, left",504974
+"1444",504982,"ar","acoustic radiation, right",504974
+"1445",9231,"arf","arcuate fasciculus",9230
+"1446",9232,"arf","arcuate fasciculus, left",9231
+"1447",9233,"arf","arcuate fasciculus, right",9231
+"1448",9234,"alv","alveus",9230
+"1449",9235,"alv","alveus, left",9234
+"1450",9236,"alv","alveus, right",9234
+"1451",504986,"amtg","amygdalotegmental tract",9230
+"1452",504990,"amtg","amygdalotegmental tract, left",504986
+"1453",504994,"amtg","amygdalotegmental tract, right",504986
+"1454",504998,"agb","angular bundle",9230
+"1455",505002,"agb","angular bundle, left",504998
+"1456",505006,"agb","angular bundle, right",504998
+"1457",9237,"al","ansa lenticularis",9230
+"1458",9238,"al","ansa lenticularis, left",9237
+"1459",9239,"al","ansa lenticularis, right",9237
+"1460",505010,"ap","ansa peduncularis",9230
+"1461",505014,"ap","ansa peduncularis, left",505010
+"1462",505018,"ap","ansa peduncularis, right",505010
+"1463",505022,"bx","bundle X",9230
+"1464",505026,"bx","bundle X, left",505022
+"1465",505030,"bx","bundle X, right",505022
+"1466",9240,"cgb","cingulum bundle",9230
+"1467",9241,"cgb","cingulum bundle, left",9240
+"1468",9242,"cgb","cingulum bundle, right",9240
+"1469",505034,"comb","comb fibers",9230
+"1470",505038,"comb","comb fibers, left",505034
+"1471",505042,"comb","comb fibers, right",505034
+"1472",505046,"cor","corona radiata",9230
+"1473",505050,"cor","corona radiata, left",505046
+"1474",505054,"cor","corona radiata, right",505046
+"1475",505058,"cbu","corticobulbar tract",9230
+"1476",505062,"cbu-sc","corticobulbar tract, supracapsular part",505058
+"1477",505066,"cbu-sc","corticobulbar tract, supracapsular part, left",505062
+"1478",505070,"cbu-sc","corticobulbar tract, supracapsular part, right",505062
+"1479",505074,"cbu-ic","corticobulbar tract, infracapsular part",505058
+"1480",505078,"cbu-ic","corticobulbar tract, infracapsular part, left",505074
+"1481",505082,"cbu-ic","corticobulbar tract, infracapsular part, right",505074
+"1482",9243,"ec","external capsule",9230
+"1483",9244,"ec","external capsule, left",9243
+"1484",9245,"ec","external capsule, right",9243
+"1485",505086,"emlgp","external medullary lamina of globus pallidus",9230
+"1486",505090,"emlgp","external medullary lamina of globus pallidus, left",505086
+"1487",505094,"emlgp","external medullary lamina of globus pallidus, right",505086
+"1488",505098,"emlth","external medullary lamina of thalamus",9230
+"1489",505102,"emlth","external medullary lamina of thalamus, left",505098
+"1490",505106,"emlth","external medullary lamina of thalamus, right",505098
+"1491",9246,"exc","extreme capsule",9230
+"1492",9247,"exc","extreme capsule, left",9246
+"1493",9248,"exc","extreme capsule, right",9246
+"1494",9249,"fx","fornix",9230
+"1495",9250,"fx","fornix, left",9249
+"1496",9251,"afx","anterior column of the fornix, left",9250
+"1497",9252,"bfx","body of the fornix, left",9250
+"1498",9253,"fi","fimbria, left",9250
+"1499",9254,"pfx","posterior column of the fornix, left",9250
+"1500",9255,"fx","fornix, right",9249
+"1501",9256,"afx","anterior column of the fornix, right",9255
+"1502",9257,"bfx","body of the fornix, right",9255
+"1503",9258,"fi","fimbria, right",9255
+"1504",9259,"pfx","posterior column of the fornix, right",9255
+"1505",9260,"ilf","inferior longitudinal fasciculus",9230
+"1506",9261,"ilf","inferior longitudinal fasciculus, left",9260
+"1507",9262,"ilf","inferior longitudinal fasciculus, right",9260
+"1508",505110,"ithp","inferior thalamic peduncle",9230
+"1509",505114,"ithp","inferior thalamic peduncle, left",505110
+"1510",505118,"ithp","inferior thalamic peduncle, right",505110
+"1511",9263,"ic","internal capsule",9230
+"1512",9264,"ic","internal capsule, left",9263
+"1513",9265,"ic","internal capsule, right",9263
+"1514",505122,"imlgp","internal medullary lamina of globus pallidus",9230
+"1515",505126,"imlgp","internal medullary lamina of globus pallidus, left",505122
+"1516",505130,"imlgp","internal medullary lamina of globus pallidus, right",505122
+"1517",505134,"imlth","internal medullary lamina of thalamus",9230
+"1518",505138,"imlth","internal medullary lamina of thalamus, left",505134
+"1519",505142,"imlth","internal medullary lamina of thalamus, right",505134
+"1520",505146,"lls","lateral longitudinal stria",9230
+"1521",505150,"lls","lateral longitudinal stria, left",505146
+"1522",505154,"lls","lateral longitudinal stria, right",505146
+"1523",505158,"lef","lenticular fasciculus",9230
+"1524",4510,"lef","lenticular fasciculus, left",505158
+"1525",4516,"lef","lenticular fasciculus, right",505158
+"1526",505166,"mp","mammillary peduncle",9230
+"1527",505170,"mp","mammillary peduncle, left",505166
+"1528",505174,"mp","mammillary peduncle, right",505166
+"1529",505178,"mtg","mammillotegmental tract",9230
+"1530",505182,"mtg","mammillotegmental tract, left",505178
+"1531",505186,"mtg","mammillotegmental tract, right",505178
+"1532",9266,"mtt","mammillothalamic tract",9230
+"1533",9267,"mtt","mammillothalamic tract, left",9266
+"1534",9268,"mtt","mammillothalamic tract, right",9266
+"1535",505190,"mfb","medial forebrain bundle",9230
+"1536",505194,"mfb","medial forebrain bundle, left",505190
+"1537",505198,"mfb","medial forebrain bundle, right",505190
+"1538",505202,"mls","medial longitudinal stria",9230
+"1539",505206,"mls","medial longitudinal stria, left",505202
+"1540",505210,"mls","medial longitudinal stria, right",505202
+"1541",505214,"or-lp","Meyer's loop of optic radiation ",9230
+"1542",505218,"or-lp","Meyer's loop of optic radiation , left",505214
+"1543",505222,"or-lp","Meyer's loop of optic radiation , right",505214
+"1544",505226,"milf","middle longitudinal fasciculus",9230
+"1545",505230,"milf","middle longitudinal fasciculus, left",505226
+"1546",505234,"milf","middle longitudinal fasciculus, right",505226
+"1547",9269,"off","occipitofrontal fasciculus",9230
+"1548",9270,"off","occipitofrontal fasciculus, left",9269
+"1549",9271,"off","occipitofrontal fasciculus, right",9269
+"1550",505238,"orpt","orbito-polar tract",9230
+"1551",505242,"orpt","orbito-polar tract, left",505238
+"1552",505246,"orpt","orbito-polar tract, right",505238
+"1553",505250,"perf","perforant path",9230
+"1554",505254,"perf","perforant path, left",505250
+"1555",505258,"perf","perforant path, right",505250
+"1556",9272,"ppf","perpendicular fasciculus",9230
+"1557",9273,"ppf","perpendicular fasciculus, left",9272
+"1558",9274,"ppf","perpendicular fasciculus, right",9272
+"1559",505262,"ponb","pontine bundle",9230
+"1560",505266,"ponb","pontine bundle, left",505262
+"1561",505270,"ponb","pontine bundle, right",505262
+"1562",505274,"rthp","rostral thalamic peduncle",9230
+"1563",505278,"rthp","rostral thalamic peduncle, left",505274
+"1564",505282,"rthp","rostral thalamic peduncle, right",505274
+"1565",505286,"sst","sagittal stratum",9230
+"1566",505290,"sst","sagittal stratum, left",505286
+"1567",505294,"sste","external sagittal stratum, left",505290
+"1568",505298,"ssti","internal sagittal stratum, left",505290
+"1569",505302,"sst","sagittal stratum, right",505286
+"1570",505306,"sste","external sagittal stratum, right",505302
+"1571",505310,"ssti","internal sagittal stratum, right",505302
+"1572",505314,"saf","short association fibers",9230
+"1573",505318,"saf","short association fibers, left",505314
+"1574",505322,"saf","short association fibers, right",505314
+"1575",505326,"szt","stratum zonale of thalamus",9230
+"1576",505330,"szt","stratum zonale of thalamus, left",505326
+"1577",505334,"szt","stratum zonale of thalamus, right",505326
+"1578",9275,"sm","stria medullaris",9230
+"1579",9276,"sm","stria medullaris, left",9275
+"1580",9277,"sm","stria medullaris, right",9275
+"1581",9278,"st","stria terminalis",9230
+"1582",9279,"st","stria terminalis, left",9278
+"1583",9280,"st","stria terminalis, right",9278
+"1584",505338,"scf","subcallosal fasciculus",9230
+"1585",505342,"scf","subcallosal fasciculus, left",505338
+"1586",505346,"scf","subcallosal fasciculus, right",505338
+"1587",505350,"sthf","subthalamic fasciculus",9230
+"1588",505354,"sthf","subthalamic fasciculus, left",505350
+"1589",505358,"sthf","subthalamic fasciculus, right",505350
+"1590",505362,"sprs","superficial presubicular path",9230
+"1591",505366,"sprs","superficial presubicular path, left",505362
+"1592",505370,"sprs","superficial presubicular path, right",505362
+"1593",9281,"slf","superior longitudinal fasciculus",9230
+"1594",9282,"slf","superior longitudinal fasciculus, left",9281
+"1595",9283,"slf","superior longitudinal fasciculus, right",9281
+"1596",505374,"thf","thalamic fasciculus",9230
+"1597",4509,"thf","thalamic fasciculus, left",505374
+"1598",4515,"thf","thalamic fasciculus, right",505374
+"1599",9284,"uf","uncinate fasciculus of the forebrain",9230
+"1600",9285,"uf","uncinate fasciculus of the forebrain, left",9284
+"1601",9286,"uf","uncinate fasciculus of the forebrain, right",9284
+"1602",505382,"MESWM","mesencephalic white matter",9218
+"1603",505386,"bic","brachium of the inferior colliculus",505382
+"1604",505390,"bic","brachium of the inferior colliculus, left",505386
+"1605",505394,"bic","brachium of the inferior colliculus, right",505386
+"1606",505398,"bsc","brachium of the superior colliculus",505382
+"1607",505402,"bsc","brachium of the superior colliculus, left",505398
+"1608",505406,"bsc","brachium of the superior colliculus, right",505398
+"1609",505410,"ctg-m","central tegmental tract, midbrain portion",505382
+"1610",505414,"ctg-m","central tegmental tract, midbrain portion, left",505410
+"1611",505418,"ctg-m","central tegmental tract, midbrain portion, right",505410
+"1612",505422,"cpd","cerebral peduncle (crus cerebri)",505382
+"1613",505426,"cpd","cerebral peduncle (crus cerebri), left",505422
+"1614",505430,"cpd","cerebral peduncle (crus cerebri), right",505422
+"1615",505434,"cmic","commissure of the inferior colliculus",505382
+"1616",505438,"cmic","commissure of the inferior colliculus, left",505434
+"1617",505442,"cmic","commissure of the inferior colliculus, right",505434
+"1618",505446,"cbu-m","corticobulbar tract, midbrain portion",505382
+"1619",505450,"cbu-m","corticobulbar tract, midbrain portion, left",505446
+"1620",505454,"cbu-m","corticobulbar tract, midbrain portion, right",505446
+"1621",505458,"me5","mesencephalic trigeminal tract",505382
+"1622",505462,"me5","mesencephalic trigeminal tract, left",505458
+"1623",505466,"me5","mesencephalic trigeminal tract, right",505458
+"1624",9287,"METWM","metencephalic white matter",9218
+"1625",9288,"CbWM","cerebellar white matter tracts",9287
+"1626",9289,"icp","inferior cerebellar peduncle",9288
+"1627",9290,"icp","inferior cerebellar peduncle, Left",9289
+"1628",9291,"icp","inferior cerebellar peduncle, Right",9289
+"1629",9292,"mcp","middle cerebellar peduncle",9288
+"1630",9293,"mcp","middle cerebellar peduncle, Left",9292
+"1631",9294,"mcp","middle cerebellar peduncle, Right",9292
+"1632",505470,"pncb","ponto-cerebellar tract",9288
+"1633",505474,"pncb","ponto-cerebellar tract, left",505470
+"1634",505478,"pncb","ponto-cerebellar tract, right",505470
+"1635",9295,"scp","superior cerebellar peduncle",9288
+"1636",9296,"scp","superior cerebellar peduncle, Left",9295
+"1637",9297,"scp","superior cerebellar peduncle, Right",9295
+"1638",505482,"xscp","decussation of the superior cerebellar peduncle",9295
+"1639",505486,"PoWM","pontine white matter tracts",9287
+"1640",505490,"cpn","cortico-pontine fibers",505486
+"1641",505494,"cpn","cortico-pontine fibers, left",505490
+"1642",505498,"cpn","cortico-pontine fibers, right",505490
+"1643",505502,"lfpn","longitudinal fasciculus of the pons",505486
+"1644",505506,"lfpn","longitudinal fasciculus of the pons, left",505502
+"1645",505510,"lfpn","longitudinal fasciculus of the pons, right",505502
+"1646",9298,"MYWM","myelencephalic white matter",9218
+"1647",9299,"CN","cranial nerves",9298
+"1648",9300,"1n","olfactory nerve",9299
+"1649",9301,"1n","olfactory nerve, left",9300
+"1650",9302,"olf","olfactory tract, left",9301
+"1651",505514,"lot","lateral olfactory tract, left",9302
+"1652",505518,"mot","medial olfactory tract, left",9302
+"1653",9303,"Olf","olfactory bulb, left",9301
+"1654",9304,"1n","olfactory nerve, right",9300
+"1655",9305,"olf","olfactory tract, right",9304
+"1656",505522,"lot","lateral olfactory tract, right",9305
+"1657",505526,"mot","medial olfactory tract, right",9305
+"1658",9306,"Olf","olfactory bulb, right",9304
+"1659",9307,"2n","optic nerve",9299
+"1660",9308,"2n","optic nerve, left",9307
+"1661",9309,"opt","optic tract, left",9308
+"1662",9310,"ox","optic chiasm, left",9308
+"1663",9311,"or","optic radiations, left",9308
+"1664",505530,"sox","supraoptic dicussation, left",9308
+"1665",9312,"2n","optic nerve, right",9307
+"1666",9313,"opt","optic tract, right",9312
+"1667",9314,"ox","optic chiasm, right",9312
+"1668",9315,"or","optic radiations, right",9312
+"1669",505534,"sox","supraoptic dicussation, right",9312
+"1670",9316,"3n","occulomotor nerve",9299
+"1671",9317,"3n","occulomotor nerve, left",9316
+"1672",9318,"3n","occulomotor nerve, right",9316
+"1673",9319,"4n","trochlear nerve",9299
+"1674",9320,"4n","trochlear nerve, left",9319
+"1675",9321,"4n","trochlear nerve, right",9319
+"1676",9322,"5n","trigeminal nerve",9299
+"1677",9323,"5n","trigeminal nerve, left",9322
+"1678",9324,"5n","trigeminal nerve, right",9322
+"1679",9325,"6n","abducens nerve",9299
+"1680",9326,"6n","abducens nerve, left",9325
+"1681",9327,"6n","abducens nerve, right",9325
+"1682",9328,"7n","facial nerve",9299
+"1683",9329,"7n","facial nerve, left",9328
+"1684",9330,"7n","facial nerve, right",9328
+"1685",9331,"8n","vestibulocochlear nerve",9299
+"1686",9332,"8n","vestibulchochlear nerve, left",9331
+"1687",9333,"8n","vestibulochochlear nerve, right",9331
+"1688",9334,"9n","glossopharyngeal nerve",9299
+"1689",9335,"9n","glossopharyngeal nerve, left",9334
+"1690",9336,"9n","glossopharyngeal nerve, right",9334
+"1691",9337,"10n","vagus nerve",9299
+"1692",9338,"10n","vagus nerve, left",9337
+"1693",9339,"10n","vagus nerve, right",9337
+"1694",9340,"11nf","accessory nerve",9299
+"1695",9341,"11nf","accessory nerve, left",9340
+"1696",9342,"11nf","accessory nerve, right",9340
+"1697",9343,"12n","hypoglossal nerve",9299
+"1698",9344,"12n","hypoglossal nerve, left",9343
+"1699",9345,"12n","hypoglossal nerve, right",9343
+"1700",505538,"ami","amiculum of the olive",9298
+"1701",505542,"ami","amiculum of the olive, left",505538
+"1702",505546,"ami","amiculum of the olive, right",505538
+"1703",505550,"cuf","cuneate fasciculus",9298
+"1704",505554,"cuf","cuneate fasciculus, left",505550
+"1705",505558,"cuf","cuneate fasciculus, right",505550
+"1706",9346,"dlf","dorsal longitudinal fasciculus",9298
+"1707",9347,"dlf","dorsal longitudinal fasciculus, Left",9346
+"1708",9348,"dlf","dorsal longitudinal fasciculus, Right",9346
+"1709",9349,"mlf","medial longitudinal fasciculus",9298
+"1710",9350,"mlf","medial longitudinal fasciculus, Left",9349
+"1711",9351,"mlf","medial longitudinal fasciculus, Right",9349
+"1712",12950,"ctg","central tegmental tract",9298
+"1713",12951,"ctg","central tegmental tract, Left",12950
+"1714",12952,"ctg","central tegmental tract, Right",12950
+"1715",505562,"cbu-h","corticobulbar tract, hindbrain portion",9298
+"1716",505566,"cbu-h","corticobulbar tract, hindbrain portion, left",505562
+"1717",505570,"cbu-h","corticobulbar tract, hindbrain portion, right",505562
+"1718",505574,"csp","corticospinal tract",9298
+"1719",505578,"csp","corticospinal tract, left",505574
+"1720",505582,"csp","corticospinal tract, right",505574
+"1721",12953,"fr","fasciculus retroflexus",9298
+"1722",12954,"fr","fasciculus retroflexus, Left",12953
+"1723",12955,"fr","fasciculus retroflexus, Right",12953
+"1724",505586,"gr","gracile fasciculus",9298
+"1725",505590,"gr","gracile fasciculus, left",505586
+"1726",505594,"gr","gracile fasciculus, right",505586
+"1727",505598,"hio","hilus of the inferior olive",9298
+"1728",505602,"hio","hilus of the inferior olive, left",505598
+"1729",505606,"hio","hilus of the inferior olive, right",505598
+"1730",505610,"iaf","internal arcuate fibers",9298
+"1731",505614,"iaf","internal arcuate fibers, left",505610
+"1732",505618,"iaf","internal arcuate fibers, right",505610
+"1733",12956,"ll","lateral lemniscus",9298
+"1734",12957,"ll","lateral lemniscus, Left",12956
+"1735",12958,"ll","lateral lemniscus, Right",12956
+"1736",12959,"ml","medial lemniscus",9298
+"1737",12960,"ml","medial lemniscus, Left",12959
+"1738",12961,"ml","medial lemniscus, Right",12959
+"1739",505622,"xml","decussation of medial lemniscus",12959
+"1740",12962,"py","pyramidal tract",9298
+"1741",12963,"py","pyramidal tract, Left",12962
+"1742",12964,"py","pyramidal tract, Right",12962
+"1743",12965,"pyx","pyramidal decussation",12962
+"1744",505626,"sol","solitary tract",9298
+"1745",505630,"sol","solitary tract, left",505626
+"1746",505634,"sol","solitary tract, right",505626
+"1747",505638,"slh","spinal lemniscus in hindbrain",9298
+"1748",505642,"slh","spinal lemniscus in hindbrain, left",505638
+"1749",505646,"slh","spinal lemniscus in hindbrain, right",505638
+"1750",505650,"sp5","spinal trigeminal tract",9298
+"1751",505654,"sp5","spinal trigeminal tract, left",505650
+"1752",505658,"sp5","spinal trigeminal tract, right",505650
+"1753",505662,"tsp","tectospinal tract",9298
+"1754",505666,"tsp","tectospinal tract, left",505662
+"1755",505670,"tsp","tectospinal tract, right",505662
+"1756",505674,"vtg","ventral tegmental tract",9298
+"1757",505678,"vtg","ventral tegmental tract, left",505674
+"1758",505682,"vtg","ventral tegmental tract, right",505674
+"1759",505686,"veme","vestibulomesencephalic tract",9298
+"1760",505690,"veme","vestibulomesencephalic tract, left",505686
+"1761",505694,"veme","vestibulomesencephalic tract, right",505686
+"1762",9352,"SS","sulci & spaces",4005
+"1763",9353,"TELs","telencephalic spaces",9352
+"1764",9400,"SSmd","major divisions",9353
+"1765",9404,"cas","callosal sulcus",9400
+"1766",9403,"cs","central sulcus",9400
+"1767",9401,"lf","longitudinal fissure",9400
+"1768",9402,"sf","sylvian fissure",9400
+"1769",9354,"FLs","frontal lobe sulci",9353
+"1770",9368,"apos","anteiror parolfactory sulcus",9354
+"1771",9364,"cgs","cingulate sulcus",9354
+"1772",9363,"fms","frontomarginal sulcus",9354
+"1773",9362,"fros","fronto-orbital sulcus",9354
+"1774",9357,"ifs","inferior frontal sulcus",9354
+"1775",9367,"iros","inferior rostral sulcus",9354
+"1776",9358,"infs","intermediate frontal sulcus",9354
+"1777",9359,"mfs","medial frontal sulcus",9354
+"1778",9361,"olfs","olfactory sulcus",9354
+"1779",9360,"orbs","orbital sulcus",9354
+"1780",9365,"pcs","paracentral sulcus",9354
+"1781",9369,"ppos","posterior parolfactory sulcus",9354
+"1782",9355,"prcs","precentral sulcus",9354
+"1783",9356,"sfrs","superior frontal sulcus",9354
+"1784",9366,"sros","superior rostral sulcus",9354
+"1785",9397,"ILs","insular lobe sulci",9353
+"1786",9399,"cis","central sulcus of insula",9397
+"1787",9398,"crs","circular sulcus",9397
+"1788",9393,"LLs","limbic lobe sulci",9353
+"1789",9394,"his","hippocampal sulcus",9393
+"1790",9395,"ssa","sulcus semi-anularis",9393
+"1791",9396,"us","uncal sulcus",9393
+"1792",9386,"OLs","occipital lobe sulci",9353
+"1793",9391,"ccs","calcarine sulcus",9386
+"1794",9389,"locs","lateral occipital sulcus",9386
+"1795",9390,"lus","lunate sulcus",9386
+"1796",9392,"pos","parieto-occipital sulcus",9386
+"1797",9387,"pon","preoccipital notch",9386
+"1798",9388,"tocs","transverse occipital sulcus",9386
+"1799",9370,"PLs","parietal lobe sulci",9353
+"1800",9372,"itps","intraparietal sulcus",9370
+"1801",9371,"pocs","postcentral sulcus",9370
+"1802",9373,"pis","primary intermediate sulcus",9370
+"1803",9374,"sis","secondary intermediate sulcus",9370
+"1804",9376,"sbps","subparietal sulcus",9370
+"1805",9375,"sps","superior parietal sulcus",9370
+"1806",9377,"TLs","temporal lobe sulci",9353
+"1807",9384,"ans","angular sulcus",9377
+"1808",9385,"aoc","anterior occipital sulcus",9377
+"1809",9380,"cos","collateral sulcus",9377
+"1810",9379,"its","inferior temporal sulcus",9377
+"1811",10150,"mts","middle temporal sulcus",9377
+"1812",9382,"phr","parahippocampal ramus",9377
+"1813",9381,"phs","parahippocampal sulcus",9377
+"1814",9383,"rhs","rhinal sulcus",9377
+"1815",9378,"sts","superior temporal sulcus",9377
+"1816",9405,"METs","metencephalic spaces",9352
+"1817",9406,"Cbs","cerebellar sulci",9405
+"1818",9407,"prf","precentral fissure",9406
+"1819",9408,"pcf","preculminate fissure",9406
+"1820",9409,"icf","intraculminate fissure",9406
+"1821",9410,"prif","primary fissure",9406
+"1822",9411,"spf","superior posterior fissure",9406
+"1823",9412,"hf","horizontal fissure",9406
+"1824",9413,"apf","ansoparamedian fissure",9406
+"1825",9414,"pbf","prepyramidal/prebiventer fissure",9406
+"1826",9415,"ibf","intrabiventer fissure",9406
+"1827",9416,"sfCb","secondary fissure",9406
+"1828",9417,"plf","posterolateral fissure",9406
+"1829",505698,"MYs","myelencephalic spaces",9352
+"1830",505702,"aq","cerebral aquaduct",505698
+"1831",9418,"Vent","ventricles",9352
+"1832",9419,"LV","lateral ventricle",9418
+"1833",505706,"SP","septum pallucidum",9419
+"1834",9708,"CPLV","choroid plexus of the lateral ventricle",9419
+"1835",9420,"3V","third ventricle",9418
+"1836",9709,"CP3V","choroid plexus of the third ventricle",9420
+"1837",9421,"4V","fourth ventricle",9418
+"1838",9710,"CP4V","choroid plexus of the fourth ventricle",9421
+"1839",9422,"CC","central canal",9418
