@@ -196,7 +196,7 @@ id,acronym,parent,name
 407,Frontal association area 3,,Frontal association area 3
 408,Primary motor area,,Primary motor area
 409,Agranular insular cortex- ventral area,,Agranular insular cortex- ventral area
-410,Agranular insular cortex dorsal area ,,Agranular insular cortex dorsal area 
+410,Agranular insular cortex dorsal area,,Agranular insular cortex dorsal area 
 411,Cingulate area 1,,Cingulate area 1
 412,Claustrum,,Claustrum
 413,Infralimbic area,,Infralimbic area
@@ -207,14 +207,14 @@ id,acronym,parent,name
 420,Primary somatosensory area- face representation,,Primary somatosensory area- face representation
 422,Secondary somatosensory area,,Secondary somatosensory area
 423,Primary somatosensory area- hindlimb representation,,Primary somatosensory area- hindlimb representation
-424,Agranular insular cortex- posterior area ,,Agranular insular cortex- posterior area 
+424,Agranular insular cortex- posterior area,,Agranular insular cortex- posterior area 
 425,Primary somatosensory area- barrel field,,Primary somatosensory area- barrel field
 427,Retrosplenial dysgranular area,,Retrosplenial dysgranular area
 429,Primary somatosensory area- trunk representation,,Primary somatosensory area- trunk representation
 430,Retrosplenial granular area,,Retrosplenial granular area
 432,Parietal association cortex- lateral area,,Parietal association cortex- lateral area
 433,Parietal association cortex- medial area,,Parietal association cortex- medial area
-436,Parietal association cortex- posterior area ,,Parietal association cortex- posterior area 
+436,Parietal association cortex- posterior area,,Parietal association cortex- posterior area 
 442,Primary visual area,,Primary visual area
 443,Secondary visual area- lateral part,,Secondary visual area- lateral part
 444,Temporal association cortex,,Temporal association cortex
