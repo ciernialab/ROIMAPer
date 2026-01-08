@@ -41,3 +41,20 @@ roimaper_aba_devmouse <- data.frame(
   parent = float_correct_parents_devmouse)
 
 write.csv(roimaper_aba_devmouse, file = "ROIMAPer/atlases/aba_v3_devmouse-brain_region_mapping.csv")
+
+#now for human
+#id is 7 instead of 1
+brain_region_indices_ABA_human <- read.csv("http://api.brain-map.org/api/v2/data/query.csv?criteria=model::Structure,rma::criteria,[ontology_id$eq7],rma::options[order$eq%27structures.graph_order%27][num_rows$eqall]")
+
+float_correct_ids_human <- brain_region_indices_ABA_human$id %% 1000000
+length(unique(float_correct_ids_human)) == length(unique(brain_region_indices_ABA_human$id))
+float_correct_parents_human <- brain_region_indices_ABA_human$parent_structure_id %% 1000000
+
+roimaper_aba_human <- data.frame(
+  id = float_correct_ids_human,
+  acronym = stringr::str_replace_all(brain_region_indices_ABA_human$acronym,
+                                     pattern = "/", replacement = "-"),
+  name = brain_region_indices_ABA_human$name,
+  parent = float_correct_parents_human)
+
+write.csv(roimaper_aba_human, file = "ROIMAPer/atlases/aba_v3_human-brain_region_mapping.csv")
