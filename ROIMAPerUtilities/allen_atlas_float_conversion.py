@@ -21,6 +21,17 @@ def float_conversion(image):
     replaced_image = sitk.Cast(replaced_image, sitk.sitkFloat32)
     return replaced_image
 
+def human_float_conversion(image):
+    
+    #turn every pixel into its modulo 1000000
+    pixels = sitk.GetArrayFromImage(image)
+    pixels = pixels.astype(int)
+    replaced_pixels = pixels % 1000000
+    replaced_image = sitk.GetImageFromArray(replaced_pixels)
+    #change datatype to 32 bit float so it can be saved as tif
+    replaced_image = sitk.Cast(replaced_image, sitk.sitkFloat32)
+    return replaced_image
+
 def slicing(image):
     #first is width, second is height, third is depth
     #default orientation is sagittal
@@ -31,6 +42,21 @@ def slicing(image):
     coronal_half = coronal[570:1140,:,:]
     #use 20 um spacing for sagittal
     sagittal = image[:,:,:570:20]
+    return coronal, sagittal, coronal_half
+
+def human_slicing(image):
+    #first is width, second is height, third is depth
+    #default orientation is sagittal
+    coronal = image[:,54:416:4,::-1]
+    #now flip the coronal version
+    
+    coronal = sitk.PermuteAxes(coronal, order = [0,2,1])
+    coronal = coronal[:,:,::-1]
+    #cut x axis in half for halfbrain
+    coronal_half = coronal[197:393,:,:-1]
+    #use 20 um spacing for sagittal
+    sagittal = image[52:197:5,::-1,::-1]
+    sagittal = sitk.PermuteAxes(sagittal, order = [1,2,0])
     return coronal, sagittal, coronal_half
 
 def dev_mouse_slicing(image, start, end, steps):
@@ -267,3 +293,24 @@ p28_sagittal = dev_mouse_slicing(dev_mouse_images[7],
 
 writer.SetFileName("ROIMAPer/atlases/aba_v3_devmouse-p28.tif")
 writer.Execute(p28_sagittal)
+
+#%%human
+
+reader = sitk.ImageFileReader()
+reader.SetFileName("ROIMAPer/atlases/annotation_full.nii.gz")
+image_human = reader.Execute()
+image_human = human_float_conversion(image_human)
+human_coronal, human_sagittal, human_coronal_half = human_slicing(image_human)
+
+writer = sitk.ImageFileWriter()
+writer.UseCompressionOn()
+writer.SetImageIO("TIFFImageIO")
+#deflate is lossless
+writer.SetCompressor("Deflate")
+
+writer.SetFileName("ROIMAPer/atlases/aba_v3_human-Coronal.tif")
+writer.Execute(human_coronal)
+writer.SetFileName("ROIMAPer/atlases/aba_v3_human-Coronal_halfbrain.tif")
+writer.Execute(human_coronal_half)
+writer.SetFileName("ROIMAPer/atlases/aba_v3_human-Sagittal.tif")
+writer.Execute(human_sagittal)
