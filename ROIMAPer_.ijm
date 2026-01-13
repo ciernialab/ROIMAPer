@@ -65,8 +65,7 @@ atlas_directory = home_directory + atlas_name + "_ROIs/";
 //the atlas id to brain region information
 text_file = substring(atlas_name, 0, indexOf(atlas_name, "-")) + "-brain_region_mapping.csv";
 mapping_index_path = utilities_directory + "mapping_index.csv";
-File.setDefaultDir(default_directory);
-//restore default directory
+
 
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
@@ -131,7 +130,11 @@ for (i = 0; i < image_selection_size; i++) {
 	}
 }
 
-output_path = higher_directory + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+File.setDefaultDir(higher_directory);
+output_home_path = getDirectory("Where should the output folder be created?");
+output_path = output_home_path + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+File.setDefaultDir(default_directory);
+//restore default directory
 
 //make empty array of roi-set names
 xpixelnumber = newArray();//could re-sort the image_path index (and all others belonging to it) to start with smallest image or smthg
@@ -360,7 +363,7 @@ for (i = 1; i <= channelchoices.length; i++) {
 	File.makeDirectory(output_path);
 }
 if (combined_results == "combined" || combined_results == "both") {
-	combined_output_path = higher_directory + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
+	combined_output_path = output_home_path + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "_combined/";
 
 	File.makeDirectory(combined_output_path);
 }
