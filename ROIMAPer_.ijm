@@ -62,6 +62,7 @@ atlas_path = replace(File.openDialog("Please select which atlas (saved in the FI
 atlas_name = File.getNameWithoutExtension(atlas_path);
 atlas_directory = home_directory + atlas_name + "_ROIs/";
 
+File.setDefaultDir(default_directory);
 //the atlas id to brain region information
 text_file = substring(atlas_name, 0, indexOf(atlas_name, "-")) + "-brain_region_mapping.csv";
 mapping_index_path = utilities_directory + "mapping_index.csv";
