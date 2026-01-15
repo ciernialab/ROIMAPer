@@ -28,7 +28,7 @@ var heightbounding = 0;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.2.0 (Dec 2025)</p1>"
+    +"<p1>Version: 2.3.0 (Jan 2026)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -134,7 +134,8 @@ for (i = 0; i < image_selection_size; i++) {
 File.setDefaultDir(higher_directory);
 output_home_path = getDirectory("Where should the output folder be created?");
 output_path = output_home_path + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
-File.setDefaultDir(default_directory);
+
+File.setDefaultDir(default_directory);
 //restore default directory
 
 //make empty array of roi-set names
@@ -360,7 +361,8 @@ for (i = 1; i <= channelchoices.length; i++) {
 		control_channel_id = i;
 	}
 }
-if (combined_results == "individual" || combined_results == "both") {
+
+if (combined_results == "individual" || combined_results == "both") {
 	File.makeDirectory(output_path);
 }
 if (combined_results == "combined" || combined_results == "both") {
@@ -1769,6 +1771,7 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	}
 	close("bw");
 }
+
 
 
 
