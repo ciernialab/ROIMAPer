@@ -355,6 +355,7 @@ control_channel = Dialog.getChoice();
 map_to_control_channel = Dialog.getCheckbox();
 
 //go through this array
+control_channel_id = 0; //default, so things do not break if this is forgotten
 for (i = 1; i <= channelchoices.length; i++) {
 	if (channelchoices[i-1] == control_channel) {
 		control_channel_id = i;
