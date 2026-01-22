@@ -60,7 +60,7 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
 
 7. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "control channel". If you want to create a result for the control channel, too, check the corresponding chechmark The channel order needs to be consistent between all images.
 
-8. Now each image will open one by one. Create a **rotated rectangle** (called the bounding box) that sits flush with the image and contains the brain as straight as possible. Compare your image with the atlas overview and enter the **atlas number** that you believe best represents you image. Press OK. (Image obtained from the allen institute at [mouse.brain-map.org](https://mouse.brain-map.org/experiment/show/71541658)
+8. Now each image will open one by one. Create a **rotated rectangle** (called the bounding box) that sits flush with the image and contains the brain as straight as possible. Compare your image with the atlas overview and enter the **atlas number** that you believe best represents you image. Press OK. (Image obtained from the allen institute at [mouse.brain-map.org, experiment: 71670728](https://mouse.brain-map.org/experiment/show/71670728)
    
    ![a screenshot of a mouse coronal slice opened in FIJI, surrounded by a yellow rotated rectangle](./images/bounding_box.png)
 10. You are now in the **Modify** menu 
