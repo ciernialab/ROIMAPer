@@ -13,7 +13,7 @@ Either download all files from github, or clone the repository using **git clone
 
 
 Place the ROIMAPer-main folder in scripts/plugins/ in your FIJI folder (you can find the fiji folder under File>Show Folder>ImageJ in FIJI)
-![](.images/roimaper_location.png)
+![a screenshot displaying the save location of ROIMAPer-main, in fiji.app/scripts/plugins/](./images/roimaper_location.png)
 
 The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were used to create the atlas and can be used to create ROIs outside of the main program.
 
@@ -71,9 +71,9 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
         1. Here, you are prompted to create a collection of points on the brain, so-called mesh-nodes. Place these around brain regions that you want to stretch/squish. Also place nodes around brain regions that you do not want to be affected by the stretching/squishing that is happening in other places of the brain.
         2. Four points outside the bounding box are created automatically, you might have to add more mesh points outside the bounding box, if you regions are close to the edge of the bounding box. 
         3. After pressing "OK", the nodes create a mesh of triangles and current relative position of all regions in their triangle is calculated.
-       ![](.images/delauney_triangles.png)
+       ![an example of a delauney mesh](./images/delauney_triangles.png)
         5. You can then move the nodes. After pressing OK this will move/stretch/squish the ROIs relative to their closest nodes. So move the nodes around the ROIs that you want to edit to where the ROI is supposed to be. Do not move nodes around ROIs that you do not want to change. You can repeat this process multiple times.
-       ![](.images/transformation.png)
+       ![a diagram demonstrating the transformation of points within a shifted triangle](./images/transformation.png)
     6. Alternatively, you can convert any ROI into an editable point-selection by selecting "change one ROI". After clicking ok, select the ROI you want to edit, click the checkmark and enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept/made editable. **Currently only either the individual or the mesh transform works on one image. Do not use both on the same image.**
     7. If you are unhappy with the ROI creation, you can set the Modify-menu choice to "Redo bounding box", which will allow you to start the mapping process over.
 
