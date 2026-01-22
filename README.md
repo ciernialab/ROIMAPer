@@ -61,7 +61,9 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
 7. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "control channel". If you want to create a result for the control channel, too, check the corresponding chechmark The channel order needs to be consistent between all images.
 
 8. Now each image will open one by one. Create a **rotated rectangle** (called the bounding box) that sits flush with the image and contains the brain as straight as possible. Compare your image with the atlas overview and enter the **atlas number** that you believe best represents you image. Press OK.
-9. You are now in the **Modify** menu 
+   
+   ![a screenshot of a mouse coronal slice opened in FIJI, surrounded by a yellow rotated rectangle](./images/bounding_box.png)
+10. You are now in the **Modify** menu 
 
     1. Rotate and flip the ROIs if necessary.
 
@@ -71,13 +73,15 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
         1. Here, you are prompted to create a collection of points on the brain, so-called mesh-nodes. Place these around brain regions that you want to stretch/squish. Also place nodes around brain regions that you do not want to be affected by the stretching/squishing that is happening in other places of the brain.
         2. Four points outside the bounding box are created automatically, you might have to add more mesh points outside the bounding box, if you regions are close to the edge of the bounding box. 
         3. After pressing "OK", the nodes create a mesh of triangles and current relative position of all regions in their triangle is calculated.
+           
        ![an example of a delauney mesh](./images/delauney_triangles.png)
         5. You can then move the nodes. After pressing OK this will move/stretch/squish the ROIs relative to their closest nodes. So move the nodes around the ROIs that you want to edit to where the ROI is supposed to be. Do not move nodes around ROIs that you do not want to change. You can repeat this process multiple times.
+       
        ![a diagram demonstrating the transformation of points within a shifted triangle](./images/transformation.png)
     6. Alternatively, you can convert any ROI into an editable point-selection by selecting "change one ROI". After clicking ok, select the ROI you want to edit, click the checkmark and enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept/made editable. **Currently only either the individual or the mesh transform works on one image. Do not use both on the same image.**
     7. If you are unhappy with the ROI creation, you can set the Modify-menu choice to "Redo bounding box", which will allow you to start the mapping process over.
 
-10. Do this for all images, and then let the plugin save your ROIs. 
+11. Do this for all images, and then let the plugin save your ROIs. 
     - They will be stored in a new folder in your output directory, titled with the date and time when you started the mapping process.
 
 If the process is terminated midway your process is not lost. Go to the ImageJ temp directory (in FIJI press File>Show Folder>temp) and search for ROIMAPer. A folder with the roi.zip files for all your images has been created. You can combine those ROIs with your input images, to recover your progress.
