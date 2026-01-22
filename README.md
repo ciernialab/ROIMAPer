@@ -45,32 +45,41 @@ The scripts in ROIMAPer_Utilities are not necessary for ROI mapping. They were u
 
 4. Select the settings for this run
 
-    5. Specify, whether or not to use the same slice of the ABA for each image or not.
-    6. Do you want a combined result, meaning all ROIs and all channels of one image saved within one file. 
-    8. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box". 
-    9. If you are worried about having to terminate the work midway, you can save after every image instead of saving all images at the end.
-    10. Do you want to select individual slices for each image, or can the first slice be used in each image?
+    1. Specify, whether or not to use the same slice of the ABA for each image or not.
+    2. Do you want a combined result, meaning all ROIs and all channels of one image saved within one file. 
+    3. There is a rudimentary algorithm that automatically detects the tissue, called "automatic bounding box". 
+    4. If you are worried about having to terminate the work midway, you can save after every image instead of saving all images at the end.
+    5. Output type as either:
+       1. Individual: Output a file for every combination of region and channel
+       2. Combined: Output only one file per input image, with every region and channel combined
+       3. Both: Do both
+    6. Do you want to select individual slices for each image, or can the first slice be used in each image?
 
 9. Reference, which regions you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
 
 7. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "control channel". If you want to create a result for the control channel, too, check the corresponding chechmark The channel order needs to be consistent between all images.
 
-8. Now each image will open one by one to allow for manual correction of the ROI scaling.
-    1. Create a rotated rectangle (called the bounding box) that sits flush with the image and contains the brain as straight as possible.
+8. Now each image will open one by one. Create a **rotated rectangle** (called the bounding box) that sits flush with the image and contains the brain as straight as possible. Compare your image with the atlas overview and enter the **atlas number** that you believe best represents you image. Press OK.
+9. You are now in the **Modify** menu 
 
-    2. Rotate and flip the ROIs if necessary.
+    1. Rotate and flip the ROIs if necessary.
 
-    3. The ROIs will be set onto the tissue, adjust them manually (by double clicking the ROI or clicking the label in the ROI manager), if the location or scale is off.
+    2. The ROIs will be set onto the tissue, adjust them manually (by double clicking the ROI or clicking the label in the ROI manager), if the location or scale is off.
 
-    4. If an ROI is not aligned with the actual region in the brain, this is often an issue of the atlas slice selection or the bounding box. You can choose to redo these. If you choose not to do this, you can convert any ROI into an editable point-selection. Enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept.
-    5. Alternatively, you can perform a "mesh transform". Here, you are prompted to create a collection of points on the brain. You can then move these points to transform all regions together. **Currently only either the individual or the mesh transform works on one image. Do not use both on the same image."
+    3. If your tissue does not match perfectly with the atlas, you can perform a **"mesh transform"**. This is best for stretching and squishing the regions of interest.
+        1. Here, you are prompted to create a collection of points on the brain, so-called mesh-nodes. Place these around brain regions that you want to stretch/squish. Also place nodes around brain regions that you do not want to be affected by the stretching/squishing that is happening in other places of the brain.
+        2. Four points outside the bounding box are created automatically, you might have to add more mesh points outside the bounding box, if you regions are close to the edge of the bounding box. 
+        3. After pressing "OK", the current position of all regions relative to these points are calculated.
+        4. You can then move the nodes. After pressing OK this will move/stretch/squish the ROIs relative to their closest nodes. So move the nodes around the ROIs that you want to edit to where the ROI is supposed to be. Do not move nodes around ROIs that you do not want to change. You can repeat this process multiple times. 
+    6. Alternatively, you can convert any ROI into an editable point-selection by selecting "change one ROI". After clicking ok, select the ROI you want to edit, click the checkmark and enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept/made editable. **Currently only either the individual or the mesh transform works on one image. Do not use both on the same image.**
+    7. If you are unhappy with the ROI creation, you can set the Modify-menu choice to "Redo bounding box", which will allow you to start the mapping process over.
 
-9. Do this for all images, and then let the plugin save your ROIs. 
-    - They will be stored in a folder next to the one your images are in, titled with the date and time when you started the mapping process.
+10. Do this for all images, and then let the plugin save your ROIs. 
+    - They will be stored in a new folder in your output directory, titled with the date and time when you started the mapping process.
 
+If the process is terminated midway your process is not lost. Go to the ImageJ temp directory (in FIJI press File>Show Folder>temp) and search for ROIMAPer. A folder with the roi.zip files for all your images has been created. You can combine those ROIs with your input images, to recover your progress.
 
 ---
-
 
 
 Thank you for using this plugin. 
