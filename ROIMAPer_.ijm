@@ -25,6 +25,7 @@ var ybounding = 0;
 var widthbounding = 0;
 var heightbounding = 0;
 var image_name = "";
+var do_blinding = false;
 
 
 showMessage("ROIMAPer", "<html>
@@ -217,6 +218,7 @@ Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addChoice("Output channels individually or combined?", newArray("individual", "combined", "both"), "both");
 Dialog.addCheckbox("Specify slices on import. If no it uses the first slice in every image", false);
+Dialog.addCheckbox("Blind images? No image names will be displayed and image order is randomized.", false);
 
 Dialog.show();
 
@@ -227,6 +229,7 @@ automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getChoice();
 do_slice_selection = Dialog.getCheckbox();
+do_blinding = Dialog.getCheckbox();
 
 if (do_slice_selection) {
 	Dialog.create("Slice selection");
@@ -409,6 +412,16 @@ if (combined_results == "combined" || combined_results == "both") {
 	File.makeDirectory(combined_output_path);
 }
 
+if (do_blinding) {
+	random_array = newArray(image_path.length);
+	for (i = 0; i < image_path.length; i++) {
+		random_array[i] = random;
+	}
+	sequence_array = Array.rankPositions(random_array);
+} else {
+	sequence_array = Array.getSequence(image_path.length);
+}
+
 //then run the roi adjusting function for each image
 for (current_image = 0; current_image < image_path.length; current_image++) {
 
@@ -417,12 +430,16 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 	} else {
 		atlas_slice = 1; //gets changed in the image_processing function
 	}
-	print("Now working on " + image_name_without_extension[current_image]);
-	image_processing(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
+	if (do_blinding) {
+		print("Now working on " + image_name_without_extension[current_image] + " which is " + (current_image + 1) + " out of " + image_path.length);
+	} else {
+		print("Now working on image " + (current_image + 1) + " out of " + image_path.length);
+	}
+	image_processing(current_image, image_path[sequence_array[current_image]], image_name_without_extension[sequence_array[current_image]], control_channel_id, selected_slices[sequence_array[current_image]], atlas_slice, regions, home_directory);
 
 	if (autosave) {//if we want to save after every image
 		print("Saving image " + (current_image + 1) + " out of " + image_path.length);
-		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, save_regions);
+		saving(current_image, image_path[sequence_array[current_image]], image_name_without_extension[sequence_array[current_image]], channelchoices, channeloptions_array, selected_slices[sequence_array[current_image]], home_directory, save_regions);
 	}
 }
 
@@ -459,13 +476,31 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 	}
 	
 	if (proceed) { //only do this, if there are saved ROIs for this slice of the ABA
+
+		//rename the image, because otherwise its title is visible in the channel name
+		if (do_blinding) {
+			local_image_path_split = split(local_image_path, "/");
+			image_extension_split = split(local_image_path, ".");
+			image_extension = image_extension_split[image_extension_split.length - 1];
+			pseudopath_split = Array.deleteIndex(local_image_path_split, local_image_path_split.length - 1);
+			pseudopath = String.join(pseudopath_split, "/") + "/pseudoname." + image_extension;
+			File.rename(local_image_path, pseudopath);
+			original_path = local_image_path;
+			local_image_path = pseudopath;
+			
+		}
+		
 		if (!is_czi[image_number]) {
 			run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT c_begin=" + control_channel_id + " c_end=" + control_channel_id + " c_step=1 z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 		} else {
 			selectedslice = selectedslice;
 			run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + control_channel_id + " c_end_" + selectedslice + "=" + control_channel_id + " c_step_" + selectedslice + "=1");
 		}
-		rename(local_image_name_without_extension);
+		if (do_blinding) {
+			rename(control_channel);
+		} else {
+			rename(local_image_name_without_extension);
+		}
 		image_name = getTitle();
 		getDimensions(width, height, channels, slices, frames);
 		
@@ -731,6 +766,9 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 		//roiManager("delete");
 		roiManager("reset"); //not as elegant, but selection of atlas_bounding box after the downsampling gets tricky
 		close(image_name);
+		if (do_blinding) {
+			File.rename(pseudopath, original_path);
+		}
 	} else {
 		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
