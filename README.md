@@ -54,7 +54,8 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
        1. Individual: Output a file for every combination of region and channel
        2. Combined: Output only one file per input image, with every region and channel combined
        3. Both: Do both
-    6. Do you want to select individual slices for each image, or can the first slice be used in each image?
+    6. Do you want to use blind mode? Image order will be randomized and image names will not be displayed (instead, every file will temporarily be named **pseudoname**, so be sure that that is not the name of your input images. Output names will be normal, though. 
+    7. Do you want to select individual slices for each image, or can the first slice be used in each image?
 
 9. Reference, which regions you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
 
