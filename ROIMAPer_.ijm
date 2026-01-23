@@ -132,7 +132,7 @@ for (i = 0; i < image_selection_size; i++) {
 }
 
 File.setDefaultDir(higher_directory);
-output_home_path = getDirectory("Where should the output folder be created?");
+output_home_path = getDirectory("Where should the output folder be created? Do not pick your input directory.");
 output_path = output_home_path + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
 
 File.setDefaultDir(default_directory);
@@ -210,8 +210,8 @@ setBatchMode(false);
 length_limit = 20;
 columns = Math.ceil(image_path.length/length_limit);
 Dialog.create("Settings");
-Dialog.addCheckbox("Use one roi set for all", false);
 //Dialog.addCheckbox("Images have consistent channel order", true);
+Dialog.addCheckbox("Use the same atlas position for all images?", false);
 Dialog.addCheckbox("Automatically create bounding box", false);
 Dialog.addCheckbox("Save between images?", false);
 Dialog.addChoice("Output channels individually or combined?", newArray("individual", "combined", "both"), "both");
@@ -220,8 +220,8 @@ Dialog.addCheckbox("Specify slices on import. If no it uses the first slice in e
 Dialog.show();
 
 
-one_roi_for_all = Dialog.getCheckbox();
 //one_channel_for_all = Dialog.getCheckbox();
+one_roi_for_all = Dialog.getCheckbox();
 automatic_bounding_box = Dialog.getCheckbox();
 autosave = Dialog.getCheckbox();
 combined_results = Dialog.getChoice();
@@ -285,14 +285,34 @@ if(one_roi_for_all) {
 	Dialog.addNumber("Slice", 1, 0, 3, "");
 	Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
 	Dialog.addString("Brain regions:", "", 35);
+	Dialog.addCheckbox("Only save part of these regions?\nThis can be used if you want to use the other regions as context clues.", false);
 	Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
 	Dialog.addString("Default channels:", defaultchannels, 50);
 	
 	Dialog.show();
 	
 	template_slice_number = Array.concat(newArray(),Dialog.getNumber());
-	regions = split(Dialog.getString(), ",");
+	regions_text = Dialog.getString();
+	regions = split(regions_text, ",");
+	map_part = Dialog.getCheckbox();
 	channeloptions_return = Dialog.getString();
+	for (i = 0; i < regions.length; i++) {
+		regions[i] = trim(regions[i]); //deal with whitespace in the brain region submission
+	}
+	
+	if (map_part) {
+		Dialog.create("Save ROIs");
+		Dialog.addMessage("Which brain regions do you want to save? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
+		Dialog.addString("Brain regions:", regions_text, 35);
+		Dialog.addMessage("If you picked a combined output, all regions will be saved in the tif file.");
+		Dialog.show();
+		save_regions = split(Dialog.getString(), ",");
+		for (i = 0; i < save_regions.length; i++) {
+			save_regions[i] = trim(save_regions[i]); //deal with whitespace in the brain region submission
+		}
+	} else {
+		save_regions = regions;
+	}
 	
 	for (i = 0; i < template_slice_number.length; i++) {
 		template_slice_number[i] = parseInt(template_slice_number[i]); //because otherwise they get a decimal point, which messes up the folder system
@@ -307,19 +327,35 @@ if(one_roi_for_all) {
 	Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
 	Dialog.addMessage("Please refer to the opened table for correct acronyms. They need to first be created with the atlas_to_roi.ijm script.");
 	Dialog.addString("Brain regions:", "", 35);
+	Dialog.addCheckbox("Only save part of these regions?\nThis can be used if you want to use the other regions as context clues.", false);
 	Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
 	Dialog.addString("Default channels:", defaultchannels, 50);
 	
 	Dialog.show();
-	regions = split(Dialog.getString(), ",");
+	regions_text = Dialog.getString();
+	regions = split(regions_text, ",");
+	map_part = Dialog.getCheckbox();
 	channeloptions_return = Dialog.getString();
-	
+	for (i = 0; i < regions.length; i++) {
+		regions[i] = trim(regions[i]); //deal with whitespace in the brain region submission
+	}
+
+	if (map_part) {
+		Dialog.create("Save ROIs");
+		Dialog.addMessage("Which brain regions do you want to save? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
+		Dialog.addString("Brain regions:", regions_text, 35);
+		Dialog.addMessage("If you picked a combined output, all regions will be saved in the tif file.");
+		Dialog.show();
+		save_regions = split(Dialog.getString(), ",");
+		for (i = 0; i < save_regions.length; i++) {
+			save_regions[i] = trim(save_regions[i]); //deal with whitespace in the brain region submission
+		}
+	} else {
+		save_regions = regions;
+	}
 }
 close(text_file);
 
-for (i = 0; i < regions.length; i++) {
-	regions[i] = trim(regions[i]); //deal with whitespace in the brain region submission
-}
 //run through the ROIs requested, create those that have not been created yet
 createROIs(atlas_name, mapping_index_path, regions);
 
@@ -383,14 +419,16 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 	image_processing(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
 
 	if (autosave) {//if we want to save after every image
-		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory);
+		print("Saving image " + (current_image + 1) + " out of " + image_path.length);
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, save_regions);
 	}
 }
 
 //then save the rois on tifs
 if (!autosave) {
 	for (current_image = 0; current_image < image_path.length; current_image++) {
-		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory);
+		print("Saving image " + (current_image + 1) + " out of " + image_path.length);
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, save_regions);
 	}
 }
 
@@ -825,8 +863,7 @@ function rotate90(widthbounding, heightbounding, full_atlas_ids, angle, atlas_bo
 	RoiManager.rotate(-angle, xcenter, ycenter); 
 	roiManager("select", atlas_bounding_box_id);
 	getSelectionCoordinates(xatlas_trans, yatlas_trans); //get atlas coordinates after translation
-	Array.print(xatlas_trans);
-	Array.print(yatlas_trans);
+	
 	roiManager("select", roi_indices_new);
 	getSelectionBounds(xroiold, yroiold, widthroiold, heightroiold);
 	RoiManager.scale(heightbounding/widthbounding, widthbounding/heightbounding, false); //invert length and height scaling of all ROIs
@@ -1009,7 +1046,7 @@ function to_downsampled_selection(roi_ids) {
 				
 				roiManager("add");//this is the new version of the roi
 			
-	roiManager("select", roiManager("count")-1);//select the newly added roi
+				roiManager("select", roiManager("count")-1);//select the newly added roi
 				roiManager("rename", old_name);
 
 				roi_ids = Array.deleteValue(roi_ids, changing_roi);//so we have to delete the former one from the archive of ROIs that will be saved in the end
@@ -1082,11 +1119,9 @@ function mesh_transform(roi_ids) {
 	max_x_bounding = maxOf(xbounding[0], maxOf(xbounding[1], maxOf(xbounding[2], xbounding[3])));
 	min_y_bounding = minOf(ybounding[0], minOf(ybounding[1], minOf(ybounding[2], ybounding[3])));
 	max_y_bounding = maxOf(ybounding[0], maxOf(ybounding[1], maxOf(ybounding[2], ybounding[3])));
-	start_mesh_points_x = newArray(min_x_bounding - 100, xcenter, max_x_bounding + 100, xcenter);
-	start_mesh_points_y = newArray(ycenter, min_y_bounding - 100, ycenter, max_y_bounding + 100);
+	start_mesh_points_x = newArray(min_x_bounding - 100, min_x_bounding - 100, max_x_bounding + 100, max_x_bounding + 100);
+	start_mesh_points_y = newArray(min_y_bounding - 100, max_y_bounding + 100, min_y_bounding - 100, max_y_bounding + 100);
 	
-	Array.print(start_mesh_points_x);
-	Array.print(start_mesh_points_y);
 	
 	makeSelection("multipoint", start_mesh_points_x, start_mesh_points_y);
 	roiManager("add");
@@ -1491,7 +1526,7 @@ function scalar_product(x1, y1, x2, y2) {
 
 //saving the results
 //make this a seperate function that runs on all images after all the adjustment is done
-function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory) {
+function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory, save_regions) {
 	//open the saved scaled rois of the respective image
 	setBatchMode(true);
 	save_roi_ids_start = roiManager("count");
@@ -1524,8 +1559,12 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 							
 							//go through all the individual rois of the atlas that are not the bounding box and save them as individual images on each of the selected channels
 							for (k = save_roi_ids_start; k <= save_roi_ids_end; k++) {
+								
 								roiManager("select", k);
-								save(output_path + local_image_name_without_extension + "_" + channeloptions[j] + "_" + getInfo("selection.name") + ".tif");
+								roi_name = Roi.getName;
+								if (value_is_in_array(save_regions, roi_name)) {
+									save(output_path + local_image_name_without_extension + "_" + channeloptions[j] + "_" + getInfo("selection.name") + ".tif");
+								}
 							}
 							close(channeloptions_array[j]);
 						}
@@ -1533,12 +1572,15 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 				}
 			}
 		}
+		
 		roi_closing_array = newArray();
 		
 		for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
+		
+			roiManager("select", i);
 			roi_closing_array = Array.concat(roi_closing_array, i);
 		}
-		
+
 		if (combined_results == "combined" || combined_results == "both") {//opens the whole image and saves all ROIs combined
 			
 			if (!is_czi[image_number]) {
@@ -1548,12 +1590,22 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 			}
 			rename("current_image");
 			
-			roiManager("select", roi_closing_array);
-			roiManager("show all without labels");
-			save(combined_output_path + local_image_name_without_extension + "_combined.tif");
-			
+			roi_saving_array = newArray();
+
+			for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
+				roiManager("select", i);
+				roi_name = Roi.getName;
+				if (value_is_in_array(save_regions, roi_name)) {
+					roi_saving_array = Array.concat(roi_saving_array, i);
+				}
+			}
+			if (roi_saving_array.length > 0) {
+				roiManager("select", roi_saving_array);
+				roiManager("show all without labels");
+				save(combined_output_path + local_image_name_without_extension + "_combined.tif");
+				roiManager("save selected", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
+			}
 			close("current_image");
-			File.copy(temp + local_image_name_without_extension + "roi.zip", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
 		}
 		
 		roiManager("select", roi_closing_array);
