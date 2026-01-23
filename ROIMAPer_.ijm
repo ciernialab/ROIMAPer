@@ -24,6 +24,7 @@ var xbounding = 0;
 var ybounding = 0;
 var widthbounding = 0;
 var heightbounding = 0;
+var image_name = "";
 
 
 showMessage("ROIMAPer", "<html>
@@ -379,7 +380,7 @@ for (i = 1; i <= channelnumber[0]; i++) {
 }
 
 Dialog.addChoice("Which is the control channel?", channeloptions_array, channeloptions_array[0]);
-Dialog.addCheckbox("Also map ROIs to control channel?", false);
+Dialog.addCheckbox("Also map ROIs to control channel?", true);
 Dialog.show();
 
 //get the selected labels and make them into an array (this is an array of the length of channels, with the channel-label in each entry)
@@ -416,6 +417,7 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 	} else {
 		atlas_slice = 1; //gets changed in the image_processing function
 	}
+	print("Now working on " + image_name_without_extension[current_image]);
 	image_processing(current_image, image_path[current_image], image_name_without_extension[current_image], control_channel_id, selected_slices[current_image], atlas_slice, regions, home_directory);
 
 	if (autosave) {//if we want to save after every image
@@ -463,10 +465,11 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 			selectedslice = selectedslice;
 			run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice + " c_begin_" + selectedslice + "=" + control_channel_id + " c_end_" + selectedslice + "=" + control_channel_id + " c_step_" + selectedslice + "=1");
 		}
-		rename(control_channel);
+		rename(local_image_name_without_extension);
+		image_name = getTitle();
 		getDimensions(width, height, channels, slices, frames);
 		
-		selectWindow(control_channel);
+		selectWindow(image_name);
 		
 		/*
 		//get feret diameters for rotation???? - this would be an autofitting process
@@ -486,7 +489,7 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 		*/
 		
 		//select the original background image again, for the user
-		selectWindow(control_channel);
+		selectWindow(image_name);
 		run("Enhance Contrast", "saturated=0.35"); //better visibility
 		
 		if (automatic_bounding_box) {
@@ -506,7 +509,7 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 				call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
 				open(utilities_directory + atlas_name + "_overview.tif");
-				selectWindow(control_channel);
+				selectWindow(image_name);
 				
 				Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 				Dialog.addNumber("Slice", 1, 0, 3, "");
@@ -727,7 +730,7 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 		//roiManager("select", full);
 		//roiManager("delete");
 		roiManager("reset"); //not as elegant, but selection of atlas_bounding box after the downsampling gets tricky
-		close(control_channel);
+		close(image_name);
 	} else {
 		print("Not found any of the specified regions in image " + local_image_name_without_extension);	}
 }
@@ -763,7 +766,7 @@ function user_bounding_box(atlas_slice) {
 		call("ij.gui.ImageWindow.setNextLocation", round(screen_height*0.7), round(screen_height*0.2));
 
 		open(utilities_directory + atlas_name + "_overview.tif");
-		selectWindow(control_channel);
+		selectWindow(image_name);
 		Dialog.addMessage("Which slice of the atlas does this brain slice correspond to?");
 		Dialog.addNumber("Slice", atlas_slice, 0, 3, "");
 		
