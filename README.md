@@ -13,7 +13,6 @@ The easiest way to install ROIMAPer is to add https://sites.imagej.net/ROIMAPer/
 Alternatively, you can download all files from github, or clone the repository using **git clone https://github.com/ciernialab/ROIMAPer**. But this requires some restructuring, since the file structure set up for the FIJI updater. 
 
 Place the ROIMAPer.ijm file in ```plugins/``` in your FIJI folder (you can find the fiji folder under ```File>Show Folder>ImageJ``` in FIJI). Next, create a folder named ```ROIMAPer``` in ```images/``` in the FIJI folder. In this folder, place the atlases and the ROIMAPerUtilities folders.
-![a screenshot displaying the save location of ROIMAPer-main, in fiji.app/scripts/plugins/](./images/roimaper_location.png)
 
 The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were used to create the atlas and can be used to create ROIs outside of the main program.
 
