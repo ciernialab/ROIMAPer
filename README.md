@@ -2,17 +2,17 @@
 
 
 Semi-automatic FIJI macro to map an atlas of ROIs to tissue images. 
-Comes with the 2017 version of the adult mouse Allen Brain Atlas CCFv3 and version 4 of the Waxholm Space Atlas of the Sprague Dawley Rat Brain.
+Comes with the 2017 version of the adult mouse Allen Brain Atlas CCFv3, the 2020 version of the human brain atlas from the Allen Institute, the 2016 version of the mouse developmental brain from the Allen Institute, and version 4 of the Waxholm Space Atlas of the Sprague Dawley Rat Brain.
 
 Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, Vancouver, in Sep 2025.
 
 ### Installation
 
+The easiest way to install ROIMAPer is to add https://sites.imagej.net/ROIMAPer/ to your update sites in FIJI. Go to ```Help > Update...```, click on ```Manage Update Sites``` and ```Add Unlisted Site```. Enter "https://sites.imagej.net/ROIMAPer/" in the URL column and name it ROIMAPer. Then click ```Apply and Close```.
 
-Either download all files from github, or clone the repository using **git clone https://github.com/ciernialab/ROIMAPer**
+Alternatively, you can download all files from github, or clone the repository using **git clone https://github.com/ciernialab/ROIMAPer**. But this requires some restructuring, since the file structure set up for the FIJI updater. 
 
-
-Place the ROIMAPer-main folder in scripts/plugins/ in your FIJI folder (you can find the fiji folder under File>Show Folder>ImageJ in FIJI)
+Place the ROIMAPer.ijm file in ```plugins/``` in your FIJI folder (you can find the fiji folder under ```File>Show Folder>ImageJ``` in FIJI). Next, create a folder named ```ROIMAPer``` in ```images/``` in the FIJI folder. In this folder, place the atlases and the ROIMAPerUtilities folders.
 ![a screenshot displaying the save location of ROIMAPer-main, in fiji.app/scripts/plugins/](./images/roimaper_location.png)
 
 The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were used to create the atlas and can be used to create ROIs outside of the main program.
