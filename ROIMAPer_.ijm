@@ -30,7 +30,7 @@ var do_blinding = false;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.3.0 (Jan 2026)</p1>"
+    +"<p1>Version: 2.4.0 (Feb 2026)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -55,8 +55,8 @@ if (!found_roimapper) {
 	exit("Please save the ROIMAPer folder under \"scripts/Plugins/\" in the FIJI folder.");
 }
 
-home_directory = replace(getDirectory("imagej"), "\\", "/") + "scripts/Plugins/" + plugin_name + "atlases/";
-utilities_directory = replace(getDirectory("imagej"), "\\", "/") + "scripts/Plugins/" + plugin_name + "ROIMAPerUtilities/";
+home_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMAPer/atlases/";
+utilities_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMAPer/ROIMAPerUtilities/";
 File.setDefaultDir(home_directory);
 
 //get atlas specification
