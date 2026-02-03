@@ -1625,9 +1625,9 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 		if (combined_results == "combined" || combined_results == "both") {//opens the whole image and saves all ROIs combined
 			
 			if (!is_czi[image_number]) {
-				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
+				run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT z_begin=" + selectedslice + " z_end=" + selectedslice + " z_step=1");
 			} else {
-				run("Bio-Formats Importer", "open=" + local_image_path + " color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice);
+				run("Bio-Formats Importer", "open=[" + local_image_path + "] color_mode=Default specify_range view=Hyperstack stack_order=XYCZT series_" + selectedslice);
 			}
 			rename("current_image");
 			
