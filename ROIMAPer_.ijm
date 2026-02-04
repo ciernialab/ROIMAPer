@@ -41,8 +41,11 @@ showMessage("ROIMAPer", "<html>
 //directory setup
 default_directory = File.getDefaultDir;//to restore in the end
 
+/*
 //find the ROIMAPer plugin
+//depracated since ImageJ update site structure
 plugin_list = getFileList(getDirectory("imagej") + "scripts/Plugins/");
+
 found_roimapper = false;
 for (i = 0; i < plugin_list.length; i++) {
 	if (startsWith(plugin_list[i], "ROIMAPer")) {
@@ -54,7 +57,7 @@ for (i = 0; i < plugin_list.length; i++) {
 if (!found_roimapper) {
 	exit("Please save the ROIMAPer folder under \"scripts/Plugins/\" in the FIJI folder.");
 }
-
+*/
 home_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMAPer/atlases/";
 utilities_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMAPer/ROIMAPerUtilities/";
 File.setDefaultDir(home_directory);
