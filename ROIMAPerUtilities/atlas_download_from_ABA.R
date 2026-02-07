@@ -1,3 +1,4 @@
+library(tidyverse)
 brain_region_indices_ABA <- read.csv("http://api.brain-map.org/api/v2/data/query.csv?criteria=model::Structure,rma::criteria,[ontology_id$eq1],rma::options[order$eq%27structures.graph_order%27][num_rows$eqall]")
 brain_region_indices_ABA[, c("r","g","b")] <- t(col2rgb(paste0("#",brain_region_indices_ABA$color_hex_triplet)))
 brain_region_indices_ABA$parent <- c(
@@ -18,11 +19,11 @@ roimaper_aba <- data.frame(
   id = float_correct_ids,
   acronym = stringr::str_replace_all(brain_region_indices_ABA$acronym,
                                      pattern = "/", replacement = "-"),
-  name = brain_region_indices_ABA$name,
+  name = str_replace_all(brain_region_indices_ABA$name, pattern = " ", replacement = "_"),
   parent = float_correct_parents)
 
-write.csv(roimaper_aba, file = "ROIMAPer/atlases/aba_v3_adult-brain_region_mapping.csv")
-write.csv(roimaper_aba, file = "ROIMAPer/atlases/aba_v3_p56-brain_region_mapping.csv")
+write.table(roimaper_aba, file = "ROIMAPer/ROIMAPerUtilities/aba_v3_adult-brain_region_mapping.txt", sep = "\t", quote = FALSE)
+write.table(roimaper_aba, file = "ROIMAPer/ROIMAPerUtilities/aba_v3_p56-brain_region_mapping.txt", sep = "\t", quote = FALSE)
 
 
 #now for dev mouse
@@ -37,10 +38,10 @@ roimaper_aba_devmouse <- data.frame(
   id = float_correct_ids_devmouse,
   acronym = stringr::str_replace_all(brain_region_indices_ABA_devmouse$acronym,
                                      pattern = "/", replacement = "-"),
-  name = brain_region_indices_ABA_devmouse$name,
+  name = str_replace_all(brain_region_indices_ABA_devmouse$name, pattern = " ", replacement = "_"),
   parent = float_correct_parents_devmouse)
 
-write.csv(roimaper_aba_devmouse, file = "ROIMAPer/atlases/aba_v3_devmouse-brain_region_mapping.csv")
+write.table(roimaper_aba_devmouse, file = "ROIMAPer/ROIMAPerUtilities/aba_v3_devmouse-brain_region_mapping.txt", sep = "\t", quote = FALSE)
 
 #now for human
 #id is 7 instead of 1
@@ -54,7 +55,7 @@ roimaper_aba_human <- data.frame(
   id = float_correct_ids_human,
   acronym = stringr::str_replace_all(brain_region_indices_ABA_human$acronym,
                                      pattern = "/", replacement = "-"),
-  name = brain_region_indices_ABA_human$name,
+  name = str_replace_all(brain_region_indices_ABA_human$name, pattern = " ", replacement = "_"),
   parent = float_correct_parents_human)
 
-write.csv(roimaper_aba_human, file = "ROIMAPer/atlases/aba_v3_human-brain_region_mapping.csv")
+write.table(roimaper_aba_human, file = "ROIMAPer/ROIMAPerUtilities/aba_v3_human-brain_region_mapping.txt", sep = "\t", quote = FALSE)

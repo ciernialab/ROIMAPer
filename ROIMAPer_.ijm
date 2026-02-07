@@ -69,7 +69,7 @@ atlas_directory = home_directory + atlas_name + "_ROIs/";
 
 File.setDefaultDir(default_directory);
 //the atlas id to brain region information
-text_file = substring(atlas_name, 0, indexOf(atlas_name, "-")) + "-brain_region_mapping.csv";
+text_file = substring(atlas_name, 0, indexOf(atlas_name, "-")) + "-brain_region_mapping.txt";
 mapping_index_path = utilities_directory + "mapping_index.csv";
 
 
@@ -276,7 +276,7 @@ if (do_slice_selection) {
 }
 
 
-Table.open(utilities_directory + text_file);
+openTable(utilities_directory + text_file);
 
 defaultchannels = "DAPI, Iba1, GFAP, mOC87, Temp";
 
@@ -777,7 +777,38 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 }
 
 
-
+function openTable(path) {
+	 
+	lineseparator = "\n";
+	cellseparator = "\t";
+	
+	// copies the whole RT to an array of lines
+	lines=split(File.openAsString(path), lineseparator);
+	
+	// recreates the columns headers
+	labels=split(lines[0], cellseparator);
+	
+	
+	// dispatches the data into the new RT
+	table_name = File.getName(path);
+	//Array.print(labels);
+	
+	Table.create(table_name);
+	//make labels
+	for (j=0; j<labels.length; j++) {
+		Table.set(labels[j],0,0);
+	}
+	//make entries
+	for (i=1; i<lines.length; i++) {
+		items=split(lines[i], cellseparator);
+		items = Array.deleteIndex(items, 0);
+		//Array.print(items);
+		for (j=0; j<items.length; j++) {
+			//print(items[j]);
+			Table.set(labels[j],i-1,items[j]);
+		}
+	}
+}
 
 function check_roi_availability(atlas_slice, regions, local_image_name_without_extension) {
 	roi_path = newArray();
@@ -1661,7 +1692,7 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 //functions to create ROIs:
 function createROIs(atlas_name, mapping_index_path, searchTerm) {
 	
-Table.open(utilities_directory + text_file);
+openTable(utilities_directory + text_file);
 	for (i = 0; i < searchTerm.length; i++) {
 		searchTerm[i] = trim(searchTerm[i]); //deal with whitespace in the brain region submission
 	}
