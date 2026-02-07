@@ -30,7 +30,7 @@ var do_blinding = false;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.4.0 (Feb 2026)</p1>"
+    +"<p1>Version: 2.4.1 (Feb 2026)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -41,7 +41,8 @@ showMessage("ROIMAPer", "<html>
 //directory setup
 default_directory = File.getDefaultDir;//to restore in the end
 
-/*
+
+/*
 //find the ROIMAPer plugin
 //depracated since ImageJ update site structure
 plugin_list = getFileList(getDirectory("imagej") + "scripts/Plugins/");
@@ -57,7 +58,8 @@ for (i = 0; i < plugin_list.length; i++) {
 if (!found_roimapper) {
 	exit("Please save the ROIMAPer folder under \"scripts/Plugins/\" in the FIJI folder.");
 }
-*/
+
+*/
 home_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMAPer/atlases/";
 utilities_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMAPer/ROIMAPerUtilities/";
 File.setDefaultDir(home_directory);
@@ -347,7 +349,8 @@ if(one_roi_for_all) {
 		regions[i] = trim(regions[i]); //deal with whitespace in the brain region submission
 	}
 
-	if (map_part) {
+	
+if (map_part) {
 		Dialog.create("Save ROIs");
 		Dialog.addMessage("Which brain regions do you want to save? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
 		Dialog.addString("Brain regions:", regions_text, 35);
@@ -416,7 +419,8 @@ if (combined_results == "combined" || combined_results == "both") {
 }
 
 if (do_blinding) {
-	random_array = newArray(image_path.length);
+	
+random_array = newArray(image_path.length);
 	for (i = 0; i < image_path.length; i++) {
 		random_array[i] = random;
 	}
@@ -777,7 +781,8 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 }
 
 
-function openTable(path) {
+
+function openTable(path) {
 	 
 	lineseparator = "\n";
 	cellseparator = "\t";
@@ -1667,7 +1672,8 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 			
 			roi_saving_array = newArray();
 
-			for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
+			
+for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
 				roiManager("select", i);
 				roi_name = Roi.getName;
 				if (value_is_in_array(save_regions, roi_name)) {
@@ -1678,7 +1684,8 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 				roiManager("select", roi_saving_array);
 				roiManager("show all without labels");
 				save(combined_output_path + local_image_name_without_extension + "_combined.tif");
-				roiManager("save selected", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
+				
+roiManager("save selected", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
 			}
 			close("current_image");
 		}
