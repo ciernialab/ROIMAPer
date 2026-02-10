@@ -813,6 +813,7 @@ function openTable(path) {
 			Table.set(labels[j],i-1,items[j]);
 		}
 	}
+	Table.update;
 }
 
 function check_roi_availability(atlas_slice, regions, local_image_name_without_extension) {
