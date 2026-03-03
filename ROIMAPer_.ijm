@@ -30,7 +30,7 @@ var do_blinding = false;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.4.1 (Feb 2026)</p1>"
+    +"<p1>Version: 2.5.0 (Mar 2026)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -293,6 +293,7 @@ if(one_roi_for_all) {
 	Dialog.addMessage("What slice of the Allen Brain do you want to map to?");
 	Dialog.addNumber("Slice", 1, 0, 3, "");
 	Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
+	Dialog.addMessage("Please refer to the opened table for correct acronyms.");
 	Dialog.addString("Brain regions:", "", 35);
 	Dialog.addCheckbox("Only save part of these regions?\nThis can be used if you want to use the other regions as context clues.", false);
 	Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
@@ -312,6 +313,7 @@ if(one_roi_for_all) {
 	if (map_part) {
 		Dialog.create("Save ROIs");
 		Dialog.addMessage("Which brain regions do you want to save? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
+		Dialog.addMessage("Please refer to the opened table for correct acronyms. Remove the acronyms of the regions you do NOT want to save.");
 		Dialog.addString("Brain regions:", regions_text, 35);
 		Dialog.addMessage("If you picked a combined output, all regions will be saved in the tif file.");
 		Dialog.show();
@@ -334,7 +336,7 @@ if(one_roi_for_all) {
 	
 	Dialog.createNonBlocking("Template selection");
 	Dialog.addMessage("Which brain regions do you want to map? Please add the region acronyms separated by a comma, like this: \"HY, BLA, CA1\".");
-	Dialog.addMessage("Please refer to the opened table for correct acronyms. They need to first be created with the atlas_to_roi.ijm script.");
+	Dialog.addMessage("Please refer to the opened table for correct acronyms.");
 	Dialog.addString("Brain regions:", "", 35);
 	Dialog.addCheckbox("Only save part of these regions?\nThis can be used if you want to use the other regions as context clues.", false);
 	Dialog.addMessage("These are the default channels, please add a channel, separated by a comma, if you use a custom one");
