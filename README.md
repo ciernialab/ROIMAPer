@@ -95,11 +95,19 @@ Thank you for using this plugin.
 The Allen Brain Atlas adult mouse brain was obtained from: [https://download.alleninstitute.org/informatics-archive/current-release/mouse_ccf/annotation/ccf_2017/] at a resolution of 10 µm.  
 Allen Reference Atlas – Mouse Brain \[adult mouse\]. Available from [https://atlas.brain-map.org/].
 
+The Human Brain Atlas was obtained from [https://download.alleninstitute.org/informatics-archive/allen_human_reference_atlas_3d_2020/version_1/]. Allen Reference Atlas - Human Brain. Available from [https://atlas.brain-map.org].
+
+The Developing Mouse Brain Atlas was obtained from:
+David M Young Siavash Fazel Darbandi Grace Schwartz Zachary Bonzell Deniz Yuruk Mai Nojima Laurent C Gole John LR Rubenstein Weimiao Yu Stephan J Sanders (2021) 
+Constructing and optimizing 3D atlases from 2D data with application to the developing mouse brain.
+eLife 10:e61408. [https://doi.org/10.7554/eLife.61408 ]
+The dataset was retrieved through EBRAINS: Young, D. M., Weimiao, Y., & Sanders, S. J. (2020). E18.5 3D Edge-Aware Refined Atlas Derived from the Allen Developing Mouse Brain Atlas \[Data set\]. EBRAINS. https://doi.org/10.25493/X4ZT-ARE
+
 The Waxholm Space Atlas of the Sprague Dawley Rat Brain version 4 was obtained from: [www.nitrc.org](https://www.nitrc.org/projects/whs-sd-atlas).
 
 This plugin was inspired by the FASTMAP plugin by Dylan Terstege from the Epp lab, University of Calgary, published on 12-07-2019 [doi.org/10.1523/ENEURO.0325-21.2022](https://doi.org/10.1523/ENEURO.0325-21.2022), available at [github.com/dterstege/FASTMAP](https://github.com/dterstege/FASTMAP)
 
-Atlas files were compressed using the Bio-Formats plugin suite: Linkert, M., Rueden, C. T., Allan, C., Burel, J.-M., Moore, W., Patterson, A., … Swedlow, J. R. (2010). Metadata matters: access to image data in the real world. Journal of Cell Biology, 189(5), 777–782. [doi.org/10.1083/jcb.201004104](https://doi.org/10.1083/jcb.201004104)
+
 
 
 
