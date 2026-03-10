@@ -34,8 +34,14 @@ showMessage("ROIMAPer", "<html>
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
+    +"<H2><font size=3>Atlas names:</H2>" 
+    +"<H2><font size=2>aba_v3_adult and aba_v3_p56 are the adult mouse atlases, based on CCF3 of the Allen Institute</H2>" 
+    +"<H2><font size=2>aba_v3_devmouse uses the developmental mouse nomenclature from the Allen Institute at different embryonal (E) and postnatal (P) days. The p56 mouse is represented here, too.</H2>" 
+    +"<H2><font size=2>WHS is the adult rat atlas, from the Waxholm brain atlas of the Sprague Dawley rat.</H2>" 
+    +"<H2><font size=2>aba_v3_human is the adult human atlas from the Allen Institute</H2>" 
+    +"<H2><font size=2>See the github for full dataset citation.</H2>" 
     +"<h1><font size=2> </h1>"  
-	   +"<h0><font size=5> </h0>"
+	+"<h0><font size=5> </h0>"
     +"");
 
 //directory setup
