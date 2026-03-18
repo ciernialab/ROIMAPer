@@ -6,6 +6,9 @@ Comes with the 2017 version of the adult mouse Allen Brain Atlas CCFv3, the 2020
 
 Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, Vancouver, in Sep 2025.
 
+### Video tutorial
+Find a video explanation of the plugin, including installation in FIJI under: [https://youtu.be/TH9QkLzJgqA](https://youtu.be/TH9QkLzJgqA)
+
 ### Installation
 
 The easiest way to install ROIMAPer is to add https://sites.imagej.net/ROIMAPer/ to your update sites in FIJI. Go to ```Help > Update...```, click on ```Manage Update Sites``` and ```Add Unlisted Site```. Enter "https://sites.imagej.net/ROIMAPer/" in the URL column and name it ROIMAPer. Then click ```Apply and Close```.
