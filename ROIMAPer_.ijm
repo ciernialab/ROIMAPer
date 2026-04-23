@@ -9,8 +9,8 @@ var one_roi_for_all = false;
 var automatic_bounding_box = false;
 var output_path = "";
 var combined_output_path = "";
+var region_output_path = "";
 var control_channel = "";
-var temp = "";
 var atlas_directory = "";
 var text_file = "";
 var mapping_index_path = "";
@@ -30,7 +30,7 @@ var do_blinding = false;
 
 showMessage("ROIMAPer", "<html>
     +"<h1><font color=black>ROIMAPer </h1>" 
-    +"<p1>Version: 2.5.0 (Mar 2026)</p1>"
+    +"<p1>Version: 2.5.1 (April 2026)</p1>"
     +"<H2><font size=3>Created by Julian Rodefeld, Ciernia Lab, University of British Columbia</H2>" 
     +"<H2><font size=2>Inspired by the FASTMAP plugin by Dylan Terstege from the Epp Lab</H2>" 
     +"<h3>   <h3>"    
@@ -71,7 +71,7 @@ utilities_directory = replace(getDirectory("imagej"), "\\", "/") + "images/ROIMA
 File.setDefaultDir(home_directory);
 
 //get atlas specification
-atlas_path = replace(File.openDialog("Please select which atlas (saved in the FIJI folder in \"scripts/Plugins/ROIMAPer/atlases\") you would like to work with (select a .tif file)."), "\\", "/"); //replace backslash with forwardslash
+atlas_path = replace(File.openDialog("Please select which atlas you would like to work with (select a .tif file)."), "\\", "/"); //replace backslash with forwardslash
 atlas_name = File.getNameWithoutExtension(atlas_path);
 atlas_directory = home_directory + atlas_name + "_ROIs/";
 
@@ -83,12 +83,6 @@ mapping_index_path = utilities_directory + "mapping_index.csv";
 
 getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
 month = month + 1;//because month is zero-based index
-
-//make folder in temporary directory
-temp = getDirectory("temp");
-temp = replace(temp, "\\", "/");
-temp = temp + "ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
-File.makeDirectory(temp);
 
 //get the directory of the analysis
 image_directory = getDirectory("Please choose the directory that contains your images.");
@@ -147,6 +141,7 @@ for (i = 0; i < image_selection_size; i++) {
 File.setDefaultDir(higher_directory);
 output_home_path = getDirectory("Where should the output folder be created? Do not pick your input directory.");
 output_path = output_home_path + "/" + directory_name + "_ROIMAPer_results_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
+region_output_path = output_home_path + "/" + directory_name + "_ROIMAPer_regions_" + year + "_" + month + "_" + dayOfMonth + "_" + hour + "_" + minute + "/";
 
 File.setDefaultDir(default_directory);
 //restore default directory
@@ -417,6 +412,9 @@ for (i = 1; i <= channelchoices.length; i++) {
 	}
 }
 
+//create the folder where the roi regions will be saved
+File.makeDirectory(region_output_path);
+
 if (combined_results == "individual" || combined_results == "both") {
 	File.makeDirectory(output_path);
 }
@@ -436,6 +434,7 @@ random_array = newArray(image_path.length);
 } else {
 	sequence_array = Array.getSequence(image_path.length);
 }
+
 
 //then run the roi adjusting function for each image
 for (current_image = 0; current_image < image_path.length; current_image++) {
@@ -767,10 +766,10 @@ skip_choice = "Continue";//reset this, in case the last image was skipped
 			
 			if (proceed) {
 				
-				//save the rois to the temp directory, named after the images
+				//save the rois to the region directory, named after the images
 				if (brain_region_roi_ids.length > 0) {
 					roiManager("select", brain_region_roi_ids);
-					roiManager("save selected", temp + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
+					roiManager("save selected", region_output_path + local_image_name_without_extension + "roi.zip"); //change the [0] to image_number later
 				
 				}
 			}
@@ -1621,9 +1620,9 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 	save_roi_ids_start = roiManager("count");
 	
 	
-	if (File.exists(temp + local_image_name_without_extension + "roi.zip")) {
+	if (File.exists(region_output_path + local_image_name_without_extension + "roi.zip")) {
 //only do this if ROIs were actually saved
-		roiManager("open", temp + local_image_name_without_extension + "roi.zip");
+		roiManager("open", region_output_path + local_image_name_without_extension + "roi.zip");
 		save_roi_ids_end = roiManager("count") -1;
 		
 		//get the array of selected channels to go through
@@ -1693,8 +1692,8 @@ for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
 				roiManager("select", roi_saving_array);
 				roiManager("show all without labels");
 				save(combined_output_path + local_image_name_without_extension + "_combined.tif");
-				
-roiManager("save selected", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
+				//no longer useful, when region output is in output folder
+				//roiManager("save selected", combined_output_path + local_image_name_without_extension + "_combined_roi.zip");
 			}
 			close("current_image");
 		}

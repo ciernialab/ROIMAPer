@@ -10,8 +10,8 @@ for (i = 1; i <= image_counter; i++) {
 
 getDimensions(width, height, channels, slices, frames);
 
-overview_width = width / 10;
-overview_height = height / 10;
+overview_width = width / 3;
+overview_height = height / 3;
 
 
 //creating the most compact grid
@@ -74,7 +74,7 @@ File.delete(image_dir + "TileConfiguration.txt");
 
 
 
-textsize = 10;
+textsize = 50;
 
 setFont("SansSerif", textsize);
 
