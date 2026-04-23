@@ -6,6 +6,9 @@ Comes with the 2017 version of the adult mouse Allen Brain Atlas CCFv3, the 2020
 
 Created by Julian Rodefeld in the Ciernia lab, University of British Columbia, Vancouver, in Sep 2025.
 
+### Video tutorial
+Find a video explanation of the plugin, including installation in FIJI under: [https://youtu.be/TH9QkLzJgqA](https://youtu.be/TH9QkLzJgqA)
+
 ### Installation
 
 The easiest way to install ROIMAPer is to add https://sites.imagej.net/ROIMAPer/ to your update sites in FIJI. Go to ```Help > Update...```, click on ```Manage Update Sites``` and ```Add Unlisted Site```. Enter "https://sites.imagej.net/ROIMAPer/" in the URL column and name it ROIMAPer. Then click ```Apply and Close```.
@@ -74,7 +77,7 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
         3. After pressing "OK", the nodes create a mesh of triangles and current relative position of all regions in their triangle is calculated.
            
        ![an example of a delauney mesh](./images/delauney_triangles.png)
-        5. You can then move the nodes. After pressing OK this will move/stretch/squish the ROIs relative to their closest nodes. So move the nodes around the ROIs that you want to edit to where the ROI is supposed to be. Do not move nodes around ROIs that you do not want to change. You can repeat this process multiple times.
+        5. You can then move the nodes. After pressing OK this will move/stretch/squish the ROIs relative to their closest nodes. So move the nodes around the ROIs that you want to edit to where the ROI is supposed to be. Do not move nodes around ROIs that you do not want to change. Do not add additional nodes. If you mistakenly added additional nodes you can delete them with Alt + Left Click. You can repeat the mesh transformat multiple times.
        
        ![a diagram demonstrating the transformation of points within a shifted triangle](./images/transformation.png)
     6. Alternatively, you can convert any ROI into an editable point-selection by selecting "change one ROI". After clicking ok, select the ROI you want to edit, click the checkmark and enter a downscaling factor - the default is 10, which means that every 10th point of the original selection is kept/made editable. **Currently only either the individual or the mesh transform works on one image. Do not use both on the same image.**
