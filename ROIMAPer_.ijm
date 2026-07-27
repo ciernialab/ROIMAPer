@@ -1385,7 +1385,7 @@ function mesh_transform(roi_ids) {
 		}
 		//creates the composite again
 		roiManager("select", fuse_array);
-		roiManager("combine");
+		roiManager("XOR");
 		roiManager("add");
 		roiManager("select", roiManager("count") - 1);
 		roiManager("rename", split_roi_search_name);
