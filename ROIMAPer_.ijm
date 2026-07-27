@@ -1338,7 +1338,7 @@ function mesh_transform(roi_ids) {
 				new_xroi[j] = w1 * x1new + w2 * x2new + w3 * x3new;
 				new_yroi[j] = w1 * y1new + w2 * y2new + w3 * y3new;
 				if (!(0 <= w1 && w1 <= 1 && 0 <= w2 && w2 <= 1 && 0 <= w3 && w3 <= 1)) {
-					print("An error in the affine transform occured. This might result in deformed regions. You can restart within this image by following with \"reo bounding box\".");
+					//print("An error in the affine transform occured. This might result in deformed regions. You can restart within this image by following with \"reo bounding box\".");
 					new_xroi[j] = xroi[j];
 					new_yroi[j] = yroi[j];
 					
@@ -1393,7 +1393,6 @@ function mesh_transform(roi_ids) {
 		//because the composites will be deleted in the end
 		// so we substract their number from the ROI index now
 		//with additional one because roimanager index is zero based but count not
-		//I think the following line contains a mistake
 		
 		transformed_roi_ids = Array.concat(transformed_roi_ids, roiManager("count") - 1); 
 		
@@ -1916,10 +1915,4 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    run("Select None");
 	}
 	close("bw");
-}
-
-
-
-
-
-
+}
