@@ -1731,7 +1731,7 @@ openTable(utilities_directory + text_file);
 		Table.open(mapping_index_path);
 		//go through the table and get the regions corresponding to this specific atlas
 		for (i = 0; i < Table.size; i++) {
-			if (trim(Table.getString("Atlas", i)) == trim(atlas_name)) {
+			if (matches(Table.getString("Atlas", i), trim(atlas_name))) {
 				already_saved = Array.concat(already_saved, Table.getString("Region", i));
 			}
 		}
@@ -1755,7 +1755,8 @@ openTable(utilities_directory + text_file);
 		
 		for (j = 0; j < nrows; j++) {
 			
-			if (searchTerm[i] == Table.getString("acronym", j)) {
+			if (matches(searchTerm[i], Table.getString("acronym", j))) {
+				print(searchTerm[i]);//delete again
 				search_id = Table.getString("id", j);
 			}
 		}
@@ -1877,6 +1878,7 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    	roiManager("add");
 	    	roiManager("select", roiManager("count") - 1);
 	    	roiManager("rename", searchTerm);
+	    	print(searchTerm);
 	    }
 
 	    
@@ -1903,7 +1905,6 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    	
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("save selected", atlas_directory + i + "/" + searchTerm + ".zip");
-	    	//print(atlas_directory + i + "/" + searchTerm + ".zip");
 	    	roiManager("select", newArray(roiManager("count")-1, roiManager("count")-2));
 	    	roiManager("delete");
 	    }
