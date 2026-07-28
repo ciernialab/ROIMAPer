@@ -57,8 +57,9 @@ The scripts in ROIMAPerUtilities are not necessary for ROI mapping. They were us
     6. Do you want to use blind mode? Image order will be randomized and image names will not be displayed (instead, every file will temporarily be named **pseudoname**, so be sure that that is not the name of your input images. Output names will be normal, though. 
     7. Do you want to select individual slices for each image, or can the first slice be used in each image?
 
-9. Reference, which regions you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
+9. Reference, which **regions** you want to map to your images. A list of available regions will open. Enter the value in the "acronym" column, seperated by commas, and press OK. The first time new ROIs are used in a new atlas they are created from the reference images, depending on the region this might take a while.
     1. If you choose, you can select to only save part of these regions. To do that, click the corresponding checkmark. A second window will pop up. Delete all the region acronyms that you do not want to save. This can be useful to see all brain regions, but only save some, when you need the context of brain regions for correct placement, but do not want to clutter the output.
+    2. **ATTENTION:** The acronyms of some regions had to be adjusted, because ImageJ cannot deal with case sensitivity. For example "cm" and "CM" cannot be told appart, so "cm" has been renamed "cm-1". Use ctrl+f to search for your desired region in the opened list.
 
 7. Channels: first add any custom channel names to the pop-up (separated by commas), then select which channel in your images belongs to which label. Select which of the channels is staining all of your tissue (usually DAPI) as the "control channel". If you want to create a result for the control channel, too, check the corresponding chechmark The channel order needs to be consistent between all images.
 
