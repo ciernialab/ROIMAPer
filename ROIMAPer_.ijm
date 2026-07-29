@@ -364,13 +364,42 @@ if (map_part) {
 			save_regions[i] = trim(save_regions[i]); //deal with whitespace in the brain region submission
 		}
 	} else {
-		save_regions = regions;
+		save_regions = Array.copy(regions);
 	}
 }
-close(text_file);
 
+unambiguous_regions = Array.copy(regions);
+
+selectWindow(text_file);
+nrows = Table.size;
+for (i = 0; i < unambiguous_regions.length; i++) {
+	for (j = 0; j < nrows; j++) {
+		
+		if (matches(regions[i], Table.getString("acronym", j))) {
+			unambiguous_regions[i] = Table.getString("acronym_unambiguous", j);
+			break;
+		}
+	}
+}
+
+unambiguous_save_regions = Array.copy(save_regions);
+
+selectWindow(text_file);
+nrows = Table.size;
+for (i = 0; i < unambiguous_save_regions.length; i++) {
+	for (j = 0; j < nrows; j++) {
+		
+		if (matches(save_regions[i], Table.getString("acronym", j))) {
+			unambiguous_save_regions[i] = Table.getString("acronym_unambiguous", j);
+			break;
+		}
+	}
+}
+
+close(text_file);
+Array.print(save_regions);
 //run through the ROIs requested, create those that have not been created yet
-createROIs(atlas_name, mapping_index_path, regions);
+createROIs(atlas_name, mapping_index_path, unambiguous_regions);
 
 //if there are channels, select which belongs to the respective fluorophor and only open those channels
 //make the user create custom channels
@@ -435,7 +464,6 @@ random_array = newArray(image_path.length);
 	sequence_array = Array.getSequence(image_path.length);
 }
 
-
 //then run the roi adjusting function for each image
 for (current_image = 0; current_image < image_path.length; current_image++) {
 
@@ -449,11 +477,11 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 	} else {
 		print("Now working on image " + (current_image + 1) + " out of " + image_path.length);
 	}
-	image_processing(current_image, image_path[sequence_array[current_image]], image_name_without_extension[sequence_array[current_image]], control_channel_id, selected_slices[sequence_array[current_image]], atlas_slice, regions, home_directory);
+	image_processing(current_image, image_path[sequence_array[current_image]], image_name_without_extension[sequence_array[current_image]], control_channel_id, selected_slices[sequence_array[current_image]], atlas_slice, unambiguous_regions, home_directory);
 
 	if (autosave) {//if we want to save after every image
 		print("Saving image " + (current_image + 1) + " out of " + image_path.length);
-		saving(current_image, image_path[sequence_array[current_image]], image_name_without_extension[sequence_array[current_image]], channelchoices, channeloptions_array, selected_slices[sequence_array[current_image]], home_directory, save_regions);
+		saving(current_image, image_path[sequence_array[current_image]], image_name_without_extension[sequence_array[current_image]], channelchoices, channeloptions_array, selected_slices[sequence_array[current_image]], home_directory, unambiguous_save_regions, save_regions);
 	}
 }
 
@@ -461,7 +489,7 @@ for (current_image = 0; current_image < image_path.length; current_image++) {
 if (!autosave) {
 	for (current_image = 0; current_image < image_path.length; current_image++) {
 		print("Saving image " + (current_image + 1) + " out of " + image_path.length);
-		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, save_regions);
+		saving(current_image, image_path[current_image], image_name_without_extension[current_image], channelchoices, channeloptions_array, selected_slices[current_image], home_directory, unambiguous_save_regions, save_regions);
 	}
 }
 
@@ -478,7 +506,7 @@ Dialog.show();
 
 function image_processing(image_number, local_image_path, local_image_name_without_extension, control_channel_id, selectedslice, atlas_slice, regions, home_directory) { 
 	
-skip_choice = "Continue";//reset this, in case the last image was skipped
+	skip_choice = "Continue";//reset this, in case the last image was skipped
 	proceed = false;
 	if (one_roi_for_all) {
 		roi_path = check_roi_availability(atlas_slice, regions, local_image_name_without_extension);
@@ -1613,7 +1641,7 @@ function scalar_product(x1, y1, x2, y2) {
 
 //saving the results
 //make this a seperate function that runs on all images after all the adjustment is done
-function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory, save_regions) {
+function saving(image_number, local_image_path, local_image_name_without_extension, channelchoices, channeloptions_array, selectedslice, home_directory, unambiguous_save_regions, save_regions) {
 	//open the saved scaled rois of the respective image
 	setBatchMode(true);
 	save_roi_ids_start = roiManager("count");
@@ -1649,8 +1677,16 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 								
 								roiManager("select", k);
 								roi_name = Roi.getName;
-								if (value_is_in_array(save_regions, roi_name)) {
-									save(output_path + local_image_name_without_extension + "_" + channeloptions[j] + "_" + getInfo("selection.name") + ".tif");
+								if (value_is_in_array(unambiguous_save_regions, roi_name)) {
+									//get the original region name and not the unambiguated one
+									for (l = 0; l < unambiguous_save_regions.length; l++) {
+										if (matches(roi_name, unambiguous_save_regions[l])) {
+											final_roi_name = save_regions[l];
+											roiManager("rename", final_roi_name);
+										}
+									}
+									//saving has to stay the same because otherwise will overwrite on a case-insensitive basis
+									save(output_path + local_image_name_without_extension + "_" + channeloptions[j] + "_" + roi_name + ".tif");
 								}
 							}
 							close(channeloptions_array[j]);
@@ -1678,12 +1714,17 @@ function saving(image_number, local_image_path, local_image_name_without_extensi
 			rename("current_image");
 			
 			roi_saving_array = newArray();
-
 			
-for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
+			for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
 				roiManager("select", i);
 				roi_name = Roi.getName;
-				if (value_is_in_array(save_regions, roi_name)) {
+				if (value_is_in_array(unambiguous_save_regions, roi_name)) {
+					for (l = 0; l < unambiguous_save_regions.length; l++) {
+						if (matches(roi_name, unambiguous_save_regions[l])) {
+							final_roi_name = save_regions[l];
+							roiManager("rename", final_roi_name);
+						}
+					}
 					roi_saving_array = Array.concat(roi_saving_array, i);
 				}
 			}
@@ -1706,7 +1747,7 @@ for (i = save_roi_ids_start; i <= save_roi_ids_end; i++) {
 //functions to create ROIs:
 function createROIs(atlas_name, mapping_index_path, searchTerm) {
 	
-openTable(utilities_directory + text_file);
+	openTable(utilities_directory + text_file);
 	for (i = 0; i < searchTerm.length; i++) {
 		searchTerm[i] = trim(searchTerm[i]); //deal with whitespace in the brain region submission
 	}
@@ -1754,10 +1795,10 @@ openTable(utilities_directory + text_file);
 		nrows = Table.size;
 		
 		for (j = 0; j < nrows; j++) {
-			
-			if (matches(searchTerm[i], Table.getString("acronym", j))) {
-				print(searchTerm[i]);//delete again
+			//because regions entered are looking in unambiguous column
+			if (matches(searchTerm[i], Table.getString("acronym_unambiguous", j))) {
 				search_id = Table.getString("id", j);
+				break;
 			}
 		}
 		
@@ -1765,7 +1806,8 @@ openTable(utilities_directory + text_file);
 		rows = getTableRowFromSearch(children);
 		if (rows.length > 0) { //only do the stuff, when region was found
 			thresholdfromtable(rows, title, search_id);
-		
+			
+			//save the ROI with the case-insensitive unambiguous name to avoid the file-overwriting
 			savingRoi(title, atlas_directory, search_id, searchTerm[i]);
 		
 			close(search_id);
@@ -1878,7 +1920,7 @@ function savingRoi(image, atlas_directory, searchID, searchTerm) {
 	    	roiManager("add");
 	    	roiManager("select", roiManager("count") - 1);
 	    	roiManager("rename", searchTerm);
-	    	print(searchTerm);
+	    	//print(searchTerm);
 	    }
 
 	    
