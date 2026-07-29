@@ -1101,7 +1101,7 @@ id	acronym	name	parent
 1100	846	DN	Dentate_nucleus	519
 1101	8455	VeCB	Vestibulocerebellar_nucleus	519
 1102	1009	fiber tracts	fiber_tracts	997
-1103	967	cm-1	cranial_nerves	1009
+1103	967	1-cm	cranial_nerves	1009
 1104	885	tn	terminal_nerve	967
 1105	949	von	vomeronasal_nerve	967
 1106	840	In	olfactory_nerve	967
@@ -1324,5 +1324,5 @@ id	acronym	name	parent
 1323	49	ipf	intraparafloccular_fissure	1040
 1324	57	pms	paramedian_sulcus	1040
 1325	65	pfs	parafloccular_sulcus	1040
-1326	624	IPF-1	Interpeduncular_fossa	1024
+1326	624	1-IPF	Interpeduncular_fossa	1024
 1327	25711	retina	retina	997
